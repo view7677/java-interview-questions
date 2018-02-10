@@ -5,7 +5,7 @@
     "author": "Vijay Kumar Keshri",
     "description": "This is grate place for the programmers preparing for java , spring , hibernate interview.",
     "language": "en",
-    "gitbook": "0.0.1",
+    "gitbook": "3.2.3",
     "extension": null,
     "plugins": [
         "mathjax"
