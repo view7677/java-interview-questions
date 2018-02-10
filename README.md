@@ -1,3 +1,3 @@
-# My Awesome Book
-
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+We thank our readers who constantly send
+feedback and reviews to motivate us in creating
+these useful books with the latest information!
