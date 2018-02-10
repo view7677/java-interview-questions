@@ -5,7 +5,7 @@
     "author": "Vijay Kumar Keshri",
     "description": "This is grate place for the programmers preparing for java , spring , hibernate interview.",
     "language": "en",
-    "gitbook": "0.0.1",
+    "gitbook": "3.2.3",
     "extension": null,
     "plugins": [
         "mathjax"
@@ -15,7 +15,8 @@
             "theme": "sepia",
             "family": "serif",
             "size": 2
-        }, "autocover": {
+        },
+        "autocover": {
             "font": {
                 "size": null,
                 "family": "Impact",
@@ -33,7 +34,7 @@
     "variables": {},
     "links": {
         "sidebar": {
-           "Java interview": "https://vijaykeshri.gitbooks.io/java-interview-questions/content/"
+            "Java interview": "https://vijaykeshri.gitbooks.io/java-interview-questions/content/"
         },
         "sharing": {
             "google": null,
@@ -44,7 +45,7 @@
         }
     },
     "pdf": {
-        "pageNumbers": false,
+        "pageNumbers": true,
         "fontSize": 12,
         "paperSize": "a4",
         "margin": {
@@ -53,7 +54,7 @@
             "top": 36,
             "bottom": 36
         },
-        "headerTemplate": null,
-        "footerTemplate": null
+        "headerTemplate": "Header of the PDF with _TITLE_ ",
+        "footerTemplate": "Footer HTML template. Available variables: _PAGENUM_, _TITLE_, _AUTHOR_ and _SECTION_."
     }
 }
