@@ -2,20 +2,38 @@
     "output": null,
     "generator": "site",
     "title": "Java interivew questions",
-    "description": null,
+    "author": "Vijay Kumar Keshri",
+    "description": "This is grate place for the programmers preparing for java , spring , hibernate interview.",
+    "language": "en",
+    "gitbook": "0.0.1",
     "extension": null,
-    "plugins": [],
+    "plugins": [
+        "mathjax"
+    ],
     "pluginsConfig": {
         "fontSettings": {
             "theme": "sepia",
             "family": "serif",
             "size": 2
+        }, "autocover": {
+            "font": {
+                "size": null,
+                "family": "Impact",
+                "color": "#FFF"
+            },
+            "size": {
+                "w": 1800,
+                "h": 2360
+            },
+            "background": {
+                "color": "#09F"
+            }
         }
     },
     "variables": {},
     "links": {
         "sidebar": {
-            "Custom link name": "https://customlink.com"
+           "Java interview": "https://vijaykeshri.gitbooks.io/java-interview-questions/content/"
         },
         "sharing": {
             "google": null,
