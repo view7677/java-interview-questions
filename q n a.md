@@ -44,18 +44,17 @@ implementation is in parent class. And another implementation is in
 child class.
 ### 46. Are we allowed to override a static
 method in Java?
-No. Java does not allow overriding a static method. If you create a
-static method with same name in subclass, then it is a new method,
-not an overridden method.47. Why Java does not allow
+No. Java does not allow overriding a static method. If you create a static method with same name in subclass, then it is a new method,
+not an overridden method.
+### 47. Why Java does not allow
 overriding a static method?
 To override a method, you need an instance of a class. Static method
 is not associated with any instance of the class. So the concept of
 overriding does not apply here.
 Therefore, Java does not allow overriding a static method.48. Is it allowed to override an
 overloaded method?
-Yes. You can override an overloaded method in Java.49. What is the difference between
-method overloading and method
-overriding in Java?
+Yes. You can override an overloaded method in Java.
+### 49. What is the difference between method overloading and method overriding in Java?
 Differences between method overloading and overriding are:
 1.
 2.
@@ -88,8 +87,7 @@ From Java 5 onwards, a child class can override a method of parent
 class and the child class method can return an object that is child of
 object return by parent class method.Polymorphism
 ### 52. What is Runtime Polymorphism?
-Runtime Polymorphism or Dynamic Polymorphism is the
-polymorphism that exists at runtime. In case of method overriding it
+Runtime Polymorphism or Dynamic Polymorphism is the polymorphism that exists at runtime. In case of method overriding it
 is not known which method will be called at runtime. Based on the
 type of object, JVM decides the exact method that should be called.
 So at compile time it is not known which method will be called at
