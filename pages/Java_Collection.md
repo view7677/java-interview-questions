@@ -218,15 +218,15 @@ object.
 3. **Performance**: HashSet performs basic operations like add(), remove(), contains(), size() etc in a constant size
 time. A TreeSet performs these operations at the order of
 log(n) time.
-4. Speed: A HashSet is better than a TreeSet in performance
+4. **Speed**: A HashSet is better than a TreeSet in performance
 for most of operations like add(), remove(), contains(),
 size() etc .
-5. Internal Structure: a HashMap in Java internally backs a
+5. **Internal Structure**: a HashMap in Java internally backs a
 HashSet. A NavigableMap backs a TreeSet internally.
-6. Features: A TreeSet has more features compared to a
+6. **Features**: A TreeSet has more features compared to a
 HashSet. It has methods like pollFirst(), pollLast(), first(),
 last(), ceiling(), lower() etc.
-7. Element Comparison: A HashSet uses equals() method for
+7. **Element Comparison**: A HashSet uses equals() method for
 comparison. A TreeSet uses compareTo() method forcomparison to maintain ordering of elements.161. In Java, how will you decide when
 to use a List, Set or a Map collection?
 1.
