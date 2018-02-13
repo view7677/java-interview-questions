@@ -236,8 +236,8 @@ collection then we use a List based collection.
 4. For fast search operation based on a key, value pair, we
 use a HashMap based collection.
 5. If we want to maintain the elements in a sorted order, then
-we use a TreeSet based collection.162. What are the differences between
-a HashMap and a Hashtable in Java?
+we use a TreeSet based collection.
+### 162. What are the differences between a HashMap and a Hashtable in Java?
 Main differences between a HashMap and a Hashtable are:
 1. Synchronization: HashMap is not a synchronized
 collection. If it is used in multi-thread environment, it may
