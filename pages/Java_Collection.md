@@ -85,7 +85,7 @@ Another option is:
 ```java
 int[] intArray = new int[myList.size()];
 for (int i=0; i < myList.size(); i++) {
-    intArray [i] = myList.get(i);
+intArray [i] = myList.get(i);
 }
 ```
 ### 151. How will you convert an array of primitive integers int[] to a List collection?
@@ -250,68 +250,48 @@ use a HashMap based collection.
 we use a TreeSet based collection.
 ### 162. What are the differences between a HashMap and a Hashtable in Java?
 Main differences between a HashMap and a Hashtable are:
-1. Synchronization: HashMap is not a synchronized
-collection. If it is used in multi-thread environment, it may
-not provide thread safety. A Hashtable is a synchronized
-collection. Not more than one thread can access a
-Hashtable at a given moment of time. The thread that
+1. **Synchronization**: HashMap is not a synchronized collection. If it is used in multi-thread environment, it may not provide thread safety. A Hashtable is a synchronized collection. Not more than one thread can access a Hashtable at a given moment of time. The thread that
 works on Hashtable acquires a lock on it and it makes
 other threads wait till its work is completed.
-2. Null values: A HashMap allows only one null key and any
+2. **Null values**: A HashMap allows only one null key and any
 number of null values. A Hashtable does not allow null
 keys and null values.
-3. Ordering: A HashMap implementation by LinkedHashMap
-maintains the insertion order of elements. A TreeMap sorts
-the mappings based on the ascending order of keys. On the
-other hand, a Hashtable does not provide guarantee of any
-kind of order of elements. It does not maintain the
-mappings of key values in any specific order.
-4. Legacy: Hashtable was not the initial part of collection
+3. **Ordering**: A HashMap implementation by LinkedHashMap maintains the insertion order of elements. A TreeMap sorts the mappings based on the ascending order of keys. On the other hand, a Hashtable does not provide guarantee of any kind of order of elements. It does not maintain the mappings of key values in any specific order.
+4. **Legacy**: Hashtable was not the initial part of collection
 framework in Java. It has been made a collection
 framework member, after being retrofitted to implement the
 Map interface. A HashMap implements Map interface and
 is a part of collection framework since the beginning.
-5. Iterator: The Iterator of HashMap is a fail-fast and it
+5. **Iterator**: The Iterator of HashMap is a fail-fast and it
 throws ConcurrentModificationException if any other
 Thread modifies the map by inserting or removing any
-element except iterator’s own remove() method.Enumerator of the Hashtable is not fail-fast.163. What are the differences between
-a HashMap and a TreeMap?
+element except iterator’s own remove() method.Enumerator of the Hashtable is not fail-fast.
+### 163. What are the differences between a HashMap and a TreeMap?
 Main differences between a HashMap and a TreeMap in Java are:
-1. Order: A HashMap does not maintain any order of its keys.
-In a HashMap there is no guarantee that the element
-inserted first will be retrieved first.
-2. In a TreeMap elements are stored according to natural
-ordering of elements. A TreeMap uses compareTo()
-method to store elements in a natural order.
-3. Internal Implementation: A HashMap uses Hashing
-internally. A TreeMap internally uses Red-Black tree
-implementation.
-4. Parent Interfaces: A HashMap implements Map interface.
+1. **Order**: A HashMap does not maintain any order of its keys.
+In a HashMap there is no guarantee that the element inserted first will be retrieved first.  In a TreeMap elements are stored according to natural ordering of elements. A TreeMap uses compareTo() method to store elements in a natural order.
+2. **Internal Implementation:** A HashMap uses Hashing internally. A TreeMap internally uses Red-Black tree implementation.
+3. **Parent Interfaces:** A HashMap implements Map interface.
 TreeMap implements NavigableMap interface.
-5. Null values: A HashMap can store one null key and
+4. Null values: A HashMap can store one null key and
 multiple null values. A TreeMap can not contain null key
 but it may contain multiple null values.
-6. Performance: A HashMap gives constant time performance
-for operations like get() and put(). A TreeMap gives order
-of log(n) time performance for get() and put() methods.
-7. Comparison: A HashMap uses equals() method to compare
-keys. A TreeMap uses compareTo() method for
-maintaining natural ordering.8.
+5. **Performance:** A HashMap gives constant time performance for operations like get() and put(). A TreeMap gives order of log(n) time performance for get() and put() methods.
+6. **Comparison:** A HashMap uses equals() method to compare keys. A TreeMap uses compareTo() method for maintaining natural ordering.8.
 Features: A TreeMap has more features than a HashMap. It
 has methods like pollFirstEntry() , pollLastEntry() ,
 tailMap() , firstKey() , lastKey() etc. that are not provided
-by a HashMap.164. What are the differences
-between Comparable and
-Comparator?
+by a HashMap.
+### 164. What are the differences between Comparable and Comparator?
 Main differences between Comparable and Comparator are:
-1. Type: Comparable<T> is an interface in Java where T is
+1. **Type**: Comparable<T> is an interface in Java where T is
 the type of objects that this object may be compared to.
 2. Comparator<T> is also an interface where T is the type of
 objects that may be compared by this comparator.
-3. Sorting: In Comparable, we can only create one sort
+3. **Sorting**: In Comparable, we can only create one sort
 sequence. In Comparator we can create multiple sort
 sequences.
-4. Method Used: Comparator<T> interface in Java has
+4. **Method Used**: Comparator<T> interface in Java has
 method public int compare (Object o1, Object o2) that
 returns a negative integer, zero, or a positive integer when
 the object o1 is less than, equal to, or greater than the
@@ -319,45 +299,33 @@ object o2. A Comparable<T> interface has method public
 int compareTo(Object o) that returns a negative integer,
 zero, or a positive integer when this object is less than,
 equal to, or greater than the object o.
-5. Objects for Comparison: The Comparator compares two
+5. **Objects for Comparison**: The Comparator compares two
 objects given to it as input. Comparable interface
 compares "this" reference with the object given as input.
-6. Package location: Comparable interface in Java is defined
+6. **Package location**: Comparable interface in Java is defined
 in java.lang package. Comparator interface in Java is
-defined in java.util package.165. In Java, what is the purpose of
-Properties file?
+defined in java.util package.
+### 165. In Java, what is the purpose of Properties file?
 A Properties file in Java is a list of key-value pairs that can be
 parsed by java.util.Properties class.
 Generally a Properties file has extension .properties e.g.
 myapp.properties.
-Properties files are used for many purposes in all kinds of Java
-applications. Some of the uses are to store configuration, initial
-data, application options etc.
-When we change the value of a key in a properties file, there is no
-need to recompile the Java application. So it provides benefit of
-changing values at runtime.166. What is the reason for overriding
-equals() method?
+Properties files are used for many purposes in all kinds of Java applications. Some of the uses are to store configuration, initial data, application options etc.
+When we change the value of a key in a properties file, there is no need to recompile the Java application. So it provides benefit of
+changing values at runtime.
+### 166. What is the reason for overriding equals() method?
 The equals() method in Object class is used to check whether two
 objects are same or not. If we want a custom implementation we can
 override this method.
-For example, a Person class has first name, last name and age. If we
-want two Person objects to be equal based on name and age, then
-we can override equals() method to compare the first name, last
-name and age of Person objects.
+
+For example, a Person class has first name, last name and age. If we want two Person objects to be equal based on name and age, then we can override equals() method to compare the first name, last name and age of Person objects.
 Generally in HashMap implementation, if we want to use an object
-as key, then we override equals() method.167. How does hashCode() method
-work in Java?
-Object class in Java has hashCode() method. This method returns a
-hash code value, which is an integer.
-The hashCode() is a native method and its implementation is not
-pure Java.
-Java doesn't generate hashCode(). However, Object generates a
+as key, then we override equals() method.
+### 167. How does hashCode() method work in Java?
+Object class in Java has hashCode() method. This method returns a hash code value, which is an integer. The hashCode() is a native method and its implementation is not
+pure Java. Java doesn't generate hashCode(). However, Object generates a
 HashCode based on the memory address of the instance of the
 object.
-If two objects are same then their hashCode() is also same.168. Is it a good idea to use Generics
-in collections?
-Yes. A collection is a group of elements put together in an order or
-based on a property. Often the type of element can vary. But the
-properties and behavior of a Collection remains same. Therefore it
-is good to create a Collection with Generics so that it is type-safe
-and it can be used with wide variety of element
+If two objects are same then their hashCode() is also same.
+### 168. Is it a good idea to use Generics in collections?
+Yes. A collection is a group of elements put together in an order or based on a property. Often the type of element can vary. But the properties and behavior of a Collection remains same. Therefore it is good to create a Collection with Generics so that it is type-safe and it can be used with wide variety of element
