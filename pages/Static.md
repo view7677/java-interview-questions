@@ -41,14 +41,10 @@ been closed.
 As per Java specification, main method has to be marked as static. It needs only one argument that is an array of String. A program can compile with a non-static method. But on execution
 it will give NoSuchMethodError. 
 ### 39. What is the difference between static method and instance method in Java?
-Often, there is a need to define a behavior for a class that is not
-dependent on member variables of an object. Such behavior is
-captured in a static method. If there is a behavior dependent upon
-the member variables of an object, then we do not mark it static, it
-remains as instance method.
-To call as static method, we do not need to create an object. We just
+Often, there is a need to define a behavior for a class that is not dependent on member variables of an object. Such behavior is
+captured in a static method. If there is a behavior dependent upon the member variables of an object, then we do not mark it static, it
+remains as instance method. To call as static method, we do not need to create an object. We just
 call it with class name. But to call an instance method, we need to
-create/get an object first.
-Instance member variables cannot be accessed by a static method.
+create/get an object first. Instance member variables cannot be accessed by a static method.
 But an instance method can call both instance variables and static
 variables.
