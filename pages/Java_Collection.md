@@ -227,15 +227,12 @@ HashSet. A NavigableMap backs a TreeSet internally.
 HashSet. It has methods like pollFirst(), pollLast(), first(),
 last(), ceiling(), lower() etc.
 7. **Element Comparison**: A HashSet uses equals() method for
-comparison. A TreeSet uses compareTo() method forcomparison to maintain ordering of elements.161. In Java, how will you decide when
-to use a List, Set or a Map collection?
+comparison. A TreeSet uses compareTo() method forcomparison to maintain ordering of elements.
+### 161. In Java, how will you decide when to use a List, Set or a Map collection?
 1.
 2.
-If we want a Collection that does not store duplicate
-values, then we use a Set based collection.
-If we want to frequently access elements operations based
-on an index value then we use a List based collection. E.g.
-ArrayList
+1. If we want a Collection that does not store duplicate values, then we use a Set based collection. 
+2. If we want to frequently access elements operations based on an index value then we use a List based collection. E.g. ArrayList
 3. If we want to maintain the insertion order of elements in a
 collection then we use a List based collection.
 4. For fast search operation based on a key, value pair, we
