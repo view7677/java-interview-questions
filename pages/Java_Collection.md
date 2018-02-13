@@ -1,4 +1,5 @@
-## Java Collection
+#
+# Java Collection
 ### 144. What is the difference between Collection and Collections Framework in Java?
 
 In Java, a Collection is an object that contains multiple elements of same type in a single unit. These multiple elements can be accessed through one Collection object.
@@ -40,7 +41,7 @@ follows:
 1. `Collection` is an interface in Java. But `Collections` is a class in Java.
 2. `Collection` is a base interface. `Collections` is a utility class in Java.
 3. `Collection` defines methods that are used for data structures that contain the objects. `Collections` defines the methods that are used for operations like access, find etc. on a Collection.
-### 148. What are the Thread-safe classes in Java Collections framework? 
+### 148. What are the Thread-safe classes in Java Collections framework?
 The Thread-safe classes in Java Collections framework are:
 * `Stack`
 * `Properties`
@@ -57,21 +58,22 @@ E.g.
 ```java
 ListIterator<Integer> iter = myList.iterator();
 while(iter.hasNext()) {
-    itr.remove();
+itr.remove();
 }
 ```
 Some developers use following code to remove an element which is incorrect:
 ```java
 Iterator<Integer> iter = myList.iterator();
 while(iter.hasNext()) {
-  itr.remove();
+itr.remove();
 }
 ```
 By doing so we get `ConcurrentModificationException`. An iterator is first created to traverse the list. But at the same time the list is changed by remove() method.
 In Java, it is not allowed for a thread to modify a collection while
 another thread is iterating it. ListIterator provides the capability of
 removing an object during traversal.
-### 150. How will you convert a List into an array of integers like- int[]?
+### 150. How will you convert a List into an array of integers like- int[ ]?
+
 We can use ArrayUtils class in Apache Commons Lang library.
 Sample code is:
 int[]intArray
@@ -80,10 +82,12 @@ Integer[0]));
 ArrayUtils.toPrimitive(myList.toArray(new
 If we use List.toArray(), it will convert List to Integer[].
 Another option is:
+```java
 int[] intArray = new int[myList.size()];
 for (int i=0; i < myList.size(); i++) {
-intArray [i] = myList.get(i);
+    intArray [i] = myList.get(i);
 }
+```
 ### 151. How will you convert an array of primitive integers int[] to a List collection?
 We can use ArrayUtils in Apache Commons Lang library for this
 purpose.
@@ -129,8 +133,10 @@ In this case we put a list into a HashSet. Internally hashCode()
 method is used to identify duplicate elements.
 Option 2: Use TreeSet
 In this case we use our own comparator to find duplicate objects.
+```java
 Set<Integer> mySet = new TreeSet<Integer>(myComparator);
 mySet.addAll(myList);
+```
 ### 154. How will you remove duplicate elements from an ArrayList?
 The trick in this question is to use a collection that does not allow
 duplicate elements. So we use a Set for this purpose.
@@ -138,19 +144,23 @@ Option 1: Use Set
 If ordering of elements is not important then we just put the elements
 of ArrayList in a HashSet and then add them back to the ArrayList.
 Sample Code is:
+```java
 ArrayList myList = // ArrayList with duplicate elements
 Set<Integer> mySet = new HashSet<Integer>(myList);
 myList.clear();
 myList.addAll(mySet);
+```
 Option 2: Use LinkedHashSet
 If ordering of elements is important then we put the elements of
 ArrayList in a LinkedHashSet and then add them back to the
 ArrayList.
 Sample Code is:
+```java
 ArrayList myList = // ArrayList with duplicate elements
 Set<Integer> mySet = new LinkedHashSet<Integer>(myList);
 myList.clear();
 myList.addAll(mySet);
+```
 ### 155. How can you maintain a Collection with elements in Sorted order?
 In Java, there are many ways to maintain a Collection with elements
 in sorted order.
@@ -208,7 +218,7 @@ unordered.
 where exactly we want to insert an element. In a Set there
 is no order, so we can insert element anywhere without
 worrying about order.
-3. Duplicate: In a List we can store duplicate elements. A Set
+3. **Duplicate**: In a List we can store duplicate elements. A Set
 can hold only unique elements.
 ### 160. What are the differences between a HashSet and TreeSet collection in Java?
 Main differences between a HashSet and TreeSet are:
@@ -229,7 +239,7 @@ last(), ceiling(), lower() etc.
 7. **Element Comparison**: A HashSet uses equals() method for
 comparison. A TreeSet uses compareTo() method forcomparison to maintain ordering of elements.
 ### 161. In Java, how will you decide when to use a List, Set or a Map collection?
-1. If we want a Collection that does not store duplicate values, then we use a Set based collection. 
+1. If we want a Collection that does not store duplicate values, then we use a Set based collection.
 2. If we want to frequently access elements operations based on an index value then we use a List based collection. E.g. ArrayList
 3. If we want to maintain the insertion order of elements in a
 collection then we use a List based collection.
