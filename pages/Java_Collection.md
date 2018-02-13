@@ -191,17 +191,15 @@ an array to store data. When an ArrayList is almost full it increases its size b
 ### 157. What are the differences between Collection and Collections in Java?
 
 Main differences between Collection and Collections are:
-1.
-2.
-3.
-**Type**: Collection is an interface in Java. Collections is a
+
+1. **Type**: Collection is an interface in Java. Collections is a
 class.
-**Features**: Collection interface provides basic features of
+2. **Features**: Collection interface provides basic features of
 data structure to List, Set and Queue interfaces.
 Collections is a utility class to sort and synchronize
 collection elements. It has polymorphic algorithms to
 operate on collections.
-**Method Type**: Most of the methods in Collection are at
+3. **Method Type**: Most of the methods in Collection are at
 instance level. Collections class has mainly static methods
 that can work on an instance of Collection.
 ### 158. In which scenario, LinkedList is better than ArrayList in Java?
