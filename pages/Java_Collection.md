@@ -6,7 +6,7 @@ In Java, a Collection is an object that contains multiple elements of same type 
 
 In Java Collections Framework is a library that provides common architecture for creating, updating and accessing different types of collections. In Collections framework there are common methods that are frequently used by developers for working on a Collection
 object.
-### 145. What are the main benefits of Collections Framework in Java?
+### 145. D
 Main benefits of Collections Framework in Java are as follows:
 1. **Reusability**: Java Collections Framework provides
 common classes and utility methods than can be used with
