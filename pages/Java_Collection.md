@@ -189,18 +189,19 @@ than a Vector.
 2. **Data Growth**: Internally both an ArrayList and Vector use
 an array to store data. When an ArrayList is almost full it increases its size by 50% of the array size. Whereas a Vector increases it by doubling the underlying array size.
 ### 157. What are the differences between Collection and Collections in Java?
+
 Main differences between Collection and Collections are:
 1.
 2.
 3.
-Type: Collection is an interface in Java. Collections is a
+**Type**: Collection is an interface in Java. Collections is a
 class.
-Features: Collection interface provides basic features of
+**Features**: Collection interface provides basic features of
 data structure to List, Set and Queue interfaces.
 Collections is a utility class to sort and synchronize
 collection elements. It has polymorphic algorithms to
 operate on collections.
-Method Type: Most of the methods in Collection are at
+**Method Type**: Most of the methods in Collection are at
 instance level. Collections class has mainly static methods
 that can work on an instance of Collection.
 ### 158. In which scenario, LinkedList is better than ArrayList in Java?
