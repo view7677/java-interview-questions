@@ -61,5 +61,5 @@ By default, the value of String array of arguments is empty in Java. It is not n
 ### 12. What is the difference between byte and char data types in Java?
 
 Both byte and char are numeric data types in Java. They are used to represent numbers in a specific range. Major difference between them is that a byte can store raw binary
-data where as a char stores characters or text data. Usage of char is E.g. char ch = ‘x’; Byte values range from -128 to 127. A byte is made of 8 bits. But a char is made of 16 bits. So it is
+data where as a char stores characters or text data. Usage of char is E.g. `char ch = ‘x’;` Byte values range from -128 to 127. A byte is made of 8 bits. But a char is made of 16 bits. So it is
 equivalent to 2 bytes.
