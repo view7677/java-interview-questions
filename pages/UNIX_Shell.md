@@ -99,6 +99,7 @@ E.g. rm `cat files_to_delete`
 In this example files\_to\_delete is a file containing the list of files to
 be deleted. cat command outputs this file and gives the output to `rm` command. `rm` command deletes the files.
 In general Command Substitution is represented by back quotes \`.
+
 ### 480. What is an Inode in Unix?
 An Inode is a Data Structure in Unix that denotes a file or a directory on file system. It contains information about file like-location of file on the disk, access mode, ownership, file type etc.
 
