@@ -10,7 +10,7 @@
 9. Can we write main method as public void static instead of public static void?
 10. In Java, if we do not specify any value for local variables, then what will be the default value of the local variables?
 11. Let say, we run a java class without passing any arguments. What will be the value of String array of arguments in Main method?
-12. [What is the difference between byte and char data types in Java?](./Java_Basics.md#12)
+12. [What is the difference between byte and char data types in Java?](./Java_Basics.md#[ID])
 
 ## [OOPS](pages/OOPS.md)
 13. What are the main principles of Object Oriented Programming?
