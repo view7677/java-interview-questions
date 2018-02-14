@@ -1,5 +1,5 @@
 ## Polymorphism
-### 52. What is Runtime Polymorphism?
+#### 52. What is Runtime Polymorphism?
 Runtime Polymorphism or Dynamic Polymorphism is the polymorphism that exists at runtime. In case of method overriding it  is not known which method will be called at runtime. Based on the type of object, JVM decides the exact method that should be called. So at compile time it is not known which method will be called at
 run time.
 

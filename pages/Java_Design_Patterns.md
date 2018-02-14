@@ -1,6 +1,6 @@
 ## Java Design Patterns
 
-### 59. When will you use Strategy Design Pattern in Java?
+#### 59. When will you use Strategy Design Pattern in Java?
 Strategy pattern is very useful for implementing a family of algorithms. It is a behavioral design pattern. With Strategy pattern we can select the algorithm at runtime. We can use it to select the sorting strategy for data. We can use it to save files in different formats like- .txt, .csv, .jpg etc.
 In Strategy pattern we create an abstraction, which is an interface through which clients interact with our system. Behind the abstraction we create multiple implementation of same interface
 with different algorithms.
@@ -9,7 +9,7 @@ of request we have received.
 So we use Strategy pattern to hide the algorithm implementation
 details from client.
 In Java Collections.sort() method uses strategy design pattern.
-### 60. What is Observer design pattern?
+#### 60. What is Observer design pattern?
 In Observer design pattern, there is a Subject that maintains the list
 of Observers that are waiting for any update on the Subject. Once
 there is an update in Subject it notifies all the observers for the
@@ -25,7 +25,7 @@ Controller (MVC) architectural pattern.
 Main issue with Observer pattern is that it can cause memory leaks.
 The subject holds a strong reference to observers. If observers are
 not de-registered in time, it can lead to memory leak.
-### 61. What are the examples of Observer design pattern in JDK?
+#### 61. What are the examples of Observer design pattern in JDK?
 In JDK there are many places where Observer design pattern is
 used. Some of these are as follows:
 1. `java.util.Observer`, `java.util.Observable`
@@ -34,7 +34,7 @@ used. Some of these are as follows:
 4. All implementations of java.util.EventListener, and also in
 Swing packages
 5. javax.faces.event.PhaseListener
-### 62. How Strategy design pattern is different from State design pattern in Java?
+#### 62. How Strategy design pattern is different from State design pattern in Java?
 State design pattern is a behavioral design pattern that is use for
 defining the state machine for an object. Each state of an object is
 defined in a child class of State class. When different actions are
@@ -58,7 +58,7 @@ Therefore State pattern is based on the Object’s internal state,
 where as Strategy pattern is based on Client’s invocation.
 State pattern is very useful in increasing the maintainability of the
 code in a large code-base.
-### 63. Can you explain Decorator design pattern with an example in Java?
+#### 63. Can you explain Decorator design pattern with an example in Java?
 Some people call Decorator pattern as Wrapper pattern as well. It
 is used to add the behavior to an object, without changing the
 behavior of other objects of same class.
@@ -90,7 +90,7 @@ ObjectInputStream ois = new ObjectInputStream(gis);
 ```
 So with each step we have decorated the FileInputStream with
 additional behavior.
-### 64. What is a good scenario for using Composite design Pattern in Java?
+#### 64. What is a good scenario for using Composite design Pattern in Java?
 Some of the good scenarios where Composite design pattern can be
 used are as follows:
 
@@ -114,7 +114,7 @@ can use Composite design pattern to store the intermediate results.
 Graphics. We can group shapes inside a composite and make
 higher-level groups of smaller groups of shapes to complete the
 graphics to be displayed on screen.
-### 65. Have you used Singleton design pattern in your Java project?
+#### 65. Have you used Singleton design pattern in your Java project?
 Yes. Singleton is one of the most popular design patterns in enterprise level Java applications. Almost in every project we see
 some implementation of Singleton. 
 
@@ -123,7 +123,7 @@ of a class at any time in the application.
 
 This helps in storing properties that have to be used in the
 application in a unique location.
-### 66. What are the main uses of Singleton design pattern in Java project?
+#### 66. What are the main uses of Singleton design pattern in Java project?
 Some of the main uses of Singleton design pattern in Java are as
 follows:
 1. Runtime: In JDK, java.lang.Runtime is a singleton-based class. There
@@ -140,7 +140,7 @@ of properties.
 per container. So there is only one instance of bean in a Spring IoC
 container. But Spring also provides options to make the scope of a
 bean prototype in a container.
-### 67. Why java.lang.Runtime is a Singleton in Java?
+#### 67. Why java.lang.Runtime is a Singleton in Java?
 In Java, java.lang.Runtime is implemented on Singleton design
 pattern.
 
@@ -162,7 +162,7 @@ already running.
 Due to all these reasons there is only one copy of Runtime in Java.
 To ensure single copy of Runtime, it is implemented as a Singleton
 in Java.
-### 68. What is the way to implement a thread-safe Singleton design pattern in Java?
+#### 68. What is the way to implement a thread-safe Singleton design pattern in Java?
 In Java there are many options to implement a thread-safe Singleton
 pattern. Some of these are as follows:
 1. **Double Checked Locking**: This is the most popular method
@@ -219,7 +219,7 @@ public enum SingletonEnum {
     }
 }
 ```
-### 69. What are the examples of Singleton design pattern in JDK?
+#### 69. What are the examples of Singleton design pattern in JDK?
 In JDK there are many places where Singleton design pattern is
 used. Some of these are as follows:
 1. `java.lang.Runtime.getRuntime()`: This method
@@ -228,7 +228,7 @@ gives
 2. `java.lang.System.getSecurityManager()`: This method
 returns a SecurityManager for the current platform.
 `java.awt.Desktop.getDesktop()`
-### 70. What is Template Method design pattern in Java?
+#### 70. What is Template Method design pattern in Java?
 It is a behavioral design pattern. We can use it to create an outline
 for an algorithm or a complex operation. We first create the skeleton
 of a program. Then we delegate the steps of the operation to
@@ -252,7 +252,7 @@ Template Method pattern is very useful in providing customizable
 class to users. We can create the core class with a high level
 implementation. And our users can customize our core class in their
 custom subclasses.
-### 71. What are the examples of Template method design pattern in JDK?
+#### 71. What are the examples of Template method design pattern in JDK?
 In JDK there are many places where Template method design
 pattern is used. Some of these are as follows:
 1. In Java Abstract Collection classes like
@@ -269,7 +269,7 @@ for each of these methods.
 and `java.io.Writer` that provide non-abstract methods.
 These methods are implementation of Template method
 design pattern.
-### 72. Can you tell some examples of Factory Method design pattern implementation in Java?
+#### 72. Can you tell some examples of Factory Method design pattern implementation in Java?
 Factory Method pattern is a creational design pattern. A Factory is
 an object that is used to create more objects.
 
@@ -286,7 +286,7 @@ Some of the examples of Factory Method pattern in JDK are:
 6. `java.nio.charset.Charset.forName()`
 7. `java.util.EnumSet.of()`
 8. `javax.xml.bind.JAXBContext.createMarshaller()`
-### 73. What is the benefit we get by using static factory method to create object?
+#### 73. What is the benefit we get by using static factory method to create object?
 By using Static Factory Method we encapsulate the creation process
 of an object. We can use new() to create an Object from its
 constructor. Instead we use static method of a Factory to create the
@@ -306,7 +306,7 @@ E.g. In ConnectionPool, we can limit the total number of
 connections that can be created as well as we can hide the
 implementation details of creating connection. Here ConnectionPool
 is the factory. Clients call static method `ConnectionPool.getConnection()`.
-### 74. What are the examples of Builder design pattern in JDK?
+#### 74. What are the examples of Builder design pattern in JDK?
 In JDK there are many places where Builder design pattern is used.
 Some of these are as follows:
 1. `java.lang.StringBuilder.append()`: StringBuilder is based
@@ -321,13 +321,13 @@ multiple levels of components.
 5. `java.lang.StringBuffer.append()`: StringBuffer is similar to
 StringBuilder and it is also based on Builder design
 pattern.
-### 75. What are the examples of Abstract Factory design pattern in JDK?
+#### 75. What are the examples of Abstract Factory design pattern in JDK?
 In JDK there are many places where Abstract Factory design pattern
 is used. Some of these are as follows:
 1. `javax.xml.xpath.XPathFactory.newInstance()`
 2. `javax.xml.parsers.DocumentBuilderFactory.newInstance()`
 3. `javax.xml.transform.TransformerFactory.newInstance()`
-### 76. What are the examples of Decorator design pattern in JDK?
+#### 76. What are the examples of Decorator design pattern in JDK?
 In JDK there are many places where Decorator design pattern is
 used. Some of these are as follows:
 1. In `java.io` package many classes use Decorator pattern.
@@ -347,7 +347,7 @@ and return the same type.
 and
 `HttpServletResponseWrapper` that are based on Decorator
 design pattern.
-### 77. What are the examples of Proxy design pattern in JDK?
+#### 77. What are the examples of Proxy design pattern in JDK?
 Proxy design pattern provides an extra level of indirection for
 providing access to another object. It can also protect a real object
 from any extra level of complexity.
@@ -359,7 +359,7 @@ Some of these are as follows:
 3. `javax.inject.Inject`
 4. `javax.ejb.EJB`
 5. `javax.persistence.PersistenceContext`
-### 78. What are the examples of Chain of Responsibility design pattern in JDK?
+#### 78. What are the examples of Chain of Responsibility design pattern in JDK?
 In JDK there are many places where Chain of Responsibility design
 pattern is used. Some of these are as follows:
 1. `java.util.logging.Logger.log()`: In this case Logger class
@@ -374,7 +374,7 @@ filter the request reaches to the appropriate resource at the
 end of the chain. We can pass FilterChain in doFilter()
 method to allow the Filter to pass on the request and
 response to the next level in the chain.
-### 79. What are the main uses of Command design pattern?
+#### 79. What are the main uses of Command design pattern?
 Command design pattern is a behavioral design pattern. We use it to
 encapsulate all the information required to trigger an event. Some of
 the main uses of Command pattern are:
@@ -399,12 +399,12 @@ multiple tasks/updates. When all the tasks are done then
 only transaction is committed. Else we have to rollback the
 transaction. In such a scenario each step is implemented as
 separate Command.
-### 80. What are the examples of Command design pattern in JDK?
+#### 80. What are the examples of Command design pattern in JDK?
 In JDK there are many places where Command design pattern is
 used. Some of these are as follows:
 1. All implementations of `java.lang.Runnable`
 2. All implementations of `javax.swing.Action`
-### 81. What are the examples of Interpreter design pattern in JDK?
+#### 81. What are the examples of Interpreter design pattern in JDK?
 Interpreter design pattern is used to evaluate sentences in a
 language. E.g. In SQL we can use it to evaluate a query by
 evaluating each keyword like SELECT, FROM, WHERE clause.
@@ -421,7 +421,7 @@ used. Some of these are as follows:
 3. Subclasses of `java.text.Format`: MessageFormat, NumberFormat, DateFormat
 5. Subclasses of `javax.el.ELResolver`: ArrayELResolver,
 6. MapELResolver, CompositeELResolver etc.
-### 82. What are the examples of Mediator design pattern in JDK?
+#### 82. What are the examples of Mediator design pattern in JDK?
 By using Mediator pattern we can decouple the multiple objects that
 interact with each other. With a Mediator object we can create
 many-to-many relationships in multiple objects.
@@ -433,7 +433,7 @@ used. Some of these are as follows:
 3. `java.util.concurrent.ExecutorService`
 4. `java.lang.reflect.Method.invoke()`: In Method class of reflection package, invoke() method acts as a Mediator.
 5. `java.util.concurrent.ScheduledExecutorService`: Here also schedule() method and its variants are Mediator pattern implementations.
-### 83. What are the examples of Strategy design pattern in JDK?
+#### 83. What are the examples of Strategy design pattern in JDK?
 In JDK there are many places where Strategy design pattern is used.
 Some of these are as follows:
 1. java.util.Comparator: In a Comparator we can use compare() method to change the strategy used by
@@ -443,7 +443,7 @@ service() and doGet(), doPost() etc. methods take
 HttpServletRequest and HttpServletResponse and the
 implementor of Servlet processes it based on the strategy it
 selects.
-### 84. What are the examples of Visitor design pattern in JDK?
+#### 84. What are the examples of Visitor design pattern in JDK?
 By using Visitor design pattern we can add new virtual methods to
 existing classes without modifying their core structure.
 In JDK there are many places where Visitor design pattern is used.
@@ -453,7 +453,7 @@ Some of these are as follows:
 3. `javax.lang.model.type.TypeMirror` and `TypeVisitor`
 4. `javax.lang.model.element.Element` and `ElementVisitor`
 5. `javax.faces.component.visit.VisitContext` and `VisitCallback`
-### 85. How Decorator design pattern is different from Proxy pattern?
+#### 85. How Decorator design pattern is different from Proxy pattern?
 Main differences between Decorator and Proxy design pattern are:
 1. Decorator provides an enhanced interface after decorating
 it with additional features. Proxy provides same interface
@@ -468,7 +468,7 @@ loading. There is nothing like this available in Decorator.
 one object to another object access.
 5. Decorator is mostly used for building a variety of objects.
 Proxy is mainly used for access to another object.
-### 86. What are the different scenarios to use Setter and Constructor based injection in Dependency Injection
+#### 86. What are the different scenarios to use Setter and Constructor based injection in Dependency Injection
 (DI) design pattern?
 We use Setter injection to provide optional dependencies of an
 object. Constructor injection is used to provide mandatory
@@ -477,7 +477,7 @@ dependency of an object.
 In Spring IoC, Dependency Injection is heavily used. There we have
 to differentiate between the scenario suitable for Setter based and
 Constructor based dependency injection.
-### 87. What are the different scenarios for using Proxy design pattern?
+#### 87. What are the different scenarios for using Proxy design pattern?
 Proxy design pattern can be used in a wide variety of scenario in
 Java. Some of these are as follows:
 1. Virtual Proxy: This is a virtual object that acts as a proxy
@@ -498,7 +498,7 @@ other objects accessing the main object. It can track the
 different clients from where request is coming. It can even
 deny access to an object if the number of requests is
 greater than a threshold.
-### 88. What is the main difference between Adapter and Proxy design pattern?
+#### 88. What is the main difference between Adapter and Proxy design pattern?
 Adapter pattern provides a different interface to an object. But the
 Proxy always provides same interface to the object.
 Adapter is like providing an interface suitable to client’s use. But
@@ -507,10 +507,10 @@ E.g. In electrical appliances we use Adapter to convert from one
 type of socket to another type of socket. In case of proxy, we have a
 plug with built-in surge protector. The interface for plug and the
 original device remains same.
-### 89. When will you use Adapter design pattern in Java?
+#### 89. When will you use Adapter design pattern in Java?
 If we have two classes with incompatible interfaces, we use Adapter pattern to make it work. We create an Adapter object that can adapt the interface of one class to another class. It is generally used for working with third party libraries. We create an Adapter class between third party code and our class. In case of any change in third party code we have to just change the Adapter
 code. Rest of our code can remain same and just take to Adapter.
-### 90. What are the examples of Adapter design pattern in JDK?
+#### 90. What are the examples of Adapter design pattern in JDK?
 In JDK there are many places where Adapter design pattern is used.
 Some of these are as follows:
 1. `java.util.Arrays.asList()`: This method can adapt an Array
@@ -524,7 +524,7 @@ This
 method
 5. `java.io.OutputStreamWriter(OutputStream)`: This method adapts an OutputStream to Writer class.
 6. `javax.xml.bind.annotation.adapters.XmlAdapter.marshal()` 
-#### 91. What is the difference between Factory and Abstract Factory design pattern?
+##### 91. What is the difference between Factory and Abstract Factory design pattern?
 With Factory design pattern we can create concrete products of a
 type that Factory can manufacture. E.g. If it is CarFactory, we can
 produce, Ford, Toyota, Honda, Maserati etc.
@@ -539,7 +539,7 @@ Nexus phone, Google Nexus tablet, Google ChromeBook etc.
 So it is a subtle difference between Factory and Abstract Factory
 design pattern. One way to remember is that within Abstract Factory
 pattern, Factory pattern is already implemented.
-### 92. What is Open/closed design principle in Software engineering?
+#### 92. What is Open/closed design principle in Software engineering?
 Open/closed design principle states “software entities (classes,
 modules, functions, etc.) should be open for extension, but closed
 for modification”.
@@ -557,7 +557,7 @@ of Object Oriented design.
 It is used in State and Strategy design patterns. Context class is
 closed for modification. But new functionality can be added by
 writing new strategy code.
-### 93. What is SOLID design principle?
+#### 93. What is SOLID design principle?
 SOLID word in SOLID design principle is an acronym for:
 
 1. **S**: _Single responsibility_. A Class should have a single
@@ -578,7 +578,7 @@ considered five basic principles of Object Oriented design.
 
 If we follow these principles, then we can create a stable program
 that is easy to maintain and can be extended over time.
-### 94. What is Builder design pattern?
+#### 94. What is Builder design pattern?
 Builder design pattern is a creational design pattern. We can use
 Builder pattern to create complex objects with multiple options.
 E.g. when we have to create a Meal in a restaurant we can use
@@ -588,7 +588,7 @@ selects other options of Starter, Drink Main Course, Dessert another
 type of meal is created.
 Main feature of Builder pattern is step-by-step building of a
 complex object with multiple options.
-### 95. What are the different categories of Design Patterns used in Object Oriented Design?
+#### 95. What are the different categories of Design Patterns used in Object Oriented Design?
 In Object Oriented design mainly three categories of design patterns
 are used. These categories are:
 
@@ -618,7 +618,7 @@ are used. These categories are:
 6. Strategy
 7. Mediator
 8. Interpreter
-### 96. What is the design pattern suitable to access elements of a Collection?
+#### 96. What is the design pattern suitable to access elements of a Collection?
 We can use Iterator design pattern to access the individual elements
 of a Collection. In case of an ordered collection we can get Iterator
 that returns the elements in an order.
@@ -626,18 +626,18 @@ that returns the elements in an order.
 In Java there are many implementation of Iterator in Collections
 package. We have iterators like- Spliterator, ListIterator etc. that
 implement Iterator pattern.
-### 97. How can we implement Producer Consumer design pattern in Java?
+#### 97. How can we implement Producer Consumer design pattern in Java?
 We can use BlockingQueue in Java to implement Producer
 Consumer design pattern.
 
 It is a concurrent design pattern.
-### 98. What design pattern is suitable to add new features to an existing object?
+#### 98. What design pattern is suitable to add new features to an existing object?
 We can use Decorator design pattern to add new features to an
 existing object. With a Decorator we work on same object and
 return the same object with more features. But the structure of the
 object remains same since all the decorated versions of object
 implement same interface.
-### 99. Which design pattern can be used when to decouple abstraction from the implementation?
+#### 99. Which design pattern can be used when to decouple abstraction from the implementation?
 We can use Bridge design pattern to detach the implementation from
 the abstraction.
 
@@ -658,7 +658,7 @@ So we create two hierarchies. One is Shape to Square and Shape to
 Circle hierarchy. Another one is Color to Red, Black, Green, White
 hierarchy. In this way we can create multiple types of shapes with
 multiple colors with Bridge design pattern.
-### 100. Which is the design pattern used in Android applications?
+#### 100. Which is the design pattern used in Android applications?
 Android applications predominantly use Model View Presenter
 design pattern.
 1. **Model**: This is the domain model of the Android
@@ -675,7 +675,7 @@ and return data to view to update it.
 view needs only headline, then presenter can query the
 data from model and only give headline to view. In this
 way view remains very light in this design pattern.
-### 101. How can we prevent users from creating more than one instance of singleton object by using clone() method?
+#### 101. How can we prevent users from creating more than one instance of singleton object by using clone() method?
 First we should not implement the Cloneable interface by the object
 that is a Singleton.
 
@@ -684,7 +684,7 @@ throw exception in clone() method.
 
 This will ensure that no one can use clone() method or Cloneable
 interface to create more than one instance of Singleton object.
-### 102. What is the use of Interceptor design pattern?
+#### 102. What is the use of Interceptor design pattern?
 Interceptor design pattern is used for intercepting a request. Primary
 use of this pattern is in Security policy implementation.
 We can use this pattern to intercept the requests by a client to a
@@ -693,7 +693,7 @@ authorization of client for the resource being accessed.
 In Java it is used in javax.servlet.Filter interface.
 This pattern is also used in Spring framework in HandlerInterceptor
 and MVC interceptor.
-### 103. What are the Architectural patterns that you have used?
+#### 103. What are the Architectural patterns that you have used?
 Architectural patterns are used to define the architecture of a
 Software system. Some of the patterns are as follows:
 1. **MVC**: Model View Controller. This pattern is extensively
@@ -721,7 +721,7 @@ changing Database system on business logic.
 6. **Inversion of Control (IoC)**: This is the core of Dependency
 Injection in Spring framework. We use this design patternto increase the modularity of an application. We keep the
 objects loosely coupled with Dependency Injection.
-### 104. What are the popular uses of Façade design pattern?
+#### 104. What are the popular uses of Façade design pattern?
 Some of the popular uses of Façade design pattern are as follows:
 
 1. A Façade provides convenient methods for common tasks that are used more often.
@@ -729,7 +729,7 @@ Some of the popular uses of Façade design pattern are as follows:
 3. A Façade can reduce the external dependencies on the working of inner code.
 4. A Façade can act as a single well-designed API by wrapping a collection of poorly designed APIs.
 5. A Façade pattern can be used when a System is very complex and difficult to use. It can simplify the usage of complex system.
-### 105. What is the difference between Builder design pattern and Factory design pattern?
+#### 105. What is the difference between Builder design pattern and Factory design pattern?
 Both Factory and Builder patterns are creational design patterns.
 They are similar in nature but Factory pattern is a simplified generic
 version of Builder pattern.
@@ -748,7 +748,7 @@ Sugar, or we can get Latte Coffee with Splenda and milk cream.
 So a Builder can support creation of a large number of variants of
 an object. But a Factory can create a broader range of known
 subtypes of an object.
-### 106. What is Memento design pattern?
+#### 106. What is Memento design pattern?
 1. Memento design pattern is used to implement rollback 
 feature in an object. In a Memento pattern there are three
 objects:
@@ -771,7 +771,7 @@ pre-populated state. If user wants to just save the form
 we save the form and update the memento. Now onwards
 any new changes to the form can be rolled back to the
 last saved Memento object.
-### 107. What is an AntiPattern?
+#### 107. What is an AntiPattern?
 An AntiPattern is opposite of a Design Pattern. It is a common
 practice in an organization that is used to deal with a recurring
 problem but it has more bad consequences than good ones.
@@ -789,7 +789,7 @@ exception cases and corner case scenarios.
 4. Copy Paste Programming: Just copying the same code
 multiple times rather than writing generic code that can be
 parameterized.
-### 108. What is a Data Access Object (DAO) design pattern?
+#### 108. What is a Data Access Object (DAO) design pattern?
 DAO design pattern is used in the data persistent layer of a Java
 application. It mainly uses OOPS principle of Encapsulation.
 By using DAO pattern it makes the application loosely coupled and

@@ -1,60 +1,60 @@
 ## Abstraction
 
-### 55. What is Abstraction in Object Oriented programming?
+##### 55. What is Abstraction in Object Oriented programming?
 
 Abstraction is the process of hiding certain implementation details of an object and showing only essential features of the object to  
 outside world. It is different from Abstract class in Java. Abstraction process identifies commonalities and hides the complexity of implementation. It helps us in focusing on the interface that we share with the outside world.
 
-### 56. How is Abstraction different from Encapsulation?
+##### 56. How is Abstraction different from Encapsulation?
 
 Abstraction happens at class level design. It results in hiding the implementation details. Encapsulation is also known as “Information Hiding”. An example of encapsulation is marking the member variables private and providing getter and setter for these  
 member variables.
 
-### 57. What is an abstract class in Java?
+##### 57. What is an abstract class in Java?
 
 An abstract class in Java has one or more abstract methods. An abstract method is just declared in the abstract class, but it is not implemented.  
 An abstract class has to be extended in Java and its abstract methods have to be implemented by a child class. Also Java does  
 not allow new instance of Abstract class.
 
-### 58. Is it allowed to mark a method abstract method without marking the class abstract?
+##### 58. Is it allowed to mark a method abstract method without marking the class abstract?
 
 No. Java specification says that if there is at least one abstract method in a class, the class has to be marked abstract.
 
-### 59. Is it allowed to mark a method abstract as well as final?
+##### 59. Is it allowed to mark a method abstract as well as final?
 
 No. It will be contradictory statement to mark a method abstract as well as final.  
 An abstract method has to be overridden by a child class. And a final method cannot be overridden. Therefore a method can be either abstract or final in Java.
 
-### 60. Can we instantiate an abstract class in Java?
+##### 60. Can we instantiate an abstract class in Java?
 
 No. We cannot create an instance of an abstract class in Java.
 
-### 61. What is an interface in Java?
+##### 61. What is an interface in Java?
 
 An Interface in Java is an abstract type blueprint of a class. It contains the methods that a class must implement. It is like a protocol.  
 It has method signatures and constant declarations.
 
-### 62. Is it allowed to mark an interface method as static?
+##### 62. Is it allowed to mark an interface method as static?
 
 Yes, from Java 8 onwards, we can define static and default methods in an interface. Prior to Java 8, it was not allowed.
 
-### 63. Why an Interface cannot be marked as final in Java?
+##### 63. Why an Interface cannot be marked as final in Java?
 
 A final method cannot be overridden. But an interface method has to be implemented by another class. So the interface method cannot be marked as final.
 
-### 64. What is a marker interface?
+##### 64. What is a marker interface?
 
 There are interfaces that do not have any data member or methods. These interfaces are called Marker interface. E.g. Serializable, Cloneable, Remote etc.
 
-### 65. What can we use instead of Marker interface?
+##### 65. What can we use instead of Marker interface?
 
 We can use annotations instead of Marker interface.
 
-### 66. How Annotations are better than Marker Interfaces?
+##### 66. How Annotations are better than Marker Interfaces?
 
 Annotations serve the purpose of conveying metadata about the class to its consumers without creating a separate type for it. Annotations are more powerful than a Marker interface. They allow programmers to pass more sophisticated information to classes that "consume" it.
 
-### 67. What is the difference between abstract class and interface in Java?
+##### 67. What is the difference between abstract class and interface in Java?
 
 Differences between Abstract class and Interface are as follows:  
 1.  
@@ -77,7 +77,7 @@ and protected modifiers for variables
 in interfaces?  
 No. All the variables in an interface are implicitly public.
 
-### 69. How can we cast to an object reference to an interface reference?
+##### 69. How can we cast to an object reference to an interface reference?
 
 An Object that implements an Interface can be cast to the same Interface. Since An Object implementing an Interface already provides implementation for the methods of that Interface, it is allowed to do so as per the rules of Inheritance.
 

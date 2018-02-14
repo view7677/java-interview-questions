@@ -1,14 +1,14 @@
 ## Inner Classes
-### 112. What is a Nested class?
+#### 112. What is a Nested class?
 In Java, a Nested class is a class declared inside another class. We can have more than one class declared inside a file.
-### 113. How many types of Nested classes are in Java?
+#### 113. How many types of Nested classes are in Java?
 Java provides four types of Nested classes:
 1. Member inner class
 2. Local inner class
 3. Anonymous inner class
 4. Static nested class
 
-### 114. Why do we use Nested Classes?
+#### 114. Why do we use Nested Classes?
 There are following reasons for using nested classes:
 1. **Logical Grouping**: We can logically group classes in one
 place. If one class is useful to only one other class, then
@@ -26,7 +26,7 @@ outside world.
 readable and well organized. Only Top-level classes are
 exposed. The helper classes are kept hidden and closer the
 code where it is used by a Top-level class.
-### 115. What is the difference between a Nested class and an Inner class in Java?
+#### 115. What is the difference between a Nested class and an Inner class in Java?
 An Inner class in Java is non-static class. It is a type of Nested class that is defined in another class but not qualified with a Static modifier. A Nested class is also a class can be Static Nested class or a non-Static Inner class.
 
 An Inner class has access to other members of the enclosing class,
@@ -36,13 +36,13 @@ A Nested interface is declared inside another interface or a top-
 level class. By default it is static.
 
 A Nested interface is also known as Static interface.
-###  117. How can we access the non-final local variable, inside a Local Inner class?
+####  117. How can we access the non-final local variable, inside a Local Inner class?
 Java allows a Local Inner class to access only Constant local members. So we have to make the non-final local variable as final constant to access it inside a Local Inner class.
-### 118. Can an Interface be defined in a Class?
+#### 118. Can an Interface be defined in a Class?
 Yes, we can define a Static Nested interface within a class. Only the enclosing class can access it.
-### 119. Do we have to explicitly mark a Nested Interface public static?
+#### 119. Do we have to explicitly mark a Nested Interface public static?
 A Nested Interface is implicitly public static. So the modifiers public and static are redundant in declaration.
-### 120. Why do we use Static Nested interface in Java?
+#### 120. Why do we use Static Nested interface in Java?
 Only the enclosing class can access a Static Nested interface.
 Consider following code in which interface Xyz is enclosed in
 class Abc.

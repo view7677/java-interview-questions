@@ -1,5 +1,5 @@
 ## JSP
-### 9. What are the implicit objects in JSP?
+#### 9. What are the implicit objects in JSP?
 JSP has following implicit objects:
 
 1. Request
@@ -9,12 +9,12 @@ JSP has following implicit objects:
 5. Page
 6. Config
 7. Session
-### 10. How will you extend JSP code?
+#### 10. How will you extend JSP code?
 We can extend JSP code by using Tag libraries and Custom actions.
-### 11. How will you handle runtime exceptions in JSP?
+#### 11. How will you handle runtime exceptions in JSP?
 We use Errorpage attribute in JSP to catch runtime exceptions. This
 attribute forwards user request to the error page automatically.
-### 12. How will you prevent multiple submits of a page that come by clicking refresh button multiple times?
+#### 12. How will you prevent multiple submits of a page that come by clicking refresh button multiple times?
 We can use Post Redirect Get (PRG) pattern to solve the issue of
 multiple submission of same data. It works as follows:
 First time when a user submits a form to server by POST or GET
@@ -24,7 +24,7 @@ Then we load a view by using GET command. There is no data is
 sent in this. Since this a new JSP page, it is safe from multiple
 submits. The code that processes the request is idempotent. So it
 does not do same action twice for same request.
-### 13. How will you implement a thread
+#### 13. How will you implement a thread
 safe JSP page?
 We can use SingleThreadModel Interface to implement a thread safe
 JSP page.
@@ -46,7 +46,7 @@ of the JSP.
 3. jspDestroy(): Once we remove a JSP from the container,
 we call this method. It is used for cleanup of resources like
 Database connections etc.
-### 16. What are the advantages of using
+#### 16. What are the advantages of using
 JSP in web architecture?
 We get following advantages by using JSP in web architecture:
 1. Performance: JSP provides very good performance due to
