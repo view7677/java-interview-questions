@@ -1,4 +1,5 @@
 ## Inner Classes
+************
 #### 112. What is a Nested class?
 In Java, a Nested class is a class declared inside another class. We can have more than one class declared inside a file.
 #### 113. How many types of Nested classes are in Java?

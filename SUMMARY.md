@@ -1,7 +1,7 @@
 # Java interview questions
 
 * [Contents](pages/contents.md)
-* [Questions Index](pages/questions.md)
+* [Questions Index](pages/Questions.md)
 * [Java Basics](pages/Java_Basics.md)
 * [OOPS](pages/OOPS.md)
 * [Inheritance](pages/Inheritance.md)

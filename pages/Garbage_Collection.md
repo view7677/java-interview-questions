@@ -1,4 +1,5 @@
 #### Garbage Collection
+************
 ## 100. What is Garbage Collection in Java?
 Java has an internal mechanism called Garbage collection to reclaim the memory of unused projects at run time. Garbage collection is also known as automatic memory
 management.
