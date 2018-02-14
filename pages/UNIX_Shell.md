@@ -15,7 +15,7 @@ It means if we our current directory structure is as follows:
 
 With `rm –r` \_ command we can delete the file a.txt as well as sub-directories Level\_1\_dir and Level\_2\_dir.  
 Command:  
-`rm –r`   
+`rm –r`  
 The asterisk \(\*\) is a wild card character that stands for all the files with any name.
 
 ### 472. What is the difference between the `–v` and `–x` options in Bash shell scripts?
@@ -82,26 +82,24 @@ Unix has many flavors of Shell. Some of these are as follows:
 
 ### 477. What is the first character of the output in `ls –l` command ?
 
-We use` ls -l` command to list the files and directories in a directory.  
-With `-l `option we get long listing format. In this format the first character identifies the entry type. The entry  
-type can be one of the following:  
-  
-b: Block special file  
+We use`ls -l` command to list the files and directories in a directory.  
+With `-l`option we get long listing format. In this format the first character identifies the entry type. The entry  
+type can be one of the following:
+
+`b: Block special file  
 c: Character special file  
 d: Directory  
 l : Symbolic link  
 s: Socket link  
-p: FIFO  
-- : Regular file
+p: FIFO`
 
-  
+`-: Regular file`
+
 In general we see d for directory and - for a regular file.
 
 ### 478. What is the difference between Multi-tasking and Multi-user environment?
 
-In a Multi-tasking environment, same user can submit more than one tasks and operating system will execute them at the same time.  
-In a Multi-user environment, more than one user can interact with  
-the operating system at the same time.
+In a Multi-tasking environment, same user can submit more than one tasks and operating system will execute them at the same time. In a Multi-user environment, more than one user can interact with the operating system at the same time.
 
 ### 479. What is Command Substitution in Unix?
 
