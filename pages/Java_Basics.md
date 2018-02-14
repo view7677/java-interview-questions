@@ -20,9 +20,8 @@ In java, JVM allocates memory to different processes, methods and objects. Some 
 
 ### 4. What is JIT compiler?
 
-Just In Time compiler also known as JIT compiler is used for
-performance improvement in Java. It is enabled by default. It is
-compilation done at execution time rather earlier.
+Just In Time compiler also known as JIT compiler is used for performance improvement in Java. It is enabled by default. It is compilation done at execution time rather earlier.
+
 Java has popularized the use of JIT compiler by including it in
 JVM.
 

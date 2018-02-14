@@ -2,7 +2,7 @@
 ### 40. What is the other name of Method Overloading?
 Method Overloading is also known as Static Polymorphism.
 
-41. How will you implement method overloading in Java?
+### 41. How will you implement method overloading in Java?
 In Java, a class can have multiple methods with same name but different arguments. It is called Method Overloading. To implement method overloading we have to create two methods with same name
 in a class and do one/more of the following:
  1. Different number of parameters
@@ -55,7 +55,9 @@ Therefore according to definition, every non-static method in JAVA is by default
 ### 51. What is meant by covariant return type in Java?
 
 A covariant return type of a method is one that can be replaced by a "narrower" type when the method is overridden in a subclass.
+
 Let say class B is child of class A. There is a get() method in class A as well as class B. get() method of class A can return an instance of A, and get() method of class B return an instance of B. Here class B overrides get() method, but the return type is different.
 
 Before Java 5, any method that overrides the method of parent class would have same return type.
+
 From Java 5 onwards, a child class can override a method of parent class and the child class method can return an object that is child of object return by parent class method.

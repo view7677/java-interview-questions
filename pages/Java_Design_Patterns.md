@@ -14,10 +14,12 @@ In Observer design pattern, there is a Subject that maintains the list
 of Observers that are waiting for any update on the Subject. Once
 there is an update in Subject it notifies all the observers for the
 change.
+
 E.g. In real life, students are waiting for the result of their test. Here
 students are the observers and test is the subject. Once the result of
 test is known, testing organization notifies all the students about
 their result.
+m
 The most popular use of Observer pattern is in Model View
 Controller (MVC) architectural pattern.
 Main issue with Observer pattern is that it can cause memory leaks.
