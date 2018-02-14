@@ -12,12 +12,11 @@ My_dir
         `-- Level_2_dir
             `-- a.txt
 ```
-With `rm –r` _ command we can delete the file a.txt as well as sub-
-directories Level_1_dir and Level_2_dir.
+With `rm –r` _ command we can delete the file a.txt as well as sub-directories Level_1_dir and Level_2_dir.
 Command:
 `rm –r` 
 The asterisk (*) is a wild card character that stands for all the files with any name.
-### 472. What is the difference between the –v and –x options in Bash shell scripts?
+### 472. What is the difference between the `–v` and `–x` options in Bash shell scripts?
 In a BASH Unix shell we can specify the options –v and –x on top of a script as follows:
 ```shell
 # !/bin/bash -x –v
