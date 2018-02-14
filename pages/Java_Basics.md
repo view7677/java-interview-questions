@@ -1,3 +1,5 @@
+## Java Basics
+******
 #### 1. What is the difference between JDK and JRE?
 
 JDK stands for Java Development Kit. It contains the tools and libraries for development of Java programs. It also contains compilers and debuggers needed to compile Java program, JRE stands for Java Runtime Environment. This is included in JDK.

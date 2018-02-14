@@ -1,4 +1,5 @@
 ## JSP
+******
 #### 9. What are the implicit objects in JSP?
 JSP has following implicit objects:
 

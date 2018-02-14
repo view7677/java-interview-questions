@@ -1,5 +1,5 @@
 ## Java Design Patterns
-
+******
 #### 59. When will you use Strategy Design Pattern in Java?
 Strategy pattern is very useful for implementing a family of algorithms. It is a behavioral design pattern. With Strategy pattern we can select the algorithm at runtime. We can use it to select the sorting strategy for data. We can use it to save files in different formats like- .txt, .csv, .jpg etc.
 In Strategy pattern we create an abstraction, which is an interface through which clients interact with our system. Behind the abstraction we create multiple implementation of same interface

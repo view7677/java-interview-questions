@@ -1,5 +1,5 @@
-#
-# Java Collection
+## Java Collection
+******
 #### 144. What is the difference between Collection and Collections Framework in Java?
 
 In Java, a Collection is an object that contains multiple elements of same type in a single unit. These multiple elements can be accessed through one Collection object.
@@ -164,30 +164,18 @@ myList.addAll(mySet);
 #### 155. How can you maintain a Collection with elements in Sorted order?
 In Java, there are many ways to maintain a Collection with elements
 in sorted order.
-Some collections like TreeSet store elements in the natural
-ordering. In case of natural ordering we have to implement
-Comparable interface for comparing the elements.
-We can also maintain custom ordering by providing a custom
+Some collections like TreeSet store elements in the natural ordering. In case of natural ordering we have to implement
+Comparable interface for comparing the elements.We can also maintain custom ordering by providing a custom
 Comparator to a Collection.
-Another option is to use the utility method Collections.sort() to sort
-a List. This sorting gives nlog(n) order of performance. But if we
-have to use this method multiple times then it will be costly on
+Another option is to use the utility method Collections.sort() to sort a List. This sorting gives nlog(n) order of performance. But if we have to use this method multiple times then it will be costly on
 performance.
-Another option is to use a PriorityQueue that provides an ordered
-queue. The main difference between PriorityQueue and
-Collections.sort() is that PriorityQueue maintains a queue in Order
-all the time, but we can only retrieve head element from queue. We
-cannot access the elements of PriorityQueue in Random order.
-We can use TreeSet to maintain sorted order of elements in
-collection if there are no duplicate elements in collection.
+Another option is to use a PriorityQueue that provides an ordered queue. The main difference between PriorityQueue and Collections.sort() is that PriorityQueue maintains a queue in Order
+all the time, but we can only retrieve head element from queue. We cannot access the elements of PriorityQueue in Random order.
+We can use TreeSet to maintain sorted order of elements in collection if there are no duplicate elements in collection.
 #### 156. What are the differences between the two data structures: a `Vector` and an `ArrayList`?
-An `ArrayList` is a newer class than a `Vector`. A `Vector` is considered a
-legacy class in Java. The differences are:
-1. **Synchronization**: Vector is synchronized, but the ArrayList
-is not synchronized. So an ArrayList has faster operations
-than a Vector.
-2. **Data Growth**: Internally both an ArrayList and Vector use
-an array to store data. When an ArrayList is almost full it increases its size by 50% of the array size. Whereas a Vector increases it by doubling the underlying array size.
+An `ArrayList` is a newer class than a `Vector`. A `Vector` is considered a legacy class in Java. The differences are:
+1. **Synchronization**: Vector is synchronized, but the ArrayList is not synchronized. So an ArrayList has faster operations than a Vector.
+2. **Data Growth**: Internally both an ArrayList and Vector use an array to store data. When an ArrayList is almost full it increases its size by 50% of the array size. Whereas a Vector increases it by doubling the underlying array size.
 #### 157. What are the differences between Collection and Collections in Java?
 
 Main differences between Collection and Collections are:
@@ -195,20 +183,16 @@ Main differences between Collection and Collections are:
 1. **Type**: Collection is an interface in Java. Collections is a
 class.
 2. **Features**: Collection interface provides basic features of
-data structure to List, Set and Queue interfaces.
-Collections is a utility class to sort and synchronize
-collection elements. It has polymorphic algorithms to
-operate on collections.
+data structure to List, Set and Queue interfaces. Collections is a utility class to sort and synchronize
+collection elements. It has polymorphic algorithms to operate on collections.
 3. **Method Type**: Most of the methods in Collection are at
-instance level. Collections class has mainly static methods
-that can work on an instance of Collection.
+instance level. Collections class has mainly static methods that can work on an instance of Collection.
 #### 158. In which scenario, LinkedList is better than ArrayList in Java?
 ArrayList is more popular than LinkedList in Java due to its ease of
 use and random access to elements feature.
-But LinkedList is better in the scenario when we do not need
-random access to elements or there are a lot of insertion, deletion of
-elements.159. What are the differences between
-a List and Set collection in Java?
+But LinkedList is better in the scenario when we do not need random access to elements or there are a lot of insertion, deletion of
+elements.
+#### 159. What are the differences between a List and Set collection in Java?
 Main differences between a List and a Set are:
 1. **Order**: List collection is an ordered sequence of elements.
 A Set is just a distinct collection of elements that is
@@ -255,14 +239,9 @@ other threads wait till its work is completed.
 number of null values. A Hashtable does not allow null
 keys and null values.
 3. **Ordering**: A HashMap implementation by LinkedHashMap maintains the insertion order of elements. A TreeMap sorts the mappings based on the ascending order of keys. On the other hand, a Hashtable does not provide guarantee of any kind of order of elements. It does not maintain the mappings of key values in any specific order.
-4. **Legacy**: Hashtable was not the initial part of collection
-framework in Java. It has been made a collection
-framework member, after being retrofitted to implement the
-Map interface. A HashMap implements Map interface and
-is a part of collection framework since the beginning.
-5. **Iterator**: The Iterator of HashMap is a fail-fast and it
-throws ConcurrentModificationException if any other
-Thread modifies the map by inserting or removing any
+4. **Legacy**: Hashtable was not the initial part of collection framework in Java. It has been made a collection
+framework member, after being retrofitted to implement the Map interface. A HashMap implements Map interface and is a part of collection framework since the beginning.
+5. **Iterator**: The Iterator of HashMap is a fail-fast and it throws ConcurrentModificationException if any other Thread modifies the map by inserting or removing any 
 element except iterator’s own remove() method.Enumerator of the Hashtable is not fail-fast.
 #### 163. What are the differences between a HashMap and a TreeMap?
 Main differences between a HashMap and a TreeMap in Java are:
@@ -275,33 +254,21 @@ TreeMap implements NavigableMap interface.
 multiple null values. A TreeMap can not contain null key
 but it may contain multiple null values.
 5. **Performance:** A HashMap gives constant time performance for operations like get() and put(). A TreeMap gives order of log(n) time performance for get() and put() methods.
-6. **Comparison:** A HashMap uses equals() method to compare keys. A TreeMap uses compareTo() method for maintaining natural ordering.8.
-Features: A TreeMap has more features than a HashMap. It
-has methods like pollFirstEntry() , pollLastEntry() ,
-tailMap() , firstKey() , lastKey() etc. that are not provided
+6. **Comparison:** A HashMap uses equals() method to compare keys. A TreeMap uses compareTo() method for maintaining natural ordering.
+8. **Features:** A TreeMap has more features than a HashMap. It has methods like pollFirstEntry() , pollLastEntry() , tailMap() , firstKey() , lastKey() etc. that are not provided
 by a HashMap.
 #### 164. What are the differences between Comparable and Comparator?
 Main differences between Comparable and Comparator are:
-1. **Type**: Comparable<T> is an interface in Java where T is
-the type of objects that this object may be compared to.
-2. Comparator<T> is also an interface where T is the type of
-objects that may be compared by this comparator.
-3. **Sorting**: In Comparable, we can only create one sort
-sequence. In Comparator we can create multiple sort
-sequences.
-4. **Method Used**: Comparator<T> interface in Java has
-method public int compare (Object o1, Object o2) that
-returns a negative integer, zero, or a positive integer when
-the object o1 is less than, equal to, or greater than the
-object o2. A Comparable<T> interface has method public
-int compareTo(Object o) that returns a negative integer,
-zero, or a positive integer when this object is less than,
-equal to, or greater than the object o.
-5. **Objects for Comparison**: The Comparator compares two
-objects given to it as input. Comparable interface
+1. **Type**: Comparable<T> is an interface in Java where T is the type of objects that this object may be compared to. 
+2. Comparator<T> is also an interface where T is the type of objects that may be compared by this comparator.
+3. **Sorting**: In Comparable, we can only create one sort sequence. In Comparator we can create multiple sort sequences.
+4. **Method Used**: Comparator<T> interface in Java has method public int compare (Object o1, Object o2) that
+returns a negative integer, zero, or a positive integer when the object o1 is less than, equal to, or greater than the
+object o2. A Comparable<T> interface has method public int compareTo(Object o) that returns a negative integer,
+zero, or a positive integer when this object is less than, equal to, or greater than the object o.
+5. **Objects for Comparison**: The Comparator compares two objects given to it as input. Comparable interface
 compares "this" reference with the object given as input.
-6. **Package location**: Comparable interface in Java is defined
-in java.lang package. Comparator interface in Java is
+6. **Package location**: Comparable interface in Java is defined in java.lang package. Comparator interface in Java is
 defined in java.util package.
 #### 165. In Java, what is the purpose of Properties file?
 A Properties file in Java is a list of key-value pairs that can be

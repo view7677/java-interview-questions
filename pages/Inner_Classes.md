@@ -44,8 +44,7 @@ Yes, we can define a Static Nested interface within a class. Only the enclosing 
 A Nested Interface is implicitly public static. So the modifiers public and static are redundant in declaration.
 #### 120. Why do we use Static Nested interface in Java?
 Only the enclosing class can access a Static Nested interface.
-Consider following code in which interface Xyz is enclosed in
-class Abc.
+Consider following code in which interface Xyz is enclosed in class Abc.
 ```java
 public class Abc {
     public interface Xyz {

@@ -1,5 +1,5 @@
 ## UNIX Shell
-
+******
 #### 471. How will you remove all files in current directory? Including the files that are two levels down in a sub-directory.
 
 In Unix we have `rm` command to remove files and sub-directories. With `rm` command we have `–r` option that stands for recursive. The `–r` option can delete all files in a directory recursively.  

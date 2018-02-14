@@ -1,4 +1,5 @@
 ## Exception Handling
+******
 #### 132. What is Exception Handling in Java?
 Java provides Exception Handling mechanism to handle Runtime errors that occur in JVM. There are checked exceptions in a program that we expect to occur in certain situations.
 Exception handling mechanism catches these checked exceptions

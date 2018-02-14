@@ -1,6 +1,6 @@
 
-#### Static
-
+## Static
+******
 #### 32. In Java, why do we use static variable?
 
 Whenever we want to have a common property for all objects of a class, we use a class level variable i.e. a static variable. This variable is loaded in memory only once at the time of class loading. So it saves memory, since it is not defined per object in Java.
