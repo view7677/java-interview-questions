@@ -95,20 +95,18 @@ can be put anywhere in the JSP page. But by convention we
 put it on the top of the page.
 E.g.
 <%@ page attribute="value" %>
-2.
-Taglib: We can create custom tags in JSP and use these by
+2. Taglib: We can create custom tags in JSP and use these by
 taglib directive in a JSP page.
 E.g.
 <%@ taglib uri=“abc.html” prefix=“tag_prefix” >
-3.
-Include: We use include directive to read a file and merge
+3. Include: We use include directive to read a file and merge
 its content with the JSP page. This is done during
 compilation stage.
 <%@ include file="relative url" >21. What is session attribute in JSP?
 Session attribute in JSP is used for HTTP session mechanism. If we
 do not want to use HTTP session in JSP, then we set this attribute to
-false. If it is set to true, we can use built in session object in JSP.22. What are the different scopes of a
-JSP object?
+false. If it is set to true, we can use built in session object in JSP.
+22. What are the different scopes of a JSP object?
 A JSP object, implicit or explicit, can have one of the following
 scopes:
 1. Page: In this scope, the object is accessible from the page
