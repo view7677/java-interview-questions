@@ -44,6 +44,7 @@ free memory in JVM
 2. Runtime.maxMemory() - This method returns the value of
 maximum memory that JVM can use.
 3. Runtime.gc() – This method can invoke garbage collection.
+
 #### 110. How can we invoke an external process in Java?
 Java provides the method `Runtime.getRuntime().exec()` to invoke an
 external process from JVM.

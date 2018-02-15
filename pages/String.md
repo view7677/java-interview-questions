@@ -11,7 +11,7 @@ new String literal. While B will keep pointing to “TestData”
 #### 123. How many objects does following code create?
 Code:
 ```java
-String s1="HelloWorld";
+String s1=" HelloWorld ";
 String s2=" HelloWorld ";
 String s3=" HelloWorld ";
 ```

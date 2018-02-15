@@ -143,19 +143,21 @@ Include action can accept parameters by jsp:param tag.
 3. Include directive is just copying of content from another file to JSP code and then it goes through compilation.
 Include action will dynamically process the resource being
 called and then include it in the JSP page.
+
 #### 26. How will you use other Java files of your application in JSP code?
 We can use import tag to import a Java file in JSP code. Once a file
 is imported, it can be used by JSP code. It is a very convenient
 method to use Java classes in JSP code.
 For better organization of Java code, we should create a package of
 classes that we are planning to use in JSP code.
+
 #### 27. How will you use an existing class and extend it to use in the JSP?
 We can use extends attribute in include tag to use an existing class
 and extend it in the current JSP.
 E.g.
 `<%@ include page extends=“parent_class” %>`
 
-#### 28. Why _jspService method starts with _ symbol in JSP?
+#### 28. Why `_jspService` method starts with `_` symbol in JSP?
 All the code that we write in a JSP goes into _jspService method
 during translation phase. We cannot override this method. Where as other lifecycle methods jspInit() and jspDestroy() can be overridden.
 It appears that container uses _ symbol to distinguish the method that cannot be overridden by client code.
@@ -180,6 +182,7 @@ scenarios. There are following main groups of tags in JSTL:
 3. Formatting tags
 4. XML tags
 5. JSTL Functions
+
 #### 31. How will you pass information from one JSP to another JSP?
 We can pass information from one JSP to another by using implicit
 objects. If different JSP are called in same session, we can use
@@ -187,28 +190,30 @@ session object to pass information from one JSP to another.
 If we want to pass information from one JSP to another JSP
 included in the main JSP, then we can use jsp:param to pass this
 information.
+
 #### 32. How will you call a stored procedure from JSP?
 JSP allows running Java code from a .jsp file. We can call a stored
 procedure by using JDBC code.
 We can call a CallableStatement from JSP code to invoke a stored
 procedure.
+
 If we are using Spring framework, then we can use JdbcTemplate
 class to invoke stored procedure from a JSP.
-#### 33. Can we override _jspService() method in JSP?
-No, JSP specification does not allow overriding of _jspService
-method in JSP. We can override other methods like jspInit() and
-jspDestroy().
+#### 33. Can we override `_jspService()` method in JSP?
+No, JSP specification does not allow overriding of `_jspService`
+method in JSP. We can override other methods like `jspInit()` and
+`jspDestroy()`.
 #### 34. What is a directive in JSP?
-JSP directive is a mechanism to pass message to JSP container. JSP
-directive does not produce an output to the page. But it
+JSP directive is a mechanism to pass message to JSP container. JSP directive does not produce an output to the page. But it
 communicates with JSP container.
-E.g. <%@include ..%> directive is used for telling JSP container
-to include the content of another file during translation of JSP.
+E.g. `<%@include ..%>` directive is used for telling JSP container to include the content of another file during translation of JSP.
 There can be zero or more attributes in a directive to pass
 additional information to JSP container.
-Some of the important directives in JSP are: page, include and
-taglib.35. How will you implement Session
-tracking in JSP?
+
+Some of the important directives in JSP are: `page`, `include` and
+`taglib`.
+
+#### 35. How will you implement Session tracking in JSP?
 We can use different mechanisms to implement Session tracking
 JSP. Some these mechanisms are as follows:
 1. **Cookies**: We can use cookie to set session information and
@@ -220,6 +225,7 @@ field in HTML form. By using this we can track session.
 track session in JSP.
 4. **URL Rewriting**: We can also add session id at the end of a URL.
 Like- www.abcserver.com?sessionid=1234
+
 #### 36. How do you debug code in JSP?
 In simplest form we can write logger statements or `System.out.println() ` statements to write messages to log files. When we call a JSP, the log messages get written to logs. With useful information getting logged we can easily debug the code. 
 
@@ -233,18 +239,21 @@ gracefully handle error by giving a user-friendly message like
 In this error page, we show user-friendly message to user, but we
 also log important information like stack trace to our application log
 file.
+
 We have to add parameter isErrorPage=true in page directive of this
 page. This tells to JSP container that this is our error page.
 <%@page isErrorPage=”true” %>
 Now we can use this error page in other JSP where we want to
 handle error. In case of an error or exception, these JSP will direct
 it to errorPage.
-<% page errorPage=”ErrorPage.jsp” %>
+`<% page errorPage=”ErrorPage.jsp” %>`
+
 #### 38. How will you send XML data from a JSP?
 In general, JSP is used to pass HTML data to web browser. If we
 want to send data in XML format, we can easily do it by setting
 contentType=”text/xml” in page directive.
 E.g. <%@page contentType=”text/xml” %>
+
 #### 39. What happens when we request for a JSP page from web browser?
 When a user calls JSP page from web browser, the request first
 comes to web server. Web server checks for .jsp extension of page
@@ -274,12 +283,13 @@ The important status codes in HTTP are as follows:
 400: It means the request was bad.
 401: It means request was not authorized.
 404: It means the resource requested was not found.
-503: It means the service is not available.42. What is the meaning of Accept
-attribute in HTTP header?
+503: It means the service is not available.
+#### 42. What is the meaning of Accept attribute in HTTP header?
 In HTTP header, Accept attribute is used to specify the MIME types
 that a HTTP client or browser can handle. MIME type is the
 identifier for specifying the type of file/data that we are planning to
 pass over the internet.
+
 #### 43. What is the difference between Expression and Scriptlet in JSP?
 We use Expression in a JSP to return a value and display it at a
 specific location. It is generally used for dynamically print
@@ -293,6 +303,7 @@ We can use following options to delete a Cookie in JSP:
 After this time period, Cookie will expire and will be
 deleted.
 2. `Header`: We can also set the expiry time in header of response. `Respone.setHeader()`. This will also expire the cookie after specified time period.
+
 #### 45. How will you use a Cookie in JSP?
 We can use a Cookie in JSP by performing following steps:
 First we create a Cookie object. We set the name and value of the
@@ -360,6 +371,7 @@ is
 declared
 in
 HttpServletResponse object.
+
 #### 52. What is the use of config implicit object in JSP?
 In JSP, config object is of type ServletConfig. This object is created
 by Servlet Container for each JSP page. It is used for setting
@@ -398,6 +410,7 @@ request.getParameterValues() method to get all the values.
 This method returns an array of String values.
 4. getParameterMap(): This method returns the map of all
 the Parameters in Form.
+
 #### 56. What is a filter in JSP?
 We can define filters in JSP to intercept requests from a client or to
 change response from a server.

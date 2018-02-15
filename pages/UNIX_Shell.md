@@ -118,36 +118,26 @@ We can use ls -i command to get the inode number of a file.
 
 #### 481. What is the difference between absolute path and relative path in Unix file system?
 
-Absolute path is the complete path of a file or directory from the  
-root directory. In general root directory is represented by / symbol.  
-If we are in a directory and want to know the absolute path, we can  
-use pwd command.
+Absolute path is the complete path of a file or directory from the  root directory. In general root directory is represented by / symbol.  
+If we are in a directory and want to know the absolute path, we can  use pwd command.
 
 Relative path is the path relative the current location in directory.  
-E.g. In a directory structure `/var/user/kevin/mail` if we are in kevin  
-directory then pwd command will give  absolute path as /var/user/kevin.  
-Absolute path of mail folder is `/var/user/kevin/mail`. For mail  
-folder ./mail is the relative path of mail directory from kevin folder.
+
+E.g. In a directory structure `/var/user/kevin/mail` if we are in kevin directory then pwd command will give  absolute path as /var/user/kevin.  
+Absolute path of mail folder is `/var/user/kevin/mail`. For mail  folder ./mail is the relative path of mail directory from kevin folder.
 
 #### 482. What are the main responsibilities of a Unix Shell?
 
 Some of the main responsibilities of a Unix Shell are as follows:  
-1. Program Execution: A shell is responsible for executing the  
-commands and script files in Unix. User can either interactively  
-enter the commands in Command Line Interface called terminal or  
-they can run a script file containing a program.  
-2. Environment Setup: A shell can define the environment for a user.  
-We can set many environment variables in a shell and use the value  
+1. **Program Execution**: A shell is responsible for executing the  commands and script files in Unix. User can either interactively  
+enter the commands in Command Line Interface called terminal or  they can run a script file containing a program.  
+2. **Environment Setup**: A shell can define the environment for a user.  We can set many environment variables in a shell and use the value  
 of these variables in our program.  
-3. Interpreter: A shell acts as an interpreter for our scripts. It has a  
-built in programming language that can be used to implement the  
+3. **Interpreter**: A shell acts as an interpreter for our scripts. It has a built in programming language that can be used to implement the  
 logic.  
-4. Pipeline: A shell also can hookup a pipeline of commands. When  
-we run multiple commands separated by \| pipe character, the shell  
-takes the output of a command and passes it to next one in the  
-pipeline.  
-5. I/O Redirection: Shell is also responsible for taking input from  
-command line interface \(CLI\) and sending the output back to CLI.  
+4. **Pipeline**: A shell also can hookup a pipeline of commands. When we run multiple commands separated by | pipe character, the shell  
+takes the output of a command and passes it to next one in the pipeline.  
+5. **I/O Redirection**: Shell is also responsible for taking input from  command line interface (CLI) and sending the output back to CLI.  
 We use &gt;, &lt;, &gt;&gt; characters for this purpose.
 
 #### 483. What is a Shell variable?
