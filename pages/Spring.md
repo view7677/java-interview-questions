@@ -594,47 +594,120 @@ This class makes it very easy to work with database in our Application and it al
 
 #### 670. What are the benefits of using Spring DAO?
 
-
+Some of the benefits of using Spring DAO are:
+It makes it easier to work on different data access methods like-
+JDBC, Hibernate etc.
+It provides a consistent and common way to deal with different data
+access methods.
+Spring DAO makes it easier to switch between different data
+persistence frameworks.
+No need for catching framework specific exceptions.
 
 #### 671. What are the different ways to use Hibernate in Spring?
 
+Spring provides two ways to use Hibernate:
+We can extend HibernateDAOSupport and apply an AOP
+interceptor node to use Hibernate.
 
+We can also use HibernateTemplate and Callback to access
+Hibernate. This is based on Inversion of Control.
 
 #### 672. What types of Object Relational Mapping (ORM) are supported by Spring?
 
+Spring supports following Object Relational Mapping (ORM) frameworks:
 
+1. Hibernate
+2. Java Persistence API (JPA)
+3. TopLink
+4. Java Data Objects (JDO)
+5. Apache Object Relational Bridge (ORB)
 
 #### 673. How will you integrate Spring and Hibernate by using HibernateDaoSupport?
 
+We can use following steps for integrating Spring and Hibernate:
 
+1. Add dependencies for Spring and Hibernate in pom.xml
+2. Implement DAO from HibernateDaoSupport
+3. Use Hibernate functions via getHibernateTemplate() method
 
 #### 674. What are the different types of the Transaction Management supported by Spring framework?
 
+Spring framework provides support for two types of Transaction Management:
 
+Programmatic: In this method, we have to manage Transaction by programming explicitly. It provides flexibility to a developer, but it is not easier to maintain.
+
+Declarative: In this approach, we can separate Transaction Management from the Application Business code. We can use annotations or XML based configuration to manage the transactions in declarative approach.
 
 #### 675. What are the benefits provided by Spring Framework’s Transaction Management?
 
+Main benefits provided by Spring Transaction Management are:
 
+Consistent: By using Spring Transaction management, we can use consistent programming model across different transaction APIs like- JPA, JDBC, JTA, Hibernate, JPA, JDO etc.
+
+Simplicity: Spring TM provides simple API for managing the transaction programmatically.
+
+Declarative: Spring also supports annotation or xml based declarative transaction management.
+
+Integration: Spring Transaction management is easier to integrate with other data access abstractions of Spring.
 
 #### 676. Given a choice between declarative and programmatic Transaction Management, which method will you choose?
 
+In Spring, Declarative Transaction Management is the preferred
+choice. This method is very less invasive and it has very less
+impact in Application Business Logic.
 
+Although Declarative method gives less flexibility than
+Programmatic method, it is simpler to use and easier to maintain in
+long run.
 
 #### 677. What is Aspect Oriented Programming (AOP)
 
+Aspect Oriented Programming (AOP) is a programming paradigm that promotes programmers to develop code in different modules that can be parallel or in crosscutting concerns.
 
+E.g. To develop banking software, one team can work on business logic for Money withdrawal, Money deposit, Money Transfer etc. The other team can work on Transaction Management for committing the transaction across multiple accounts.
+
+In an Auto company, one team can work on software to integrate with different components of car. The other team can work on how all the components will send signal and current information to a common dashboard.
 
 #### 678. What is an Aspect in Spring?
 
+An Aspect is the core construct of AOP. It encapsulates the behavior that affects multiple classes in a reusable module.
 
+An Aspect can have a group of APIs that provide cross-cutting features.
+
+E.g. A logging module can be an Aspect in an Application. An application can have multiple of Aspects based on the different requirements.
+
+An Aspect can be implemented by using annotation @Aspect on a class.
 
 #### 679. In Spring AOP, what is the main difference between a Concern and a Cross cutting concern?
 
+A Concern in Spring is the behavior or expectation from an
+application. It can be the main feature that we want to implement in
+the application.
 
+A Cross cutting concern is also a type of Concern. It is the feature or
+functionality that is spread throughout the application in a thin way.
+
+E.g. 
+1. Security, 
+2. Logging, 
+3. Transaction Management 
+4. Caching
+5. Error Handling
+6. Perfomance Monitoring
+7. Custom Business Rule.
+
+etc. are cross cutting concerns in an application.
 
 #### 680. What is a Joinpoint in Spring AOP?
 
+In Spring AOP, Joinpoint refers to a candidate point in application
+where we can plug in an Aspect.
 
+Joinpoint can be a method or an exception or a field getting
+modified.
+
+This is the place where the code of an Aspect is inserted to add new
+behavior in the existing execution flow.
 
 #### 681. What is an Advice in Spring AOP?
 
