@@ -97,7 +97,7 @@
 #### 808. What are Excluded dependencies in Maven?
 #### 809. What are Optional dependencies in Maven?
 #### 810. Where will you find the class files after compiling a Maven project successfully?
-#### 811.  What are the default locations for source, test and build directories in Maven?
+#### 811. What are the default locations for source, test and build directories in Maven?
 #### 812. What is the result of jar:jar goal in Maven?
 #### 813. How can we get the debug or error messages from the execution of Maven?
 #### 814. What is the difference between a Release version and SNAPSHOT version in Maven?

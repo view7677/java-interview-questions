@@ -57,10 +57,8 @@ Annotations serve the purpose of conveying metadata about the class to its consu
 ##### 67. What is the difference between abstract class and interface in Java?
 
 Differences between Abstract class and Interface are as follows:  
-1.  
-2.  
-3.  
-4.  
+
+
 An abstract class can have implemented methods with  
 body \(non-abstract methods\). Interface has only abstract  
 methods. From Java 8 onwards, interface can have  

@@ -9,10 +9,10 @@ No. We need to create Runtime Polymorphism by implementing methods at two levels
 ## 54. Explain the difference between static and dynamic binding?
 In Static binding references are resolved at compile time. In Dynamic binding references are resolved at Run time.
 E.g.
-'''java
+```java
 Person p = new Person();
 p.walk(); // Java compiler resolves this binding at compile time.
 public void walk(Object o){
     ((Person) o).walk(); // this is dynamic binding.
 }
-'''
+```
