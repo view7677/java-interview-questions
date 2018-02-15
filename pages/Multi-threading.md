@@ -8,15 +8,19 @@ independent tasks.
 
 Java provides methods like- start(), notify(), wait(), sleep() etc. to
 maintain a multi-threading environment.
+
 #### 145. What are the advantages of Multithreading?
+
 Main advantages of Multithreading are:
 
 1. **Improved performance**: We can improve performance of a job by Multi-threading.
 2. **Simultaneous access to Multiple Applications**: We can access multiple applications from a process by doing multithreading
 3. **Reduced number of Servers required**: With Multi-threading we need lesser number of servers, since one process can spawn multiple threads.
 4. **Simplified Coding**: In certain scenarios, it is easier to code multiple threads than managing it from same thread.
+
 #### 146. What are the disadvantages of Multithreading?
-There are certain downsides to Multithreading. These are:
+
+There are certain downsides to Multithreading. Thes are:
 
 1. **Difficult to Debug**: Multithreading code is difficult to debug in case of an issue.
 2. **Difficult to manage concurrency**: Due to multiple threads, we may experience different kinds of issues.
@@ -59,11 +63,15 @@ No. We can call start() method only once on a thread in Java. If we call it twic
 #### 153. In what scenarios can we interrupt a thread?
 We can interrupt a thread if we want to wake it up from the sleep or
 wait state.
-#### 154. In Java, is it possible to lock an object for exclusive use by a thread?
+
+#### 154. In Java, is it possible to lock an object for exclusive use by a thread ?
+
 Yes. We can use synchronized block to lock an object. The locked
 object is inaccessible to any other thread. Only the thread that has
 locked it can access it.
+
 #### 155. How `notify()` method is different from `notifyAll()` method?
+
 In Java, `notify()` method is used to unblock a specific thread that is
 in waiting stated. Whereas, `notifyAll()` method is used to unblock
 all the threads that are in waiting state.
