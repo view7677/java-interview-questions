@@ -1,1053 +1,1386 @@
-
-
-## Method Overloading and Overriding
-### 40. What is the other name of Method
-Overloading?
-Method Overloading is also known as Static Polymorphism.
-### 41. How will you implement method overloading in Java?
-In Java, a class can have multiple methods with same name but
-different arguments. It is called Method Overloading. To implement
-method overloading we have to create two methods with same name
-in a class and do one/more of the following:
-1.
-2.
-3.
-Different number of parameters
-Different data type of parameters
-Different sequence of data type of parameters42. What kinds of argument
-variations are allowed in Method
-Overloading?
-Method
-in:
-1.
-2.
-3.
-Overloading allows two methods with same name to differ
-Number of parameters
-Data type of parameters
-Sequence of data type of parameters
-### 43. Why it is not possible to do
-method overloading by changing
-return type of method in java?
-If we change the return type of overloaded methods then it will lead
-to ambiguous behavior. How will clients know which method will
-return what type. Due to this different return type are not allowed in
-overloaded methods.
-### 44. Is it allowed to overload main() method in Java?
-Yes, Java allows users to create many methods with same name ‘main’. But only public static void main(String[] args) method is used for execution.
-### 45. How do we implement method
-overriding in Java?
-To override a method, we just provide a new implementation of a
-method with same name in subclass. So there will be at least two
-implementations of the method with same name. One
-implementation is in parent class. And another implementation is in
-child class.
-### 46. Are we allowed to override a static
-method in Java?
-No. Java does not allow overriding a static method. If you create a static method with same name in subclass, then it is a new method,
-not an overridden method.
-### 47. Why Java does not allow
-overriding a static method?
-To override a method, you need an instance of a class. Static method
-is not associated with any instance of the class. So the concept of
-overriding does not apply here.
-Therefore, Java does not allow overriding a static method.48. Is it allowed to override an
-overloaded method?
-Yes. You can override an overloaded method in Java.
-### 49. What is the difference between method overloading and method overriding in Java?
-Differences between method overloading and overriding are:
-1.
-2.
-3.
-4.
-Method overloading is static polymorphism. Method
-overriding is runtime polymorphism.
-Method overloading occurs within the same class. Method
-overriding happens in two classes with hierarchy
-relationship.
-Parameters must be different in method overloading.
-Parameters must be same in method overriding.
-Method overloading is a compile time concept. Method
-overriding is a runtime concept.
-### 50. Does Java allow virtual functions?
-Yes. All instance methods in Java are virtual functions by default.
-Only class methods and private instance methods are not virtual
-methods in Java.
-###51. What is meant by covariant return
-type in Java?
-A covariant return type of a method is one that can be replaced by a
-"narrower" type when the method is overridden in a subclass.
-Let say class B is child of class A. There is a get() method in class
-A as well as class B. get() method of class A can return an instance
-of A, and get() method of class B return an instance of B. Here
-class B overrides get() method, but the return type is different.
-Before Java 5, any method that overrides the method of parent class
-would have same return type.
-From Java 5 onwards, a child class can override a method of parent
-class and the child class method can return an object that is child of
-object return by parent class method.Polymorphism
-### 52. What is Runtime Polymorphism?
-Runtime Polymorphism or Dynamic Polymorphism is the polymorphism that exists at runtime. In case of method overriding it
-is not known which method will be called at runtime. Based on the
-type of object, JVM decides the exact method that should be called.
-So at compile time it is not known which method will be called at
-run time.
-### 53. Is it possible to achieve Runtime
-Polymorphism by data members in
-Java?
-No. We need to create Runtime Polymorphism by implementing
-methods at two levels of inheritance in Java.54. Explain the difference between
-static and dynamic binding?
-In Static binding references are resolved at compile time. In
-Dynamic binding references are resolved at Run time.
+109. What is Spring framework?
+Spring is development framework for Java programming. It is an
+open source development framework for Enterprise Java.
+The core features of Spring Framework can be used in developing a
+Java Enterprise application.
+It has many extensions and jars for developing web applications on
+top of Java EE platform.
+With Spring we can develop large-scale complex Java applications
+very easily. It is also based on good design patterns like
+Dependency Injection, Aspect oriented programming for developing
+extensible feature rich software.110. What are the benefits of Spring
+framework in software development?
+Many benefits of Spring framework are:
+Lightweight Framework: Basic Spring framework is very small in
+size. It is easy to use and does not add a lot of overhead on
+software. It just has 2 MB in basic version.
+Container: Spring framework provides the basic container that
+creates and manages the life cycle of application objects like Plain
+old Java objects (POJO). It also stores the configuration files of
+application objects to be created.
+Dependency Injection (DI): Spring provided loose coupling is
+application by Dependency Injection. It uses Inversion of Control
+technique by which objects specify their dependencies to Spring
+container instead of creating new objects themselves.
+Aspect Oriented Programming (AOP): Spring framework promotes
+and provides support for Aspect oriented programming in Java.
+This helps in separating application business logic from system
+services that are common across all the business logic. E.g. Logging
+can be a cross cutting concern in an Application.
+Transaction Management: Spring provides a framework for
+transaction management. So a developer does not have to implement
+it from scratch. Spring Transaction Management is so powerful that
+we can scale it from one local transaction to global transactions in a
+cluster.
+MVC Framework: For Web applications, Spring provides MVC
+framework. This framework is based on MVC design pattern andhas better features compared to other web frameworks.
+Exception Handling: Spring also gives support for a common API to
+handle exceptions in various technologies like- Hibernate, JDBC
+etc.111. What are the modules in Core
+Container of Spring framework?
+Spring framework has a Core Container. Modules in Core Container
+are:
+Core module
+Bean module
+Context module
+Spring Expression Language module112. What are the modules in Data
+Access/Integration layer of Spring
+framework?
+Modules in Data Access/Integration Layer of Spring framework are:
+JDBC module: An abstraction layer to remove tedious JDBC
+coding.
+ORM module Integration layers for Object Relational Mapping
+OXM module: An abstraction layer to support Object XML
+mapping.
+Java Messaging Service (JMS) module: Module for producing and
+consuming messages.
+Transactions module: Transaction Management for POJO classes113. What are the modules in Web
+layer of Spring framework?
+Modules in Web Layer of Spring framework are:
+Web module: This provides basic web-oriented integration features.
+Servlet module: Support for Servlet Listeners.
+WebSocket module: Support for Web Socket style messaging.
+Portlet module: MVC implementation for Portlet environment.114. What is the main use of Core
+Container module in Spring
+framework?
+As the name suggests, Spring Core Container is the core of Spring
+framework. It gives the basic functionality of the Spring. All the
+parts of Spring Framework are built on top of Core Container.
+Its main use is to provide Dependency Injection (DI) and Inversion
+of control (IOC) features.115. What kind of testing can be done
+in Spring Test Module?
+Spring Test Module provides support for Unit testing as well as
+Integration testing of Spring components. It allows using JUnit or
+TestNG testing frameworks. It also gives ability to mock objects to
+use the test code.116. What is the use of BeanFactory in
+Spring framework?
+BeanFactory is the main class that helps in implementing Inversion
+of Control pattern in Spring. It is based on the factory design
+pattern. It separates the configuration and dependencies of an
+application from the rest of application code.
+Implementations of BeanFactory like XmlBeanFactory class are
+used by applications built with Spring.117. Which is the most popular
+implementation of BeanFactory in
+Spring?
+XMLBeanFactory is the
+BeanFactory in Spring.
+most
+popular
+implementation of118. What is XMLBeanFactory in
+Spring framework?
+XMLBeanFactory is one of the most useful implementation of
+BeanFactory in Spring. This factory loads its beans based on the
+definitions mentioned in an XML file.
+Spring container reads bean configuration metadata from an XML
+file and creates a fully configured application with the help of
+XMLBeanFactory class.119. What are the uses of AOP module
+in Spring framework?
+AOP module is also known as Aspect Oriented Programming
+module. Its uses are:
+Development of aspects in a Spring based application
+Provides interoperability between Spring and other
+frameworks
+Supports metadata programming to Spring
+AOP120. What are the benefits of JDBC
+abstraction layer module in Spring
+framework?
+Spring provides JDBC abstraction layer module. Main benefits of
+this module are:
+Helps in keeping the database code clean and simple.
+Prevents problems that result from a failure to close database
+resources.
+Provides a layer of useful exceptions on top of the error messages
+given by different database servers.
+Based on Spring’s AOP module
+Provides transaction management services for objects in a Spring
+application121. How does Spring support Object
+Relational Mapping (ORM)
+integration?
+Spring supports Object Relational Mapping (ORM) by providing
+ORM Module. This module helps in integrating with popular ORM
+framework like Hibernate, JDO, and iBATIS SQL Maps etc.
+Transaction Management module of Spring framework supports all
+of these ORM frameworks as well as JDBC.122. How does Web module work in
+Spring framework?
+Spring provides support for developing web application by using
+Web module. This module is built on application context module
+that provides context for web-based applications.
+This module also supports web-oriented integration features like-
+transparently handling multipart requests for uploading files,
+programmatically binding request parameters to business objects
+etc.
+This module also supports integration with popular web
+frameworks like Jakarta Struts, JSF, and Tapestry etc.123. What are the main uses of Spring
+MVC module?
+Spring-webmvc module is also known as Web-servlet module. It is
+based on Web Model View Controller pattern.
+Main uses of this module are:
+Integration of Spring with other MVC frameworks
+Supports IoC to provide clean separation of controller logic from
+business objects
+Provides clean separation between domain model code and web
+forms
+Allows developers to declaratively bind request parameters to
+business objects124. What is the purpose of Spring
+configuration file?
+Spring application can be configured by an XML file. This file
+contains information of classes and how these classes are
+configured and introduced to each other.
+Spring IoC container uses some kind of configuration metadata. This
+configuration metadata represents how an application developer
+tells the Spring container to instantiate, configure, and assemble the
+objects in your application. This configuration metadata is stored in
+Spring configuration file.
+The other ways of specifying configuration metadata are Java based
+configuration and Annotation based configuration.125. What is the purpose of Spring
+IoC container?
+The Spring IoC Container is responsible for:
+Creating the objects
+Configuring the objects
+Managing dependency between objects (with dependency injection
+(DI))
+Wiring the objects together
+Managing complete lifecycle of objects126. What is the main benefit of
+Inversion of Control (IOC) principle?
+Inversion of Control (IOC) principle is the base of Spring
+framework. It supports dependency injection in an application. With
+Dependency Injection, a programmer has to write minimal code. It
+also makes easier to test an application.
+Most important benefit is that it leads to loose coupling within
+objects. With loose coupling it is easier to change the application
+with new requirements.127. Does IOC containers support
+Eager Instantiation or Lazy loading of
+beans?
+IOC Container in Spring supports both the approaches. Eager
+instantiation as well as lazy loading of beans.128. What are the benefits of
+ApplicationContext in Spring?
+ApplicationContext in Spring provides following benefits:
+Bean factory methods: These are used to access application
+components
+Load File Resources: It helps in loading file resources in a generic
+fashion
+Publish Events: It enables publishing events to registered listeners
+Internationalization Support: Ability to resolve messages to support
+internationalization
+Parent Context: Ability to inherit from a parent context129. How will you implement
+ApplicationContext in Spring
+framework?
+ApplicationContext in Spring can be implemented in one of the
+following three ways:
+FileSystemXmlApplicationContext: If we want to load the
+definitions
+of
+beans
+from
+an
+XML
+file
+then
+FileSystemXmlApplicationContext is used. The full path of XML
+bean configuration file is provided to the constructor.
+ClassPathXmlApplicationContext: To loads the definitions of beans
+from an XML file in the CLASSPATH, we use
+ClassPathXmlApplicationContext. It is used for application context
+embedded in jars.
+WebXmlApplicationContext: To provide configuration for a web
+application WebXmlApplicationContext is used. While the
+application is running, it is read only. But it can be reloaded if
+underlying application supports it.130. Explain the difference between
+ApplicationContext and BeanFactory
+in Spring?
+Main differences between ApplicationContext and BeanFactory are:
+Automatic BeanPostProcessor registration: BeanFactory does not
+support
+BeanPostProcessor
+registration.
+Whereas
+ApplicationContext support this.
+Automatic BeanFactoryPostProcessor registration: BeanFactory
+also does not allow Automatic BeanFactoryPostProcessor
+registration. Whereas ApplicationContext allows this.
+MessageSource access: BeanFactory is not convenient for
+MessageSource access. ApplicationContext is quite convenient for
+MessageSource access.
+ApplicationEvent: We cannot publish ApplicationEvent with
+BeanFactory. But ApplicationContext provides ability to publish
+ApplicationEvent.131. Between ApplicationContext and
+BeanFactory which one is preferable
+to use in Spring?
+Spring documentation recommends using ApplicationContext in
+almost all the cases. ApplicationContext has all the functionality of
+BeanFactory.132. What are the main components of
+a typical Spring based application?
+In a Spring based application, main components are:
+Spring configuration XML file: This is used to configure Spring
+application
+API Interfaces: Definition of API interfaces for functions provided
+by application
+Implementation: Application code with implementation of APIs
+Aspects: Spring Aspects implemented by application
+Client: Application at client side that is used for accessing functions133. Explain Dependency Injection
+(DI) concept in Spring framework?
+Dependency Injection is a software design pattern. It is used to
+implement Inversion of Control (IOC) in Spring framework. As per
+this pattern, we do not create objects in an application by calling
+new. Rather, we describe how an object should be created. In this
+way creation of an object is not tightly coupled with another object.
+A container is responsible for creating and wiring the objects. The
+container can call injecting code and wire the objects as per the
+configuration at runtime.134. What are the different roles in
+Dependency Injection (DI)?
+There are four roles in Dependency Injection:
+Service object(s) to be used
+Client object that depends on the service
+Interface that defines how client uses services
+Injector responsible for constructing services and injecting them
+into client135. Spring framework provides what
+kinds of Dependency Injection
+mechanism?
+Spring framework provides two types of Dependency Injection
+mechanism:
+Constructor-based Dependency Injection: Spring container can
+invoke a class constructor with a number of arguments. This
+represents a dependency on other class.
+Setter-based Dependency Injection: Spring container can call setter
+method on a bean after creating it with a no-argument constructor or
+no-argument static factory method to instantiate another bean.136. In Spring framework, which
+Dependency Injection is better?
+Constructor-based DI or Setter-based
+DI?
+Spring framework provides support for both Constructor-based and
+Setter-based Dependency Injection. There are different scenarios in
+which these options can be used.
+It is recommended to use Constructor-based DI for mandatory
+dependencies. Whereas Setter-based DI is used for optional
+dependencies.137. What are the advantages of
+Dependency Injection (DI)?
+Dependency Injection (DI) pattern has following advantages:
+Dependency Injection reduces coupling between a class and its
+dependencies.
+With Dependency Injection (DI), we can do concurrent or
+independent software development. Two teams can work parallel
+on classes that will be used by each other.
+In Dependency Injection (DI), the client can be configured in
+multiple ways. It needs to just work with the given interface. Rest of
+the implementation can be changed and configured for different
+features.
+Dependency injection is also used to export a system's configuration
+details into configuration files. So we can configure same
+application run in different environments based on configuration.
+E.g. Run in Test environment, UAT environment, and Production
+environment.
+Dependency Injection (DI) applications provide more ease and
+flexibility of testing. These can be tested in isolation in Unit Test.
+Dependency injection (DI) isolates client from the impact of design
+and implementation changes. Therefore, it promotes reusability,
+testability and maintainability.138. What are the disadvantages of
+Dependency Injection (DI)?
+Dependency Injection (DI) pattern has following disadvantages:
+Most of the time Dependency Injection forces developers to use an
+injection framework like Spring. This causes dependency on a
+framework.
+With Dependency Injection, clients are dependent on the
+configuration data. This becomes extra task for developers when the
+application does not need so many custom configuration values.
+Code is difficult to trace and read in Dependency Injection. DI
+separates behavior from construction of objects.
+Dependency injection increases complexity in the linkages between
+classes. It may become harder to manage such complexity outside
+the implementation of a class.139. What is a Spring Bean?
+A Spring Bean is a plain old Java object (POJO) that is created and
+managed by a Spring container.
+There can be more than one bean in a Spring application. But all
+these Beans are instantiated and assembled by Spring container.
+Developer provides configuration metadata to Spring container for
+creating and managing the lifecycle of Spring Bean.
+In general a Spring Bean is singleton. Evert bean has an attribute
+named "singleton". If its value is true then bean is a singleton. If its
+value is false then bean is a prototype bean.
+By default the value of this attribute is true. Therefore, by default all
+the beans in spring framework are singleton in nature.140. What does the definition of a
+Spring Bean contain?
+A Spring Bean definition contains configuration metadata for bean.
+This configuration metadata is used by Spring container to:
+Create the bean
+Manage its lifecycle
+Resolve its dependencies141. What are the different ways to
+provide configuration metadata to a
+Spring Container?
+Spring supports three ways to provide configuration metadata to
+Spring Container:
+XML based configuration: We can specify configuration data in an
+XML file.
+Annotation-based configuration: We can use Annotations to specify
+configuration. This was introduced in Spring 2.5.
+Java-based configuration: This is introduced from Spring 3.0. We
+can embed annotations like @Bean, @Import, @Configuration in
+Java code to specify configuration metadata.142. What are the different scopes
+of a Bean supported by Spring?
+Spring framework support seven types of scopes for a Bean. Out of
+these only five scopes are available for a web-aware
+ApplicationContext application:
+singleton: This is the default scope of a bean. Under this scope,
+there is a single object instance of bean per Spring IoC container.
+prototype: Under this scope a single bean definition can have
+multiple object instances.
+request: In this scope, a single bean definition remains tied to the
+lifecycle of a single HTTP request. Each HTTP request will have
+its own instance of a bean for a single bean definition. It is only
+valid in the context of a web-aware Spring ApplicationContext.
+session: Under this scope, a single bean definition is tied to the
+lifecycle of an HTTP Session. Each HTTP Session will have one
+instance of bean. It is also valid in the context of a web-aware
+Spring ApplicationContext.
+globalSession: This scope, ties a single bean definition to the
+lifecycle of a global HTTP Session. It is generally valid in a Portlet
+context. It is also valid in the context of a web-aware Spring
+ApplicationContext.
+application: This scope, limits a single bean definition to the
+lifecycle of a ServletContext. It is also valid in the context of a
+web-aware Spring ApplicationContext.
+websocket: In this scope, a single bean definition is tied to the
+lifecycle of a WebSocket. It is also valid in the context of a web-
+aware Spring ApplicationContext.143. How will you define the scope
+of a bean in Spring?
+In configuration xml, we can specify the scope of bean in its
+definition. This is used by container to decide the scope of bean in
+Spring.
 E.g.
-```java
-Person p = new Person();
-p.walk(); // Java compiler resolves this binding at compile time.
-public void walk(Object o){
-((Person) o).walk(); // this is dynamic binding.
-}
-```
-## Abstraction
-### 55. What is Abstraction in Object Oriented programming?
-Abstraction is the process of hiding certain implementation details
-of an object and showing only essential features of the object to
-outside world.
-It is different from Abstract class in Java.
-Abstraction process identifies commonalities and hides the
-complexity of implementation. It helps us in focusing on the
-interface that we share with the outside world.
-### 56. How is Abstraction different from Encapsulation?
-Abstraction happens at class level design. It results in hiding the
-implementation details. Encapsulation is also known as
-“Information Hiding”. An example of encapsulation is marking the
-member variables private and providing getter and setter for these
-member variables.
-### 57. What is an abstract class in Java?
-An abstract class in Java has one or more abstract methods. An
-abstract method is just declared in the abstract class, but it is not
-implemented.
-An abstract class has to be extended in Java and its abstract
-methods have to be implemented by a child class. Also Java does
-not allow new instance of Abstract class.
-### 58. Is it allowed to mark a method abstract method without marking the class abstract?
-No. Java specification says that if there is at least one abstract
-method in a class, the class has to be marked abstract.
-## 59. Is it allowed to mark a method abstract as well as final?
-No. It will be contradictory statement to mark a method abstract as
-well as final.
-An abstract method has to be overridden by a child class. And a
-final method cannot be overridden. Therefore a method can be
-either abstract or final in Java.60. Can we instantiate an abstract
-class in Java?
-No. We cannot create an instance of an abstract class in Java.61. What is an interface in Java?
-An Interface in Java is an abstract type blueprint of a class. It
-contains the methods that a class must implement. It is like a
-protocol.
-It has method signatures and constant declarations.62. Is it allowed to mark an interface
-method as static?
-Yes, from Java 8 onwards, we can define static and default methods
-in an interface. Prior to Java 8, it was not allowed.63. Why an Interface cannot be
-marked as final in Java?
-A final method cannot be overridden. But an interface method has to
-be implemented by another class. So the interface method cannot be
-marked as final.64. What is a marker interface?
-There are interfaces that do not have any data member or methods.
-These interfaces are called Marker interface.
-E.g. Serializable, Cloneable, Remote etc.65. What can we use instead of
-Marker interface?
-We can use annotations instead of Marker interface.66. How Annotations are better than
-Marker Interfaces?
-Annotations serve the purpose of conveying metadata about the
-class to its consumers without creating a separate type for it.
-Annotations are more powerful than a Marker interface. They allow
-programmers to pass more sophisticated information to classes that
-"consume" it.67. What is the difference between
-abstract class and interface in Java?
-Differences between Abstract class and Interface are as follows:
-1.
-2.
-3.
-4.
-An abstract class can have implemented methods with
-body (non-abstract methods). Interface has only abstract
-methods. From Java 8 onwards, interface can have
-static/default methods in implemented form.
-An abstract class can have instance member variables. An
-interface cannot have instance variables. It can only have
-constants.
-An abstract class can have a constructor. Interface cannot
-have constructor. It has to be implemented by another
-class.
-A class can extend only one abstract class. A class can
-implement more than one interface.68. Does Java allow us to use private
-and protected modifiers for variables
-in interfaces?
-No. All the variables in an interface are implicitly public.69. How can we cast to an object
-reference to an interface reference?
-An Object that implements an Interface can be cast to the same
-Interface. Since An Object implementing an Interface already
-provides implementation for the methods of that Interface, it is
-allowed to do so as per the rules of Inheritance.Final70. How can you change the value of a
-final variable in Java?
-Java does not allow changing the value of a final variable. Once the
-value is set, it cannot be changed.71. Can a class be marked final in
-Java?
-Yes a class can be marked final in Java. Once a class is marked
-final, it cannot be extended.72. How can we create a final method
-in Java?
-To mark a method, add modifier final to that method. A final method
-can not be overridden by a child class.73. How can we prohibit inheritance
-in Java?
-If you mark a class final, it cannot be extended. This will prohibit
-the inheritance of that class in Java.74. Why Integer class in final in Java?
-Integer class is a wrapper for int. If it is not marked final, then any
-other class can extend it and modify the behavior of Integer
-operations. To avoid this Integer wrapper class is marked as final.75. What is a blank final variable in
-Java?
-When we declare a final variable without giving any initial value,
-then it is called blank final variable.76. How can we initialize a blank final
-variable?
-A blank final instance variable can be initialized in a constructor.
-A blank final static variable can be initialized in the static block of
-class.77. Is it allowed to declare main
-method as final?
-Yes, we can mark the main method as final.Package78. What is the purpose of package in
-Java?
-A package is used to encapsulate a group of classes, interfaces and
-sub-packages. Often, it is a hierarchical structure of storing
-information. It is easier to organize the related classes and sub-
-packages in this manner.
-A Package also provides access protection for classes and
-interfaces. A package also helps in removing naming collision.79. What is java.lang package?
-In Java, java.lang package contains the classes that are fundamental
-to the design of Java programming language. The most important
-class in this package is Object class.
-It also contains wrapper classes like- Integer, Boolean, Character
-etc. It provides Math class for mathematical operations.80. Which is the most important class
-in Java?
-It is an open-ended question with many answers. In my view, Object
-class is the most important class of Java programming language. It
-is the root of all the classes in Java. It provides some very
-important and fundamental methods.81. Is it mandatory to import java.lang
-package every time?
-No. By default, JVM loads it internally.82. Can you import same package or
-class twice in your class?
-If we import same package multiple times in a class, compiler
-includes it only once. So neither JVM nor Compiler gives any
-error/warning on including a package multiple times.
-If you have two classes with same name, then you may get name
-collision on importing the class erroneously.
-JVM internally loads the class only one time.83. What is a static import in Java?
-Static import is similar to normal import declaration. Normal
-import allows us to import classes from packages without using
-package qualifier. Static import allows us to import static members
-from a class without using class qualifier.84. What is the difference between
-import static com.test.Fooclass and
-import com.test.Fooclass?
-First import is a static import and the second import is normal
-import of a class. First import allows us to import static members of
-class.Internationalization85. What is Locale in Java?
-A Locale object represents a specific geographical, political, or
-cultural region. It is used to locale-sensitive operations in Java.
-It helps is following the local conventions of a country, native or
-region. These conventions can be for formatting the dates, money,
-numbers etc.86. How will you use a specific Locale
-in Java?
-To use a specific Locale, we need to load that Locale. We can use
-ResourceBundle.getBundle("Locale.UK") method to load a Locale.Serialization87. What is the serialization?
-Serialization is a process converting an object into a byte array.
-This byte array represents the class, version and internal state of the
-object. JVM can use this byte array to transmit/read the object over
-a network.88. What is the purpose of
-serialization?
-Some of the uses of serialization are:
-1.
-2.
-3.
-4.
-Communication: It is used for transmitting an object over
-network between two machines.
-Persistence: We can store the object’s state in a database
-and retrieve it from database later on.
-Caching: Serialization can be used for caching to improve
-performance. We may need 10 minutes to build an object,
-but it may take just 10 seconds to de-serialize the object.
-Cross JVM Synchronization: It can be used in same way
-across multiple JVM that follow different architecture.89. What is Deserialization?
-Deserialization is the process of reconstructing the object from the
-serialized state. It is the reverse process of serialization.90. What is Serialization and
-Deserialization conceptually?
-Serialization is to convert Object data into a stream of bytes
-Deserialization is to convert a stream of bytes back into a copy of
-the original object.91. Why do we mark a data member
-transient?
-Member variables of an object are marked transient to indicate that
-they should not be serialized.
-During serialization process the transient variables are not
-considered part of the persistent state of an object.92. Is it allowed to mark a method as
-transient?
-No, Java does not allow marking a method as transient. The
-transient keyword is valid only for member variables.93. How does marking a field as
-transient makes it possible to serialize
-an object?
-Let say we have a class ABC that implements Serializable
-interface, but it contains a member variable object of class XYZ
-that does not implement Serializable interface. Due to this it is not
-possible to Serialize the class ABC.
-To solve this issue, we can mark the member variable XYZ as
-Transient in class ABC. This will allow us to serialize the class
-ABC.94. What is Externalizable interface
-in Java?
-Externalizable interface extends Serializable interface in Java. It is
-used for giving the Class control over saving and restoring the
-contents of its instances.
-A class implements methods writeExternal() and readExternal() to
-store and restore the object.95. What is the difference between
-Serializable and Externalizable
-interface?
-Serializable is a marker interface but Externalizable is not a marker
-interface.
-When we implement Serializable interface, the class is serialized
-automatically by default. We can override writeObject() and
-readObject()methods to control more complex object Serialization
-process.
-In case of Externalizable, we use readExternal() and
-writeExternal() methods to give control to class for class's
-serialization process.
-Serializable interface is based on recursive algorithm.
-Serializable gives you two options. One option is to provide custom
-way of serialization, the other default way. In Externalizable, you
-have to always implement readExternal() and writeExternal()
-methods.
-A public no-arg constructor is needed while using Externalizable
-interface.
-In Serialization, we need to define serialVersionUID. If it is not
-explicitly defined it will be generated automatically based on all the
-fields, methods of the class.Reflection96. What is Reflection in Java?
-Reflection is Java language's ability to inspect and dynamically call
-classes, methods, attributes etc. at Runtime. It helps in examining or
-modifying the Runtime behavior of a class at Runtime.97. What are the uses of Reflection in
-Java?
-Reflection is often used in Testing, Debugging and in Integrated
-Development Environment (IDE).
-Reflection allows you to write programs that do not have to "know"
-everything at compile time. It makes programs more dynamic, since
-they can be tied together at runtime.
-Many modern frameworks like Spring etc. use Reflection. Some
-modern languages like Python etc. also use Reflection.
-JAVA API for XML Parsing (JAXP) also uses Reflection.98. How can we access private
-method of a class from outside the
-class?
-We can use Reflection to access private method of a class from
-outside the class. IN Java, we use getDeclaredMethod() to get
-instance of a private method. Then we mark this method accessible
-and finally invoke it.
-In following sample code, we are accessing private method
-message() of class Foo by Reflection.
-FileName: Foo.java
-public class Foo {
-private void message(){System.out.println("hello java"); }
-}
-FileName: FooMethodCall.java
-import java.lang.reflect.Method;
-public class FooMethodCall{
-public static void main(String[] args)throws Exception{
-Class c = Class.forName("Foo");
-Object o= c.newInstance();
-Method m =c.getDeclaredMethod("message", null);
-m.setAccessible(true);
-m.invoke(o, null);
-}
-}99. How can we create an Object
-dynamically at Runtime in Java?
-We can use Reflection to create an Object dynamically at Runtime
+<bean id="userService"
+scope="prototype"/>
+class="com.um.UserService"
+This is an example of userService bean with prototype scope.144. Is it safe to assume that a
+Singleton bean is thread safe in Spring
+Framework?
+No, Spring framework does not guarantee anything related to multi-
+threaded behavior of a singleton bean. Developer is responsible for
+dealing with concurrency issues and maintaining thread safety of a
+singleton bean.145. What are the design-patterns
+used in Spring framework?
+Spring framework uses many Design patterns. Some of these
+patterns are:
+Singleton – By default beans defined in spring config files are
+singleton. These are based on Singleton pattern.
+Template – This pattern is used in many classes like-
+JdbcTemplate, RestTemplate, JmsTemplate, JpaTemplate etc.
+Dependency Injection – This pattern is the core behind the design of
+BeanFactory and ApplicationContext.
+Proxy – Aspect Oriented Programming (AOP) heavily uses proxy
+design pattern.
+Front Controller – DispatcherServlet in Spring is based on Front
+Controller pattern to ensure that incoming requests are dispatched to
+other controllers.
+Factory pattern – To create an instance of an object, BeanFactory is
+used. This is based on Factory pattern.
+View Helper – Spring has multiple options to separating core code
+from presentation in views. Like- Custom JSP tags, Velocity macros
+etc.146. What is the lifecycle of a Bean
+in Spring framework?
+A Bean in Spring framework goes through following phases in its
+lifecycle.
+Initialization and creation: Spring container gets the definition of
+Bean from XML file and instantiates the Bean. It populates all the
+properties of Bean as mentioned in the bean definition.
+Setting the Behavior of Bean: In case a Bean implements
+BeanNameAware interface, Spring uses setBeanName() method to
+pass the bean’s id. In case a Bean implements BeanFactoryAware
+interface, Spring uses setBeanFactory() to pass the BeanFactory to
+bean.
+Post
+Processing:
+Spring
+container
+uses
+postProcesserBeforeInitialization()
+method
+to
+call
+BeanPostProcessors associated with the bean. Spring calls
+afterPropertySet() method to call the specific initialization methods.
+In case there are any BeanPostProcessors of a bean, the
+postProcessAfterInitialization() method is called.
+Destruction: During the destruction of a bean, if bean implements
+DisposableBean, Spring calls destroy() method.147. What are the two main groups
+of methods in a Bean’s lifecycle?
+A Bean in Spring has two main groups of lifecycle methods.
+Initialization Callbacks: Once all the necessary properties of a Bean
+are set by the container, Initialization Callback methods are used for
+performing initialization work. A developer can implement method
+afterPropertiesSet() for this work.
+Destruction Callbacks: When the Container of a Bean is destroyed,
+it calls the methods in DisposableBean to do any cleanup work.
+There is a method called destroy() that can be used for this purpose
+to make Destruction Callbacks.
+Recent recommendation from Spring is to not use these methods,
+since it can strongly couple your code to Spring code.148. Can we override main lifecycle
+methods of a Bean in Spring?
+Yes, Spring framework allows developers to override the lifecycle
+methods of a Bean. This is used for writing any custom behavior for
+Bean.149. What are Inner beans in
+Spring?
+A bean that is used as a property of another bean is known as Inner
+bean. It can be defined as a <bean/> element in <property/> or
+<constructor-arg/> tags.
+It is not mandatory for an Inner bean to have id or a name. These are
+always anonymous.
+Inner bean does not need a scope. By default it is of prototype
+scope.150. How can we inject a Java
+Collection in Spring framework?
+Spring promotes Dependency Injection (DI) in code. It gives
+support for injecting not only objects but also collection of objects.
+We can inject collections like- list, set, map etc. in Spring.
+Following tags can be used for this purpose:
+<list> : This type is used for injecting a list of values. In a <list>
+duplicates are allowed.
+<set> : This type is used for injecting a set of values. As per set
+property, duplicates are not allowed.
+<map> : This type is used for injecting name-value pairs in form of
+map. Name and value can be of any type that is allowed for a map.
+<props> : This type is used to inject a collection of String based
+name-value. It is like a properties file.151. What is Bean wiring in Spring?
+A Spring container is responsible for injecting dependencies
+between beans. This process of connecting beans is called wiring.
+Developer mentions in configuration file, the dependencies between
+beans. And Spring container reads these dependencies and wires
+the beans on creation.152. What is Autowiring in Spring?
+Autowiring is a feature of Spring in which container can
+automatically wire/connect the beans by reading the configuration
+file.
+Developer has to just define “autowire” attribute in a bean.
+Spring resolves the dependencies automatically by looking at this
+attribute of beans that are autowired.153. What are the different modes of
+Autowiring supported by Spring?
+There are five modes of Autowiring supported by Spring
+framework:
+no: This is default setting for Autowiring. In this case, we use “ref”
+mode to mention the explicit bean that is being referred for wiring.
+E.g. In this example Employee bean refers Manager bean.
+<bean id="employee" class="com.dept.Employee">
+<property name="manager" ref="manager" />
+</bean>
+<bean id="manager" class="com.dept.Manager" />
+byName: In this case, Spring container tries to match beans by name
+during Autowiring. If the name of a bean is same as the name of
+bean referred in autowire byname, then it automatically wires it.
+E.g. In following example, Manager bean is wired to Employee
+bean by Name.
+<bean
+id="employee"
+class="com.dept.Employee"
+autowire="byName" />
+<bean id="manager" class="com.dept.Manager" />
+byType: In this case, Spring container check the properties of beans
+referred with attribute byType. Then it matches the type of bean and
+wires. If it finds more than one such bean of that type, it throws a
+fatal exception.
+E.g. In following example, Manager bean is wired by type toEmployee bean.
+<bean
+id="employee"
+class="com.dept.Employee"
+autowire="byType" />
+<bean id="manager" class="com.dept.Manager" />
+constructor: In this case, Spring container looks for byType attribute
+in constructor argument. It tries to find the bean with exact name. If
+it finds more than one bean of same name, it throws fatal exception.
+This case is similar to byType case.
+E.g. In following example “constructor” mode is used for
+autowiring.
+<bean
+id="employee"
+class="com.dept.Employee"
+autowire="constructor" />
+<bean id="manager" class="com.dept.Manager" />
+autodetect: This is an advanced mode for autowiring. In this case,
+by default Spring tries to find a constructor match. If it does not find
+constructor then it uses autowire by Type.
+E.g. This is an example of autodetect Autowiring.
+<bean
+id="employee"
+class="com.dept.Employee"
+autowire="autodetect" />
+<bean id="manager" class="com.dept.Manager" />154. What are the cases in which
+Autowiring may not work in Spring
+framework?
+Autowiring is a great feature in Spring. It can be used in most of the
+cases. But there are certain scenarios in which Autowiring may not
+work.
+Explicit wiring: Since Autowiring is done by Spring, developer
+does not have full control on specifying the exact class to be used. It
+is preferable to use Explicit wiring in case of full control over
+wiring.
+Primitive Data types: Autowiring does not allow wiring of
+properties that are based on primitive data types like- int, float etc.155. Is it allowed to inject null or
+empty String values in Spring?
+Yes, Spring allows injecting null or empty String values.156. What is a Java-based
+Configuration in Spring?
+Spring allows for Java-based configuration in which a developer
+can specify configuration by using Java-based annotations. This
+feature was introduced in Spring 3.0.
+You can use annotations like- @Configuration, @Bean, @Import
+and @DependsOn in Java classes for specifying the configuration.157. What is the purpose of
+@Configuration annotation?
+This annotation is used in a class to indicate that this is class is the
+primary source of bean definitions. This class can also contain
+inter-bean dependencies that are annotated by @Bean annotation.158. What is the difference between
+Full @Configuration and 'lite'
+@Beans mode?
+Spring allows for using @Bean annotation on methods that are
+declared in classes not annotated with @Configuration. This is
+known as “lite” mode. In this mode, bean methods can be declared
+in a @Component or a plain java class without any annotation.
+In the “lite” mode, @Bean methods cannot declare inter-bean
+dependencies.
+It is recommended that one @Bean method should not invoke
+another @Bean method in 'lite' mode.
+Spring recommends that @Bean methods declared within
+@Configuration classes should be used for full configuration. This
+kind of full mode can prevent many bugs.159. In Spring framework, what is
+Annotation-based container
+configuration?
+From Spring 2.5 version it is possible to provide configuration by
+using annotation.
+To turn this configuration on, we need
+<context:annotation-config/> in spring XML file.
+to
+mention
+Now developer can use annotations like @Required, @Autowired,
+@Qualifier etc. in a class file to specify the configuration for beans.
+Spring container can use this information from annotation for
+creating and wiring the beans.160. How will you switch on
+Annotation based wiring in Spring?
+To use Annotation based wiring, we need to turn on Annotation
+based configuration in Spring.
+By default, Annotation based configuration is switched off in
+Spring. To turn it is we can specify <context:annotation-config/>
+element in Spring config file.
+Once it is turned on, we can use @Autowired annotation or
+@Required annotation in a Java class for wiring in Spring.161. What is @Autowired annotation?
+We can use @Autowired annotation to auto wire a bean on a setter
+method, constructor or a field. @Autowired auto wiring is done by
+matching the data type.
+Before using @Autowired annotation we have to register
+AutowiredAnnotationBeanPostProcessor. This can be done by
+including <context:annotation-config /> in bean configuration file.162. What is @Required annotation?
+We use @Required annotation to a property to check whether the
+property has been set or not.
+Spring container throws BeanInitializationException
+@Required annotated property is not set.
+if
+the
+When we use @Required annotation, we have to register
+RequiredAnnotationBeanPostProcessor in Spring config file.163. What are the two ways to enable
+RequiredAnnotationBeanPostProcessor
+in Spring?
+RequiredAnnotationBeanPostProcessor can be enabled in two ways
+in Spring:
+Include <context:annotation-config />
+Add Spring context and <context:annotation-config /> in bean
+configuration file.
+E.g.
+<beans
+...
+xmlns:context="http://www.springframework.org/schema/context"
+...
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-
+2.5.xsd">
+...
+<context:annotation-config />
+...
+</beans>
+Include
+RequiredAnnotationBeanPostProcessor
+configuration file
 in
-Java.
+bean
+E.g.
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-
+2.5.xsd">
+<beanclass="org.springframework.beans.factory.annotation.RequiredAnnotationBeanP
+<bean id="BookBean" class="com.foo.Book">
+<property name="action" value="price" />
+<property name="type" value="1" />
+</bean>
+<bean id="AuthorBean" class="com.foo.Author">
+<property name="name" value="Rowling" />
+</bean>
+</beans>164. What is @Qualifier annotation
+in Spring?
+We use @Qualifier annotation to mark a bean as ready for auto
+wiring. This annotation is used along with @Autowired annotation
+to specify the exact bean for auto wiring by Spring container.165. How Spring framework makes
+JDBC coding easier for developers?
+Spring provides a mature JDBC framework to provide support for
+JDBC coding. Spring JDBC handled resource management as well
+as error handling in a generic way. This reduces the work of
+software developers.
+They just have to write queries and related statements to fetch the
+data or to store the data in database.166. What is the purpose of
+JdbcTemplate?
+Spring framework provides JdbcTemplate class that contains many
+convenient methods for regular tasks like- converting data into
+primitives or objects, executing prepared or callable statements etc.
+This class makes it very easy to work with database in our
+Application and it also provides good support for custom error
+handling in database access code.167. What are the benefits of using
+Spring DAO?
+Some of the benefits of using Spring DAO are:
+It makes it easier to work on different data access methods like-
+JDBC, Hibernate etc.
+It provides a consistent and common way to deal with different data
+access methods.
+Spring DAO makes it easier to switch between different data
+persistence frameworks.
+No need for catching framework specific exceptions.168. What are the different ways to
+use Hibernate in Spring?
+Spring provides two ways to use Hibernate:
+We can extend HibernateDAOSupport and apply an AOP
+interceptor node to use Hibernate.
+We can also use HibernateTemplate and Callback to access
+Hibernate. This is based on Inversion of Control.169. What types of Object Relational
+Mapping (ORM) are supported by
+Spring?
+Spring supports following Object Relational Mapping (ORM)
+frameworks:
+Hibernate
+Java Persistence API (JPA)
+TopLink
+Java Data Objects (JDO)
+Apache Object Relational Bridge (ORB)170. How will you integrate Spring
+and Hibernate by using
+HibernateDaoSupport?
+We can use following steps for integrating Spring and Hibernate:
+Add dependencies for Spring and Hibernate in pom.xml
+Implement DAO from HibernateDaoSupport
+Use Hibernate functions via getHibernateTemplate() method171. What are the different types of
+the Transaction Management
+supported by Spring framework?
+Spring framework provides support for two types of Transaction
+Management:
+Programmatic: In this method, we have to manage Transaction by
+programming explicitly. It provides flexibility to a developer, but it
+is not easier to maintain.
+Declarative: In this approach, we can separate Transaction
+Management from the Application Business code. We can use
+annotations or XML based configuration to manage the transactions
+in declarative approach.172. What are the benefits provided by
+Spring Framework’s Transaction
+Management?
+Main benefits provided by Spring Transaction Management are:
+Consistent: By using Spring Transaction management, we can use
+consistent programming model across different transaction APIs
+like- JPA, JDBC, JTA, Hibernate, JPA, JDO etc.
+Simplicity: Spring TM provides simple API for managing the
+transaction programmatically.
+Declarative: Spring also supports annotation or xml based
+declarative transaction management.
+Integration: Spring Transaction management is easier to integrate
+with other data access abstractions of Spring.173. Given a choice between
+declarative and programmatic
+Transaction Management, which
+method will you choose?
+In Spring, Declarative Transaction Management is the preferred
+choice. This method is very less invasive and it has very less
+impact in Application Business Logic.
+Although Declarative method gives less flexibility than
+Programmatic method, it is simpler to use and easier to maintain in
+long run.174. What is Aspect Oriented
+Programming (AOP)
+Aspect Oriented Programming (AOP) is a programming paradigm
+that promotes programmers to develop code in different modules
+that can be parallel or in crosscutting concerns.
+E.g. To develop banking software, one team can work on business
+logic for Money withdrawal, Money deposit, Money Transfer etc.
+The other team can work on Transaction Management for
+committing the transaction across multiple accounts.
+In an Auto company, one team can work on software to integrate
+with different components of car. The other team can work on how
+all the components will send signal and current information to a
+common dashboard.175. What is an Aspect in Spring?
+An Aspect is the core construct of AOP. It encapsulates the behavior
+that affects multiple classes in a reusable module.
+An Aspect can have a group of APIs that provide cross-cutting
+features.
+E.g. A logging module can be an Aspect in an Application.
+An application can have multiple of Aspects based on the different
+requirements.
+An Aspect can be implemented by using annotation @Aspect on a
+class.176. In Spring AOP, what is the main
+difference between a Concern and a
+Cross cutting concern?
+A Concern in Spring is the behavior or expectation from an
+application. It can be the main feature that we want to implement in
+the application.
+A Cross cutting concern is also a type of Concern. It is the feature or
+functionality that is spread throughout the application in a thin way.
+E.g. Security, Logging, Transaction Management etc. are cross
+cutting concerns in an application.177. What is a Joinpoint in Spring
+AOP?
+In Spring AOP, Joinpoint refers to a candidate point in application
+where we can plug in an Aspect.
+Joinpoint can be a method or an exception or a field getting
+modified.
+This is the place where the code of an Aspect is inserted to add new
+behavior in the existing execution flow.178. What is an Advice in Spring
+AOP?
+An Advice in Spring AOP, is an object containing the actual action
+that an Aspect introduces.
+An Advice is the code of cross cutting concern that gets executed.
+There are multiple types of Advice in Spring AOP.179. What are the different types of
+Advice in Spring AOP?
+Spring AOP provides five kinds of Advice:
+1. Before Advice: This type of advice runs just before a
+method executes. We can use @Before annotation for this.
+2. After (finally) Advice: This type of advice runs just after a
+method executes. Even if the method fails, this advice will
+run. We can use @After annotation here.
+3. After Returning Advice: This type of advice runs after a
+method executes successfully. @AfterReturning annotation
+can be used here.
+4. After Throwing Advice: This type of advice runs after a
+method executes and throws an exception. The annotation
+to be used is @AfterThrowing.
+5. Around Advice: This type of advice runs before and after
+the method is invoked. We use @Around annotation for
+this.180. What is a Pointcut in Spring
+AOP?
+A Pointcut in Spring AOP refers to the group of one or more
+Joinpoints where an advice can be applied.
+We can apply Advice to any Joinpoint. But we want to limit the
+places where a specific type of Advice should be applied. To
+achieve this we use Pointcut.
+We can use class names, method names or regular expressions to
+specify the Pointcuts for an Advice.181. What is an Introduction in
+Spring AOP?
+In Spring AOP we can declare additional methods or fields on
+behalf of a type. To do this we use an Introduction. It is also known
+as inter-type declaration.
+E.g. We can use an Introduction for making a bean implement
+IsModified interface.182. What is a Target object in
+Spring AOP?
+A Target object is the object that gets Advice from one or more
+Aspects.
+This is also known as advised object.
+In most cases it is a proxy object.183. What is a Proxy in Spring AOP?
+In Spring AOP, a Proxy is an object created by the AOP framework
+to implement Aspect contracts. It is generally a JDK dynamic proxy
+or CGLIB proxy.184. What are the different types of
+AutoProxy creators in Spring?
+Spring AOP provides following standard types of Autoproxy
+creators:
+1. BeanNameAutoProxyCreator:
+This
+is
+a
+BeanPostProcessor that creates AOP proxies for beans
+automatically by matching names.
+2. DefaultAdvisorAutoProxyCreator: This creator is more
+powerful that other Proxy Creators. This also applies
+eligible advisors automatically to bean in the current
+context.
+3. AbstractAdvisorAutoProxyCreator: This is the parent
+class of DefaultAdvisorAutoProxyCreator. We can create
+our own auto-proxy creators by extending this class.185. What is Weaving in Spring
+AOP?
+In Aspect oriented programming, linking Aspects with the other
+application types creates an Advised object. This process is known
+as Weaving.
+Without Weaving, we just have definition of Aspects. Weaving
+makes use realize full potential of the AOP.
+Weaving can be done at compile time, load time or at run time.186. In Spring AOP, Weaving is done
+at compile time or run time?
+Spring container performs Weaving at run time.187. What is XML Schema-based
+Aspect implementation?
+Spring allows for implementing Aspect by using regular classes and
+XML based configurations. This is different from Annotation based
+Aspect implementation. But it achieves the same goal of AOP.
+We can use elements like <aop:aspect id=”testAspect"
+ref="testBean" /> and <aop:pointcut id="testPointcut" /> in Spring
+XML config file.
+To use this we need to import Spring AOP schema as follows:
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-
+3.0.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+">188. What is Annotation-based
+aspect implementation in Spring
+AOP?
+This is a declarative style AOP implementation. In this case, we use
+annotations like @Aspect, @Pointcut, @Joinpoint etc. to annotate
+code with different types of AOP elements.
+This can be used Java 5 onwards, when the support for Annotations
+was introduced.189. How does Spring MVC
+framework work?
+Spring provides its own Model View Controller (MVC) framework
+for developing web applications.
+Spring MVC framework is based on Inversion of Control (IOC)
+principle. It separates the business objects from controller.
+It is designed around the DispatcherServlet that is responsible for
+dispatching requests to relevant handlers.
+Spring MVC framework also supports annotation based binding of
+request parameters.190. What is DispatcherServlet?
+In Spring MVC, DispatcherServlet is the core servlet that is
+responsible for handling all the requests and dispatching these to
+handlers.
+Dispatcher servlet knows the mapping between the method to be
+called and the browser request. It calls the specific method and
+combines the results with the matching JSP to create an html
+document, and then sends it back to browser.
+In case of RMI invocation, it sends back response to the client
+application.191. Can we have more than one
+DispatcherServlet in Spring MVC?
+Yes, a Spring MVC web application can have more than one
+DispatcherServlets.
+Each DispatcherServlet has to operate in its own namespace. It has
+to load its own ApplicationContext with mappings, handlers, etc.
+Only the root application context will be shared among these
+Servlets.192. What is WebApplicationContext
+in Spring MVC?
+WebApplicationContext is the child of plain ApplicationContext. It
+is used in web applications. It provides features to deal with web-
+related components like- controllers, view resolvers etc.
+A Web Application can have multiple WebApplicationContext to
+handle requests.
+Each
+DispatcherServlet
+WebApplicationContext.
+is
+associated
+with
+one193. What is Controller in Spring
+MVC framework?
+Controller is an interface in Spring MVC. It receives
+HttpServletRequest and HttpServletResponse in web app just like
+an HttpServlet, but it is able to participate in an MVC flow.
+Controllers are similar to a Struts Action in a Struts based Web
+application.
+Spring recommends that the implementation of Controller interface
+should be a reusable, thread-safe class, capable of handling
+multiple HTTP requests throughout the lifecycle of an application.
+It is preferable to implement Controller by using a JavaBean.
+Controller interprets user input and transforms it into a model. The
+model is represented to the user by a view.
+Spring implements a controller in a very generic way. This enables
+us to create a wide variety of controllers.
+What is @Controller annotation in Spring MVC?
+We use @ Controller annotation to indicate that a class is a
+Controller in Spring MVC.
+The dispatcher in Spring scans for @Controller annotated classes
+for mapped methods and detects @RequestMapping.194. What is @RequestMapping
+annotation in Spring?
+In Spring MVC, we use @RequestMapping annotation to map a web
+request to either a class or a handler method.
+In @RequestMapping we can specify the path of URL as well as
+HTTP method like- GET, PUT, POST etc.
+@RequestMapping also supports specifying HTTP Headers as
+attributes.
+We can also map different media types produced by a controller in
+@RequestMapping. We use HTTP Header Accepts for this purpose.
+E.g. @RequestMapping(
+value = "/test/mapping",
+method = GET,
+headers = "Accept=application/json")195. What are the main features of
+Spring MVC?
+Spring MVC has following main features:
+1. Clear separation of role: In Spring MVC, each
+role like- controller, validator, command object, form
+object, model object, DispatcherServlet, handler mapping,
+view resolver etc. is fulfilled by a specialized object.
+2. Reusability: Spring MVC promotes reusable business code
+that reduces the need for duplication. We can use existing
+business objects as command or form objects instead of
+copying them to extend a particular framework base class.
+3. Flexible Model Transfer: Spring MVC Model transfer
+supports easy integration with other view technologies as
+well.
+4. Customizable binding and validation: In Spring MVC, we
+can to custom binding between Requests and Controllers.
+Even validation can be done on non-String values as well.
+5. JSP form tag library: From Spring 2.0, there is a powerful
+JSP form tag library that makes writing forms in JSP pages
+much easier.
+6. Customizable locale, time zone and theme resolution:
+Spring MVC supports customization in locale, timezone
+etc.196. What is the difference between a
+Singleton and Prototype bean in
+Spring?
+Every bean in Spring has a scope that defines its existence
+timeframe in the application.
+Singleton scope for bean limits a bean to a single object instance
+per Spring IOC container.
+This single instance is limited to a specific ApplicationContext. If
+there are multiple ApplicationContext then we can have more than
+one instance of bean.
+By default all the beans in Spring framework are Singleton scope
+beans.
+With Prototype scope a single bean definition can have multiple
+object instances in a Spring container.
+In prototype scope bean, the Spring IoC container creates new bean
+instance of the object every time a request for that specific bean is
+made.197. How will you decide which scope-
+Prototype or Singleton to use for a
+bean in Spring?
+In general, we use prototype scope for all stateful beans and
+singleton scope for stateless beans.
+Since a stateless bean does not maintain any state, we can use the
+same object instance again and again. Singleton scope bean serves
+the same purpose.
+In a stateful bean, there is a need to maintain the state in each
+request, it is necessary to use a new instance of object with each
+call. A Prototype scope bean ensures that we get a new instance
+each time we request for the object.198. What is the difference between
+Setter and Constructor based
+Dependency Injection (DI) in Spring
+framework?
+Main differences between Setter and
+Dependency Injection (DI) in Spring are:
+Constructor
+based
+Priority: Setter based injection has higher priority than a constructor
+based injection in Spring. If an application uses Setter as well as
+Constructor injection, Spring container uses the Setter injection.
+Partial dependency: We can inject partial dependency by using
+Setter injection. In Constructor injection, it is not possible to do just
+a partial dependency injection.
+E.g. If there are two properties in a class, we can use Setter method
+to inject just one property in the class.
+Flexibility: Setter injection gives more flexibility in introducing
+changes. One can easily change the value by Setter injection. In case
+of Constructor injection a new bean instance has to be created
+always.
+Readability: Setter injection is more readable than Constructor
+injection. Generally Setter method name is similar to dependency
+class being used in setter method.199. What are the drawbacks of Setter
+based Dependency Injection (DI) in
+Spring?
+Although Setter based Dependency Injection has higher priority than
+Constructor based DI, there are some disadvantages of it.
+No Guarantee: In Setter based DI, there is no guarantee that a
+certain dependency is injected or not. We may have an object with
+partial or no dependency. Whereas in Constructor based DI, an
+object in not created till the time all the dependencies are ready.
+Security: One can use Setter based DI to override another
+dependency. This can cause Security breach in a Spring application.
+Circular Dependency: Setter based DI can cause circular
+dependency between objects. Where as Constructor based DI will
+throw ObjectCurrentlyInCreationException if there is a circular
+dependency during the creation of an object.200. What are the differences
+between Dependency Injection (DI)
+and Factory Pattern?
+Main differences between Dependency Injection (DI) and Factory
+Pattern are:
+Coupling: Factory pattern adds tight coupling between an object,
+factory and dependency. In case of DI, there is no coupling between
+objects. We just mention the dependencies on different objects and
+container resolves and introduces these dependencies.
+Easier Testing: DI is easier to test, since we can inject the mock
+objects as dependency in Test environment. In case of Factory
+pattern, we need to create actual objects for testing.
+Flexibility: DI allows for switching between different DI
+frameworks easily. It gives flexibility in the choice of DI
+framework.
+Container: DI always needs a container for injecting the
+dependencies. This leads to extra overhead as well as extra code in
+your application. In factory pattern, you can just use POJO classes
+to implement the application without any container.
+Cleaner Code: DI code is much cleaner than Factory pattern based
+code. In DI, we do not need to add extra code for factory methods.201. In Spring framework, what is the
+difference between
+FileSystemResource and
+ClassPathResource?
+In Spring we can specify configuration by using a file or classpath.
+In FileSystemResource we have to give absolute path / relative path
+of Spring Configuration file spring-config.xml file.
+In ClassPathResource Spring looks for Spring Configuration file
+spring-config.xml in ClassPath. Therefore, developer has to include
+spring-config.xml in classpath.
+ClassPathResource looks for configuration file in CLASSPATH,
+whereas FileSystemResource looks for configuration file in file
+system.202. Name some popular Spring
+framework annotations that you use
+in your project?
+Spring has many Annotations to serve different purposes. For
+regular use we refer following popular Spring annotations:
+@Controller: This annotation is for creating controller classes in a
+Spring MVC project.
+@RequestMapping: This annotation maps the URI to a controller
+handler method in Spring MVC.
+@ResponseBody: For sending an Object as response we use this
+annotation.
+@PathVariable: To map dynamic values from a URI to handler
+method arguments, we use this annotation.
+@Autowired: This annotation indicates to Spring for auto-wiring
+dependencies in beans.
+@Service: This annotation marks the service classes in Spring.
+@Scope: We can define the scope of Spring bean by this annotation.
+@Configuration: This an annotation for Java based Spring
+configuration.
+@Aspect, @Before, @After, @Around, @Joinpoint, @Pointcut:
+These are the annotations in Spring for AspectJ AOP.203. How can you upload a file in
+Spring MVC Application?
+In Spring MVC framework we can use MultipartResolver interface
+to upload a file. We need to make configuration changes to make it
+work. After uploading the file, we have to create Controller handler
+method to process the uploaded file in application.204. What are the different types of
+events provided by Spring
+framework?
+Spring framework provides following five events for Context:
+ContextRefreshedEvent:
+Whenever
+ApplicationContext
+is
+initialized or refreshed, Spring publishes this event. We can also
+raise
+it
+by
+using
+refresh()
+method
+on
+ConfigurableApplicationContext interface.
+ContextStartedEvent: When ApplicationContext is started using
+start() method on ConfigurableApplicationContext interface,
+ContextStartedEvent is published. We can poll database or restart
+any stopped application after receiving this event.
+ContextStoppedEvent: Spring publishes this event when
+ApplicationContext is stopped using stop() method on
+ConfigurableApplicationContext interface. This is used for doing
+any cleanup work.
+ContextClosedEvent: Once the ApplicationContext is closed using
+close() method, ContextClosedEvent is published. Once a context is
+closed, it is the last stage of its lifecycle. After this it cannot be
+refreshed or restarted.
+RequestHandledEvent: This is a web specific event that informs to
+all beans that an HTTP request has been serviced.205. What is the difference between
+DispatcherServlet and
+ContextLoaderListener in Spring?
+DispatcherServlet is the core of Spring MVC application. It loads
+Spring bean configuration file and initialize all the beans mentioned
+in config file.
+In case we have enabled annotations in Spring config file, it also
+scans the packages and configures any bean annotated with
+@Component, @Controller, @Repository or @Service annotations.
+ContextLoaderListener is a listener to start up and shut down
+Spring’s root WebApplicationContext. ContextLoaderListener links
+the lifecycle of ApplicationContext to the lifecycle of the
+ServletContext. It automates the creation of ApplicationContext. It
+can also be used to define shared beans used across different spring
+contexts.206. How will you handle
+exceptions in Spring MVC
+Framework?
+Spring MVC Framework provides following mechanisms to help us
+achieve exception handling:
+Controller Based: A developer can define exception handler
+methods in a Controller class. To do so, they have to annotate the
+methods with @ExceptionHandler annotation.
+Global Exception Handler: Spring provides @ControllerAdvice
+annotation for exception handling as cross-cutting concern. We can
+mark any class as global exception handler by using this annotation.
+HandlerExceptionResolver implementation: Spring Framework
+provides HandlerExceptionResolver interface that can be
+implemented to create a global exception handler.207. What are the best practices of
+Spring Framework?
+In Spring Framework, following are some of the best practices:
+We can Divide spring bean configurations based on their concerns
+such as spring-jdbc.xml, spring-security.xml.
+It is better to avoid version numbers in schema reference. This
+makes sure that we have the latest config files.
+It is a good practice to configure bean dependencies as much as
+possible. Unless there is a good reason, we try to avoid autowiring.
+For spring beans that are used in multiple contexts in Spring MVC,
+we can create them in root context and initialize with listener.
+Spring framework provides many features and modules. We should
+just use what we need for our application. An extra dependency has
+to be removed
+For application properties, it is good to create a property file and
+read it in Spring configuration file.
+Annotations are useful for smaller applications, but for larger
+applications annotations can become an overhead. It is easier to
+maintain if all the configurations are in xml files.
+When we are doing AOP, we have to make sure to keep the
+Joinpoint as narrow as possible to avoid Advice on unwanted
+methods.
+We should use right annotation for components or services. For
+services use @Service and for DAO beans use @Repository.Dependency Injection (DI) has to be used when there is real benefit.
+It should not be used just for the sake of loose coupling.208.
+What is Spring Boot?
+Spring Boot is a ready made solution to create Spring applications
+with production grade features. It favors convention over
+configuration.
+We can embed Tomcat or Jetty in in an application created with
+Spring Boot. Spring Boot automatically configures Spring in an
+application.
+It does not require any code generation or xml configuration. It is an
+easy solution to create applications that can run stand-alone.Hibernate209. What is Hibernate
+framework?
+Hibernate is a popular Object Relational Mapping (ORM)
+framework of Java. It helps in mapping the Object Oriented Domain
+model to Relational Database tables.
+Hibernate is a free software distributed under GNU license.
+Hibernate also provides implementation of Java Persistence API
+(JPA).
+In simple words, it is a framework to retrieve and store data from
+database tables from Java.210. What is an Object Relational
+Mapping (ORM)?
+Object Relational Mapping (ORM) is a programming technique to
+map data from a relational database to Object oriented domain
+model. This is the core of Hibernate framework.
+In case of Java, most of the software is based on OOPS design. But
+the data stored in Database is based on Relation Database
+Management System (RDBMS).
+ORM helps in data retrieval in an Object Oriented way from an
+RDBMS. It reduces the effort of developers in writing queries to
+access and insert data.211. What is the purpose of
+Configuration Interface in
+Hibernate?
+Configuration interface can be implemented in an application to
+specify the properties and mapping documents for creating a
+SessionFactory in Hibernate.
+By default, a new instance of Configuration uses properties
+mentioned in hibernate.properties file.
+Configuration is mainly an initialization time object that loads the
+properties in helps in creating SessionFactory with these properties.
+In short, Configuration interface is used for configuring Hibernate
+framework in an application.212. What is Object Relational
+Impedance Mismatch?
+Object Relational Impedance Mismatch (ORIM) is also known as
+paradigm mismatch. It means that Object model and Relational
+model do not work well with each other.
+Relational model or a RDBMS represents data in tabular format
+like a spreadsheet. Object model or OOPS represents the data as an
+inter-connected graph of objects.
+Mixing these two models leads to various problems. The common
+name for these issues is Object Relational Impedance Mismatch.213. What are the main problems of
+Object Relational Impedance
+Mismatch?
+Object model and Relational models (RDBMS) have following
+problems that are part of Object Relational Impedance Mismatch:
+Granularity: Object model is more granular than Relational model.
+There are more classes in object model than the corresponding
+tables in relational model.
+Inheritance: Object model supports inheritance. But Relational
+model does not have any concept of inheritance.
+Identity: Relational model has just one criteria for sameness of data.
+It is based on primary key. In object model like Java we can have
+equals as well as == for sameness of objects.
+Associations: In Object model associations are uni-directional. In
+RDBMS, there is a concept of foreign key for association. Also
+multiplicity of a relationship is hard to judge by looking at object
+model.
+Data navigation: In Object model, you can move from one object to
+another object for getting data. Egg. you can retrieve and Employee
+object, then go to its department object and then get the employees
+in the department object. In RDBMS, we try to minimize the SQL
+calls, so we get all the data by using joins.214. What are the key
+characteristics of Hibernate?
+Hibernate has following key characteristics:
+Object/Relational Mapping (ORM): Hibernate provides ORM
+capabilities to developers. So then can write code in Object model
+for connecting with data in Relational model.
+JPA Provider: Hibernate provides an excellent implementation of
+Java Persistence API (JPA) specification.
+Idiomatic persistence: Hibernate provides persistence based on
+natural Object-oriented idioms with full support for inheritance,
+polymorphism, association, composition, and the Java collections
+framework. It can work with any data for persistence.
+High Performance: Hibernate provides high level of performance
+supporting features like- lazy initialization, multiple fetching
+strategies, optimistic locking etc. Hibernate does not need its own
+database tables or fields. It can generate SQL at system
+initialization to provide better performance at runtime.
+Scalability: Hibernate works well in multi server clusters. It has
+built in scalability support. It can work well for small projects as
+well as for large business software.
+Reliable: Hibernate very reliable and stable framework. This is the
+reason for its worldwide acceptance and popularity among
+developer community.
+Extensible: Hibernate is quite generic in nature. It can be configured
+and extended as per the use case of application.215. Can you tell us about the core
+interfaces of Hibernate framework?
+The core interfaces of Hibernate framework are as follows:
+Configuration: Configuration interface can be implemented in an
+application to specify the properties and mapping documents for
+creating a SessionFactory in Hibernate. Hibernate application
+bootstraps by using this interface.
+SessionFactory: In Hibernate, SessionFactory is used to create and
+manage Sessions. Generally, there is one SessionFactory created for
+one database. It is a thread-safe interface that works well in multi-
+threaded applications.
+Session: Session is a lightweight object that is used at runtime
+between a Java application and Hibernate. It contains methods to
+create, read and delete operations for entity classes. It is a basic
+class that abstracts the concept of persistence.
+Transaction: This is an optional interface. It is a short lived object
+that is used for encapsulating the overall work based on unit of
+work design pattern. A Session can have multiple Transactions.
+Query: This interface encapsulates the behavior of an object-
+oriented query in Hibernate. It can accept parameters and execute
+the queries to fetch results. Same query can be executed multiple
+times.
+Criteria: This is a simplified API to retrieve objects by creating
+Criterion objects. It is very easy to use for creating Search like
+features.216. How will you map the columns of
+a DB table to the properties of a Java
+class in Hibernate?
+We can map the class properties and table columns by using one of
+the two ways:
+XML: We can map the column of a table to the property of a class in
+XML file. It is generally with extension hbm.xml
+Annotation: We can also use annotations @Entity and @Table to
+map a column to the property of a class.217. Does Hibernate make it
+mandatory for a mapping file to have
+.hbm.xml extension?
+No. It is a convention to have.hbm.xml extension in the name of a
+mapping file. It is not a requirement enforced by Hibernate. We can
+use any other extension of our convenience for this.218. What are the steps for creating
+a SessionFactory in Hibernate?
+Steps to create a SessionFactory in Hibernate are:
+Configuration: First create a Configuration object. This will refer to
+the path of configuration file.
+Resource: Add config file resource to Configuration object.
+Properties: Set properties in the Configuration object.
+SessionFactory: Use Configuration object to build SessionFactory.
+Egg.
+Configuration config = new Configuration();
+config.addResource(“testInstance/configuration.hbm.xml”);
+config.setProperties( System.getProperties() );
+SessionFactory sessions = config.buildSessionFactory();219. Why do we use POJO in
+Hibernate?
+POJO stands for Plain Old Java Objects. A POJO is java bean with
+getter and setter methods for each property of the bean.
+It is a simple class that encapsulates an object’s properties and
+provides access through setters and getters.
+Some of the reasons for using POJO in Hibernate are:
+POJO emphasizes the fact that this class is a simple Java class, not
+a heavy class like EJB.
+POJO is a well-constructed class, so it works well with Hibernate
+proxies.
+POJO also comes with a default constructor that makes it easier to
+persist with a default constructor.220. What is Hibernate Query
+Language (HQL)?
+Hibernate Query Language is also known as HQL. It is an Object
+Oriented language. But it is similar to SQL.
+HQL works well with persistent objects and their properties. HQL
+does not work on database tables.
+HQL queries are translated into native SQL queries specific to a
+database.
+HQL supports direct running of native SQL queries also. But it
+creates an issue in Database portability.221. How will you call a stored
+procedure in Hibernate?
+Hibernate supports executing not only simple queries but also
+stored procedure of database. There are three ways to call a stored
+procedure in Hibernate:
+XML mapping file:
+We can declare the store procedure inside XML Mapping file.
+<!-- Employee.hbm.xml -->
+...
+<hibernate-mapping>
+<class
+name="com.testHibernate.util.Employee"
+table="employee" ...>
+<id name="employeeId" type="java.lang.Integer">
+<column name=“EMPLOYEE_ID" />
+<generator class="identity" />
+</id>
+<property name="employeeId" type="string">
+<column name="EMPLOYEE_ID" length="10" not-
+null="true" unique="true" />
+</property>
+</class>
+<sql-query name="callEmployeeStoreProcedure">
+<return
+alias="employee"
+class="com.testHibernate.util.Employee"/>
+<![CDATA[CALL GetEmployees(:employeeId)]]>
+</sql-query>
+</hibernate-mapping>
+We can call it with getNamedQuery().
+Query
+query
+=session.getNamedQuery("callEmployeeStoreProcedure")
+.setParameter("employeeId", “1234”);
+List result = query.list();
+for(int i=0; i<result.size(); i++){
+Employee employee = (Employee)result.get(i);
+System.out.println(employee.getEmployeeCode());
+}
+Native SQL: We can use Native SQL to call a store procedure query
+directly. In this example GetEmployees() stored procedure is being
+called.
+Query query = session.createSQLQuery(
+"CALL GetEmployees(:employeeId)")
+.addEntity(Employee.class)
+.setParameter("employeeId", “1234);
+List result = query.list();
+for(int i=0; i<result.size(); i++){
+Employee employee = (Employee) result.get(i);
+System.out.println(employee.getEmployeeCode());
+}
+Use annotation:
 We
 can
-use
-Class.newInstance()
-or
-Constructor.newInstance() methods for creating such Objects.Garbage Collection100. What is Garbage Collection in
-Java?
-Java has an internal mechanism called Garbage collection to
-reclaim the memory of unused projects at run time.
-Garbage collection is also known as automatic memory
-management.101. Why Java provides Garbage
-Collector?
-In Java, there are no pointers. Memory management and allocation
-is done by JVM. Since memory allocation is automated, after some
-time JVM may go low on memory. At that time, JVM has to free
-memory from unused objects. To help with the process of
-reclaiming memory, Java provides an automated process called
-Garbage Collector.102. What is the purpose of gc() in
-Java?
-Java provides two methods System.gc() and Runtime.gc() to request
-the JVM to run the garbage collection. By using these methods,
-programmers can explicitly send request for Garbage Collection.
-But JVM process can reject this request and wait for some time
-before running the GC.103. How does Garbage Collection
-work in Java?
-Java has an automated process called Garbage Collector for
-Memory Management. It is a daemon in JVM that monitors the
-memory usage and performs memory cleanup. Once JVM is low on
-memory, GC process finds the unused objects that are not
-referenced by other objects. These unused objects are cleaned up by
-Garbage Collector daemon in JVM.104. When does an object become
-eligible for Garbage Collection in
-Java?
-An object can be Garbage Collected by JVM, if it is not reachable.
-There are two cases for deciding eligibility of objects for Garbage
-Collection:
-1.
-2.
-An Object/instance that cannot be reached by a live thread.
-A set of circularly referenced instances that cannot be
-reached by any other instance outside that set.105. Why do we use finalize() method
-in Java?
-Java provides finalize() method to perform any cleanup before
-Garbage Collection. This method is in Object class, and it is
-invoked by JVM internally. Developers are free to implement this
-method for any custom cleanup in case of Garbage Collection.
-If an Object is not Garbage Collected, then this method may not be
-called.
-This method is never invoked more than once by JVM.106. What are the different types of
-References in Java?
-In Java, there are four types of references:
-1.
-2.
-3.
-4.
-Strong Reference
-Soft Reference
-Weak Reference
-Phantom Reference107. How can we reference an
-unreferenced object again?
-We can provide implementation in finalize() method to reference
-and unreferenced object. For an unreferenced object, finalize()
-method is called at the time of Garbage Collection. At this time,
-Object can pass its reference ‘this’ to finalize() method and revive
-itself.108. What kind of process is the
-Garbage collector thread?
-Garbage Collection is a Daemon process in JVM. It is an internal
-process that keep checking Memory usage and cleans up the
-memory.109. What is the purpose of the
-Runtime class?
-The purpose of the Runtime class is to provide access to the Java
-Runtime system. This class provides certain important methods like:
-1. Runtime.freeMemory() – This method returns the value of
-free memory in JVM
-2. Runtime.maxMemory() - This method returns the value of
-maximum memory that JVM can use.
-3. Runtime.gc() – This method can invoke garbage collection.110. How can we invoke an external
-process in Java?
-Java provides the method Runtime.getRuntime().exec() to invoke an
-external process from JVM.111. What are the uses of Runtime
-class?
-Runtime class in Java provides following benefits:
-1.
-2.
-3.
-It allows to read data via key board
-It can use system properties and environment variables
-It helps in running non-java programs from within a java
-application.Inner Classes112. What is a Nested class?
-In Java, a Nested class is a class declared inside another class. We
-can have more than one class declared inside a file.113. How many types of Nested classes
-are in Java?
-Java provides four types of Nested classes:
-1.
-2.
-3.
-4.
-Member inner class
-Local inner class
-Anonymous inner class
-Static nested class114. Why do we use Nested Classes?
-There are following reasons for using nested classes:
-1. Logical Grouping: We can logically group classes in one
-place. If one class is useful to only one other class, then
-we put smaller class within the larger class and keep them
-in one file. This kind of nesting "helper classes" in a top-
-level class makes the package more streamlined.
-2. Encapsulation: Nested classes increase encapsulation. Let
-say there are two top-level classes, Foo and Bar. Bar
-needs access to private members of Foo. We can hide
-class Bar within class Foo. In this way, private members
-of Foo can be accessed by class Bar. So class Foo remains
-encapsulated. Also, class Bar remains hidden from the
-outside world.
-3. Code Clarity: Nested classed make the code more
-readable and well organized. Only Top-level classes are
-exposed. The helper classes are kept hidden and closer the
-code where it is used by a Top-level class.115. What is the difference between a
-Nested class and an Inner class in
-Java?
-An Inner class in Java is non-static class. It is a type of Nested class
-that is defined in another class but not qualified with a Static
-modifier. A Nested class is also a class can be Static Nested class
-or a non-Static Inner class.
-An Inner class has access to other members of the enclosing class,
-even if they are declared private. A Static Nested class can not
-access the other members of the enclosing class.116. What is a Nested interface?
-A Nested interface is declared inside another interface or a top-
-level class. By default it is static.
-A Nested interface is also known as Static interface.117. How can we access the non-final
-local variable, inside a Local Inner
-class?
-Java allows a Local Inner class to access only Constant local
-members. So we have to make the non-final local variable as final
-constant to access it inside a Local Inner class.118. Can an Interface be defined in a
-Class?
-Yes, we can define a Static Nested interface within a class. Only the
-enclosing class can access it.119. Do we have to explicitly mark a
-Nested Interface public static?
-A Nested Interface is implicitly public static. So the modifiers
-public and static are redundant in declaration.120. Why do we use Static Nested
-interface in Java?
-Only the enclosing class can access a Static Nested interface.
-Consider following code in which interface Xyz is enclosed in
-class Abc.
-public class Abc {
-public interface Xyz {
-void callback();
+also
+mark
+out
+@NamedNativeQueries annotation.
+stored
+//Employee.java
+@NamedNativeQueries({
+@NamedNativeQuery(
+name = "callEmployeeStoreProcedure",
+query = "CALL GetEmployees(:employeeId)",
+resultClass = Employee.class
+)
+})
+@Entity
+procedure
+with@Table(name = "employee")
+public class Employee implements java.io.Serializable {
+...
+Call it with getNamedQuery().
+Query
+query
+session.getNamedQuery("callEmployeeStoreProcedure")
+.setParameter("employeeId", “1234”);
+List result = query.list();
+for(int i=0; i<result.size(); i++){
+Employee employee = (Employee)result.get(i);
+System.out.println(employee.getEmployeeCode());
 }
-public static void registerCallback(Xyz xyz) {...}
-}
-// Client Code
-Abc.registerCallback(new Abc.Xyz() {
-public void callback() {...}
-});
-Any code that cannot access Abc can not access interface Xyz also.
-So the purpose of declaring an Inner interface is to restrict its
-access from outside world.String121. What is the meaning of
-Immutable in the context of String
-class in Java?
-An Immutable object cannot be modified or changed in Java. String
-is an Immutable class in Java.
-Once a String object is created, it cannot be changed. When we
-assign the String to a new value, a new object is created.122. Why a String object is considered
-immutable in java?
-Java language uses String for a variety of purposes. For this it has
-marked String Immutable.
-There is a concept of String literal in Java.
-Let say there are 2 String variables A and B that reference to a
-String object “TestData”. All these variables refer to same String
-literal. If one reference variable A changes the value of the String
-literal from “TestData” to “RealData”, then it will affect the other
-variable as well. Due to which String is considered Immutable. In
-this case, if one variable A changes the value to “RealData”, then a
-new String literal with “RealData” is created and A will point to
-new String literal. While B will keep pointing to “TestData”123. How many objects does following
-code create?
-Code:
-String s1="HelloWorld";
-String s2=" HelloWorld ";
-String s3=" HelloWorld ";
-The above code creates only one object. Since there is only one
-String Literal “HelloWorld” created, all the references point to
-same object.124. How many ways are there in
-Java to create a String object?
-Java provides two ways to create a String object. One is by using
-String Literal, the other is by using new operator.125. How many objects does
-following code create?
-Code:
-String s = new String("HelloWorld");
-The above code creates two objects. One object is created in String
-constant pool and the other is created on the heap in non-pool area.126. What is String interning?
-String interning refers to the concept of using only one copy of a
-distinct String value that is Immutable.
-It provides the advantage of making String processing efficient in
-Time as well as Space complexity. But it introduces extra time in
-creation of String.127. Why Java uses String literal
-concept?
-Java uses String literal concept to make Java more efficient in
-memory. If same String already exists in String constant pool, it can
-be reused. This saves memory usage.128. What is the basic difference
-between a String and StringBuffer
-object?
-String is an immutable object. Its value cannot change after creation.
-StringBuffer is a mutable object. We can keep appending or
-modifying the contents of a StringBuffer in Java.129. How will you create an immutable
-class in Java?
-In Java, we can declare a class final to make it immutable. There
-are following detailed steps to make it Immutable:
-1.
-2.
-3.
-4.
-5.
-6.
-Add final modifier to class to prevent it from getting
-extended
-Add private modifier to all the fields to prevent direct
-access
-Do not provide any setter methods for member variables
-Add final modifier to all the mutable fields to assign value
-only once
-Use Deep Copy to initialize all the fields by a constructor
-In clone method, return a copy of object instead of the
-actual object reference130. What is the use of toString()
-method in java ?
-In Java, Object class has toString() method. This method can be
-used to return the String representation of an Object. When we print
-an object, Java implicitly calls toString() method.
-Java provides a default implementation for toString() method. But
-we can override this method to return the format that we want to
-print.131. Arrange the three classes String,
-StringBuffer and StringBuilder in the
-order of efficiency for String
-processing operations?
-StringBuilder is the most efficient class. It does not have the
-overhead of Synchronization. StringBuffer is a Synchronized class.
-It has better performance than String but it is slower than
-StringBuilder. String is the slowest for any String processing
-operations, since it is leads to creation of new String literal with
-each modification.
-So the decreasing order of efficiency is: StringBuilder, StringBuffer,
-StringException Handling132. What is Exception Handling in
-Java?
-Java provides Exception Handling mechanism to handle Runtime
-errors that occur in JVM. There are checked exceptions in a
-program that we expect to occur in certain situations.
-Exception handling mechanism catches these checked exceptions
-and takes relevant actions.133. In Java, what are the differences
-between a Checked and Unchecked?
-Checked Exceptions extend Throwable class, but they do not extend
-RuntimeException or Error classes. UncheckedException extend
-RuntimeException class.
-Checked Exceptions are checked at compile time in Java.
-Unchecked Exceptions happen at Runtime, so they are not checked
-at compile time.
-IOException, SQLException etc. are examples of Checked
-Exceptions. NullPointerException, ArithmeticException etc. are
-examples of Unchecked Exceptions.134. What is the base class for
-Error and Exception classes in Java?
-Error as well as Exception class is derived from Throwable class
-in Java.135. What is a finally block in Java?
-Java provides a finally block with a try block. This is an optional
-block. But finally block is always executed after the execution of try
-block.136. What is the use of finally block in
-Java?
-As per Java specification, a finally block is always executed,
-whether an error occurs or not, whether an exception is handled or
-not. It helps in doing the cleanup like- Rollback Transaction, Close
-Connection, Close a file etc.137. Can we create a finally block
-without creating a catch block?
-Yes. A finally block can follow a try block or catch block. So we
-can defined a finally block just after a try block.138. Do we have to always put a catch
-block after a try block?
-Java does not enforce the rule to put a catch block after try block.
-We can write catch block or finally block after a try block.
-Any exception that we want to catch is mentioned in catch block.139. In what scenarios, a finally block
-will not be executed?
-There are two main scenarios in which finally block is not
-executed:
-1.
-2.
-Program exits by calling system.exit() call.
-A fatal error causes JVM to crash.140. Can we re-throw an Exception
-in Java?
-Yes, Java allows to re-throw an Exception.141. What is the difference between
-throw and throws in Java?
-Java provides throw keyword to throw an exception from a method
-or a static block. Java provides throws keyword to mention the
-probable exception thrown by a method in its declaration.
-We use throw to explicitly throw an exception. We used
-throws to declare an exception in method definition.
-We cannot propagate checked exceptions with throw only. But
-checked exceptions can be propagated with throws keyword.
-A throw call is followed by an instance. Class or Exception follows
-a throws keyword.
-Call to throw occurs within a method. throws is just used with
-method signature.
-We can throw only one exception at a time. But we can mention as
-many exceptions in throws clause.142. What is the concept of
-Exception Propagation?
-In Exception Propagation, uncaught exceptions are propagated in the
-call stack until stack becomes empty. This propagation is called
-Exception Propagation.
-Let say an exception propagates from one method to another method.
-A() calls B(), which calls C(), which calls D(). And if D() throws
-an exception, the exception will propagate from D to C to B to A,
-unless one of the methods catches the exception.143. When we override a method in
-a Child class, can we throw an
-additional Exception that is not
-thrown by the Parent class method?
-Yes, Java allows us to throw additional Exception in a child class,
-but the additional exception should be an unchecked exception
-(RuntimeException).Java Collection144. What is the difference between
-Collection and Collections
-Framework in Java?
-In Java, a Collection is an object that contains multiple elements of
-same type in a single unit. These multiple elements can be accessed
-through one Collection object.
-In Java Collections Framework is a library that provides common
-architecture for creating, updating and accessing different types of
-collections. In Collections framework there are common methods
-that are frequently used by developers for working on a Collection
-object.145. What are the main benefits of
-Collections Framework in Java?
-Main benefits of Collections Framework in Java are as follows:
-1. Reusability: Java Collections Framework provides
-common classes and utility methods than can be used with
-different types of collections. This promotes the reusability
-of the code. A developer does not have to re-invent the
-wheel by writing the same method again.
-2. Quality: Using Java Collection Framework improves the
-program quality, since the code is already tested and used
-by thousands of developers.
-3. Speed: Most of programmers report that their development
-speed increased since they can focus on core logic and use
-the generic collections provided by Java framework.
-4. Maintenance: Since most of the Java Collections
-framework code is open source and API documents is
-widely available, it is easy to maintain the code written
-with the help of Java Collections framework. One
-developer can easily pick the code of previous developer.146. What is the root interface of
-Collection hierarchy in Java?
-The root interface of Collection hierarchy in Java is Collection
-interface.
-But the Collection interface extends Iterable interface. Due to this
-some people consider Iterable interface as the root interface.
-Iterable interface is present in java.lang package but Collection
-interface is present in java.util package. Oracle Java API docs
-mention that Collection interface is a member of the Java
-Collections framework.
-Whereas, Iterable interface is not stated as a part of Java
-Collections framework in Java docs.
-Due to this Collection interface is the root of Collections
-Framework.147. What are the main differences
-between Collection and Collections?
-Main differences between Collection and Collections are as
-follows:
-1. Collection is an interface in Java. But Collections is a
-class in Java.
-2. Collection is a base interface. Collections is a utility class
-in Java.
-3. Collection defines methods that are used for data structures
-that contain the objects. Collections defines the methods
-that are used for operations like access, find etc. on a
-Collection.148. What are the Thread-safe
-classes in Java Collections
-framework?
-The Thread-safe classes in Java Collections framework are:
-Stack
-Properties
-Vector
-Hashtable
-BlockingQueue
-ConcurrentMap
-ConcurrentNavigableMap149. How will you efficiently
-remove elements while iterating a
-Collection?
-The right way to remove elements from a collection while iterating
-is by using ListIterator.remove() method.
-E.g.
-ListIterator<Integer> iter = myList.iterator();
-while(iter.hasNext()) {
-itr.remove();
-}
-Some developers use following code to remove an element which is
-incorrect:
-Iterator<Integer> iter = myList.iterator();
-while(iter.hasNext()) {
-itr.remove();
-}
-By doing so we get ConcurrentModificationException.
-An iterator is first created to traverse the list. But at the same time
-the list is changed by remove() method.
-In Java, it is not allowed for a thread to modify a collection while
-another thread is iterating it. ListIterator provides the capability of
-removing an object during traversal.150. How will you convert a List into
-an array of integers like- int[]?
-We can use ArrayUtils class in Apache Commons Lang library.
-Sample code is:
-int[]intArray
-=
-Integer[0]));
-ArrayUtils.toPrimitive(myList.toArray(new
-If we use List.toArray(), it will convert List to Integer[].
-Another option is:
-int[] intArray = new int[myList.size()];
-for (int i=0; i < myList.size(); i++) {
-intArray [i] = myList.get(i);
-}151. How will you convert an array of
-primitive integers int[] to a List
-collection?
-We can use ArrayUtils in Apache Commons Lang library for this
-purpose.
-Sample code is:
-List intList = Arrays.asList(ArrayUtils.toObject(intArray));
-The other option would be to use a for loop and explicitly adding
-integers to a List.
-Sample code is:
-int[]intArray = {10,20,30};
-List<Integer> intList = new ArrayList<Integer>();
-for (int i: intArray) {
-intList.add(i);
-}152. How will you run a filter on a
-Collection?
-We can use CollectionUtils of Apache for this purpose. We will
-have to create a Predicate that will define the condition for our
-filter. Then we can apply this Predicate in filter() method.
-Sample code is:
-In this example we filter any names that are less than 5 characters
-long.
-List<String> namesList = asList( "Red", "Blue", "Green" );
-List<String> shortNamesList = new ArrayList<String>();
-shortNamesList.addAll( namesList );
-CollectionUtils.filter( shortNamesList, new Predicate(){
-public boolean evaluate( Object input ) {
-return ((String) input).length() < 5;
-}
-} );
-We can also use Google Guava library for this.
-In Java 8, we can use Predicate to filter a Collection through
-Stream.153. How will you convert a List to a
-Set?
-There are two ways to convert a List to a Set in Java.
-Option 1: Use HashSet
-Set<Integer> mySet = new HashSet<Integer>(myList);
-In this case we put a list into a HashSet. Internally hashCode()
-method is used to identify duplicate elements.
-Option 2: Use TreeSet
-In this case we use our own comparator to find duplicate objects.
-Set<Integer> mySet = new TreeSet<Integer>(myComparator);
-mySet.addAll(myList);154. How will you remove duplicate
-elements from an ArrayList?
-The trick in this question is to use a collection that does not allow
-duplicate elements. So we use a Set for this purpose.
-Option 1: Use Set
-If ordering of elements is not important then we just put the elements
-of ArrayList in a HashSet and then add them back to the ArrayList.
-Sample Code is:
-ArrayList myList = // ArrayList with duplicate elements
-Set<Integer> mySet = new HashSet<Integer>(myList);
-myList.clear();
-myList.addAll(mySet);
-Option 2: Use LinkedHashSet
-If ordering of elements is important then we put the elements of
-ArrayList in a LinkedHashSet and then add them back to the
-ArrayList.
-Sample Code is:
-ArrayList myList = // ArrayList with duplicate elements
-Set<Integer> mySet = new LinkedHashSet<Integer>(myList);
-myList.clear();
-myList.addAll(mySet);155. How can you maintain a
-Collection with elements in Sorted
-order?
-In Java, there are many ways to maintain a Collection with elements
-in sorted order.
-Some collections like TreeSet store elements in the natural
-ordering. In case of natural ordering we have to implement
-Comparable interface for comparing the elements.
-We can also maintain custom ordering by providing a custom
-Comparator to a Collection.
-Another option is to use the utility method Collections.sort() to sort
-a List. This sorting gives nlog(n) order of performance. But if we
-have to use this method multiple times then it will be costly on
-performance.
-Another option is to use a PriorityQueue that provides an ordered
-queue. The main difference between PriorityQueue and
-Collections.sort() is that PriorityQueue maintains a queue in Order
-all the time, but we can only retrieve head element from queue. We
-cannot access the elements of PriorityQueue in Random order.
-We can use TreeSet to maintain sorted order of elements in
-collection if there are no duplicate elements in collection.156. What are the differences between
-the two data structures: a Vector and
-an ArrayList?
-An ArrayList is a newer class than a Vector. A Vector is considered a
-legacy class in Java. The differences are:
-1.
-2.
-Synchronization: Vector is synchronized, but the ArrayList
-is not synchronized. So an ArrayList has faster operations
-than a Vector.
-Data Growth: Internally both an ArrayList and Vector use
-an array to store data. When an ArrayList is almost full it
-increases its size by 50% of the array size. Whereas a
-Vector increases it by doubling the underlying array size.157. What are the differences between
-Collection and Collections in Java?
-Main differences between Collection and Collections are:
-1.
-2.
-3.
-Type: Collection is an interface in Java. Collections is a
-class.
-Features: Collection interface provides basic features of
-data structure to List, Set and Queue interfaces.
-Collections is a utility class to sort and synchronize
-collection elements. It has polymorphic algorithms to
-operate on collections.
-Method Type: Most of the methods in Collection are at
-instance level. Collections class has mainly static methods
-that can work on an instance of Collection.158. In which scenario, LinkedList
-is better than ArrayList in Java?
-ArrayList is more popular than LinkedList in Java due to its ease of
-use and random access to elements feature.
-But LinkedList is better in the scenario when we do not need
-random access to elements or there are a lot of insertion, deletion of
-elements.159. What are the differences between
-a List and Set collection in Java?
-Main differences between a List and a Set are:
-1. Order: List collection is an ordered sequence of elements.
-A Set is just a distinct collection of elements that is
-unordered.
-2. Positional Access: When we use a List, we can specify
-where exactly we want to insert an element. In a Set there
-is no order, so we can insert element anywhere without
-worrying about order.
-3. Duplicate: In a List we can store duplicate elements. A Set
-can hold only unique elements.160. What are the differences between
-a HashSet and TreeSet collection in
-Java?
-Main differences between a HashSet and TreeSet are:
-1. Ordering: In a HashSet elements are stored in a random
-order. In a TreeSet, elements are stored according to
-natural ordering.
-2. Null Value Element: We can store null value object in a
-HashSet. A TreeSet does not allow to add a null value
-object.
-3. Performance: HashSet performs basic operations like
-add(), remove(), contains(), size() etc in a constant size
-time. A TreeSet performs these operations at the order of
-log(n) time.
-4. Speed: A HashSet is better than a TreeSet in performance
-for most of operations like add(), remove(), contains(),
-size() etc .
-5. Internal Structure: a HashMap in Java internally backs a
-HashSet. A NavigableMap backs a TreeSet internally.
-6. Features: A TreeSet has more features compared to a
-HashSet. It has methods like pollFirst(), pollLast(), first(),
-last(), ceiling(), lower() etc.
-7. Element Comparison: A HashSet uses equals() method for
-comparison. A TreeSet uses compareTo() method forcomparison to maintain ordering of elements.161. In Java, how will you decide when
-to use a List, Set or a Map collection?
-1.
-2.
-If we want a Collection that does not store duplicate
-values, then we use a Set based collection.
-If we want to frequently access elements operations based
-on an index value then we use a List based collection. E.g.
-ArrayList
-3. If we want to maintain the insertion order of elements in a
-collection then we use a List based collection.
-4. For fast search operation based on a key, value pair, we
-use a HashMap based collection.
-5. If we want to maintain the elements in a sorted order, then
-we use a TreeSet based collection.162. What are the differences between
-a HashMap and a Hashtable in Java?
-Main differences between a HashMap and a Hashtable are:
-1. Synchronization: HashMap is not a synchronized
-collection. If it is used in multi-thread environment, it may
-not provide thread safety. A Hashtable is a synchronized
-collection. Not more than one thread can access a
-Hashtable at a given moment of time. The thread that
-works on Hashtable acquires a lock on it and it makes
-other threads wait till its work is completed.
-2. Null values: A HashMap allows only one null key and any
-number of null values. A Hashtable does not allow null
-keys and null values.
-3. Ordering: A HashMap implementation by LinkedHashMap
-maintains the insertion order of elements. A TreeMap sorts
-the mappings based on the ascending order of keys. On the
-other hand, a Hashtable does not provide guarantee of any
-kind of order of elements. It does not maintain the
-mappings of key values in any specific order.
-4. Legacy: Hashtable was not the initial part of collection
-framework in Java. It has been made a collection
-framework member, after being retrofitted to implement the
-Map interface. A HashMap implements Map interface and
-is a part of collection framework since the beginning.
-5. Iterator: The Iterator of HashMap is a fail-fast and it
-throws ConcurrentModificationException if any other
-Thread modifies the map by inserting or removing any
-element except iterator’s own remove() method.Enumerator of the Hashtable is not fail-fast.163. What are the differences between
-a HashMap and a TreeMap?
-Main differences between a HashMap and a TreeMap in Java are:
-1. Order: A HashMap does not maintain any order of its keys.
-In a HashMap there is no guarantee that the element
-inserted first will be retrieved first.
-2. In a TreeMap elements are stored according to natural
-ordering of elements. A TreeMap uses compareTo()
-method to store elements in a natural order.
-3. Internal Implementation: A HashMap uses Hashing
-internally. A TreeMap internally uses Red-Black tree
-implementation.
-4. Parent Interfaces: A HashMap implements Map interface.
-TreeMap implements NavigableMap interface.
-5. Null values: A HashMap can store one null key and
-multiple null values. A TreeMap can not contain null key
-but it may contain multiple null values.
-6. Performance: A HashMap gives constant time performance
-for operations like get() and put(). A TreeMap gives order
-of log(n) time performance for get() and put() methods.
-7. Comparison: A HashMap uses equals() method to compare
-keys. A TreeMap uses compareTo() method for
-maintaining natural ordering.8.
-Features: A TreeMap has more features than a HashMap. It
-has methods like pollFirstEntry() , pollLastEntry() ,
-tailMap() , firstKey() , lastKey() etc. that are not provided
-by a HashMap.164. What are the differences
-between Comparable and
-Comparator?
-Main differences between Comparable and Comparator are:
-1. Type: Comparable<T> is an interface in Java where T is
-the type of objects that this object may be compared to.
-2. Comparator<T> is also an interface where T is the type of
-objects that may be compared by this comparator.
-3. Sorting: In Comparable, we can only create one sort
-sequence. In Comparator we can create multiple sort
-sequences.
-4. Method Used: Comparator<T> interface in Java has
-method public int compare (Object o1, Object o2) that
-returns a negative integer, zero, or a positive integer when
-the object o1 is less than, equal to, or greater than the
-object o2. A Comparable<T> interface has method public
-int compareTo(Object o) that returns a negative integer,
-zero, or a positive integer when this object is less than,
-equal to, or greater than the object o.
-5. Objects for Comparison: The Comparator compares two
-objects given to it as input. Comparable interface
-compares "this" reference with the object given as input.
-6. Package location: Comparable interface in Java is defined
-in java.lang package. Comparator interface in Java is
-defined in java.util package.165. In Java, what is the purpose of
-Properties file?
-A Properties file in Java is a list of key-value pairs that can be
-parsed by java.util.Properties class.
-Generally a Properties file has extension .properties e.g.
-myapp.properties.
-Properties files are used for many purposes in all kinds of Java
-applications. Some of the uses are to store configuration, initial
-data, application options etc.
-When we change the value of a key in a properties file, there is no
-need to recompile the Java application. So it provides benefit of
-changing values at runtime.166. What is the reason for overriding
-equals() method?
-The equals() method in Object class is used to check whether two
-objects are same or not. If we want a custom implementation we can
-override this method.
-For example, a Person class has first name, last name and age. If we
-want two Person objects to be equal based on name and age, then
-we can override equals() method to compare the first name, last
-name and age of Person objects.
-Generally in HashMap implementation, if we want to use an object
-as key, then we override equals() method.167. How does hashCode() method
-work in Java?
-Object class in Java has hashCode() method. This method returns a
-hash code value, which is an integer.
-The hashCode() is a native method and its implementation is not
-pure Java.
-Java doesn't generate hashCode(). However, Object generates a
-HashCode based on the memory address of the instance of the
-object.
-If two objects are same then their hashCode() is also same.168. Is it a good idea to use Generics
-in collections?
-Yes. A collection is a group of elements put together in an order or
-based on a property. Often the type of element can vary. But the
-properties and behavior of a Collection remains same. Therefore it
-is good to create a Collection with Generics so that it is type-safe
-and it can be used with wide variety of element
+=222. What is Criteria API in
+Hibernate?
+Criteria is a simplified API in Hibernate to get entities from
+database by creating Criterion objects.
+It is a very intuitive and convenient approach for search features.
+Users can specify different criteria for searching entities and
+Criteria API can handle these.
+Criterion instances are obtained through factory methods on
+Restrictions.223. Why do we use
+Hi
