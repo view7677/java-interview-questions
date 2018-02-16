@@ -715,7 +715,7 @@ behavior in the existing execution flow.
 
 #### 681. What is an Advice in Spring AOP?
 
-![](../img/aop.jpg =100x20)
+![](../img/aop.jpg)
 
 #### 682. What are the different types of Advice in Spring AOP?
 
