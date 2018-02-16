@@ -687,16 +687,18 @@ the application.
 A Cross cutting concern is also a type of Concern. It is the feature or
 functionality that is spread throughout the application in a thin way.
 
-E.g. 
-1. Security, 
-2. Logging, 
-3. Transaction Management 
+E.g.
+
+1. Security
+2. Logging
+3. Transaction Management
 4. Caching
 5. Error Handling
 6. Perfomance Monitoring
 7. Custom Business Rule.
 
 etc. are cross cutting concerns in an application.
+![](https://qph.ec.quoracdn.net/main-qimg-5be49a668eb758bfef32b22dab792db2)
 
 #### 680. What is a Joinpoint in Spring AOP?
 
@@ -709,9 +711,11 @@ modified.
 This is the place where the code of an Aspect is inserted to add new
 behavior in the existing execution flow.
 
+![joinpoint](https://i.stack.imgur.com/J7Hrh.png)
+
 #### 681. What is an Advice in Spring AOP?
 
-
+![](../img/aop.jpg)
 
 #### 682. What are the different types of Advice in Spring AOP?
 
