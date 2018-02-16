@@ -714,8 +714,8 @@ behavior in the existing execution flow.
 ![joinpoint](https://i.stack.imgur.com/J7Hrh.png)
 
 #### 681. What is an Advice in Spring AOP?
+<img src="https://vijaykeshri.gitbooks.io/java-interview-questions/content/img/aop.jpg" width="400" height="200" />
 
-![AOP](https://vijaykeshri.gitbooks.io/java-interview-questions/content/img/aop.jpg =500)
 
 #### 682. What are the different types of Advice in Spring AOP?
 
