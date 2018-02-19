@@ -722,6 +722,7 @@ behavior in the existing execution flow.
 
 
 
+
 #### 683. What is a Pointcut in Spring AOP?
 
 
@@ -740,6 +741,11 @@ behavior in the existing execution flow.
 
 #### 687. What are the different types of AutoProxy creators in Spring?
 
+Spring AOP provides following standard types of Autoproxy creators:
+
+1. **BeanNameAutoProxyCreator**: This is a BeanPostProcessor that creates AOP proxies for beans automatically by matching names.
+2. **DefaultAdvisorAutoProxyCreator**: This creator is more powerful that other Proxy Creators. This also applies eligible advisors automatically to bean in the current context.
+3. **AbstractAdvisorAutoProxyCreator**: This is the parent class of DefaultAdvisorAutoProxyCreator. We can create our own auto-proxy creators by extending this class.
 
 
 #### 688. What is Weaving in Spring AOP?
@@ -1012,13 +1018,20 @@ ContextLoaderListener is a listener to start up and shut down Spring’s root `W
 
 #### 709. How will you handle exceptions in Spring MVC Framework?
 
-Spring MVC Framework provides following mechanisms to help us achieve exception handling:
+Spring MVC Framework provides following mechanisms to help us
+achieve exception handling:
 
-**Controller Based**: A developer can define exception handler methods in a Controller class. To do so, they have to annotate the methods with `@ExceptionHandler` annotation.
+**Controller Based**: A developer can define exception handler
+methods in a Controller class. To do so, they have to annotate the
+methods with `@ExceptionHandler` annotation.
 
-**Global Exception Handler**: Spring provides `@ControllerAdvice` annotation for exception handling as cross-cutting concern. We can mark any class as global exception handler by using this annotation.
+**Global Exception Handler**: Spring provides `@ControllerAdvice`
+annotation for exception handling as cross-cutting concern. We can
+mark any class as global exception handler by using this annotation.
 
-**`HandlerExceptionResolver` implementation**: Spring Framework provides `HandlerExceptionResolver` interface that can be implemented to create a global exception handler.
+**`HandlerExceptionResolver` implementation**: Spring Framework
+provides `HandlerExceptionResolver` interface that can be
+implemented to create a global exception handler.
 
 #### 710. What are the best practices of Spring Framework?
 
@@ -1031,6 +1044,4 @@ Spring Boot is a ready made solution to create Spring applications with producti
 We can embed Tomcat or Jetty in in an application created with Spring Boot. Spring Boot automatically configures Spring in an application.
 
 It does not require any code generation or xml configuration. It is an easy solution to create applications that can run stand-alone.
-
-
 
