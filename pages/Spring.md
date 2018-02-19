@@ -1,4 +1,5 @@
-## Spring Questions
+#
+# Spring Questions
 *********************
 #### 612. What is Spring framework?
 
@@ -205,7 +206,7 @@ In a Spring based application, main components are:
 
 1. **Spring configuration XML file:** This is used to configure Spring application.
 2. **API Interfaces:** Definition of API interfaces for functions provided by application
-3. **Implementation:** Application code with implementation of APIs Aspects: Spring Aspects implemented by application 
+3. **Implementation:** Application code with implementation of APIs Aspects: Spring Aspects implemented by application
 4. **Client:** Application at client side that is used for accessing functions.
 
 #### 636. Explain Dependency Injection (DI) concept in Spring framework?
@@ -514,7 +515,7 @@ Once it is turned on, we can use @Autowired annotation or @Required annotation i
 
 We can use @Autowired annotation to auto wire a bean on a setter method, constructor or a field. @Autowired auto wiring is done by matching the data type.
 
-Before using @Autowired annotation we have to register  AutowiredAnnotationBeanPostProcessor. This can be done by including `<context:annotation-config />` in bean configuration file.
+Before using @Autowired annotation we have to register AutowiredAnnotationBeanPostProcessor. This can be done by including `<context:annotation-config />` in bean configuration file.
 
 #### 665. What is @Required annotation?
 
@@ -523,7 +524,7 @@ property has been set or not.
 
 Spring container throws BeanInitializationException if the @Required annotated property is not set.
 
-When we use @Required annotation, we have to register 
+When we use @Required annotation, we have to register
 RequiredAnnotationBeanPostProcessor in Spring config file.
 
 #### 666. What are the two ways to enable RequiredAnnotationBeanPostProcessor in Spring?
@@ -563,14 +564,14 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-
 2.5.xsd">
-    <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor">
-    <bean id="BookBean" class="com.foo.Book">
-        <property name="action" value="price" />
-        <property name="type" value="1" />
-    </bean>
-    <bean id="AuthorBean" class="com.foo.Author">
-        <property name="name" value="Rowling" />
-    </bean>
+<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor">
+<bean id="BookBean" class="com.foo.Book">
+<property name="action" value="price" />
+<property name="type" value="1" />
+</bean>
+<bean id="AuthorBean" class="com.foo.Author">
+<property name="name" value="Rowling" />
+</bean>
 </beans>
 ```
 
@@ -747,83 +748,284 @@ behavior in the existing execution flow.
 
 #### 689. In Spring AOP, Weaving is done at compile time or run time?
 
-
+Spring container performs Weaving at run time.
 
 #### 690. What is XML Schema-based Aspect implementation?
 
+Spring allows for implementing Aspect by using regular classes and XML based configurations. This is different from Annotation based Aspect implementation. But it achieves the same goal of AOP. We can use elements like
 
+```xml
+<aop:aspect id=”testAspect" ref="testBean" /> 
+```
+and 
+```xml
+<aop:pointcut id="testPointcut" />
+```
+in Spring XML config file.
+
+To use this we need to import Spring AOP schema as follows:
+
+```xml
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-
+3.0.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+">
+```
 
 #### 691. What is Annotation-based aspect implementation in Spring AOP?
 
-
+This is a declarative style AOP implementation. In this case, we use annotations like `@Aspect`, `@Pointcut`, `@Joinpoint` etc. to annotate code with different types of AOP elements. This can be used Java 5 onwards, when the support for Annotations was introduced.
 
 #### 692. How does Spring MVC framework work?
 
-
+Spring provides its own Model View Controller (MVC) framework for developing web applications. Spring MVC framework is based on Inversion of Control (IOC) principle. It separates the business objects from controller. It is designed around the DispatcherServlet that is responsible for dispatching requests to relevant handlers. Spring MVC framework also supports annotation based binding of request parameters.
 
 #### 693. What is DispatcherServlet?
 
+In Spring MVC, DispatcherServlet is the core servlet that is responsible for handling all the requests and dispatching these to handlers.
 
+Dispatcher servlet knows the mapping between the method to be called and the browser request. It calls the specific method and combines the results with the matching JSP to create an html document, and then sends it back to browser. In case of RMI invocation, it sends back response to the client application.
 
 #### 694. Can we have more than one DispatcherServlet in Spring MVC?
 
+Yes, a Spring MVC web application can have more than one DispatcherServlets.
+
+Each DispatcherServlet has to operate in its own namespace. It has to load its own ApplicationContext with mappings, handlers, etc. Only the root application context will be shared among these Servlets.
 
 
 #### 695. What is WebApplicationContext in Spring MVC?
 
+Web Application context extended Application Context which is designed to work with the standard javax.servlet.ServletContext so it's able to communicate with the container.
+```java
+public interface WebApplicationContext extends ApplicationContext {
+    ServletContext getServletContext();
+}
+```
+Beans, instantiated in WebApplicationContext will also be able to use ServletContext if they implement ServletContextAware interface
+```java
+package org.springframework.web.context;
+public interface ServletContextAware extends Aware { 
+     void setServletContext(ServletContext servletContext);
+}
+```
+There are many things possible to do with the ServletContext instance, for example accessing WEB-INF resources(xml configs and etc.) by calling the getResourceAsStream() method. Typically all application contexts defined in web.xml in a servlet Spring application are Web Application contexts, this goes both to the root webapp context and the servlet's app context.
+
+Also, depending on web application context capabilities may make your application a little harder to test, and you may need to use MockServletContext class for testing.
+
+**Difference between servlet and root context** Spring allows you to build multilevel application context hierarchies, so the required bean will be fetched from the parent context if it's not present in the current application context. In web apps as default there are two hierarchy levels, root and servlet contexts.
+
+![](https://i.stack.imgur.com/WSAPE.png)
+
+This allows you to run some services as the singletons for the entire application (Spring Security beans and basic database access services typically reside here) and another as separated services in the corresponding servlets to avoid name clashes between beans. For example one servlet context will be serving the web pages and another will be implementing a stateless web service.
+
+This two level separation comes out of the box when you use the spring servlet classes: to configure the root application context you should use context-param tag in your web.xml
+
+```xml
+<context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+        /WEB-INF/root-context.xml
+            /WEB-INF/applicationContext-security.xml
+    </param-value>
+</context-param>
+<listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener> 
+<servlet>
+   <servlet-name>myservlet</servlet-name>
+   <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+   <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>app-servlet.xml</param-value>
+   </init-param>
+</servlet>
+```
+(the root application context is created by ContextLoaderListener which is declared in web.xml) and servlet tag for the servlet application contexts
+
+Please note that if init-param will be omitted, then spring will use myservlet-servlet.xml in this example.
 
 
 #### 696. What is Controller in Spring MVC framework?
 
+Controller is an interface in Spring MVC. It receives HttpServletRequest and HttpServletResponse in web app just like an HttpServlet, but it is able to participate in an MVC flow. Controllers are similar to a Struts Action in a Struts based Web application.
 
+Spring recommends that the implementation of Controller interface should be a reusable, thread-safe class, capable of handling multiple HTTP requests throughout the lifecycle of an application. It is preferable to implement Controller by using a JavaBean. Controller interprets user input and transforms it into a model. The model is represented to the user by a view.
 
-#### 697. What is @RequestMapping annotation in Spring?698.What are the main features of Spring MVC?
+Spring implements a controller in a very generic way. This enables us to create a wide variety of controllers. What is @Controller annotation in Spring MVC? We use `@Controller` annotation to indicate that a class is a Controller in Spring MVC.
 
+#### 697. What is @RequestMapping annotation in Spring?
 
+In Spring MVC, we use `@RequestMapping` annotation to map a web request to either a class or a handler method.
+
+In @RequestMapping we can specify the path of URL as well as HTTP method like- `GET`, `PUT`, `POST` etc.
+
+@RequestMapping also supports specifying HTTP Headers as attributes.
+
+We can also map different media types produced by a controller in @RequestMapping. We use HTTP Header Accepts for this purpose. E.g.
+
+```java
+@RequestMapping(
+value = "/test/mapping",
+method = GET,
+headers = "Accept=application/json")
+```
+
+#### 698. What are the main features of Spring MVC?
+
+Spring MVC has following main features:
+
+1. Clear separation of role: In Spring MVC, each role like- controller, validator, command object, form object, model object, DispatcherServlet, handler mapping, view resolver etc. is fulfilled by a specialized object.
+2. Reusability: Spring MVC promotes reusable business code that reduces the need for duplication. We can use existing business objects as command or form objects instead of copying them to extend a particular framework base class.
+3. Flexible Model Transfer: Spring MVC Model transfer supports easy integration with other view technologies as well.
+4. Customizable binding and validation: In Spring MVC, we can to custom binding between Requests and Controllers. Even validation can be done on non-String values as well.
+5. JSP form tag library: From Spring 2.0, there is a powerful JSP form tag library that makes writing forms in JSP pages much easier.
+6. Customizable locale, time zone and theme resolution: Spring MVC supports customization in locale, timezone etc.
 
 #### 699. What is the difference between a Singleton and Prototype bean in Spring?
 
+Every bean in Spring has a scope that defines its existence timeframe in the application.
 
+Singleton scope for bean limits a bean to a single object instance per Spring IOC container.
+
+This single instance is limited to a specific ApplicationContext. If there are multiple ApplicationContext then we can have more than one instance of bean. By default all the beans in Spring framework are Singleton scope beans.
+
+With Prototype scope a single bean definition can have multiple object instances in a Spring container. In prototype scope bean, the Spring IoC container creates new bean instance of the object every time a request for that specific bean is made.
 
 #### 700. How will you decide which scope- Prototype or Singleton to use for a bean in Spring?
 
+In general, we use prototype scope for all stateful beans and singleton scope for stateless beans. Since a stateless bean does not maintain any state, we can use the same object instance again and again. Singleton scope bean serves the same purpose.
 
+In a stateful bean, there is a need to maintain the state in each request, it is necessary to use a new instance of object with each call. A Prototype scope bean ensures that we get a new instance each time we request for the object.
 
 #### 701. What is the difference between Setter and Constructor based Dependency Injection (DI) in Spring framework?
 
+Main differences between Setter and Dependency Injection (DI) in Spring are: Constructor based Priority: Setter based injection has higher priority than a constructor based injection in Spring. If an application uses Setter as well as Constructor injection, Spring container uses the Setter injection.
+
+Partial dependency: We can inject partial dependency by using Setter injection. In Constructor injection, it is not possible to do just a partial dependency injection.
+
+E.g. If there are two properties in a class, we can use Setter method to inject just one property in the class. Flexibility: Setter injection gives more flexibility in introducing changes. One can easily change the value by Setter injection. In case of Constructor injection a new bean instance has to be created always.
+
+Readability: Setter injection is more readable than Constructor injection. Generally Setter method name is similar to dependency class being used in setter method.
 
 
 #### 702. What are the drawbacks of Setter based Dependency Injection (DI) in Spring?
 
+Although Setter based Dependency Injection has higher priority than Constructor based DI, there are some disadvantages of it. No Guarantee: In Setter based DI, there is no guarantee that a certain dependency is injected or not. We may have an object with partial or no dependency. Whereas in Constructor based DI, an object in not created till the time all the dependencies are ready.
 
+Security: One can use Setter based DI to override another dependency. This can cause Security breach in a Spring application. Circular Dependency: Setter based DI can cause circular dependency between objects. Where as Constructor based DI will throw ObjectCurrentlyInCreationException if there is a circular dependency during the creation of an object.
 
 #### 703. What are the differences between Dependency Injection (DI) and Factory Pattern?
 
+Main differences between Dependency Injection (DI) and Factory Pattern are: **Coupling:** Factory pattern adds tight coupling between an object, factory and dependency. In case of DI, there is no coupling between objects. We just mention the dependencies on different objects and container resolves and introduces these dependencies.
 
+**Easier Testing:** DI is easier to test, since we can inject the mock objects as dependency in Test environment. In case of Factory pattern, we need to create actual objects for testing. Flexibility: DI allows for switching between different DI frameworks easily. It gives flexibility in the choice of DI framework.
+
+**Container:** DI always needs a container for injecting the dependencies. This leads to extra overhead as well as extra code in your application. In factory pattern, you can just use POJO classes to implement the application without any container. 
+
+**Cleaner Code:** DI code is much cleaner than Factory pattern based code. In DI, we do not need to add extra code for factory methods.
 
 #### 704. In Spring framework, what is the difference between FileSystemResource and ClassPathResource?
 
+In Spring we can specify configuration by using a file or classpath. In FileSystemResource we have to give absolute path / relative path of Spring Configuration file spring-config.xml file.
 
+In ClassPathResource Spring looks for Spring Configuration file spring-config.xml in ClassPath. Therefore, developer has to include spring-config.xml in classpath.
+
+ClassPathResource looks for configuration file in CLASSPATH, whereas FileSystemResource looks for configuration file in file system.
 
 #### 705. Name some popular Spring framework annotations that you use in your project?
 
+Spring has many Annotations to serve different purposes. For
+regular use we refer following popular Spring annotations:
 
+`@Controller`: This annotation is for creating controller classes in a
+Spring MVC project.
+
+`@RequestMapping`: This annotation maps the URI to a controller
+handler method in Spring MVC.
+
+`@ResponseBody`: For sending an Object as response we use this
+annotation.
+
+`@PathVariable`: To map dynamic values from a URI to handler
+method arguments, we use this annotation.
+
+`@Autowired`: This annotation indicates to Spring for auto-wiring
+dependencies in beans.
+
+`@Service`: This annotation marks the service classes in Spring.
+
+`@Scope`: We can define the scope of Spring bean by this annotation.
+
+`@Configuration`: This an annotation for Java based Spring
+configuration.
+
+`@Aspect`, `@Before`, `@After`, `@Around`, `@Joinpoint`, `@Pointcut`:
+These are the annotations in Spring for AspectJ AOP.
 
 #### 706. How can you upload a file in Spring MVC Application?
 
-
+In Spring MVC framework we can use MultipartResolver interface
+to upload a file. We need to make configuration changes to make it
+work. After uploading the file, we have to create Controller handler
+method to process the uploaded file in application.
 
 #### 707. What are the different types of events provided by Spring framework?
 
+Spring framework provides following five events for Context:
+
+`ContextRefreshedEvent`:
+Whenever ApplicationContext is initialized or refreshed, Spring publishes this event. We can also raise it by using refresh() method on ConfigurableApplicationContext interface.
+
+`ContextStartedEvent`: When ApplicationContext is started using
+start() method on ConfigurableApplicationContext interface,
+ContextStartedEvent is published. We can poll database or restart
+any stopped application after receiving this event.
+
+`ContextStoppedEvent`: Spring publishes this event when
+ApplicationContext is stopped using stop() method on
+ConfigurableApplicationContext interface. This is used for doing
+any cleanup work.
+
+`ContextClosedEvent`: Once the ApplicationContext is closed using
+close() method, ContextClosedEvent is published. Once a context is
+closed, it is the last stage of its lifecycle. After this it cannot be
+refreshed or restarted.
+
+`RequestHandledEvent`: This is a web specific event that informs to
+all beans that an HTTP request has been serviced.
 
 
 #### 708. What is the difference between DispatcherServlet and ContextLoaderListener in Spring?
 
+DispatcherServlet is the core of Spring MVC application. It loads
+Spring bean configuration file and initialize all the beans mentioned
+in config file.
 
+In case we have enabled annotations in Spring config file, it also scans the packages and configures any bean annotated with `@Component`, `@Controller`, `@Repository` or `@Service` annotations. 
+
+ContextLoaderListener is a listener to start up and shut down Spring’s root `WebApplicationContext`. `ContextLoaderListener` links the lifecycle of `ApplicationContext` to the lifecycle of the ServletContext. It automates the creation of `ApplicationContext`. It can also be used to define shared beans used across different spring contexts.
 
 #### 709. How will you handle exceptions in Spring MVC Framework?
 
+Spring MVC Framework provides following mechanisms to help us
+achieve exception handling:
 
+**Controller Based**: A developer can define exception handler
+methods in a Controller class. To do so, they have to annotate the
+methods with `@ExceptionHandler` annotation.
+
+**Global Exception Handler**: Spring provides `@ControllerAdvice`
+annotation for exception handling as cross-cutting concern. We can
+mark any class as global exception handler by using this annotation.
+
+**`HandlerExceptionResolver` implementation**: Spring Framework
+provides `HandlerExceptionResolver` interface that can be
+implemented to create a global exception handler.
 
 #### 710. What are the best practices of Spring Framework?
 
@@ -831,10 +1033,11 @@ behavior in the existing execution flow.
 
 #### 711. What is Spring Boot?
 
+Spring Boot is a ready made solution to create Spring applications with production grade features. It favors convention over configuration.
+
+We can embed Tomcat or Jetty in in an application created with Spring Boot. Spring Boot automatically configures Spring in an application.
+
+It does not require any code generation or xml configuration. It is an easy solution to create applications that can run stand-alone.
 
 
 
-
-
-
-#### 
