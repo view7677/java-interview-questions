@@ -1012,20 +1012,13 @@ ContextLoaderListener is a listener to start up and shut down Spring’s root `W
 
 #### 709. How will you handle exceptions in Spring MVC Framework?
 
-Spring MVC Framework provides following mechanisms to help us
-achieve exception handling:
+Spring MVC Framework provides following mechanisms to help us achieve exception handling:
 
-**Controller Based**: A developer can define exception handler
-methods in a Controller class. To do so, they have to annotate the
-methods with `@ExceptionHandler` annotation.
+**Controller Based**: A developer can define exception handler methods in a Controller class. To do so, they have to annotate the methods with `@ExceptionHandler` annotation.
 
-**Global Exception Handler**: Spring provides `@ControllerAdvice`
-annotation for exception handling as cross-cutting concern. We can
-mark any class as global exception handler by using this annotation.
+**Global Exception Handler**: Spring provides `@ControllerAdvice` annotation for exception handling as cross-cutting concern. We can mark any class as global exception handler by using this annotation.
 
-**`HandlerExceptionResolver` implementation**: Spring Framework
-provides `HandlerExceptionResolver` interface that can be
-implemented to create a global exception handler.
+**`HandlerExceptionResolver` implementation**: Spring Framework provides `HandlerExceptionResolver` interface that can be implemented to create a global exception handler.
 
 #### 710. What are the best practices of Spring Framework?
 
