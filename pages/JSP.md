@@ -13,18 +13,18 @@ JSP has following implicit objects:
 6. Config
 7. Session
 
-
-
 #### 10. How will you extend JSP code?
 We can extend JSP code by using Tag libraries and Custom actions.
 
 
 #### 11. How will you handle runtime exceptions in JSP?
+
 We use Errorpage attribute in JSP to catch runtime exceptions. This
 attribute forwards user request to the error page automatically.
 
 
 #### 12. How will you prevent multiple submits of a page that come by clicking refresh button multiple times?
+
 We can use Post Redirect Get (PRG) pattern to solve the issue of
 multiple submission of same data. It works as follows:
 First time when a user submits a form to server by POST or GET
@@ -37,14 +37,15 @@ does not do same action twice for same request.
 
 
 #### 13. How will you implement a thread safe JSP page?
+
 We can use SingleThreadModel Interface to implement a thread safe
 JSP page.
 We can also add <%@page isThreadSafe=”false” %> directive in
 JSP page to make it thread safe.
 
 
-#### 14. How will you include a static file in
-a JSP page?
+#### 14. How will you include a static file in a JSP page?
+
 We can use include directive of JSP to include a Static page in JSP.
 In this approach, we use translation phase to include a static page.
 We have to specify the URL of the resource to be included as file
@@ -53,37 +54,31 @@ E.g. <%@ include file="footer.html" %>
 
 
 #### 15. What are the lifecycle methods of a JSP?
+
 A JSP has following lifecycle methods:
+
 1. jspInit(): This method is invoked when the JSP is called
 for the first time. We can do initial setup for servicing a
 request in this method.
-2. _jspService(): This method is used to serve every request
+2. `_jspService()`: This method is used to serve every request
 of the JSP.
 3. jspDestroy(): Once we remove a JSP from the container,
 we call this method. It is used for cleanup of resources like
 Database connections etc.
 
-
-
 #### 16. What are the advantages of using JSP in web architecture?
+
 We get following advantages by using JSP in web architecture:
-1. Performance: JSP provides very good performance due to
-their design of using same code to service multiple
-requests.
-2. Fast: Since JSP is pre-compiled, server can serve the
-pages very fast.
-3. Extendable: JSP is based on Java Servlets. This helps in
-extending JSP architecture with other Java technologies
-like JDBC, JMS, JNDI etc.
-4. Design: It is easier to design user interface with JSP, since
-it is very close to HTML. UI designers can create a JSP
-with mock data and developers can later provide
-implementation of dynamic data.
+
+1. Performance: JSP provides very good performance due to their design of using same code to service multiple requests.
+2. Fast: Since JSP is pre-compiled, server can serve the pages very fast.
+3. Extendable: JSP is based on Java Servlets. This helps in extending JSP architecture with other Java technologies like JDBC, JMS, JNDI etc.
+4. Design: It is easier to design user interface with JSP, since it is very close to HTML. UI designers can create a JSP with mock data and developers can later provide implementation of dynamic data.
 
 
 
-#### 17. What is the advantage of JSP over
-Javascript?
+#### 17. What is the advantage of JSP over Javascript?
+
 In JSP we can write Java code seamlessly. It allows for writing
 code that can interact with the rest of the application.
 Javascript code is mostly executed at client side. This limits the
@@ -104,6 +99,7 @@ times in _jspService() method.
 
 
 #### 19. What is a JSP expression?
+
 A JSP expression is an element of a JSP page that is used to
 evaluate a Java expression and convert into a String. This String is
 replaced into the locations wherever the expression occurs in JSP
@@ -112,7 +108,9 @@ E.g. `<%= expression =%>`
 
 
 #### 20. What are the different types of directive tags in JSP?
+
 JSP has following directive tags:
+
 1. **Page**: This directive is used for page related attributes. It can be put anywhere in the JSP page. But by convention we put it on the top of the page.
 E.g.
 `<%@ page attribute="value" %>`
@@ -127,13 +125,16 @@ compilation stage.
 
 
 #### 21. What is session attribute in JSP?
+
 Session attribute in JSP is used for HTTP session mechanism. If we
 do not want to use HTTP session in JSP, then we set this attribute to
 false. If it is set to true, we can use built in session object in JSP.
 
 
 #### 22. What are the different scopes of a JSP object?
+
 A JSP object, implicit or explicit, can have one of the following scopes:
+
 1. **Page**: In this scope, the object is accessible from the page
 where it was created. Important point here is that when a
 user refreshes the page, the objects of this scope also get
@@ -149,6 +150,7 @@ created.
 
 
 #### 23. What is pageContext in JSP?
+
 In JSP, pageContext is an implicit object. This is used for storing
 and accessing all the page scope objects of JSP.
 It is an instance of the PageContext class from javax.servlet.jsp
@@ -157,9 +159,11 @@ package.
 
 
 #### 24. What is the use of jsp:useBean in JSP?
+
 We use jsp:useBean to invoke the methods of a Java Bean class.
 The Java Bean class has some data and setter/getters to access the
 data.
+
 With this tag, container will try to locate the bean. If bean is not
 already loaded then it will create an instance of a bean and load it.
 Later this bean can be used in expressions or JSP code.
@@ -167,8 +171,10 @@ Later this bean can be used in expressions or JSP code.
 
 
 #### 25. What is difference between include Directive and include Action of JSP?
+
 Some of the main differences between include Directive and
 include Action are as follows:
+
 1. Include directive is called at translation phase to include content in JSP. Include Action is executed during runtime of JSP.
 2. It is not possible to pass parameters to include directive.
 Include action can accept parameters by jsp:param tag.
@@ -179,6 +185,7 @@ called and then include it in the JSP page.
 
 
 #### 26. How will you use other Java files of your application in JSP code?
+
 We can use import tag to import a Java file in JSP code. Once a file
 is imported, it can be used by JSP code. It is a very convenient
 method to use Java classes in JSP code.
@@ -188,22 +195,23 @@ classes that we are planning to use in JSP code.
 
 
 #### 27. How will you use an existing class and extend it to use in the JSP?
+
 We can use extends attribute in include tag to use an existing class
 and extend it in the current JSP.
 E.g.
+
 `<%@ include page extends=“parent_class” %>`
 
 
 
 #### 28. Why `_jspService` method starts with `_` symbol in JSP?
-All the code that we write in a JSP goes into _jspService method
+
+All the code that we write in a JSP goes into `_jspService` method
 during translation phase. We cannot override this method. Where as other lifecycle methods jspInit() and jspDestroy() can be overridden.
 It appears that container uses _ symbol to distinguish the method that cannot be overridden by client code.
 
-
-
-
 #### 29. Why do we use tag library in JSP?
+
 At times we want to create a UI framework with custom tags. In
 such a scenario, taglib is a very good feature of JSP. With taglib we
 can create tags that can provide custom features.
@@ -215,6 +223,7 @@ writing code only once and using is multiple times.
 
 
 #### 30. What is the different type of tag library groups in JSTL?
+
 JSTL stands for JavaServer Pages Standard Tag Library. In JSTL,
 we have a collection of JSP tags that can be used in different
 scenarios. There are following main groups of tags in JSTL:
@@ -228,6 +237,7 @@ scenarios. There are following main groups of tags in JSTL:
 
 
 #### 31. How will you pass information from one JSP to another JSP?
+
 We can pass information from one JSP to another by using implicit
 objects. If different JSP are called in same session, we can use
 session object to pass information from one JSP to another.
@@ -238,6 +248,7 @@ information.
 
 
 #### 32. How will you call a stored procedure from JSP?
+
 JSP allows running Java code from a .jsp file. We can call a stored
 procedure by using JDBC code.
 We can call a CallableStatement from JSP code to invoke a stored
@@ -248,12 +259,14 @@ class to invoke stored procedure from a JSP.
 
 
 #### 33. Can we override `_jspService()` method in JSP?
+
 No, JSP specification does not allow overriding of `_jspService`
 method in JSP. We can override other methods like `jspInit()` and
 `jspDestroy()`.
 
 
 #### 34. What is a directive in JSP?
+
 JSP directive is a mechanism to pass message to JSP container. JSP directive does not produce an output to the page. But it
 communicates with JSP container.
 E.g. `<%@include ..%>` directive is used for telling JSP container to include the content of another file during translation of JSP.
@@ -266,8 +279,10 @@ Some of the important directives in JSP are: `page`, `include` and
 
 
 #### 35. How will you implement Session tracking in JSP?
+
 We can use different mechanisms to implement Session tracking
 JSP. Some these mechanisms are as follows:
+
 1. **Cookies**: We can use cookie to set session information and
 pass it to web client. In subsequent requests we can use the
 information in cookie to track session.
@@ -281,6 +296,7 @@ Like- www.abcserver.com?sessionid=1234
 
 
 #### 36. How do you debug code in JSP?
+
 In simplest form we can write logger statements or `System.out.println() ` statements to write messages to log files. When we call a JSP, the log messages get written to logs. With useful information getting logged we can easily debug the code. 
 
 Another option in debugging is to link JSP container with an IDE.
