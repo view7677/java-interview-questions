@@ -21,6 +21,13 @@ boolean	|Boolean|
 
 ![](http://way2java.com/wp-content/uploads/2011/01/ss52.bmp)
 
+Importance of Wrapper classes
+
+There are mainly two uses with wrapper classes.
+
+1. To convert simple data types into objects, that is, to give object form to a data type; here constructors are used.
+2. To convert strings into data types (known as parsing operations), here methods of type parseXXX() are used.
+
 #### 170. What is the purpose of native method in Java?
 
 
