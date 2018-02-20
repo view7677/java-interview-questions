@@ -25,6 +25,7 @@ that you can switchOn() both parents, but switchOff will only switchOff() TV.
 But you can implement multiple interfaces in Java.
 
 #### 25. In OOPS, what is meant by composition?
+
 Composition is also known as “has-a” relationship. In composition, “has-a” relation relates two classes. E.g. Class Car has a steering wheel.
 If a class holds the instance of another class, then it is called composition.
 
