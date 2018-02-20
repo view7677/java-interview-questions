@@ -30,6 +30,7 @@ There are mainly two uses with wrapper classes.
 
 #### 170. What is the purpose of native method in Java?
 
+Native methods allow you to use code from other languages such as C or C++ in your java code. You use them when java doesn't provide the functionality that you need. For example, if I were writing a program to calculate some equation and create a line graph of it, I would use java, because it is the language I am best in. However, I am also proficient in C. Say in part of my program I need to calculate a really complex equation. I would use a native method for this, because I know some C++ and I know that C++ is much faster than java, so if I wrote my method in C++ it would be quicker. Also, say I want to interact with another program or device. This would also use a native method, because C++ has something called pointers, which would let me do that
 
 #### 171. What is System class?
 
