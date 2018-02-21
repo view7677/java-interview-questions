@@ -17,7 +17,7 @@ _The new features released in Java 8 are_:
 6. Optional Base64 Encoding and Decoding,
 7. Nashorn JavaScript Engine,
 8. Collections API Enhancements
-9. Concurrency APIEnhancements
+9. Concurrency API Enhancements
 10. Fork/Join Framework Enhancements
 11. Spliterator Internal Iteration Type
 12. Annotations and Repeatable Annotations
@@ -66,7 +66,7 @@ Arrays.asList( "a", "b", "d" ).forEach( e -> System.out.println( e ) );
 
 A Lambda expression fulfills the purpose of passing code as data.
 
-_The data type of a Lambda expression is a Functional interface._ 
+_The data type of a Lambda expression is a Functional interface._
 
 In most of the cases this is java.lang.Runnable interface.
 
@@ -98,7 +98,7 @@ The example interfaces are `Runnanle`,`Callable`, `Comparator` and `ActionListen
 ```java
 @FunctionalInterface
 public interface ITrade{
-    public boolean check(Trade t);
+public boolean check(Trade t);
 }
 ```
 
@@ -133,7 +133,7 @@ Functional Interface serves as a data type for Lambda expressions. Since a Funct
 
 Main differences between Collection and Stream API in Java 8 are:
 
-1. **Version**: Collection API is in use since Java 1.2. Stream API is recent addition to Java in version 8. 
+1. **Version**: Collection API is in use since Java 1.2. Stream API is recent addition to Java in version 8.
 2. **Usage**: Collection API is used for storing data in different kinds of data structures. Stream API is used for computation of data on a large set of Objects.
 3. **Finite**: With Collection API we can store a finite number of elements in a data structure. With Stream API, we can handle streams of data that can contain infinite number of elements.
 4. **Eager vs. Lazy**: Collection API constructs objects in an eager manner. Stream API creates objects in a lazy manner.
@@ -210,7 +210,7 @@ Main differences between Intermediate and Terminal Stream operations are as foll
 4. **Chaining**: We can chain multiple Intermediate Operations in a Stream. Terminal Operations cannot be chained multiple times.
 5. **Multiple**: There can be multiple Intermediate operations in a Stream operation. There can be only one Terminal operation in Stream processing statement.
 
-#### 17. What is a Spliterator in Java 8?
+#### 17. What is a `Spliterator` in Java 8?
 
 A `Spliterator` is a special type of `Iterator` to traverse and partition the elements of a source in Java. A source can be a collection, an IO channel or a generator function.
 
@@ -220,10 +220,8 @@ A `Spliterator` may traverse elements individually or sequentially in bulk.
 
 ```java
 Collection<String> coll = new ArrayList<>(); // Lets say size = 10
- 
 Spliterator<String> spliterator = coll.spliterator(); // Gives us Spliterator
 Spliterator<String> newPartition = spliterator.trySplit();
- 
 long size = spliterator.estimateSize(); // size = 5
 long size2 = newPartition.estimateSize(); // size = 5
 ```
@@ -270,7 +268,7 @@ External Iterators Definition(or Active Iterators) – With external iterators r
 A brief look at the evolution of external iterators in java
 Lets look into some external iterators which we have been using as java language evolved over the years.
 
-Starting with Enumerations, iterations then moved on to Iterators(remember  iterator(), next() or hasNext() methods for iterators). Then came Java 5 and along with came the enhanced for-loop which made use of generics to make iteration a lot easier. Lets see an example of enhanced for-loop introduced in Java 5 which uses the Iterable interface (you might already be familiar with this one) –
+Starting with Enumerations, iterations then moved on to Iterators(remember iterator(), next() or hasNext() methods for iterators). Then came Java 5 and along with came the enhanced for-loop which made use of generics to make iteration a lot easier. Lets see an example of enhanced for-loop introduced in Java 5 which uses the Iterable interface (you might already be familiar with this one) –
 
 Enhanced for-loop example (uses external iterator)
 
@@ -278,12 +276,12 @@ Enhanced for-loop example (uses external iterator)
 import java.util.*;
 
 public class ExternalIterator {
-    public static void main(String args[]){
-        List<String> namesList=Arrays.asList("Tom", "Dick", "Harry");
-        for(String name:namesList){
-            System.out.println(name);
-        }
-    }
+public static void main(String args[]){
+List<String> namesList=Arrays.asList("Tom", "Dick", "Harry");
+for(String name:namesList){
+System.out.println(name);
+}
+}
 }
 ```
 However, though we are explicitly not invoking hasNext() or next() methods while iterating over the list above, still the underlying code which makes this iteration work uses these methods. This implies that the complexity behind these operations is hidden from the programmer but it still exists. And it still is an active iterator.
@@ -300,10 +298,10 @@ Example of internal iteration based forEach loop in Java 8
 import java.util.*;
 
 public class InternalIterator {
-    public static void main(String args[]){
-        List<String> namesList=Arrays.asList("Tom", "Dick", "Harry");
-        namesList.forEach(name -> System.out.println(name));//Internal Iteration
-    }
+public static void main(String args[]){
+List<String> namesList=Arrays.asList("Tom", "Dick", "Harry");
+namesList.forEach(name -> System.out.println(name));//Internal Iteration
+}
 }
 ```
 In the above code, we are just telling the forEach method what to do(i.e. print) with each String in the namesList list using a lambda expression( In case you are not familiar with lambda expressions you can read.
@@ -331,11 +329,10 @@ package com.journaldev.java8.defaultmethod;
 
 public interface Interface1 {
 
-	void method1(String str);
-	
-	default void log(String str){
-		System.out.println("I1 logging::"+str);
-	}
+void method1(String str);
+default void log(String str){
+System.out.println("I1 logging::"+str);
+}
 }
 ```
 
@@ -361,7 +358,25 @@ public interface Interface1 {
 
 
 #### 35. How does Java 8 solve Diamond problem of Multiple Inheritance?
+interface tells what to do and not how to do.
 
+interface A has method draw.
+
+interface B also has method draw.
+
+These are method decleration and not implementations.
+
+If a class implements both A and B then it has to implement eat method it is not diamond problem because eat of A and B are same.
+
+
+_Java 1.8_
+Allows interface method to have body.
+
+It will give compilation error in such case.
+
+In such case diamond problem may occur to overcome this we use super keyword
+
+Eg A.super.eat
 
 #### 36. What are the differences between Predicate, Supplier and Consumer in Java 8?
 
@@ -373,6 +388,64 @@ public interface Interface1 {
 
 
 #### 39. How Java 8 supports Multiple Inheritance?
+In Java 8, there is support for Multiple inheritance at interface level. Let us understand by an example.
+
+In following example, we are creating two interfaces Person and Employee. A teacher is a Person as well as an employee. But class Teacher gives compilation error.
+
+```java
+interface Person {
+    public default void printType()  {
+        System.out.println("I am a Person.");
+    }
+}
+interface Employee {
+    public default void printType() {
+        System.out.println("I am a Employee.");
+    }
+}
+public class Teacher implements Person, Employee {
+    public static void main(String args[]) {
+        Teacher t = new Teacher();
+        t.printType(); //Error
+    }
+}
+```
+
+when we try to execute above class, we get the error:
+
+“Error:(20, 8) java: class `com.java8.util.Teacher` inherits unrelated defaults for printType() from types `com.java8.util.Person` and `com.java8.util.Employee`”
+
+To resolve this we have to explicitly override the printType method in Teacher class and use @Override annotation.
+
+```java
+package com.java8.util;
+
+interface Person {
+    public default void printType()  {
+        System.out.println("I am a Person.");
+    }
+}
+
+interface Employee {
+    public default void printType()  {
+        System.out.println("I am a Employee.");
+    }
+}
+public class Teacher implements Person,Employee {
+    @Override
+    public void printType() {
+        System.out.println("I am a Teacher.");
+    }
+    public static void main(String args[]) {
+        Teacher t = new Teacher();
+        t.printType();
+    }
+}
+```
+Output :
+
+`I am a Teacher.`
+
 
 
 #### 40. Can we access a static method of an interface by using reference of the interface?
