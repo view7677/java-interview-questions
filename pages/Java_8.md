@@ -6,6 +6,22 @@
 
 #### 1. What are the new features released in Java 8?
 
+_The new features released in Java 8 are_: 
+
+1. Lambda Expression, 
+2. Stream API, 
+3. Date and Time API, 
+4. Functional Interface Interface 
+5. Default Static Methods 
+6. Optional Base64 Encoding and Decoding, 
+7. Nashorn JavaScript Engine,
+8. Collections API Enhancements 
+9. Concurrency Enhancements 
+10. Fork/Join Framework Enhancements 
+11. Spliterator Internal Iteration Type 
+12. Annotations and Repeatable Annotations 
+13. Method Parameter Reflection JVM Parameter Changes
+
 
 #### 2. What are the main benefits of new features introduced in Java 8?
 
@@ -47,6 +63,60 @@
 
 
 #### 15. What are the main uses of Stream API in Java 8?
+
+The Streams API gives you flexibility to query and manipulate data. This is a powerful tool. Building fluent queries for your data is interesting in a Big Data world, but is just as useful for common operations. 
+
+Example, You have a list of books and you want to get a list of unique authors for these books, in alphabetical order:
+
+
+
+```java
+
+public List<Author> getAllAuthorsAlphabetically(List<Book> books) {
+    List<Author> authors = new ArrayList<>();
+    for (Book book : books) {
+        Author author = book.getAuthor();
+        if (!authors.contains(author)) {
+            authors.add(author);
+        }
+    }
+    Collections.sort(authors, new Comparator<Author>() {
+        public int compare(Author o1, Author o2) {
+            return o1.getSurname().compareTo(o2.getSurname());
+        }
+    });
+    return authors;
+}
+```
+In the code above, we first iterate through the list of books, adding the book’s author to the author list if it hasn’t seen it before; then we sort the authors alphabetically by surname. This is exactly the sort of operation that streams have been designed to solve elegantly:
+
+```java
+public List<Author> getAllAuthorsAlphabetically(List<Book> books) {
+    return books.stream()
+                .map(book -> book.getAuthor())
+                .distinct()
+                .sorted((o1, o2) -> o1.getSurname().compareTo(o2.getSurname()))
+                .collect(Collectors.toList());
+}
+
+```
+
+Not only is this fewer lines of code, it’s arguably more descriptive—a developer coming to this code later can read it and understand that 
+1) it’s getting authors from the books, 
+2) it’s only interested in unique authors, and 
+3) the list that is returned is sorted by author surname. Combine the Streams API with other new features—method references and new methods on Comparator—and you get an even more succinct version:
+
+```java
+
+public List<Author> getAllAuthorsAlphabetically(List<Book> books) {
+    return books.stream()
+                .map(Book::getAuthor)
+                .distinct()
+                .sorted(Comparator.comparing(Author::getSurname))
+                .collect(Collectors.toList());
+}
+```
+Here it’s even more obvious that the sorted method orders by the author’s surname.
 
 
 #### 16. What are the differences between Intermediate and Terminal Operations in Java 8 Streams?
@@ -129,6 +199,18 @@
 
 #### 42. What is Optional in Java 8?
 
+Another new feature of Java 8 is the new Optional type. This type is a way of explicitly stating “I might have a value, or I might be null.” Which means an API can now be explicit about either returning values that might be null vs. values that will always be non-null, minimizing the chances of running into a NullPointerException. 
+
+What’s nice about Optional is the way you tell it to deal with nulls. For example, if we’re looking for a particular book in a list, the new findFirst() method returns an Optional, which tells us it’s not guaranteed to find a value. Given this optional value, we can then decide what to do if it’s null. If we wanted to throw a custom Exception, we can use orElseThrow:
+
+```java
+public Book findBookByTitle(List<Book> books, String title) {
+    Optional<Book> foundBook = books.stream()
+           .filter(book -> book.getTitle().equals(title))
+           .findFirst();
+    return foundBook.orElseThrow(() -> new BookNotFoundException("Did not find book with title " + title));
+}
+```
 
 #### 43. What are the uses of Optional?
 
@@ -161,6 +243,5 @@
 
 
 #### 53. What are the main differences between an interface with default method and an abstract class in Java 8?
-
 
 
