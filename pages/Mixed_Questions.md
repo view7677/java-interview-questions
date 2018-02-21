@@ -34,6 +34,7 @@ Native methods allow you to use code from other languages such as C or C++ in yo
 
 #### 171. What is System class?
 
+The `java.lang.System` class contains several useful class fields and methods. It cannot be instantiated.Facilities provided by System − standard output. error output streams. standard input and access to externally defined properties and environment variables.
 
 #### 172. What is System, out and println in System.out.println method call?
 
@@ -48,3 +49,5 @@ Native methods allow you to use code from other languages such as C or C++ in yo
 
 
 #### 176. What is the difference between Singleton class and Static class?
+
+

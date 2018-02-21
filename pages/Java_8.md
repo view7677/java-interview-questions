@@ -200,6 +200,15 @@ Here it’s even more obvious that the sorted method orders by the author’s su
 
 #### 16. What are the differences between Intermediate and Terminal Operations in Java 8 Streams?
 
+Terminal operations produces a non-stream, result such as primitive value, a collection or no value at all. Terminal operations are typically preceded by intermediate operations which return another Stream which allows operations to be connected in a form of a query.
+
+Main differences between Intermediate and Terminal Stream operations are as follows:
+
+1. **Evaluation**: Intermediate operations are not evaluated until we chain it with a Terminal Operation of Stream. Terminal Operations can be independently evaluated.
+2. **Output**: The output of Intermediate Operations is another Stream. The output of Terminal Operations is not a Stream.
+3. **Lazy**: Intermediate Operations are evaluated in lazy manner. Terminal Operations are evaluated in eager manner.
+4. **Chaining**: We can chain multiple Intermediate Operations in a Stream. Terminal Operations cannot be chained multiple times.
+5. **Multiple**: There can be multiple Intermediate operations in a Stream operation. There can be only one Terminal operation in Stream processing statement.
 
 #### 17. What is a Spliterator in Java 8?
 
@@ -241,12 +250,65 @@ Serializable s = pick("d", new ArrayList<String>());
 
 #### 20. Does Java 7 support Type Inference?
 
+limited supprt
 
 #### 21. How does Internal Iteration work in Java 8?
 
+In an Iterator, the fundamental question is that which party controls the iteration. Is it Iterator or the Collection on which iterator runs.
+
+When a Collection controls the iterator, then it is called External Iteration. When the Iterator controls the iteration then it is called Internal Iteration.
+
+In case of Internal Iteration, the client hands over an operation to Iterator and the Iterator applies the operation to all the elements in aggregate.
+
+Internal Iteration is easier to implement, since the Iterator does not have to store the state of the collection.
 
 #### 22. What are the main differences between Internal and External Iterator?
 
+
+External Iterators Definition(or Active Iterators) – With external iterators responsibility of iterating over the elements, and making sure that this iteration takes into account the total number of records, whether more records exist to be iterated and so on lies with the programmer.
+
+A brief look at the evolution of external iterators in java
+Lets look into some external iterators which we have been using as java language evolved over the years.
+
+Starting with Enumerations, iterations then moved on to Iterators(remember  iterator(), next() or hasNext() methods for iterators). Then came Java 5 and along with came the enhanced for-loop which made use of generics to make iteration a lot easier. Lets see an example of enhanced for-loop introduced in Java 5 which uses the Iterable interface (you might already be familiar with this one) –
+
+Enhanced for-loop example (uses external iterator)
+
+```java
+import java.util.*;
+
+public class ExternalIterator {
+    public static void main(String args[]){
+        List<String> namesList=Arrays.asList("Tom", "Dick", "Harry");
+        for(String name:namesList){
+            System.out.println(name);
+        }
+    }
+}
+```
+However, though we are explicitly not invoking hasNext() or next() methods while iterating over the list above, still the underlying code which makes this iteration work uses these methods. This implies that the complexity behind these operations is hidden from the programmer but it still exists. And it still is an active iterator.
+
+All the above ways – Enumerations, Iterators and enhanced for-loop seem the natural way of iterating right!! Well yes, but then managing the iterations still remains the programmer’s job. Well not anymore with the advent of Internal Iterators in Java 8.
+
+Internal Iterators(or Passive Iterators) – Internal Iterators manage the iterations in the background. This leaves the programmer to just declaratively code what is meant to be done with the elements of the Collection, rather than managing the iteration and making sure that all the elements are processed one-by-one.
+
+Lets see how simple it is to say print all elements in an ArrayList in Java 8 using an example of internal iterator based forEach loop –
+
+Example of internal iteration based forEach loop in Java 8
+
+```java
+import java.util.*;
+
+public class InternalIterator {
+    public static void main(String args[]){
+        List<String> namesList=Arrays.asList("Tom", "Dick", "Harry");
+        namesList.forEach(name -> System.out.println(name));//Internal Iteration
+    }
+}
+```
+In the above code, we are just telling the forEach method what to do(i.e. print) with each String in the namesList list using a lambda expression( In case you are not familiar with lambda expressions you can read.
+
+All the work of iterating over the list of names one by one and printing them is taken care of internally by the runtime, leaving us with just declaratively defining only what is to be done i.e. print the names.
 
 #### 23. What are the main advantages of Internal Iterator over External Iterator in Java 8?
 
@@ -259,9 +321,23 @@ Serializable s = pick("d", new ArrayList<String>());
 
 #### 26. Can we provide implementation of a method in a Java Interface?
 
+Java 8 interface changes include static methods and default methods in interfaces. Prior to Java 8, we could have only method declarations in the interfaces. But from Java 8, we can have default methods and static methods in the interfaces.
 
 #### 27. What is a Default Method in an Interface?
 
+For creating a default method in java interface, we need to use “default” keyword with the method signature. For example,
+```java
+package com.journaldev.java8.defaultmethod;
+
+public interface Interface1 {
+
+	void method1(String str);
+	
+	default void log(String str){
+		System.out.println("I1 logging::"+str);
+	}
+}
+```
 
 #### 28. Why do we need Default method in a Java 8 Interface?
 
