@@ -82,20 +82,63 @@ In most of the cases this is java.lang.Runnable interface.
 
 #### 9. What is a Functional interface in Java 8?
 
+A **Functional interface** in Java is an interface that has exactly one abstract method.
+
+It can have default methods with implementation. A default method is not abstract.
+
+In Java 8, `java.lang.Runnable` and `java.util.concurrent.Callable` are two very popular Functional interfaces.
 
 #### 10. What is a Single Abstract Method (SAM) interface in Java 8?
+
+A Functional interface is also known as Single Abstract Method Interface, since it has exactly one abstract method.
+
+The example interfaces are `Runnanle`,`Callable`, `Comparator` and `ActionListener` etc. Java 8 has introduced Lambda Expressions to instantiate the interface and access the single abstract method easily.
+
+
+```java
+@FunctionalInterface
+public interface ITrade{
+    public boolean check(Trade t);
+}
+```
+
+```java
+ITrade newTradeChecker = (Trade t) -> t.getStatus().equals("NEW");
+
+// Or we could omit the input ype setting:
+ITrade newTradeChecker=(t) -> t.getStatus().equals("NEW");
+```
 
 
 #### 11. How can we define a Functional interface in Java 8?
 
+To define a Functional interface in Java 8, we can create an Interface with exactly one abstract method.
+
+Another way is to mark an Interface with annotation `@FunctionalInterface`. Even with the annotation we have to follow the rule of exactly one abstract method.
+
+The only exception to this rule is that if we override `java.lang.Object` class’s method as an abstract method, then it does not count as an abstract method.
 
 #### 12. Why do we need Functional interface in Java?
 
+Functional Interfaces are mainly used in Lambda expressions, Method reference and constructor references.
 
-#### 13. Is it mandatory to use @FunctionalInterface annotation to define a Functional interface in Java 8?
+In functional programming, code can be treated as data. For this purpose Lambda expressions are introduced. They can be used to pass a block of code to another method or object.
+
+Functional Interface serves as a data type for Lambda expressions. Since a Functional interface contains only one abstract method, the implementation of that method becomes the code that gets passed as an argument to another method.
+
+#### 13. Is it mandatory to use `@FunctionalInterface` annotation to define a Functional interface in Java 8?
 
 
 #### 14. What are the differences between Collection and Stream API in Java 8?
+
+Main differences between Collection and Stream API in Java 8 are:
+
+1. **Version**: Collection API is in use since Java 1.2. Stream API is recent addition to Java in version 8. 
+2. **Usage**: Collection API is used for storing data in different kinds of data structures. Stream API is used for computation of data on a large set of Objects.
+3. **Finite**: With Collection API we can store a finite number of elements in a data structure. With Stream API, we can handle streams of data that can contain infinite number of elements.
+4. **Eager vs. Lazy**: Collection API constructs objects in an eager manner. Stream API creates objects in a lazy manner.
+5. **Multiple consumption**: Most of the Collection APIs support iteration and consumption of elements multiple times. With Stream API we can consume or iterate elements only once.
+
 
 
 #### 15. What are the main uses of Stream API in Java 8?
@@ -160,12 +203,41 @@ Here it’s even more obvious that the sorted method orders by the author’s su
 
 #### 17. What is a Spliterator in Java 8?
 
+A `Spliterator` is a special type of `Iterator` to traverse and partition the elements of a source in Java. A source can be a collection, an IO channel or a generator function.
+
+It basically splits a `Collection`, partitioning off some of its elements as another `Spliterator`. It can be usefull for parallel programming.
+
+A `Spliterator` may traverse elements individually or sequentially in bulk.
+
+```java
+Collection<String> coll = new ArrayList<>(); // Lets say size = 10
+ 
+Spliterator<String> spliterator = coll.spliterator(); // Gives us Spliterator
+Spliterator<String> newPartition = spliterator.trySplit();
+ 
+long size = spliterator.estimateSize(); // size = 5
+long size2 = newPartition.estimateSize(); // size = 5
+```
 
 #### 18. What are the differences between Iterator and Spliterator in Java 8?
 
+Main differences between Iterator and Spliterator are as follows:
+
+1. Spliterator can be used with Streams in Java 8. Where as, Iterator is just used with Collection.
+2. Spliterator uses Internal Iteration to iterate Streams. Iterator uses External Iteration to iterate Collections.
+3. Spliterator can iterate Streams in Parallel as well as Sequential manner. Iterator only iterates in Sequential manner.
+4. Spliterator can traverse elements individually as well as in bulk. Iterator only iterates elements individually.
 
 #### 19. What is Type Inference in Java 8?
 
+Type inference is a Java compiler's ability to look at each method invocation and corresponding declaration to determine the type argument (or arguments) that make the invocation applicable. The inference algorithm determines the types of the arguments and, if available, the type that the result is being assigned, or returned. Finally, the inference algorithm tries to find the most specific type that works with all of the arguments.
+
+To illustrate this last point, in the following example, inference determines that the second argument being passed to the pick method is of type Serializable:
+
+```java
+static <T> T pick(T a1, T a2) { return a2; }
+Serializable s = pick("d", new ArrayList<String>());
+```
 
 #### 20. Does Java 7 support Type Inference?
 
