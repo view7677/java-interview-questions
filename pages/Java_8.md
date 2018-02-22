@@ -380,6 +380,15 @@ Eg A.super.eat
 
 #### 36. What are the differences between Predicate, Supplier and Consumer in Java 8?
 
+The subtle difference between Predicate, Supplier and Consumer in Java 8 is as follows:
+
+**Predicate** is an functional interface that accepts one argument and returns a result of boolean value. 
+
+**Supplier** is an functional interface that accepts no argument and returns a result. 
+
+**Consumer** is an functional interface that accepts one argument and returns no result.
+
+
 
 #### 37. Is it possible to have default method definition in an interface without marking it with default keyword?
 
@@ -450,6 +459,7 @@ Output :
 
 #### 40. Can we access a static method of an interface by using reference of the interface?
 
+No, a static method of interface has to be invoked by using the name of the interface.
 
 #### 41. How can you get the name of Parameter in Java by using reflection?
 
@@ -570,13 +580,27 @@ JDeps is the Java Dependency Analysis Tool, a command line tool that processes J
 
 #### 48. What are the new JVM arguments introduced by Java 8?
 
+In Java 8, `PermGen` space of ClassLoader is removed. It has been replaced with `MetaSpace`. Now we can set the initial and maximum size of MetaSpace. The JVM options `-XX:PermSize `and `–XX:MaxPermSize` are replaced by `-XX:MetaSpaceSize` and `-XX:MaxMetaspaceSize` respectively in Java 8.
 
 #### 49. What are the popular annotations introduced in Java 8?
 
+Some of the popular annotations introduced in Java 8 are:
+
+1. `@FunctionalInterface`: This annotation is used to mark an interface as Functional Interface. As mentioned earlier, A FunctionalInterface can be used for lambda expressions.
+2. `@Repeatable`: This annotation is used for marking another annotation. It indicates that the marked annotation can be applied multiple times on a type.
 
 #### 50. What is a StringJoiner in Java 8?
 
+StringJoiner is a new class in Java 8 that can be used to create a String. It can construct a sequence of characters separated by a delimiter. It can also optionally add a prefix and suffix to this sequence. We can use this sequence to get a String.
 
+E.g.
+
+The String “[One:Two:Three]” may be constructed as follows:
+```java
+StringJoiner sj = new StringJoiner(“:”, “[“, “]”);
+sj.add(“One”).add(“Two”).add(“Three”);
+String desiredString = sj.toString();
+```
 #### 51. What is the type of a Lambda expression in Java 8?
 
 The type of a lambda expression depends on the context it is being used.
@@ -587,7 +611,18 @@ Generally, a Lambda is an instance of a Functional Interface.
 
 #### 52. What is the target type of a lambda expression ?
 
+The target type of a lambda expression represents a type to which the expression can be converted.
+
+The target type for a lambda expression is a functional interface.
+
+The lambda expression must have same parameter type as the parameter in the function of the interface. It must also return a type compatible with the return type of function.
 
 #### 53. What are the main differences between an interface with default method and an abstract class in Java 8?
 
 
+An interface with a default method appears same as an Abstract class in Java. But there are subtle differences between two.
+
+1. **Instance variable**: An interface cannot have instance variables. An abstract class can have instance variables.
+2. **Constructor**: An interface cannot have a constructor. An abstract class can have constructor.
+3. **Concrete Method**: An interface cannot have concrete methods other than default method. An abstract class is allowed to define concrete methods with implementation.
+4. **Lambda**: An interface with exactly one default method can be used for lambda expression. An abstract class cannot be used for lambda expression.
