@@ -1,4 +1,4 @@
-## [Java Basics](pages/Java_Basics.md)
+## [Java Basics](./Java_Basics.md)
 1. [What is the difference between JDK and JRE?](./Java_Basics.md#1)
 2. [What is Java Virtual Machine (JVM)?](./Java_Basics.md#2)
 3. What are the different types of memory areas allocated by JVM?
@@ -12,7 +12,8 @@
 11. Let say, we run a java class without passing any arguments. What will be the value of String array of arguments in Main method?
 12. [What is the difference between byte and char data types in Java?](./Java_Basics.md#12)
 
-## [OOPS](pages/OOPS.md)
+## [OOPS](./OOPS.md)
+
 13. What are the main principles of Object Oriented Programming?
 14. What is the difference between Object Oriented Programming language and Object Based Programming language?
 15. In Java what is the default value of an object reference defined as aninstance variable in an Object?
@@ -22,7 +23,7 @@
 19. Can we inherit a Constructor?
 20. Why constructors cannot be final, static, or abstract in Java?
 
-## [Inheritance](pages/Inheritance.md)
+## [Inheritance](./Inheritance.md)
 21. What is the purpose of ‘this’ keyword in java?
 22. Explain the concept of Inheritance?
 23. Which class in Java is superclass of every other class?
@@ -35,7 +36,7 @@
 30. Is it possible to use this() and super() both in same constructor?
 31. What is the meaning of object cloning in Java?
 
-## [Static](pages/Static.md)
+## [Static](./Static.md)
 32. In Java, why do we use static variable?
 33. Why it is not a good practice to create static variables in Java?
 34. What is the purpose of static method in Java?35. Why do we mark main method as static in Java?
@@ -44,7 +45,7 @@
 38. What happens when static modifier is not mentioned in the signature of main method?
 39. What is the difference between static method and instance method in Java?
 
-## [Method Overloading and Overriding](pages/Method_Overloading_and_Overriding.md)
+## [Method Overloading and Overriding](./Method_Overloading_and_Overriding.md)
 40. What is the other name of Method Overloading?
 41. How will you implement method overloading in Java?
 42. What kinds of argument variations are allowed in Method Overloading?
@@ -58,12 +59,12 @@
 50. Does Java allow virtual functions?
 51. What is meant by covariant return type in Java?
 
-## [Polymorphism](pages/Polymorphism.md)
+## [Polymorphism](./Polymorphism.md)
 52. What is Runtime Polymorphism?
 53. Is it possible to achieve Runtime Polymorphism by data members in Java?
 54. Explain the difference between static and dynamic binding?
 
-## [Abstraction](pages/Abstraction.md)
+## [Abstraction](./Abstraction.md)
 55. What is Abstraction in Object Oriented programming?
 56. How is Abstraction different from Encapsulation?
 57. What is an abstract class in Java?
@@ -80,7 +81,7 @@
 68. Does Java allow us to use private and protected modifiers for variables in interfaces?
 69. How can we cast to an object reference to an interface reference?
 
-## [Final](pages/Final.md)
+## [Final](./Final.md)
 70. How can you change the value of a final variable in Java?
 71. Can a class be marked final in Java?
 72. How can we create a final method in Java?
@@ -90,7 +91,7 @@
 76. How can we initialize a blank final variable?
 77. Is it allowed to declare main method as final?
 
-## [Package](pages/Package.md)
+## [Package](./Package.md)
 78. What is the purpose of package in Java?
 79. What is java.lang package?
 80. Which is the most important class in Java?
@@ -99,11 +100,13 @@
 83. What is a static import in Java?
 84. What is the difference between import static com.test.Fooclass and import com.test.Fooclass?
 
-## [Internationalization](pages/Internationalization.md)
+## [Internationalization](./Internationalization.md)
+
 85. What is Locale in Java?
 86. How will you use a specific Locale in Java?
 
-## [Serialization](pages/Serialization.md)
+## [Serialization](./Serialization.md)
+
 87. What is the serialization?
 88. What is the purpose of serialization?89. What is Deserialization?
 90. What is Serialization and Deserialization conceptually?
@@ -113,13 +116,15 @@
 94. What is Externalizable interface in Java?
 95. What is the difference between Serializable and Externalizable interface?
 
-## [Reflection](pages/Reflection.md)
+## [Reflection](./Reflection.md)
+
 96. What is Reflection in Java?
 97. What are the uses of Reflection in Java?
 98. How can we access private method of a class from outside the class?
 99. How can we create an Object dynamically at Runtime in Java?
  
-## [Garbage Collection](pages/Garbage_Collection.md)
+## [Garbage Collection](./Garbage_Collection.md)
+
 100. What is Garbage Collection in Java?
 101. Why Java provides Garbage Collector?
 102. What is the purpose of gc() in Java?
@@ -132,7 +137,8 @@
 110. How can we invoke an external process in Java?
 111. What are the uses of Runtime class?
 
-## [Inner Classes](pages/Inner_Classes.md)
+## [Inner Classes](./Inner_Classes.md)
+
 112. What is a Nested class?
 113. How many types of Nested classes are in Java?
 114. Why do we use Nested Classes?
@@ -143,7 +149,8 @@
 119. Do we have to explicitly mark a Nested Interface public static?
 120. Why do we use Static Nested interface in Java?
 
-## [String](pages/String.md)
+## [String](./String.md)
+
 121. What is the meaning of Immutable in the context of String class in Java?
 122. Why a String object is considered immutable in java?
 123. How many objects does following code create?
@@ -155,7 +162,8 @@
 130. What is the use of toString() method in java ?
 131. Arrange the three classes String, StringBuffer and StringBuilder in the order of efficiency for String processing operations?
 
-## [Exception Handling](pages/Exception_Handling.md)
+## [Exception Handling](./Exception_Handling.md)
+
 132. What is Exception Handling in Java?
 133. In Java, what are the differences between a Checked and Unchecked?
 134. What is the base class for Error and Exception classes in Java?
@@ -169,7 +177,8 @@
 142. What is the concept of Exception Propagation?
 143. When we override a method in a Child class, can we throw an additional Exception that is not thrown by the Parent class method?
 
-## [Multi-threading](pages/Multi-threading.md)
+## [Multi-threading](./Multi-threading.md)
+
 144. How Multi-threading works in Java?
 145. What are the advantages of Multithreading?
 146. What are the disadvantages of Multithreading?
@@ -183,7 +192,8 @@
 154. In Java, is it possible to lock an object for exclusive use by a thread?
 155. How notify() method is different from notifyAll() method?
 
-## [Collections](pages/Collections.md)
+## [Collections](./Collections.md)
+
 156. What are the differences between the two data structures: a Vector and an ArrayList?
 157. What are the differences between Collection and Collections in Java?
 158. In which scenario, LinkedList is better than ArrayList in Java?
@@ -198,7 +208,8 @@
 167. How does hashCode() method work in Java?
 168. Is it a good idea to use Generics in collections?
 
-## [Mixed Questions](pages/Mixed_Questions.md)
+## [Mixed Questions](./Mixed_Questions.md)
+
 169. What are Wrapper classes in Java?
 170. What is the purpose of native method in Java?
 171. What is System class?
@@ -208,7 +219,7 @@
 175. What is a Singleton class?
 176. What is the difference between Singleton class and Static class?
 
-## [Java Collection](pages/Java_Collection.md)
+## [Java Collection](./Java_Collection.md)
 177. What is the difference between Collection and Collections Framework in Java?
 178. What are the main benefits of Collections Framework in Java?
 179. What is the root interface of Collection hierarchy in Java?180.What are the main differences between Collection and Collections?
@@ -295,7 +306,7 @@
 263. Can we get a Map from a Stream in Java?
 264. What are the popular implementations of Deque in Java?
 
-## [Advanced Multi-threading](pages/Advanced_Multi-threading.md)
+## [Advanced Multi-threading](./Advanced_Multi-threading.md)
 265. What is a Thread in Java?
 266. What is the priority of a Thread and how it is used in scheduling?
 267. What is the default priority of a thread in Java?
@@ -388,7 +399,8 @@
 356. Which parameter can be used to control stack size of a thread in Java?
 357. There are two threads T1 and T2? How will you ensure that these threads run in sequence T1, T2 in Java?
 
-## [Java 8](pages/Java_8.md)
+## [Java 8](./Java_8.md)
+
 358. What are the new features released in Java 8?
 359. What are the main benefits of new features introduced in Java 8?
 360. What is a Lambda expression in Java 8?
@@ -402,7 +414,8 @@
 369. Why do we need Functional interface in Java?
 370. Is it mandatory to use @FunctionalInterface annotation to define a
 
-## [Functional interface in Java 8?](pages/Functional_interface_in_Java_8?.md)
+## [Functional interface in Java 8?](./Functional_interface_in_Java_8?.md)
+
 371. What are the differences between Collection and Stream API in Java 8?
 372. What are the main uses of Stream API in Java 8?
 373. What are the differences between Intermediate and Terminal Operations in Java 8 Streams?
@@ -445,7 +458,8 @@
 411. What is the target type of a lambda expression ?
 412. What are the main differences between an interface with default method and an abstract class in Java 8?
 
-## [Java Tricky Questions](pages/Java_Tricky_Questions.md)
+## [Java Tricky Questions](./Java_Tricky_Questions.md)
+
 413. Is there any difference between a = a + b and a += b expressions?
 414. What does the expression 1.0 / 0.0 return? Will there be any compilation error?
 415. Can we use multiple main methods in multiple classes?
@@ -542,7 +556,8 @@ with out deadlock?
 510. How can we share an object between multiple threads?
 511. How can you determine if your program has a deadlock?
 
-## [JSP](pages/JSP.md)
+## [JSP](./JSP.md)
+
 512. What are the implicit objects in JSP?
 513. How will you extend JSP code?
 514. How will you handle runtime exceptions in JSP?
@@ -592,7 +607,8 @@ with out deadlock?
 560. How can you upload a large file in JSP?
 561. In which scenario, Container initializes multiple JSP/Servlet objects? 
 
-## [Java Design Patterns](pages/Java_Design_Patterns.md)
+## [Java Design Patterns](./Java_Design_Patterns.md)
+
 562. When will you use Strategy Design Pattern in Java?
 563. What is Observer design pattern?
 564. What are the examples of Observer design pattern in JDK?
@@ -642,7 +658,8 @@ with out deadlock?
 610. What is an AntiPattern?
 611. What is a Data Access Object (DAO) design pattern? 
 
-## Spring Questions
+## [Spring Questions](./Spring.md)
+
 612. What is Spring framework?
 613. What are the benefits of Spring framework in software development?
 614. What are the modules in Core Container of Spring framework?
@@ -742,7 +759,8 @@ with out deadlock?
 710. What are the best practices of Spring Framework? 
 711. What is Spring Boot?
 
-## Hibernate
+## [Hibernate](./Hibernate.md)
+
 712. What is Hibernate framework?
 713. What is an Object Relational Mapping (ORM)?
 714. What is the purpose of Configuration Interface in Hibernate?
@@ -852,7 +870,8 @@ with out deadlock?
 820. What is the difference between Inheritance and Multi-module in Maven?
 821. What is Build portability in Maven?
 
-## GIT
+## [GIT](./GIT.md)
+
 822. How can we see n most recent commits in GIT?
 823. How can we know if a branch is already merged into master in GIT?
 824. What is the purpose of git stash drop?
@@ -949,7 +968,8 @@ with out deadlock?
 920. What is git blame?
 921. What is a submodule in GIT?
 
-## AWS
+## [AWS](./AWS.md)
+
 922. What do you know about AWS Region?
 923. What are the important components of IAM?
 924. What are the important points about AWS IAM?
@@ -972,7 +992,8 @@ with out deadlock?
 942. What are the main features of Amazon CloudFront?
 943. What are the security mechanisms available in Amazon S3?
 
-## Cloud Computing
+## [Cloud Computing](./Cloud_Computing.md)
+
 944. What are the benefits of Cloud Computing?
 945. What is On-demand computing in Cloud Computing?
 946. What are the different layers of Cloud computing?
@@ -993,7 +1014,8 @@ with out deadlock?
 962. How will you optimize availability of your application in a Cloud environment?
 963. What are the requirements for implementing IaaS strategy in Cloud?
 
-## DOCKER
+## [DOCKER](./DOCKER.md)
+
 964. What is Docker?
 965. What is the difference between Docker image and Docker container?
 966. How will you remove an image from Docker?
@@ -1004,7 +1026,8 @@ with out deadlock?
 972. What is the most popular use of Docker?
 973. What is the role of open source development in the popularity of Docker?
 
-## UNIX Shell
+## [UNIX Shell](./UNIX_Shell.md)
+
 974. How will you remove all files in current directory? Including the files that are two levels down in a sub-directory.
 975. What is the difference between the –v and –x options in Bash shell scripts?
 976. What is a Filter in Unix command?
@@ -1018,7 +1041,8 @@ with out deadlock?
 984. What is the difference between absolute path and relative path in Unix file system?
 985. What are the main responsibilities of a Unix Shell?986.What is a Shell variable?
 
-## Microservices
+## [Microservices](./Microservices.md)
+
 987. What is a Microservice?
 988. What are the benefits of Microservices architecture?
 989. What is the role of architect in Microservices architecture?
