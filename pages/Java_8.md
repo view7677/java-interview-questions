@@ -338,15 +338,41 @@ System.out.println("I1 logging::"+str);
 
 #### 28. Why do we need Default method in a Java 8 Interface?
 
+Default methods in an Interface provide backward compatibility feature in Java 8.
+
+Let say there is an interface Car that is implemented by BMW, Chevrolet and Toyota classes. Now a Car needs to add capability for flying. It will require change in Car interface. Some of the car classes that do not have flying capability may fail. Therefore a Default Implementation of flying methods is added in Car interface so that cars with no flying capability can continue to implement the original Car interface.
 
 #### 29. What is the purpose of a Static method in an Interface in Java 8?
 
+A Static method in an Interface is utility or helper method. This is not an object level instance method. Some of the uses of Static method in an Interface are:
+
+**Single Class**: There is no need to create a separate Utils class for storing utility or helper methods. We can keep these methods in same interface.
+
+**Encapsulation**: With Static methods, complete behavior of a Class is encapsulated in same class. There is no need to maintain multiple classes.
+
+**Extension**: It is easier to extend a Class/API. If we extend a collection ArrayList, we get all the methods. We need not extend Collections class also.
 
 #### 30. What are the core ideas behind the Date/Time API of Java 8?
 
+There are three core ideas behind the Date/Time API of Java 8:
+
+**Immutable-value classes**: The new API avoids thread-safety and concurrency issues by ensuring that all the core classes are immutable and represent well-defined values.
+
+**Domain-driven design**: The new API is modeled on precise domain with classes that represent different use cases for Date and Time.
+
+The emphasis on domain-driven design offers benefits like clarity and understandability.
+
+**Separation of chronologies**: The new API allows people to work with different calendar systems. It supports the needs of users in different areas of the world likes Japan or Thailand that don’t follow ISO-8601.
 
 #### 31. What are the advantages of new Date and Time API in Java 8 over old Date API?
 
+ome of the advantages of Java 8 Date Time API over existing Date API are:
+
+**Concurrency**: Existing Date Time classes (such as java.util.Date and SimpleDateFormatter) are not thread-safe. This does not work well in concurrent applications. In new Date Time API, developer does not have to deal with concurrency issues while writing date-handling code.
+
+**Better Design**: Date/Time classes prior to Java 8 have poor API design. For example, years in java.util.Date start at 1900, months start at 1, and days start at 0. It is not very intuitive. Java 8 Date Time API handles it very well.
+
+**No need for 3rd Party Libraries**: With the popularity of third-party Date/Time libraries like Joda Time, Java has to make its native Date/Time API comparable. Now we can use the Java API instead of using 3rd party libraries.
 
 #### 32. What are the main differences between legacy Date/Time API in Java and Date/Time API of Java 8?
 
@@ -392,9 +418,11 @@ The subtle difference between Predicate, Supplier and Consumer in Java 8 is as f
 
 #### 37. Is it possible to have default method definition in an interface without marking it with default keyword?
 
+No, we have to always mark a default method in interface with default keyword. If we create a method with implementation in an interface, but do not mark it as default, then we will get compile time error.
 
 #### 38. Can we create a class that implements two Interfaces with default methods of same name and signature?
 
+No, it is not allowed to create a class that implements interfaces with same name default methods. It will give us compile time error for duplicate default methods.
 
 #### 39. How Java 8 supports Multiple Inheritance?
 In Java 8, there is support for Multiple inheritance at interface level. Let us understand by an example.
