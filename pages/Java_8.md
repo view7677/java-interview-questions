@@ -394,20 +394,20 @@ In following example, we are creating two interfaces Person and Employee. A teac
 
 ```java
 interface Person {
-    public default void printType()  {
-        System.out.println("I am a Person.");
-    }
+public default void printType() {
+System.out.println("I am a Person.");
+}
 }
 interface Employee {
-    public default void printType() {
-        System.out.println("I am a Employee.");
-    }
+public default void printType() {
+System.out.println("I am a Employee.");
+}
 }
 public class Teacher implements Person, Employee {
-    public static void main(String args[]) {
-        Teacher t = new Teacher();
-        t.printType(); //Error
-    }
+public static void main(String args[]) {
+Teacher t = new Teacher();
+t.printType(); //Error
+}
 }
 ```
 
@@ -421,25 +421,25 @@ To resolve this we have to explicitly override the printType method in Teacher c
 package com.java8.util;
 
 interface Person {
-    public default void printType()  {
-        System.out.println("I am a Person.");
-    }
+public default void printType() {
+System.out.println("I am a Person.");
+}
 }
 
 interface Employee {
-    public default void printType()  {
-        System.out.println("I am a Employee.");
-    }
+public default void printType() {
+System.out.println("I am a Employee.");
+}
 }
 public class Teacher implements Person,Employee {
-    @Override
-    public void printType() {
-        System.out.println("I am a Teacher.");
-    }
-    public static void main(String args[]) {
-        Teacher t = new Teacher();
-        t.printType();
-    }
+@Override
+public void printType() {
+System.out.println("I am a Teacher.");
+}
+public static void main(String args[]) {
+Teacher t = new Teacher();
+t.printType();
+}
 }
 ```
 Output :
@@ -453,12 +453,20 @@ Output :
 
 #### 41. How can you get the name of Parameter in Java by using reflection?
 
+Java 8 has introduced a method `Parameter.getName()` to get the name of a parameter by using reflection.
+
+Before using this feature, we need to turn on this feature in Java compiler.
+
+To turn on this feature, just run javac with –parameters argument.
+
+To verify the availability of this feature, we can use `Parameter.isNamePresent()` method.
 
 #### 42. What is Optional in Java 8?
 
 Another new feature of Java 8 is the new Optional type. This type is a way of explicitly stating “I might have a value, or I might be null.” Which means an API can now be explicit about either returning values that might be null vs. values that will always be non-null, minimizing the chances of running into a NullPointerException.
 
-What’s nice about Optional is the way you tell it to deal with nulls. For example, if we’re looking for a particular book in a list, the new findFirst() method returns an Optional, which tells us it’s not guaranteed to find a value. Given this optional value, we can then decide what to do if it’s null. If we wanted to throw a custom Exception, we can use orElseThrow:
+What’s nice about Optional is the way you tell it to deal with nulls. For example, if we’re looking for a particular book in a list, the new findFirst() method returns an 
+Optional, which tells us it’s not guaranteed to find a value. Given this optional value, we can then decide what to do if it’s null. If we wanted to throw a custom Exception, we can use orElseThrow:
 
 ```java
 public Book findBookByTitle(List<Book> books, String title) {
@@ -471,18 +479,94 @@ return foundBook.orElseThrow(() -> new BookNotFoundException("Did not find book 
 
 #### 43. What are the uses of Optional?
 
+Some of the uses of Optional in Java are:
+
+We can use Optional to avoid NullPointerException in an application.
+Optional performs Null check at compile time, so we do not get run time exception for a null value.
+
+Optional reduces the codebase pollution by removing unnecessary null checks.
+Optional can also be used to handle default case for data when a value is null.
 
 #### 44. Which method in Optional provides the fallback mechanism in case of null value?
 
+In case, an Optional has null value, we can use orElseGet() method as fallback mechanism. If we implement orElseGet() method, it will be invoked when the value of Optional is null.
 
 #### 45. How can we get current time by using Date/Time API of Java 8?
 
+**Current Date**
+First, let’s use `java.time.LocalDate` to get the current system date:
+
+`LocalDate localDate = LocalDate.now();`
+To get the date in any other timezone we can use LocalDate.now(ZoneId):
+
+
+`LocalDate localDate = LocalDate.now(ZoneId.of("GMT+02:30"));`
+We can also use `java.time.LocalDateTime` to get an instance of LocalDate:
+
+```java
+LocalDateTime localDateTime = LocalDateTime.now();
+LocalDate localDate = localDateTime.toLocalDate();
+```
+**Current Time**
+With `java.time.LocalTime`, let’s retrieve the current system time:
+
+
+`LocalTime localTime = LocalTime.now();`
+To get the current time in a specific time zone, we can use `LocalTime.now(ZoneId)`:
+
+
+`LocalTime localTime = LocalTime.now(ZoneId.of("GMT+02:30"));`
+We can also use `java.time.LocalDateTime` to get an instance of LocalTime:
+
+```java
+LocalDateTime localDateTime = LocalDateTime.now();
+LocalTime localTime = localDateTime.toLocalTime();
+```
+
+**Current Timestamp**
+Use `java.time.Instant` to get a time stamp from the Java epoch. According to the JavaDoc, “epoch-seconds are measured from the standard Java epoch of 1970-01-01T00:00:00Z, where instants after the epoch have positive values:
+
+```java
+Instant instant = Instant.now();
+long timeStampMillis = instant.toEpochMilli();
+```
+We may obtain the number of epoch-seconds seconds:
+
+```java
+Instant instant = Instant.now();
+long timeStampSeconds = instant.getEpochSecond();
+```
 
 #### 46. Is it possible to define a static method in an Interface?
 
 
+In Java 8, interfaces can contain implemented methods, static methods, and the so-called "default" methods (which the implementing classes do not need to override).
+
+In my (probably naive) view, there was no need to violate interfaces like this. Interfaces have always been a contract you must fulfill, and this is a very simple and pure concept. Now it is a mix of several things. In my opinion:
+
+static methods do not belong to interfaces. They belong to utility classes.
+"default" methods shouldn't have been allowed in interfaces at all. You could always use an abstract class for this purpose.
+In short:
+
+_**Before Java 8:**_
+
+You could use abstract and regular classes to provide static and default methods. The role of interfaces is clear.
+
+All the methods in an interface should be overriden by implementing classes.
+You can't add a new method in an interface without modifying all the implementations. 
+
+_**After Java 8:**_
+
+There's virtually no difference between an interface and an abstract class (other than multiple inheritance). In fact you can emulate a regular class with an interface.
+When programming the implementations, programmers may forget to override the default methods.
+
+There is a compilation error if a class tries to implement two or more interfaces having a default method with the same signature.
+
+By adding a default method to an interface, every implementing class automatically inherits this behavior. Some of these classes might have not been designed with that new functionality in mind, and this can cause problems. For instance, if someone adds a new default method default void foo() to an interface Ix, then the class Cx implementing Ix and having a private foo method with the same signature does not compile.
+
 #### 47. How can we analyze the dependencies in Java classes and packages?
 
+JDeps is the Java Dependency Analysis Tool, a command line tool that processes Java bytecode, meaning .class files or the JARs that contain them, and analyzes the statically declared dependencies between classes. The results can be filtered in various ways and can be aggregated to package or JAR level. JDeps can also tell you which JDK-internal APIs your project is using and is fully aware of the module system. All in all it is a very useful tool to examine various forms of dependency graphs.
 
 #### 48. What are the new JVM arguments introduced by Java 8?
 
@@ -495,6 +579,11 @@ return foundBook.orElseThrow(() -> new BookNotFoundException("Did not find book 
 
 #### 51. What is the type of a Lambda expression in Java 8?
 
+The type of a lambda expression depends on the context it is being used.
+
+A lambda is like a method reference. It does not have a type of its own.
+
+Generally, a Lambda is an instance of a Functional Interface.
 
 #### 52. What is the target type of a lambda expression ?
 
