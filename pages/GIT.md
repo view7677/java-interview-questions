@@ -1,4 +1,5 @@
-## GIT
+#
+# GIT
 *******
 
 
@@ -121,64 +122,42 @@ Distributed System: GIT is a **D**istributed **V**ersion **C**ontrol
 
 3. **Data Integrity**: Since GIT uses SHA1, data is not easier to corrupt.
 
-4. **Free**:  It is free for personal use. So many amateurs use it for their initial projects. It also works very well with large size project.
+4. **Free**: It is free for personal use. So many amateurs use it for their initial projects. It also works very well with large size project.
 
 5. **Collaboration**: GIT is very easy to use for projects in which collaboration is required. Many popular open source software across the globe use GIT.
 
 #### 833. What are the disadvantages of GIT?
 
-GIT has very few disadvantages. These are the scenarios when GIT
-is difficult to use. Some of these are:
+GIT has very few disadvantages. These are the scenarios when GIT is difficult to use. Some of these are:
 
-**Binary Files**: If we have a lot binary files (non-text) in our
-project, then GIT becomes very slow. E.g. Projects with a
-lot of images or Word documents.
+**Binary Files**:  If we have a lot binary files (non-text) in our project, then GIT becomes very slow. E.g. Projects with a lot of images or Word documents.
 
-**Steep Learning Curve**: It takes some time for a newcomer
-to learn GIT. Some of the GIT commands are non-intuitive
-to a fresher.
+**Steep Learning Curve**:  It takes some time for a newcomer to learn GIT. Some of the GIT commands are non-intuitive to a fresher.
 
-**Slow remote speed**: Sometimes the use of remote
-repositories in slow due to network latency. Still GIT is
-better than other VCS in speed.
+**Slow remote speed**: Sometimes the use of remote repositories in slow due to network latency. Still GIT is better than other VCS in speed.
 
 
 #### 834. What are the main differences between GIT and SVN?
 
 The main differences between GIT and SVN are:
 
-1. **Decentralized**: GIT is decentralized. You have a local
-copy that is a repository in which you can commit. In SVN
-you have to always connect to a central repository for
-check-in.
-2. **Complex to learn**: GIT is a bit difficult to learn for some
-developers. It has more concepts and commands to learn.
-SVN is much easier to learn.
-3. **Unable to handle Binary files**: GIT becomes slow when it
-deals with large binary files that change frequently. SVN
-can handle large binary files easily.
-4. **Internal directory**: GIT creates only .git directory. SVN
-creates .svn directory in each folder.
-5. **User Interface**: GIT does not have good UI. But SVN has
-good user interfaces.
+1. **Decentralized**: GIT is decentralized. You have a local copy that is a repository in which you can commit. In SVN you have to always connect to a central repository for check-in.
+2. **Complex to learn**: GIT is a bit difficult to learn for some developers. It has more concepts and commands to learn. SVN is much easier to learn.
+3. **Unable to handle Binary files**: GIT becomes slow when it deals with large binary files that change frequently. SVN can handle large binary files easily.
+4. **Internal directory**: GIT creates only .git directory. SVN creates .svn directory in each folder.
+5. **User Interface**: GIT does not have good UI. But SVN has good user interfaces.
 
 #### 835. How will you start GIT for your project?
 
-We use git init command in an existing project directory to start
-version control for our project.
+We use git init command in an existing project directory to start version control for our project.
 
-After this we can use git add and git commit commands to add files
-to our GIT repository.
+After this we can use git add and git commit commands to add files to our GIT repository.
 
 #### 836. What is git clone in GIT?
 
-In GIT, we use git clone command to create a copy of an existing
-GIT repository in our local.
-This is the most popular way to create a copy of the repository
-among developers.
+In GIT, we use git clone command to create a copy of an existing GIT repository in our local.This is the most popular way to create a copy of the repository among developers.
 
-It is similar to svn checkout. But in this case the working copy is a
-full-fledged repository.
+It is similar to svn checkout. But in this case the working copy is a full-fledged repository.
 
 #### 837. How will you create a repository in GIT?
 
@@ -214,46 +193,72 @@ full-fledged repository.
 
 #### 845. How can we see the configuration settings of GIT installation?
 
-
+We can use `git config --list` command to print all the GIT configuration settings in GIT installation.
 
 #### 846. How will you write a message with commit command in GIT?
 
+We call following command for commit with a message:
+`$/> git commit –m <message>`
 
 
 #### 847. What is stored inside a commit object in GIT?
 
+GIT commit object contains following information:
+
+**SHA1 name**: A 40 character string to identify a commit Files: List of files that represent the state of a project at a specific point of time
+**Reference**: Any reference to parent commit objects
 
 
 #### 848. How many heads can you create in a GIT repository?
 
-
+There can be any number of heads in a repository.
+By default there is one head known as HEAD in each repository in GIT.
 
 #### 849. Why do we create branches in GIT?
 
+If we are simultaneously working on multiple tasks, projects, defects or features, we need multiple branches. In GIT we can create a separate branch for each separate purpose.
+
+Let say we are working on a feature, we create a feature branch for that. In between we get a defect to work on then we create another branch for defect and work on it. Once the defect work is done, we merge that branch and come back to work on feature branch  again. So working on multiple tasks is the main reason for using multiple branches.
 
 
 #### 850. What are the different kinds of branches that can be created in GIT?
 
+We can create different kinds of branches for following purposes in GIT:
 
+1. **Feature branches**: These are used for developing a feature.
+2. **Release branches**: These are used for releasing code to production.
+3. **Hotfix branches**: These are used for releasing a hotfix to production for a defect or emergency fix.
 
 #### 851.How will you create a new branch in GIT?
 
-
+We use following command to create a new branch in GIT:
+`$/> git checkout –b <branchname>`
 
 #### 852. How will you add a new feature to the main branch?
 
-
+We do the development work on a feature branch that is created from master branch. Once the development work is ready we use git merge command to merge it into master branch.
 
 #### 853. What is a pull request in GIT?
 
-
+A pull request in GIT is the list of changes that have been pushed to GIT repository. Generally these changes are pushed in a feature branch or hotfix branch. After pushing these changes we create a pull request that contains the changes between master and our feature branch. This pull request is sent to reviewers for reviewing the code and then merging it into develop or release branch.
 
 #### 854. What is merge conflict in GIT?
 
-
+A merge conflict in GIT is the result of merging two commits. Sometimes the commit to be merged and current commit have changes in same location. In this scenario, GIT is not able to decide which change is more important. Due to this GIT reports a merge conflict. It means merge is not successful. We may have to manually check and resolve the merge conflict.
 
 #### 855. How can we resolve a merge conflict in GIT?
 
+When GIT reports merge conflict in a file, it marks the lines as follows:
+E.g.
+```
+the business days in this week are
+<<<<<<< HEAD
+five
+=======
+six
+>>>>>>> branch-feature
+```
+To resolve the merge conflict in a file, we edit the file and fix the conflicting change. In above example we can either keep five or six. After editing the file we run `git add` command followed by `git commit` command. Since GIT is aware that it was merge conflict, it links this change to the correct commit.
 
 
 #### 856. What command will you use to delete a branch?
@@ -356,7 +361,7 @@ full-fledged repository.
 
 
 
-#### 882. How can we change a commit message in GIT? 
+#### 882. How can we change a commit message in GIT?
 
 
 
@@ -468,7 +473,7 @@ full-fledged repository.
 
 
 
-#### 911.  How can we work on a project where we do not have push access?
+#### 911. How can we work on a project where we do not have push access?
 
 
 
