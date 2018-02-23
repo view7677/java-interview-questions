@@ -24,6 +24,7 @@
 20. Why constructors cannot be final, static, or abstract in Java?
 
 ## [Inheritance](./Inheritance.md)
+
 21. What is the purpose of ‘this’ keyword in java?
 22. Explain the concept of Inheritance?
 23. Which class in Java is superclass of every other class?
@@ -37,6 +38,7 @@
 31. What is the meaning of object cloning in Java?
 
 ## [Static](./Static.md)
+
 32. In Java, why do we use static variable?
 33. Why it is not a good practice to create static variables in Java?
 34. What is the purpose of static method in Java?35. Why do we mark main method as static in Java?
@@ -46,6 +48,7 @@
 39. What is the difference between static method and instance method in Java?
 
 ## [Method Overloading and Overriding](./Method_Overloading_and_Overriding.md)
+
 40. What is the other name of Method Overloading?
 41. How will you implement method overloading in Java?
 42. What kinds of argument variations are allowed in Method Overloading?
@@ -60,11 +63,13 @@
 51. What is meant by covariant return type in Java?
 
 ## [Polymorphism](./Polymorphism.md)
+
 52. What is Runtime Polymorphism?
 53. Is it possible to achieve Runtime Polymorphism by data members in Java?
 54. Explain the difference between static and dynamic binding?
 
 ## [Abstraction](./Abstraction.md)
+
 55. What is Abstraction in Object Oriented programming?
 56. How is Abstraction different from Encapsulation?
 57. What is an abstract class in Java?
@@ -82,6 +87,7 @@
 69. How can we cast to an object reference to an interface reference?
 
 ## [Final](./Final.md)
+
 70. How can you change the value of a final variable in Java?
 71. Can a class be marked final in Java?
 72. How can we create a final method in Java?
@@ -220,6 +226,7 @@
 176. What is the difference between Singleton class and Static class?
 
 ## [Java Collection](./Java_Collection.md)
+
 177. What is the difference between Collection and Collections Framework in Java?
 178. What are the main benefits of Collections Framework in Java?
 179. What is the root interface of Collection hierarchy in Java?180.What are the main differences between Collection and Collections?
@@ -307,6 +314,7 @@
 264. What are the popular implementations of Deque in Java?
 
 ## [Advanced Multi-threading](./Advanced_Multi-threading.md)
+
 265. What is a Thread in Java?
 266. What is the priority of a Thread and how it is used in scheduling?
 267. What is the default priority of a thread in Java?
