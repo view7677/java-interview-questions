@@ -58,7 +58,7 @@ Externalizable interface extends Serializable interface in Java. It is used for 
 
 A class implements methods writeExternal() and readExternal() to store and restore the object.
 
-#### 95. What is the difference between Serializable and Externalizable interface?
+#### 95. What is the difference between Serializable and Externalizable interface ?
 
 Serializable is a marker interface but Externalizable is not a marker interface.
 
