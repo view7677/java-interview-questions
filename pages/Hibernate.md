@@ -4,21 +4,116 @@
 
 #### 712. What is Hibernate framework?
 
+Hibernate is a popular **Ob**ject **R**elational **M**apping (ORM)
+framework of Java. It helps in mapping the Object Oriented Domain
+model to Relational Database tables.
+
+Hibernate is a free software distributed under GNU license.
+Hibernate also provides implementation of Java Persistence API
+(JPA).
+
+In simple words, it is a framework to retrieve and store data from
+database tables from Java.
 
 #### 713. What is an Object Relational Mapping (ORM)?
 
+**O**bject **R**elational **M**apping (ORM) is a programming technique to
+map data from a relational database to Object oriented domain
+model. This is the core of Hibernate framework.
+
+In case of Java, most of the software is based on OOPS design. But
+the data stored in Database is based on **R**elation **D**atabase
+**M**anagement **S**ystem (RDBMS).
+
+ORM helps in data retrieval in an Object Oriented way from an
+RDBMS. It reduces the effort of developers in writing queries to
+access and insert data.
 
 #### 714. What is the purpose of Configuration Interface in Hibernate?
 
+`Configuration` interface can be implemented in an application to
+specify the properties and mapping documents for creating a
+`SessionFactory` in Hibernate.
+
+By default, a new instance of Configuration uses properties
+mentioned in `hibernate.properties` file.
+
+Configuration is mainly an initialization time object that loads the
+properties in helps in creating `SessionFactory` with these properties.
+
+In short, `Configuration` interface is used for configuring Hibernate
+framework in an application.
 
 #### 715. What is Object Relational Impedance Mismatch?
 
+**O**bject **R**elational **I**mpedance **M**ismatch (ORIM) is also known as
+paradigm mismatch. It means that Object model and Relational
+model do not work well with each other.
+
+Relational model or a RDBMS represents data in tabular format
+like a spreadsheet. Object model or OOPS represents the data as an
+inter-connected graph of objects.
+
+Mixing these two models leads to various problems. The common
+name for these issues is **O**bject **R**elational **I**mpedance **M**ismatch.
 
 #### 716. What are the main problems of Object Relational Impedance Mismatch?
 
+Object model and Relational models (RDBMS) have following
+problems that are part of Object Relational Impedance Mismatch:
+Granularity: Object model is more granular than Relational model.
+There are more classes in object model than the corresponding
+tables in relational model.
+
+**Inheritance**: Object model supports inheritance. But Relational
+model does not have any concept of inheritance.
+Identity: Relational model has just one criteria for sameness of data.
+It is based on primary key. In object model like Java we can have
+equals as well as == for sameness of objects.
+
+**Associations**: In Object model associations are uni-directional. In
+RDBMS, there is a concept of foreign key for association. Also
+multiplicity of a relationship is hard to judge by looking at object
+model.
+
+**Data navigation**: In Object model, you can move from one object to
+another object for getting data. Egg. you can retrieve and Employee
+object, then go to its department object and then get the employees
+in the department object. In RDBMS, we try to minimize the SQL
+calls, so we get all the data by using joins.
 
 #### 717. What are the key characteristics of Hibernate?
 
+Hibernate has following key characteristics:
+
+**Object/Relational Mapping (ORM)**: Hibernate provides ORM
+capabilities to developers. So then can write code in Object model
+for connecting with data in Relational model.
+
+**JPA Provider**: Hibernate provides an excellent implementation of
+Java Persistence API (JPA) specification.
+
+**Idiomatic persistence**: Hibernate provides persistence based on
+natural Object-oriented idioms with full support for inheritance,
+polymorphism, association, composition, and the Java collections
+framework. It can work with any data for persistence.
+
+**High Performance**: Hibernate provides high level of performance
+supporting features like- lazy initialization, multiple fetching
+strategies, optimistic locking etc. Hibernate does not need its own
+database tables or fields. It can generate SQL at system
+initialization to provide better performance at runtime.
+
+**Scalability**: Hibernate works well in multi server clusters. It has
+built in scalability support. It can work well for small projects as
+well as for large business software.
+
+**Reliable**: Hibernate very reliable and stable framework. This is the
+reason for its worldwide acceptance and popularity among
+developer community.
+
+**Extensible**: Hibernate is quite generic in nature. It can be configured
+and extended as per the use case of application.
 
 #### 718. Can you tell us about the core interfaces of Hibernate framework?
 
