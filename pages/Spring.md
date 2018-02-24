@@ -727,24 +727,58 @@ behavior in the existing execution flow.
 
 #### 682. What are the different types of Advice in Spring AOP?
 
+Spring AOP provides five kinds of Advice:
 
+1. Before Advice: This type of advice runs just before a
+method executes. We can use @Before annotation for this.
+2. After (finally) Advice: This type of advice runs just after a
+method executes. Even if the method fails, this advice will
+run. We can use @After annotation here.
+3. After Returning Advice: This type of advice runs after a
+method executes successfully. @AfterReturning annotation
+can be used here.
+4. After Throwing Advice: This type of advice runs after a
+method executes and throws an exception. The annotation
+to be used is @AfterThrowing.
+5. Around Advice: This type of advice runs before and after
+the method is invoked. We use @Around annotation for
+this.
 
 
 #### 683. What is a Pointcut in Spring AOP?
 
+A Pointcut in Spring AOP refers to the group of one or more
+Joinpoints where an advice can be applied.
 
+We can apply Advice to any Joinpoint. But we want to limit the
+places where a specific type of Advice should be applied. To
+achieve this we use Pointcut.
+
+We can use class names, method names or regular expressions to
+specify the Pointcuts for an Advice.
 
 #### 684. What is an Introduction in Spring AOP?
 
+In Spring AOP we can declare additional methods or fields on
+behalf of a type. To do this we use an Introduction. It is also known
+as inter-type declaration.
 
+E.g. We can use an Introduction for making a bean implement
+IsModified interface
 
 #### 685. What is a Target object in Spring AOP?
 
+A Target object is the object that gets Advice from one or more
+Aspects.
 
+This is also known as advised object.
+In most cases it is a proxy object.
 
 #### 686. What is a Proxy in Spring AOP?
 
-
+In Spring AOP, a Proxy is an object created by the AOP framework
+to implement Aspect contracts. It is generally a JDK dynamic proxy
+or CGLIB proxy.
 
 #### 687. What are the different types of AutoProxy creators in Spring?
 
@@ -1042,7 +1076,27 @@ implemented to create a global exception handler.
 
 #### 710. What are the best practices of Spring Framework?
 
+In Spring Framework, following are some of the best practices:
 
+1. We can Divide spring bean configurations based on their concerns such as spring-jdbc.xml, spring-security.xml.
+
+2. It is better to avoid version numbers in schema reference. This makes sure that we have the latest config files.
+
+3. It is a good practice to configure bean dependencies as much as possible. Unless there is a good reason, we try to avoid autowiring.
+
+4. For spring beans that are used in multiple contexts in Spring MVC, we can create them in root context and initialize with listener.
+
+5. Spring framework provides many features and modules. We should just use what we need for our application. An extra dependency has to be removed.
+
+6. For application properties, it is good to create a property file and read it in Spring configuration file.
+
+7. Annotations are useful for smaller applications, but for larger applications annotations can become an overhead. It is easier to maintain if all the configurations are in xml files.
+
+8. When we are doing AOP, we have to make sure to keep the Joinpoint as narrow as possible to avoid Advice on unwanted methods.
+
+9. We should use right annotation for components or services. For services use `@Service` and for DAO beans use `@Repository`.
+
+10. Dependency Injection (DI) has to be used when there is real benefit. It should not be used just for the sake of loose coupling.
 
 #### 711. What is Spring Boot?
 
