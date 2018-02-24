@@ -1,5 +1,4 @@
-#
-# GIT
+## GIT
 *******
 
 
@@ -161,35 +160,64 @@ It is similar to svn checkout. But in this case the working copy is a full-fledg
 
 #### 837. How will you create a repository in GIT?
 
+To create a new repository in GIT, first we create a directory for the
+project. Then we run `git init` command.
 
+Now, GIT creates `.git` directory in our project directory. This is
+how our new GIT repository is created.
 
 #### 838. What are the different ways to start work in GIT?
 
+We can start work in GIT in following ways:
 
+1. **New Project**: To create a new repository we use `git init` command.
+2. **Existing Project**: To work on an existing repository we use `git clone` command.
 
 #### 839. GIT is written in which language?
 
+Most of the GIT distributions are written in C language with Bourne
+shell. Some of the commands are written in Perl language.
 
+#### 840. What does `git pull` command in GIT do internally?
 
-#### 840. What does ‘git pull’ command in GIT do internally?
+In GIT, `git pull` internally does a git fetch first and then does a git
+merge.
 
-
+So pull is a combination of two commands: `fetch` and `merge`.
+We use `git pull` command to bring our local branch up to date with
+its remote version.
 
 #### 841. What does ‘git push’ command in GIT do internally?
 
+In GIT, git push command does following two commands:
 
+1. `fetch`: First GIT, copies all the extra commits from server into local repo and moves origin/master branch pointer to the end of commit chain.
+2. `merge`: Then it merges the origin/master branch into the master branch. Now the master branch pointer moves to the newly created commit. But the origin/master pointer remains there.
 
 #### 842. What is git stash?
 
+In GIT, sometimes we do not want to commit our code but we do not want to lose also the unfinished code. In this case we use git stash command to record the current state of the working directory and index in a stash. This stores the unfinished work in a stash, and cleans the current branch from uncommitted changes. Now we can work on a clean working directory.
 
+Later we can use the stash and apply those changes back to our working directory.
+
+At times we are in the middle of some work and do not want to lose the unfinished work, we use git stash command.
 
 #### 843. What is the meaning of ‘stage’ in GIT?
 
+In GIT, stage is a step before commit. To stage means that the files
+are ready for commit.
 
+Let say, you are working on two features in GIT. One of the features
+is finished and the other is not yet ready. You want to commit and
+leave for home in the evening. But you can commit since both of
+them are not fully ready. In this case you can just stage the feature
+that is ready and commit that part. Second feature will remain as
+work in progress.
 
 #### 844. What is the purpose of git config command?
 
-
+We can set the configuration options for GIT installation by using git
+config command.
 
 #### 845. How can we see the configuration settings of GIT installation?
 
