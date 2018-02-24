@@ -278,11 +278,11 @@ A Spring Bean definition contains configuration metadata for bean. This configur
 
 Spring supports three ways to provide configuration metadata to Spring Container:
 
-XML based configuration: We can specify configuration data in an XML file.
+**XML based configuration**: We can specify configuration data in an XML file.
 
-Annotation-based configuration: We can use Annotations to specify configuration. This was introduced in Spring 2.5.
+**Annotation-based configuration**: We can use Annotations to specify configuration. This was introduced in Spring 2.5.
 
-Java-based configuration: This is introduced from Spring 3.0. We can embed annotations like @Bean, @Import, @Configuration in Java code to specify configuration metadata.
+**Java-based configuration**: This is introduced from Spring 3.0. We can embed annotations like `@Bean`, `@Import`, `@Configuration` in Java code to specify configuration metadata.
 
 #### 645. What are the different scopes of a Bean supported by Spring?
 
@@ -338,13 +338,13 @@ Spring framework uses many Design patterns. Some of these patterns are:
 
 A Bean in Spring framework goes through following phases in its lifecycle.
 
-Initialization and creation: Spring container gets the definition of Bean from XML file and instantiates the Bean. It populates all the properties of Bean as mentioned in the bean definition.
+**Initialization and creation**: Spring container gets the definition of Bean from XML file and instantiates the Bean. It populates all the properties of Bean as mentioned in the bean definition.
 
-Setting the Behavior of Bean: In case a Bean implements BeanNameAware interface, Spring uses setBeanName() method to pass the bean’s id. In case a Bean implements BeanFactoryAware interface, Spring uses setBeanFactory() to pass the BeanFactory to bean.
+**Setting the Behavior of Bean**: In case a Bean implements BeanNameAware interface, Spring uses `setBeanName()` method to pass the bean’s id. In case a Bean implements BeanFactoryAware interface, Spring uses `setBeanFactory()` to pass the BeanFactory to bean.
 
-Post Processing: Spring container uses postProcesserBeforeInitialization() method to call BeanPostProcessors associated with the bean. Spring calls afterPropertySet() method to call the specific initialization methods. In case there are any BeanPostProcessors of a bean, the postProcessAfterInitialization() method is called.
+**Post Processing**: Spring container uses postProcesserBeforeInitialization() method to call BeanPostProcessors associated with the bean. Spring calls `afterPropertySet()` method to call the specific initialization methods. In case there are any BeanPostProcessors of a bean, the `postProcessAfterInitialization()` method is called.
 
-Destruction: During the destruction of a bean, if bean implements DisposableBean, Spring calls destroy() method.
+**Destruction**: During the destruction of a bean, if bean implements DisposableBean, Spring calls `destroy()` method.
 
 ![Spring : Life Cycle of spring Bean](https://premaseem.files.wordpress.com/2013/02/spring-bean-lifecycle.png)
 
@@ -393,7 +393,7 @@ Developer mentions in configuration file, the dependencies between beans. And Sp
 
 Autowiring is a feature of Spring in which container can automatically wire/connect the beans by reading the configuration file.
 
-Developer has to just define “autowire” attribute in a bean.
+Developer has to just define `autowire` attribute in a bean.
 
 Spring resolves the dependencies automatically by looking at this attribute of beans that are autowired.
 
@@ -401,18 +401,20 @@ Spring resolves the dependencies automatically by looking at this attribute of b
 
 There are five modes of Autowiring supported by Spring
 framework:
-no: This is default setting for Autowiring. In this case, we use “ref”
+
+1. **no**: This is default setting for Autowiring. In this case, we use “ref”
 mode to mention the explicit bean that is being referred for wiring.
+
 E.g. In this example Employee bean refers Manager bean.
 
 ```xml
 <bean id="employee" class="com.dept.Employee">
-<property name="manager" ref="manager" />
+    <property name="manager" ref="manager" />
 </bean>
 <bean id="manager" class="com.dept.Manager" />
 ```
 
-byName: In this case, Spring container tries to match beans by name
+2. **byName**: In this case, Spring container tries to match beans by name
 during Autowiring. If the name of a bean is same as the name of
 bean referred in autowire byname, then it automatically wires it.
 E.g. In following example, Manager bean is wired to Employee
@@ -423,7 +425,7 @@ bean by Name.
 <bean id="manager" class="com.dept.Manager" />
 ```
 
-byType: In this case, Spring container check the properties of beans
+3. **byType**: In this case, Spring container check the properties of beans
 referred with attribute byType. Then it matches the type of bean and
 wires. If it finds more than one such bean of that type, it throws a
 fatal exception.
@@ -434,10 +436,11 @@ E.g. In following example, Manager bean is wired by type toEmployee bean.
 <bean id="manager" class="com.dept.Manager" />
 ```
 
-constructor: In this case, Spring container looks for byType attribute
+4. **constructor**: In this case, Spring container looks for byType attribute
 in constructor argument. It tries to find the bean with exact name. If
 it finds more than one bean of same name, it throws fatal exception.
 This case is similar to byType case.
+
 E.g. In following example “constructor” mode is used for
 autowiring.
 
@@ -446,9 +449,10 @@ autowiring.
 <bean id="manager" class="com.dept.Manager" />
 ```
 
-autodetect: This is an advanced mode for autowiring. In this case,
+5. **autodetect**: This is an advanced mode for autowiring. In this case,
 by default Spring tries to find a constructor match. If it does not find
 constructor then it uses autowire by Type.
+
 E.g. This is an example of autodetect Autowiring.
 
 ```xml
@@ -462,75 +466,78 @@ Autowiring is a great feature in Spring. It can be used in most of the
 cases. But there are certain scenarios in which Autowiring may not
 work.
 
-Explicit wiring: Since Autowiring is done by Spring, developer
+**Explicit wiring**: Since Autowiring is done by Spring, developer
 does not have full control on specifying the exact class to be used. It
 is preferable to use Explicit wiring in case of full control over
 wiring.
 
-Primitive Data types: Autowiring does not allow wiring of
+**Primitive Data types**: Autowiring does not allow wiring of
 properties that are based on primitive data types like- int, float etc.
 
 #### 658. Is it allowed to inject null or empty String values in Spring?
 
 Yes, Spring allows injecting null or empty String values.
 
-#### 659. What is a Java-based Configuration in Spring?660.What is the purpose of @Configuration annotation?
+#### 659. What is a Java-based Configuration in Spring?
 
-This annotation is used in a class to indicate that this is class is the primary source of bean definitions. This class can also contain inter-bean dependencies that are annotated by @Bean annotation.
+Spring allows for Java-based configuration in which a developer can specify configuration by using Java-based annotations. This feature was introduced in Spring 3.0.
+
+You can use annotations like- `@Configuration`, `@Bean`, `@Import` and `@DependsOn` in Java classes for specifying the configuration.
+
+#### 660. What is the purpose of `@Configuration` annotation?
+
+`@Configuration` annotation is used in a class to indicate that this is class is the primary source of bean definitions. This class can also contain inter-bean dependencies that are annotated by `@Bean` annotation.
 
 
-#### 661. What is the difference between Full @Configuration and 'lite' @Beans mode?
+#### 661. What is the difference between Full `@Configuration` and 'lite' @Beans mode?
 
 
+Spring allows for using `@Bean` annotation on methods that are declared in classes not annotated with `@Configuration`. This is known as “lite” mode. In this mode, bean methods can be declared in a `@Component` or a plain java class without any annotation.
 
-Spring allows for using @Bean annotation on methods that are declared in classes not annotated with @Configuration. This is known as “lite” mode. In this mode, bean methods can be declared in a @Component or a plain java class without any annotation.
+In the “lite” mode, `@Bean` methods cannot declare inter-bean dependencies.
 
-In the “lite” mode, @Bean methods cannot declare inter-bean dependencies.
-
-It is recommended that one @Bean method should not invoke another @Bean method in 'lite' mode.
+It is recommended that one `@Bean` method should not invoke another `@Bean` method in 'lite' mode.
 
 Spring recommends that @Bean methods declared within @Configuration classes should be used for full configuration. This kind of full mode can prevent many bugs.
 
 #### 662. In Spring framework, what is Annotation-based container configuration?
 
-
-
 From Spring 2.5 version it is possible to provide configuration by using annotation.
 
 To turn this configuration on, we need to mention `<context:annotation-config/>` in spring XML file.
 
-Now developer can use annotations like @Required, @Autowired, @Qualifier etc. in a class file to specify the configuration for beans. Spring container can use this information from annotation for creating and wiring the beans.
+Now developer can use annotations like @Required, `@Autowired`, `@Qualifier` etc. in a class file to specify the configuration for beans. Spring container can use this information from annotation for creating and wiring the beans.
 #### 663. How will you switch on Annotation based wiring in Spring?
 
 
 
 To use Annotation based wiring, we need to turn on Annotation based configuration in Spring.
 
-By default, Annotation based configuration is switched off in Spring. To turn it is we can specify <context:annotation-config/>
+By default, Annotation based configuration is switched off in Spring. To turn it is we can specify `<context:annotation-config/>`
 element in Spring config file.
 
-Once it is turned on, we can use @Autowired annotation or @Required annotation in a Java class for wiring in Spring.
+Once it is turned on, we can use `@Autowired` annotation or @Required annotation in a Java class for wiring in Spring.
 
-#### 664. What is @Autowired annotation?
+#### 664. What is `@Autowired` annotation?
 
 We can use @Autowired annotation to auto wire a bean on a setter method, constructor or a field. @Autowired auto wiring is done by matching the data type.
 
-Before using @Autowired annotation we have to register AutowiredAnnotationBeanPostProcessor. This can be done by including `<context:annotation-config />` in bean configuration file.
+Before using `@Autowired` annotation we have to register AutowiredAnnotationBeanPostProcessor. This can be done by including `<context:annotation-config />` in bean configuration file.
 
-#### 665. What is @Required annotation?
+#### 665. What is `@Required` annotation?
 
-We use @Required annotation to a property to check whether the
+We use `@Required` annotation to a property to check whether the
 property has been set or not.
 
 Spring container throws BeanInitializationException if the @Required annotated property is not set.
 
-When we use @Required annotation, we have to register
+When we use `@Required` annotation, we have to register
 RequiredAnnotationBeanPostProcessor in Spring config file.
 
 #### 666. What are the two ways to enable RequiredAnnotationBeanPostProcessor in Spring?
 
-We use @Qualifier annotation to mark a bean as ready for auto
-wiring. This annotation is used along with @Autowired annotation
+We use `@Qualifier` annotation to mark a bean as ready for auto
+wiring. This annotation is used along with `@Autowired` annotation
 to specify the exact bean for auto wiring by Spring container.
 
 RequiredAnnotationBeanPostProcessor can be enabled in two ways
@@ -550,7 +557,7 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-
 2.5.xsd">
 ...
-<context:annotation-config />
+    <context:annotation-config />
 ...
 </beans>
 ```
@@ -564,20 +571,20 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-
 2.5.xsd">
-<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor">
-<bean id="BookBean" class="com.foo.Book">
-<property name="action" value="price" />
-<property name="type" value="1" />
-</bean>
-<bean id="AuthorBean" class="com.foo.Author">
-<property name="name" value="Rowling" />
-</bean>
+    <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor">
+    <bean id="BookBean" class="com.foo.Book">
+        <property name="action" value="price" />
+        <property name="type" value="1" />
+    </bean>
+    <bean id="AuthorBean" class="com.foo.Author">
+        <property name="name" value="Rowling" />
+    </bean>
 </beans>
 ```
 
-#### 667. What is @Qualifier annotation in Spring?
+#### 667. What is `@Qualifier` annotation in Spring?
 
-We use @Qualifier annotation to mark a bean as ready for auto wiring. This annotation is used along with @Autowired annotation to specify the exact bean for auto wiring by Spring container.
+We use `@Qualifier` annotation to mark a bean as ready for auto wiring. This annotation is used along with `@Autowired` annotation to specify the exact bean for auto wiring by Spring container.
 
 
 #### 668. How Spring framework makes JDBC coding easier for developers?
@@ -587,9 +594,9 @@ Spring provides a mature JDBC framework to provide support for JDBC coding. Spri
 They just have to write queries and related statements to fetch the data or to store the data in database.
 
 
-#### 669. What is the purpose of JdbcTemplate?
+#### 669. What is the purpose of `JdbcTemplate`?
 
-Spring framework provides JdbcTemplate class that contains many convenient methods for regular tasks like- converting data into primitives or objects, executing prepared or callable statements etc.
+Spring framework provides `JdbcTemplate` class that contains many convenient methods for regular tasks like- converting data into primitives or objects, executing prepared or callable statements etc.
 
 This class makes it very easy to work with database in our Application and it also provides good support for custom error handling in database access code.
 
@@ -607,7 +614,7 @@ No need for catching framework specific exceptions.
 #### 671. What are the different ways to use Hibernate in Spring?
 
 Spring provides two ways to use Hibernate:
-We can extend HibernateDAOSupport and apply an AOP
+We can extend `HibernateDAOSupport` and apply an AOP
 interceptor node to use Hibernate.
 
 We can also use HibernateTemplate and Callback to access
