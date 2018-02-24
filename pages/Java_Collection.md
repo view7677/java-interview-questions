@@ -288,8 +288,11 @@ but it may contain multiple null values.
 5. **Performance:** A `HashMap` gives constant time performance for operations like `get()` and `put()`. A `TreeMap` gives order of log(n) time performance for `get()` and `put()` methods.
 6. **Comparison:** A HashMap uses `equals()` method to compare keys. A `TreeMap` uses `compareTo()` method for maintaining natural ordering.
 8. **Features:** A `TreeMap` has more features than a `HashMap`. It has methods like `pollFirstEntry()` , `pollLastEntry()` , `tailMap()` , `firstKey()` , `lastKey()` etc. that are not provided by a `HashMap`.
+
 #### 164. What are the differences between Comparable and Comparator?
+
 Main differences between Comparable and Comparator are:
+
 1. **Type**: Comparable<T> is an interface in Java where T is the type of objects that this object may be compared to. 
 2. Comparator<T> is also an interface where T is the type of objects that may be compared by this comparator.
 3. **Sorting**: In Comparable, we can only create one sort sequence. In Comparator we can create multiple sort sequences.
