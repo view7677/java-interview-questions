@@ -827,7 +827,10 @@ with out deadlock?
 768. What are the two locking strategies in Hibernate?
 769. What is the use of version number in Hibernate?
 770. What is the use of session.lock() method in Hibernate?
-771. What inheritance mapping strategies are supported by Hibernate?Maven
+771. What inheritance mapping strategies are supported by Hibernate?
+
+## [Maven](./Maven.md)
+
 772. What is Maven?
 773. What are the main features of Maven?
 774. What areas of a Project can you manage by using Maven?
