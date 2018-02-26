@@ -84,12 +84,14 @@ GROUP BY DeptName
 
 #### 5. What is the result of following query?
 
-
+```sql
 SELECT MAX(Salary)
 FROM Employee
 WHERE Salary <>
   (SELECT MAX(Salary) FROM Employee
   );
+```
+
 #### 6. Write SQL Query to find employees that have same name and email.
 
 This is a simple question with one trick. The trick here is to use Group by on two columns Name and Email.
@@ -541,11 +543,66 @@ For example, a transfer of funds from one bank account to another, even though t
 
 #### 39. What is the main difference between RANK and DENSE_RANK functions in Oracle?
 
+RANK gives you the ranking within your ordered partition. Ties are assigned the same rank, with the next ranking(s) skipped. So, if you have 3 items at rank 2, the next rank listed would be ranked 5.
 
+DENSE_RANK again gives you the ranking within your ordered partition, but the ranks are consecutive. No ranks are skipped if there are ranks with multiple items.
+
+As for nulls, it depends on the ORDER BY clause. Here is a simple test script you can play with to see what happens:
+
+```sql
+with q as (
+select 10 deptno, 'rrr' empname, 10000.00 sal from dual union all
+select 11, 'nnn', 20000.00 from dual union all
+select 11, 'mmm', 5000.00 from dual union all
+select 12, 'kkk', 30000 from dual union all
+select 10, 'fff', 40000 from dual union all
+select 10, 'ddd', 40000 from dual union all
+select 10, 'bbb', 50000 from dual union all
+select 10, 'xxx', null from dual union all
+select 10, 'ccc', 50000 from dual)
+select empname, deptno, sal
+     , rank() over (partition by deptno order by sal nulls first) r
+     , dense_rank() over (partition by deptno order by sal nulls first) dr1
+     , dense_rank() over (partition by deptno order by sal nulls last) dr2
+ from q; 
+```
+| EMP | DEPTNO | SAL   | R    | DR1  | DR2  |
+| --- | -----: | ----: | ---: | ---: | ---: |
+| xxx | 10     |       | 1    | 1    | 4    |
+| rrr | 10     | 10000 | 2    | 2    | 1    |
+| fff | 10     | 40000 | 3    | 3    | 2    |
+| ddd | 10     | 40000 | 3    | 3    | 2    |
+| ccc | 10     | 50000 | 5    | 4    | 3    |
+| bbb | 10     | 50000 | 5    | 4    | 3    |
+| mmm | 11     | 5000  | 1    | 1    | 1    |
+| nnn | 11     | 20000 | 2    | 2    | 2    |
+| kkk | 12     | 30000 | 1    | 1    | 1    |
+
+`9 rows selected.`
 
 #### 40. What is the use of WITH clause in SQL?
 
+The SQL WITH clause was introduced by Oracle in the Oracle 9i release 2 database. The SQL WITH clause allows you to give a sub-query block a name (a process also called sub-query refactoring), which can be referenced in several places within the main SQL query. The name assigned to the sub-query is treated as though it was an inline view or table. The SQL WITH clause is basically a drop-in replacement to the normal sub-query.
 
+Syntax For The SQL WITH Clause
+
+The following is the syntax of the SQL WITH clause when using a single sub-query alias.
+
+```sql
+WITH <alias_name> AS (sql_subquery_statement)
+SELECT column_list FROM <alias_name>[,table_name]
+[WHERE <join_condition>]
+```
+When using multiple sub-query aliases, the syntax is as follows.
+```sql
+WITH <alias_name_A> AS (sql_subquery_statement),
+<alias_name_B> AS(sql_subquery_statement_from_alias_name_A
+or sql_subquery_statement )
+SELECT <column_list>
+FROM <alias_name_A>, <alias_name_B> [,table_names]
+[WHERE <join_condition>]
+```
+In the syntax documentation above, the occurrences of alias_name is a meaningful name you would give to the sub-query after the AS clause. Each sub-query should be separated with a comma Example for WITH statement. The rest of the queries follow the standard formats for simple and complex SQL SELECT queries.
 
 #### 41. Which SQL feature can be used to view data in a table sequentially?
 
