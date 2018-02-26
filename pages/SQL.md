@@ -477,6 +477,7 @@ WHERE id NOT IN
 ```
 #### 29. What is the wrong with this SQL query?
 
+The `with` clause provides a way of defining a temporary view whose definition is available only to the query in which the with clause occurs.
 
 
 #### 30. What is wrong with this query to get the list of employees not in Dept 1?
@@ -509,10 +510,33 @@ WHERE id NOT IN
 
 #### 37. Why is the difference between NVL and NVL2 functions in SQL?
 
+The nvl function only has two parameters while the nvl parameter has three arguments.  The nvl2 like like combining an nvl with a decode because you can transform a value:
 
+NVL ( expr1 , expr2 ): If expr1 is null, then NVL returns expr2. If expr1 is not null, then NVL returns expr1.
+
+NVL2 ( expr1 , expr2 , expr3 ): If expr1 is null, then NVL2 returns expr3. If expr1 is not null, then NVL2 returns expr2
+
+As we see, the vanilla nvl transformation takes a NULL value and replaces it with a printable, useable value, such as a zero or spaces:
+
+```sql
+select nvl(b.buffer_gets,0) - NVL replaces a NULL value with a zero
+select nvl(current_status, ?Not disclosed?) - NVL replaces a NULL value with a string
+Conversely, the NVL2 clause accepts three arguments, but ALWAYS transforms the input argument. 
+```
+
+select NVL2(supplier_city, 'Completed', 'n/a') from suppliers;
+
+In this example, these statements are equivalent because the nvl2 re-sets the input argument back to the original value:
+
+select nvl(commission_pct,0) 2 from employees;
+
+select nvl2(commission_pct,commission_pct,0) 2 from employees;
 
 #### 38. What are ACID properties in a SQL transaction?
 
+**A**tomicity, **C**onsistency, **I**solation, **D**urability are set of properties that guarantee database transactions are processed reliably. In the context of databases, a single logical operation on the data is called a transaction. 
+
+For example, a transfer of funds from one bank account to another, even though that might involve multiple changes (such as debiting one account and crediting another), is a single transaction.
 
 
 #### 39. What is the main difference between RANK and DENSE_RANK functions in Oracle?
@@ -561,6 +585,9 @@ WHERE id NOT IN
 
 #### 50. Write a query to create an empty table from an existing table?
 
+```sql
+Select * into studentcopy from student where1=2
+```
 
 #### 51. Write a Query to find all Employee whose name contains the word "Rich", regardless of case. E.g. Rich, RICH, rich.
 
@@ -571,3 +598,22 @@ SELECT *
 FROM Employees
 WHERE  UPPER(emp_name) like '%RICH%'
 ```
+
+#### What is a constraint?
+
+Constraint can be used to specify the limit on the data type of table. Constraint can be specified while creating or altering the table statement. Sample of constraint are.
+
+1. NOT NULL.
+2. CHECK.
+3. DEFAULT.
+4. UNIQUE.
+5. PRIMARY KEY.
+6. FOREIGN KEY.
+
+#### What is Self-Join?
+
+Self-join is set to be query used to compare to itself. This is used to compare values in a column with other values in the same column in the same table. ALIAS ES can be used for the same table comparison.
+
+#### What is Cross-Join?
+
+Cross join defines as Cartesian product where number of rows in the first table multiplied by number of rows in the second table. If suppose, WHERE clause is used in cross join then the query will work like an INNER JOIN.
