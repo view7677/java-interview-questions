@@ -434,8 +434,47 @@ Performance of UNION ALL is considered better than UNION, since UNION ALL does n
 
 #### 28. What will be the result of following query?
 
+Consider following tables:
+
+<table>
+<tr><th>Employee</th><th>Department</th></tr>
+<tr><td>
+
+| ID  | Emp_name |
+| --- | -------- |
+| 1   | Jane     |
+| 2   | George   |
+| 3   | John     |
+
+</td><td>
 
 
+| ID  | Dept_name  | Emp_id |
+| --- | ---------- | ------ |
+| 1   | Marketing  | 1      |
+| 2   | Finance    | 2      |
+| 3   | Technology | null   |
+
+</td></tr> </table>
+
+```sql
+SELECT * FROM Employee WHERE id NOT IN
+  (SELECT Emp_id FROM Department
+  )
+```
+Answer: The above query will return no records. The reason for this is presence of null value in Emp_id column of Department table.
+
+When we do SELECT Emp_id FROM Department, we get null value also. Now in main query we compare NOT IN with null value, then it does not return any result.
+
+The correct query is:
+
+```sql
+SELECT *
+FROM Employee
+WHERE id NOT IN
+  (SELECT Emp_id FROM Department WHERE Emp_id IS NOT NULL
+  )
+```
 #### 29. What is the wrong with this SQL query?
 
 
