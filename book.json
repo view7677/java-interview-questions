@@ -30,7 +30,11 @@
             "background": {
                 "color": "#09F"
             }
-        }
+        },
+        "uml": {
+            format: 'png',
+            nailgun: false
+          }
     },
     "variables": {},
     "links": {
