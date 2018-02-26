@@ -68,9 +68,11 @@ Differences between Abstract class and Interface are as follows:
 
 
 #### 68. Does Java allow us to use private and protected modifiers for variables in interfaces?
+
 No. All the variables in an interface are implicitly public.
 
-##### 69. How can we cast to an object reference to an interface reference?
+
+#### 69. How can we cast to an object reference to an interface reference?
 
 An Object that implements an Interface can be cast to the same Interface. Since An Object implementing an Interface already provides implementation for the methods of that Interface, it is allowed to do so as per the rules of Inheritance.
 
