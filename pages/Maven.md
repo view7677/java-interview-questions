@@ -239,36 +239,91 @@ In Maven, we specify a project’s dependencies as artifacts.
 
 #### 804. What are the different dependency scopes in Maven?
 
+Maven supports following dependency scopes:
+
+1. **compile**: This is the default dependency scope in Maven. The compile level dependencies are available in all classpaths of a project. These dependencies are also propagated to dependent projects.
+2. **provided**: This scope is similar to compile. But in this scope we expect the JDK or a container to provide the dependency at runtime. E.g. While building a web application for the Java Enterprise Edition, we can set the dependency on the Servlet API and related Java EE APIs to scope provided. The web container will provide these classes at runtime to our application.This scope is only available on the compilation and test classpath, and is not transitive.
+3. **runtime**: The dependency in this scope is not required for compilation. It is required for execution. It is available in the runtime and test classpaths. It is not present in the compile classpath.
+4. **test**: This scope is used for dependencies that are required for test compilation and execution phases. This scope is not transitive.
+5. **system**: This scope is same as provided scope, except that you have to provide the JAR that contains it explicitly. In this case, he artifact is always available. There is no need to look it up in a repository.
+6. **import**: This scope is only used on a dependency of type pom in the section. In this case, the specified POM has to be replaced with the dependencies in that POM’s section. This scope is only available in Maven 2.0.9 or later.
 
 #### 805. How can we exclude a dependency in Maven?
 
+To exclude a dependency we can add the tag under the section of the pom. E.g. 
+```xml
+<dependencies>
+	<dependency>
+		<groupId>test.ProjectX</groupId>
+		<artifactId>ProjectX</artifactId>
+		<version>1.0</version>
+		<scope>compile</scope>
+		<exclusions>
+			<exclusion> <!– exclusion is mentioned here –>
+				<groupId>test.ProjectY</groupId>
+				<artifactId>ProjectY</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+</dependencies>
+```
 
 #### 806. How Maven searches for JAR corresponding to a dependency?
 
+Maven first looks for a JAR related to a dependency in the local repository. If it finds it there then it stops.
+
+If it does not find it in local repo, it looks for the JAR in the remote repository and downloads the corresponding version of JAR file. From remote repository it stores the JAR into local repository.
 
 #### 807. What is a transitive dependency in Maven?
 
+Let say you have a Project A that depends on dependency B. The dependency B further depends on dependency C. So your dependency C is a Transitive Dependency of your project A.
+
+In Maven, starting from 2.0, you do not have to specify transitive dependencies. You just mention your immediate dependencies in pom.xml.
+
+Maven takes care of resolving the Transitive dependencies and includes them automatically.
 
 #### 808. What are Excluded dependencies in Maven?
 
+Let say a project A depends on project B, and project B depends on project C. The developers of project A can explicitly exclude project C as a dependency. We can use the “exclusion” element to exclude it. Such dependencies are called Excluded dependencies in Maven.
 
 #### 809. What are Optional dependencies in Maven?
 
+Let say a project B depends on project C. The developers of project B can mark project C as an optional dependency by using the “optional” element.
+
+In case project A depends on project B, A will depend only on B and not on B’s optional dependency C.
+
+The developers of project A may then explicitly add a dependency on C. The dependency of B on C is known as Optional dependency in Maven.
 
 #### 810. Where will you find the class files after compiling a Maven project successfully?
+
+Once Maven completes the compilation successfully, it stores the files in target folder. The default location for class files is:` ${basedir}/target/classes/`
 
 
 #### 811. What are the default locations for source, test and build directories in Maven?
 
+The default locations are as follows: 
+* Source: `src/main/java` 
+* Test: `src/main/test` 
+* Build: `Target`
+
 
 #### 812. What is the result of jar:jar goal in Maven?
 
+In Maven, `jar:jar` goal creates a jar file in the Maven build directory. Jar file is create with the name format `${project.id}-${project.currentVersion}.jar`. The id and currentVersion are mentioned in the `project.xml` of the project being built. `jar:jar` does not recompile sources. It just creates a jar from already compiled classes.
 
 #### 813. How can we get the debug or error messages from the execution of Maven?
 
+At times, project build or compile fails in Maven. At this time it is very helpful to see the debug or error messages from Maven execution. To get the debug messages we can call Maven with `-X` option. To get the error/exception messages we can call Maven with `-e` option.
 
 #### 814. What is the difference between a Release version and SNAPSHOT version in Maven?
 
+A SNAPSHOT version in Maven is the one that has not been released.
+
+Before every release version there is a SNAPSHOT version. Before 1.0 release there will be 1.0-SNAPSHOT.
+
+If we download 1.0-SNAPSHOT today then we may get different set of files than the one we get on downloading it yesterday. SNAPSHOT version can keep getting changes in it since it is under development.
+
+But release version always gives exactly same set files with each download.
 
 #### 815. How will you run test classes in Maven?
 
@@ -312,6 +367,16 @@ Maven is mainly used for Java based systems. Gradle is used for a variety of lan
 
 #### 820. What is the difference between Inheritance and Multi-module in Maven?
 
+In Maven, we can create a parent project that will pass its values to its children projects.
 
+A multi-module project is created to manage a group of other sub-projects or modules. The multi-module relationship is like a tree that starts from the topmost level to the bottom level. In a multi-module project, we specify that a project should include the specific modules for build. Multi-module builds are used to group modules together in a single build.
+
+Whereas in Inheritance, the parent-child project relationship starts from the leaf node and goes upwards. It deals more with the definition of a specific project. In this case a child’s pom is derived from its parent’s pom.
 
 #### 821. What is Build portability in Maven?
+
+In Maven, the portability of a build is the measure of how easy it is to take a particular project and build it in different environments.
+
+A build that does not require any custom configuration or customization of properties files is more portable than a build that requires a lot of custom work to build it from scratch.
+
+Open source projects from Apache Commons are one of the most portable projects. These build can work just out of the box.
