@@ -1,20 +1,21 @@
-## Abstraction
+#
+# Abstraction
 ******
 
 ##### 55. What is Abstraction in Object Oriented programming?
 
-Abstraction is the process of hiding certain implementation details of an object and showing only essential features of the object to  
+Abstraction is the process of hiding certain implementation details of an object and showing only essential features of the object to
 outside world. It is different from Abstract class in Java. Abstraction process identifies commonalities and hides the complexity of implementation. It helps us in focusing on the interface that we share with the outside world.
 
 ##### 56. How is Abstraction different from Encapsulation?
 
-Abstraction happens at class level design. It results in hiding the implementation details. Encapsulation is also known as “Information Hiding”. An example of encapsulation is marking the member variables private and providing getter and setter for these  
+Abstraction happens at class level design. It results in hiding the implementation details. Encapsulation is also known as “Information Hiding”. An example of encapsulation is marking the member variables private and providing getter and setter for these
 member variables.
 
 ##### 57. What is an abstract class in Java?
 
-An abstract class in Java has one or more abstract methods. An abstract method is just declared in the abstract class, but it is not implemented.  
-An abstract class has to be extended in Java and its abstract methods have to be implemented by a child class. Also Java does  
+An abstract class in Java has one or more abstract methods. An abstract method is just declared in the abstract class, but it is not implemented.
+An abstract class has to be extended in Java and its abstract methods have to be implemented by a child class. Also Java does
 not allow new instance of Abstract class.
 
 ##### 58. Is it allowed to mark a method abstract method without marking the class abstract?
@@ -23,7 +24,7 @@ No. Java specification says that if there is at least one abstract method in a c
 
 ##### 59. Is it allowed to mark a method abstract as well as final?
 
-No. It will be contradictory statement to mark a method abstract as well as final.  
+No. It will be contradictory statement to mark a method abstract as well as final.
 An abstract method has to be overridden by a child class. And a final method cannot be overridden. Therefore a method can be either abstract or final in Java.
 
 ##### 60. Can we instantiate an abstract class in Java?
@@ -32,7 +33,7 @@ No. We cannot create an instance of an abstract class in Java.
 
 ##### 61. What is an interface in Java?
 
-An Interface in Java is an abstract type blueprint of a class. It contains the methods that a class must implement. It is like a protocol.  
+An Interface in Java is an abstract type blueprint of a class. It contains the methods that a class must implement. It is like a protocol.
 It has method signatures and constant declarations.
 
 ##### 62. Is it allowed to mark an interface method as static?
@@ -57,23 +58,17 @@ Annotations serve the purpose of conveying metadata about the class to its consu
 
 ##### 67. What is the difference between abstract class and interface in Java?
 
-Differences between Abstract class and Interface are as follows:  
+Differences between Abstract class and Interface are as follows:
+
+| Abstract class                                                                   | Interface                                                                                                                |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| An abstract class can have implemented methods with body (non-abstract methods). | Interface has only abstract methods. From Java 8 onwards, interface can have static/default methods in implemented form. |
+| An abstract class can have instance member variables.                            | An interface cannot have  instance variables. It can only have constants.                                                |
+|An abstract class can have a constructor.|Interface cannot have constructor. It has to be implemented by another class.|
+|A class can extend only one abstract class.|A class can implement more than one interface.|
 
 
-An abstract class can have implemented methods with  
-body \(non-abstract methods\). Interface has only abstract  
-methods. From Java 8 onwards, interface can have  
-static/default methods in implemented form.  
-An abstract class can have instance member variables. An  
-interface cannot have instance variables. It can only have  
-constants.  
-An abstract class can have a constructor. Interface cannot  
-have constructor. It has to be implemented by another  
-class.  
-A class can extend only one abstract class. A class can  
-implement more than one interface.68. Does Java allow us to use private  
-and protected modifiers for variables  
-in interfaces?  
+#### 68. Does Java allow us to use private and protected modifiers for variables in interfaces?
 No. All the variables in an interface are implicitly public.
 
 ##### 69. How can we cast to an object reference to an interface reference?
