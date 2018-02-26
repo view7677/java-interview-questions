@@ -1,6 +1,7 @@
 ## [SQL](./SQL.md)
 
 
+
 #### 1. Write SQL query to get the second highest salary among all Employees?
 
 There are multiple ways to get the second highest salary among all Employees.

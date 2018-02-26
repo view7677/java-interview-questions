@@ -8,7 +8,8 @@
     "gitbook": "3.2.3",
     "extension": null,
     "plugins": [
-        "mathjax"
+        "mathjax",
+        "uml"
     ],
     "pluginsConfig": {
         "fontSettings": {
