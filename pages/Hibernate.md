@@ -117,78 +117,739 @@ and extended as per the use case of application.
 
 #### 718. Can you tell us about the core interfaces of Hibernate framework?
 
+The core interfaces of Hibernate framework are as follows:
+
+1. **Configuration**: Configuration interface can be implemented in an application to specify the properties and mapping documents for creating a SessionFactory in Hibernate. Hibernate application
+2. bootstraps by using this interface.
+3. **SessionFactory**: In Hibernate, SessionFactory is used to create and manage Sessions. Generally, there is one SessionFactory created for one database. It is a thread-safe interface that works well in multithreaded applications.
+4. **Session**: Session is a lightweight object that is used at runtime between a Java application and Hibernate. It contains methods to create, read and delete operations for entity classes. It is a basic
+5. class that abstracts the concept of persistence.
+6. **Transaction**: This is an optional interface. It is a short lived object that is used for encapsulating the overall work based on unit of work design pattern. A Session can have multiple Transactions.
+7. **Query**: This interface encapsulates the behavior of an objectoriented query in Hibernate. It can accept parameters and execute the queries to fetch results. Same query can be executed multipletimes.
+8. **Criteria**: This is a simplified API to retrieve objects by creating Criterion objects. It is very easy to use for creating Search like features.
 
 #### 719. How will you map the columns of a DB table to the properties of a Java class in Hibernate?
 
+We can map the class properties and table columns by using one of the two ways:
+
+**XML**: We can map the column of a table to the property of a class in XML file. It is generally with extension hbm.xml
+**Annotation**: We can also use annotations `@Entity` and `@Table` to map a column to the property of a class.
 
 #### 720. Does Hibernate make it mandatory for a mapping file to have .hbm.xml extension?
 
+No. It is a convention to have.hbm.xml extension in the name of a mapping file. It is not a requirement enforced by Hibernate. We can use any other extension of our convenience for this.
 
 #### 721. What are the steps for creating a SessionFactory in Hibernate?
 
+Steps to create a SessionFactory in Hibernate are:
+
+**Configuration**: First create a Configuration object. This will refer to the path of configuration file.
+**Resource**: Add config file resource to Configuration object. 
+**Properties**: Set properties in the Configuration object.
+**SessionFactory**: Use Configuration object to build SessionFactory.
+
+Example.
+```java
+Configuration config = new Configuration();
+config.addResource("testInstance/configuration.hbm.xml");
+config.setProperties( System.getProperties() );
+SessionFactory sessions = config.buildSessionFactory();
+```
 
 #### 722. Why do we use POJO in Hibernate?
 
+POJO stands for Plain Old Java Objects. A POJO is java bean with
+getter and setter methods for each property of the bean.
+
+It is a simple class that encapsulates an object’s properties and
+provides access through setters and getters.
+
+Some of the reasons for using POJO in Hibernate are:
+
+POJO emphasizes the fact that this class is a simple Java class, not
+a heavy class like EJB.
+
+POJO is a well-constructed class, so it works well with Hibernate
+proxies.
+
+POJO also comes with a default constructor that makes it easier to
+persist with a default constructor.
 
 #### 723. What is Hibernate Query Language (HQL)?
 
+Hibernate Query Language is also known as HQL. It is an Object Oriented language. But it is similar to SQL.
+
+HQL works well with persistent objects and their properties. HQL does not work on database tables.
+
+HQL queries are translated into native SQL queries specific to a database.
+
+HQL supports direct running of native SQL queries also. But it creates an issue in Database portability.
 
 #### 724. How will you call a stored procedure in Hibernate?
+
+In Hibernate, there are three approaches to call a database store procedure.
+1. **Native SQL – createSQLQuery** : You can use createSQLQuery() to call a store procedure directly.
+
+```java
+Query query = session.createSQLQuery(
+	"CALL GetStocks(:stockCode)")
+	.addEntity(Stock.class)
+	.setParameter("stockCode", "7277");
+
+List result = query.list();
+for(int i=0; i<result.size(); i++){
+	Stock stock = (Stock)result.get(i);
+	System.out.println(stock.getStockCode());
+}
+```
+2. **NamedNativeQuery in annotation** : Declare your store procedure inside the @NamedNativeQueries annotation.
+
+```java
+//Stock.java
+...
+@NamedNativeQueries({
+	@NamedNativeQuery(
+	name = "callStockStoreProcedure",
+	query = "CALL GetStocks(:stockCode)",
+	resultClass = Stock.class
+	)
+})
+@Entity
+@Table(name = "stock")
+public class Stock implements java.io.Serializable {
+...
+```
+Call it with `getNamedQuery()`.
+```java
+Query query = session.getNamedQuery("callStockStoreProcedure")
+	.setParameter("stockCode", "7277");
+List result = query.list();
+for(int i=0; i<result.size(); i++){
+	Stock stock = (Stock)result.get(i);
+	System.out.println(stock.getStockCode());
+}
+```
+3. **sql-query in XML mapping file** : Declare your store procedure inside the "sql-query" tag.
+
+```xml
+<!-- Stock.hbm.xml -->
+...
+<hibernate-mapping>
+    <class name="com.mkyong.common.Stock" table="stock" ...>
+        <id name="stockId" type="java.lang.Integer">
+            <column name="STOCK_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="stockCode" type="string">
+            <column name="STOCK_CODE" length="10" not-null="true" unique="true" />
+        </property>
+        ...
+    </class>
+
+    <sql-query name="callStockStoreProcedure">
+	<return alias="stock" class="com.mkyong.common.Stock"/>
+	<![CDATA[CALL GetStocks(:stockCode)]]>
+    </sql-query>
+
+</hibernate-mapping>
+```
+Call it with `getNamedQuery()`.
+```java
+Query query = session.getNamedQuery("callStockStoreProcedure")
+	.setParameter("stockCode", "7277");
+List result = query.list();
+for(int i=0; i<result.size(); i++){
+	Stock stock = (Stock)result.get(i);
+	System.out.println(stock.getStockCode());
+}
+```
 
 
 #### 725. What is Criteria API in Hibernate?
 
+Criteria is a simplified API in Hibernate to get entities from database by creating Criterion objects.
+
+It is a very intuitive and convenient approach for search features. Users can specify different criteria for searching entities and Criteria API can handle these.
+
+Criterion instances are obtained through factory methods on Restrictions.
 
 #### 726. Why do we use HibernateTemplate?
 
+This is a trap question. HibernateTemplate has been deprecated. There were earlier good reasons to use HibernateTemplate. But now the trend has changed towards not using it anymore.
 
 #### 727. How can you see SQL code generated by Hibernate on console?
 
+To display the SQL generated by Hibernate, we have to turn on the show_sql flag. 
+This can be done in Hibernate configuration as follows:
+```xml
+<property name=”show_sql”>true</property>
+```
 
 #### 728. What are the different types of collections supported by Hibernate?
 
+Hibernate supports following two types of collections:
+1. **Indexed Collections**: `List` and `Maps`
+2. **Sorted Collections**: `java.util.SortedMap` and `java.util.SortedSet`
 
-#### 729. What is the difference between session.save() and session.saveOrUpdate() methods in Hibernate?
+#### 729. What is the difference between `session.save()` and `session.saveOrUpdate()` methods in Hibernate?
 
+Save method first stores an object in the database. Then it persists the given transient instance by assigning a generated identifier. Finally, it returns the id of the entity that is just created.
+
+`SaveOrUpdate()` method calls either `save()` or `update()` method. It selects one of these methods based on the existence of identifier.
+
+If an identifier exists for the entity then update() method is called. If there is no identifier for the entity then `save()` method is called as mentioned earlier.
 
 #### 730. What are the advantages of Hibernate framework over JDBC?
 
+Main advantages of Hibernate over JDBC are as follows:
+
+1. **Database Portability**: Hibernate can be used with multiple types of database with easy portability. In JDBC, developer has to write database specific native queries. These native queries can reduce the database portability of the code.
+2. **Connection Pool**: Hibernate handles connection pooling very well. JDBC requires connection pooling to be defined by developer.
+3. **Complexity**: Hibernate handles complex query scenarios very well with its internal API like Criteria. So developer need not gain expertise in writing complex SQL queries. In JDBC application developer writes most of the queries.
 
 #### 731. How can we get statistics of a SessionFactory in Hibernate?
 
+In Hibernate we can get the statistics of a SessionFactory by using Statistics interface. We can get information like Close Statement count, Collection Fetch count, Collection Load count, Entity insert count etc.
 
 #### 732. What is the Transient state of an object in Hibernate?
 
+When an object is just instantiated using the new operator but is not associated with a Hibernate Session, then the object is in Transient state.
+
+In Transient state, object does not have a persistent representation in database. Also there is no identifier assigned to an object in Transient state.
+
+An object in Transient state can be garbage collected if there is no reference pointing to it.
 
 #### 733. What is the Detached state of an object in Hibernate?
 
+An object is in detached state if it was persistent earlier but its Session is closed now.
+
+Any reference to this object is still valid. We can even update this object. Later on we can even attach an object in detached state to a new session and make it persistent.
+
+Detached state is very useful in application transactions where a user takes some time to finish the work.
 
 #### 734. What is the use of Dirty Checking in Hibernate?
 
+Dirty Checking is very useful feature of Hibernate for write to database operations. Hibernate monitors all the persistent objects for any changes. It can detect if an object has been modified or not.
+
+By Dirty Checking, only those fields of an object are updated that require any change in them. It reduces the time-consuming database write operations.
 
 #### 735. What is the purpose of Callback interface in Hibernate?
 
+Callback interface in Hibernate is mainly used for receiving notifications of different events from an object.
+
+Example. We can use Callback to get the notification when an object is loaded into or removed from database.
 
 #### 736. What are the different ORM levels in Hibernate?
 
+There are following four different ORM levels in Hibernate:
+
+1. **Pure Relational ORM**: At this level entire application is designed around the relational model. All the operations are SQL based at this level.
+2. **Light Object Mapping**: At this level entity classes are mapped manually to relational tables. Business logic code is hidden from data access code. Applications with less number of entities use this level.
+3. **Medium Object Mapping**: In this case, application is designed around an object model. Most of the SQL code is generated at compile time. Associations between objects are supported by the persistence mechanism. Object-oriented expression language is used to specify queries.
+4. **Full Object Mapping**: This is one of the most sophisticated object modeling level. It supports composition, inheritance, polymorphism and persistence. The persistent classes do not inherit any special base class at this level. There are efficient fetching and caching strategies implemented transparently to the application.
 
 #### 737. What are the different ways to configure a Hibernate application?
 
+There are mainly two ways to configure Hibernate application:
+
+1. **XML based**: We can define the Hibernate configuration in an XML file like ibernate.cfg.xml file
+2. **Programming based**: We can also use code logic to configure Hibernate in our application.
 
 #### 738. What is Query Cache in Hibernate?
 
+Hibernate provides Query Cache to improve the performance of queries that run multiple times with same parameters.
+
+At times Query Caching can reduce the performance of Transactional processing. By default Query Cache is disabled in Hibernate.
+
+It has to be used based on the benefits gained by it in performance of the queries in an application.
 
 #### 739. What are the different types of Association mappings supported by Hibernate?
 
+Hibernate supports following four types of Association mappings:
+
+1. **Unidirectional association**: This kind of association works in only one direction. Unidirectional association with join tables 
+3. **Bidirectional association**: This kind of association works in both directions.
+4. Bidirectional association with join tables
 
 #### 740. What are the different types of Unidirectional Association mappings in Hibernate?
 
+In Hibernate there can be following three types of Unidirectional Association mappings:
+1. Many to one
+2. One to one
+3. One to many
 
 #### 741. What is Unit of Work design pattern?
 
+Unit of Work is a design pattern to define business transactions. A Unit of Work is a list of ordered operations that we want to run on a database together. Either all of these go together or none of these goes.
+
+Most of the time, we use term business transaction in place of Unit of Work.
+
+Example. In case of money transfer from account A to B, the unit of work can be two operation Debit account A and Credit account B in a sequence. Both these operations should happen together and in right sequence.
 
 #### 742. In Hibernate, how can an object go in Detached state?
 
+Once the session attached to an Object is closed, the object goes
+into Detached state. An Object in Detached state can be attached to
+another session at a later point of time.
+
+This state is quite useful in concurrent applications that have long
+unit of work.
+
+![](http://4.bp.blogspot.com/-vNib2DzPqtU/VKNUF79ye1I/AAAAAAAADwk/3ouyH6HQ1f8/s1600/Hibernate%2BObject%2BLife%2BCycle.png)
+
+#### 743. How will you order the results returned by a Criteria in Hibernate?
+
+
+#### 744. How does Example criterion work in Hibernate?
+
+
+#### 745. How does Transaction management work in Hibernate?
+
+
+#### 746. How can we mark an entity/collection as immutable in Hibernate?
+
+
+#### 747. What are the different options to retrieve an object from database in Hibernate?
+
+
+#### 748. How can we auto-generate primary key in Hibernate?
+
+
+#### 749. How will you re-attach an object in Detached state in Hibernate?
+
+
+#### 750. What is the first level of cache in Hibernate?
+
+
+#### 751. What are the different second level caches available in Hibernate?752.Which is the default transaction factory in Hibernate?
+
+
+#### 753. What are the options to disable second level cache in Hibernate?
+
+
+#### 754. What are the different fetching strategies in Hibernate?
+
+
+#### 755. What is the difference between Immediate fetching and Lazy collection fetching?
+
+
+#### 756. What is ‘Extra lazy fetching’ in Hibernate?
+
+
+#### 757. How can we check is a collection is initialized or not under Lazy Initialization strategy?
+
+
+#### 758. What are the different strategies for cache mapping in Hibernate?
+
+
+#### 759. What is the difference between a Set and a Bag in Hibernate?
+
+
+#### 760. How can we monitor the performance of Hibernate in an application?
+
+
+#### 761. How can we check if an Object is in Persistent, Detached or Transient state in Hibernate?
+
+
+#### 762. What is ‘the inverse side of association’ in a mapping?
+## Hibernate
+*************
+
+
+#### 712. What is Hibernate framework?
+
+Hibernate is a popular **Ob**ject **R**elational **M**apping (ORM)
+framework of Java. It helps in mapping the Object Oriented Domain
+model to Relational Database tables.
+
+Hibernate is a free software distributed under GNU license.
+Hibernate also provides implementation of Java Persistence API
+(JPA).
+
+In simple words, it is a framework to retrieve and store data from
+database tables from Java.
+
+#### 713. What is an Object Relational Mapping (ORM)?
+
+**O**bject **R**elational **M**apping (ORM) is a programming technique to
+map data from a relational database to Object oriented domain
+model. This is the core of Hibernate framework.
+
+In case of Java, most of the software is based on OOPS design. But
+the data stored in Database is based on **R**elation **D**atabase
+**M**anagement **S**ystem (RDBMS).
+
+ORM helps in data retrieval in an Object Oriented way from an
+RDBMS. It reduces the effort of developers in writing queries to
+access and insert data.
+
+#### 714. What is the purpose of Configuration Interface in Hibernate?
+
+`Configuration` interface can be implemented in an application to
+specify the properties and mapping documents for creating a
+`SessionFactory` in Hibernate.
+
+By default, a new instance of Configuration uses properties
+mentioned in `hibernate.properties` file.
+
+Configuration is mainly an initialization time object that loads the
+properties in helps in creating `SessionFactory` with these properties.
+
+In short, `Configuration` interface is used for configuring Hibernate
+framework in an application.
+
+#### 715. What is Object Relational Impedance Mismatch?
+
+**O**bject **R**elational **I**mpedance **M**ismatch (ORIM) is also known as
+paradigm mismatch. It means that Object model and Relational
+model do not work well with each other.
+
+Relational model or a RDBMS represents data in tabular format
+like a spreadsheet. Object model or OOPS represents the data as an
+inter-connected graph of objects.
+
+Mixing these two models leads to various problems. The common
+name for these issues is **O**bject **R**elational **I**mpedance **M**ismatch.
+
+#### 716. What are the main problems of Object Relational Impedance Mismatch?
+
+Object model and Relational models (RDBMS) have following
+problems that are part of Object Relational Impedance Mismatch:
+Granularity: Object model is more granular than Relational model.
+There are more classes in object model than the corresponding
+tables in relational model.
+
+**Inheritance**: Object model supports inheritance. But Relational
+model does not have any concept of inheritance.
+Identity: Relational model has just one criteria for sameness of data.
+It is based on primary key. In object model like Java we can have
+equals as well as == for sameness of objects.
+
+**Associations**: In Object model associations are uni-directional. In
+RDBMS, there is a concept of foreign key for association. Also
+multiplicity of a relationship is hard to judge by looking at object
+model.
+
+**Data navigation**: In Object model, you can move from one object to
+another object for getting data. Egg. you can retrieve and Employee
+object, then go to its department object and then get the employees
+in the department object. In RDBMS, we try to minimize the SQL
+calls, so we get all the data by using joins.
+
+#### 717. What are the key characteristics of Hibernate?
+
+Hibernate has following key characteristics:
+
+**Object/Relational Mapping (ORM)**: Hibernate provides ORM
+capabilities to developers. So then can write code in Object model
+for connecting with data in Relational model.
+
+**JPA Provider**: Hibernate provides an excellent implementation of
+Java Persistence API (JPA) specification.
+
+**Idiomatic persistence**: Hibernate provides persistence based on
+natural Object-oriented idioms with full support for inheritance,
+polymorphism, association, composition, and the Java collections
+framework. It can work with any data for persistence.
+
+**High Performance**: Hibernate provides high level of performance
+supporting features like- lazy initialization, multiple fetching
+strategies, optimistic locking etc. Hibernate does not need its own
+database tables or fields. It can generate SQL at system
+initialization to provide better performance at runtime.
+
+**Scalability**: Hibernate works well in multi server clusters. It has
+built in scalability support. It can work well for small projects as
+well as for large business software.
+
+**Reliable**: Hibernate very reliable and stable framework. This is the
+reason for its worldwide acceptance and popularity among
+developer community.
+
+**Extensible**: Hibernate is quite generic in nature. It can be configured
+and extended as per the use case of application.
+
+#### 718. Can you tell us about the core interfaces of Hibernate framework?
+
+The core interfaces of Hibernate framework are as follows:
+
+1. **Configuration**: Configuration interface can be implemented in an application to specify the properties and mapping documents for creating a SessionFactory in Hibernate. Hibernate application
+2. bootstraps by using this interface.
+3. **SessionFactory**: In Hibernate, SessionFactory is used to create and manage Sessions. Generally, there is one SessionFactory created for one database. It is a thread-safe interface that works well in multithreaded applications.
+4. **Session**: Session is a lightweight object that is used at runtime between a Java application and Hibernate. It contains methods to create, read and delete operations for entity classes. It is a basic
+5. class that abstracts the concept of persistence.
+6. **Transaction**: This is an optional interface. It is a short lived object that is used for encapsulating the overall work based on unit of work design pattern. A Session can have multiple Transactions.
+7. **Query**: This interface encapsulates the behavior of an objectoriented query in Hibernate. It can accept parameters and execute the queries to fetch results. Same query can be executed multipletimes.
+8. **Criteria**: This is a simplified API to retrieve objects by creating Criterion objects. It is very easy to use for creating Search like features.
+
+#### 719. How will you map the columns of a DB table to the properties of a Java class in Hibernate?
+
+We can map the class properties and table columns by using one of the two ways:
+
+**XML**: We can map the column of a table to the property of a class in XML file. It is generally with extension hbm.xml
+**Annotation**: We can also use annotations `@Entity` and `@Table` to map a column to the property of a class.
+
+#### 720. Does Hibernate make it mandatory for a mapping file to have .hbm.xml extension?
+
+No. It is a convention to have.hbm.xml extension in the name of a mapping file. It is not a requirement enforced by Hibernate. We can use any other extension of our convenience for this.
+
+#### 721. What are the steps for creating a SessionFactory in Hibernate?
+
+Steps to create a SessionFactory in Hibernate are:
+
+**Configuration**: First create a Configuration object. This will refer to the path of configuration file.
+**Resource**: Add config file resource to Configuration object. 
+**Properties**: Set properties in the Configuration object.
+**SessionFactory**: Use Configuration object to build SessionFactory.
+
+Example.
+```java
+Configuration config = new Configuration();
+config.addResource("testInstance/configuration.hbm.xml");
+config.setProperties( System.getProperties() );
+SessionFactory sessions = config.buildSessionFactory();
+```
+
+#### 722. Why do we use POJO in Hibernate?
+
+POJO stands for Plain Old Java Objects. A POJO is java bean with
+getter and setter methods for each property of the bean.
+
+It is a simple class that encapsulates an object’s properties and
+provides access through setters and getters.
+
+Some of the reasons for using POJO in Hibernate are:
+
+POJO emphasizes the fact that this class is a simple Java class, not
+a heavy class like EJB.
+
+POJO is a well-constructed class, so it works well with Hibernate
+proxies.
+
+POJO also comes with a default constructor that makes it easier to
+persist with a default constructor.
+
+#### 723. What is Hibernate Query Language (HQL)?
+
+Hibernate Query Language is also known as HQL. It is an Object Oriented language. But it is similar to SQL.
+
+HQL works well with persistent objects and their properties. HQL does not work on database tables.
+
+HQL queries are translated into native SQL queries specific to a database.
+
+HQL supports direct running of native SQL queries also. But it creates an issue in Database portability.
+
+#### 724. How will you call a stored procedure in Hibernate?
+
+In Hibernate, there are three approaches to call a database store procedure.
+1. **Native SQL – createSQLQuery** : You can use createSQLQuery() to call a store procedure directly.
+
+```java
+Query query = session.createSQLQuery(
+	"CALL GetStocks(:stockCode)")
+	.addEntity(Stock.class)
+	.setParameter("stockCode", "7277");
+
+List result = query.list();
+for(int i=0; i<result.size(); i++){
+	Stock stock = (Stock)result.get(i);
+	System.out.println(stock.getStockCode());
+}
+```
+2. **NamedNativeQuery in annotation** : Declare your store procedure inside the @NamedNativeQueries annotation.
+
+```java
+//Stock.java
+...
+@NamedNativeQueries({
+	@NamedNativeQuery(
+	name = "callStockStoreProcedure",
+	query = "CALL GetStocks(:stockCode)",
+	resultClass = Stock.class
+	)
+})
+@Entity
+@Table(name = "stock")
+public class Stock implements java.io.Serializable {
+...
+```
+Call it with `getNamedQuery()`.
+```java
+Query query = session.getNamedQuery("callStockStoreProcedure")
+	.setParameter("stockCode", "7277");
+List result = query.list();
+for(int i=0; i<result.size(); i++){
+	Stock stock = (Stock)result.get(i);
+	System.out.println(stock.getStockCode());
+}
+```
+3. **sql-query in XML mapping file** : Declare your store procedure inside the "sql-query" tag.
+
+```xml
+<!-- Stock.hbm.xml -->
+...
+<hibernate-mapping>
+    <class name="com.mkyong.common.Stock" table="stock" ...>
+        <id name="stockId" type="java.lang.Integer">
+            <column name="STOCK_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="stockCode" type="string">
+            <column name="STOCK_CODE" length="10" not-null="true" unique="true" />
+        </property>
+        ...
+    </class>
+
+    <sql-query name="callStockStoreProcedure">
+	<return alias="stock" class="com.mkyong.common.Stock"/>
+	<![CDATA[CALL GetStocks(:stockCode)]]>
+    </sql-query>
+
+</hibernate-mapping>
+```
+Call it with `getNamedQuery()`.
+```java
+Query query = session.getNamedQuery("callStockStoreProcedure")
+	.setParameter("stockCode", "7277");
+List result = query.list();
+for(int i=0; i<result.size(); i++){
+	Stock stock = (Stock)result.get(i);
+	System.out.println(stock.getStockCode());
+}
+```
+
+
+#### 725. What is Criteria API in Hibernate?
+
+Criteria is a simplified API in Hibernate to get entities from database by creating Criterion objects.
+
+It is a very intuitive and convenient approach for search features. Users can specify different criteria for searching entities and Criteria API can handle these.
+
+Criterion instances are obtained through factory methods on Restrictions.
+
+#### 726. Why do we use HibernateTemplate?
+
+This is a trap question. HibernateTemplate has been deprecated. There were earlier good reasons to use HibernateTemplate. But now the trend has changed towards not using it anymore.
+
+#### 727. How can you see SQL code generated by Hibernate on console?
+
+To display the SQL generated by Hibernate, we have to turn on the show_sql flag. 
+This can be done in Hibernate configuration as follows:
+```xml
+<property name=”show_sql”>true</property>
+```
+
+#### 728. What are the different types of collections supported by Hibernate?
+
+Hibernate supports following two types of collections:
+1. **Indexed Collections**: `List` and `Maps`
+2. **Sorted Collections**: `java.util.SortedMap` and `java.util.SortedSet`
+
+#### 729. What is the difference between `session.save()` and `session.saveOrUpdate()` methods in Hibernate?
+
+Save method first stores an object in the database. Then it persists the given transient instance by assigning a generated identifier. Finally, it returns the id of the entity that is just created.
+
+`SaveOrUpdate()` method calls either `save()` or `update()` method. It selects one of these methods based on the existence of identifier.
+
+If an identifier exists for the entity then update() method is called. If there is no identifier for the entity then `save()` method is called as mentioned earlier.
+
+#### 730. What are the advantages of Hibernate framework over JDBC?
+
+Main advantages of Hibernate over JDBC are as follows:
+
+1. **Database Portability**: Hibernate can be used with multiple types of database with easy portability. In JDBC, developer has to write database specific native queries. These native queries can reduce the database portability of the code.
+2. **Connection Pool**: Hibernate handles connection pooling very well. JDBC requires connection pooling to be defined by developer.
+3. **Complexity**: Hibernate handles complex query scenarios very well with its internal API like Criteria. So developer need not gain expertise in writing complex SQL queries. In JDBC application developer writes most of the queries.
+
+#### 731. How can we get statistics of a SessionFactory in Hibernate?
+
+In Hibernate we can get the statistics of a SessionFactory by using Statistics interface. We can get information like Close Statement count, Collection Fetch count, Collection Load count, Entity insert count etc.
+
+#### 732. What is the Transient state of an object in Hibernate?
+
+When an object is just instantiated using the new operator but is not associated with a Hibernate Session, then the object is in Transient state.
+
+In Transient state, object does not have a persistent representation in database. Also there is no identifier assigned to an object in Transient state.
+
+An object in Transient state can be garbage collected if there is no reference pointing to it.
+
+#### 733. What is the Detached state of an object in Hibernate?
+
+An object is in detached state if it was persistent earlier but its Session is closed now.
+
+Any reference to this object is still valid. We can even update this object. Later on we can even attach an object in detached state to a new session and make it persistent.
+
+Detached state is very useful in application transactions where a user takes some time to finish the work.
+
+#### 734. What is the use of Dirty Checking in Hibernate?
+
+Dirty Checking is very useful feature of Hibernate for write to database operations. Hibernate monitors all the persistent objects for any changes. It can detect if an object has been modified or not.
+
+By Dirty Checking, only those fields of an object are updated that require any change in them. It reduces the time-consuming database write operations.
+
+#### 735. What is the purpose of Callback interface in Hibernate?
+
+Callback interface in Hibernate is mainly used for receiving notifications of different events from an object.
+
+Example. We can use Callback to get the notification when an object is loaded into or removed from database.
+
+#### 736. What are the different ORM levels in Hibernate?
+
+There are following four different ORM levels in Hibernate:
+
+1. **Pure Relational ORM**: At this level entire application is designed around the relational model. All the operations are SQL based at this level.
+2. **Light Object Mapping**: At this level entity classes are mapped manually to relational tables. Business logic code is hidden from data access code. Applications with less number of entities use this level.
+3. **Medium Object Mapping**: In this case, application is designed around an object model. Most of the SQL code is generated at compile time. Associations between objects are supported by the persistence mechanism. Object-oriented expression language is used to specify queries.
+4. **Full Object Mapping**: This is one of the most sophisticated object modeling level. It supports composition, inheritance, polymorphism and persistence. The persistent classes do not inherit any special base class at this level. There are efficient fetching and caching strategies implemented transparently to the application.
+
+#### 737. What are the different ways to configure a Hibernate application?
+
+There are mainly two ways to configure Hibernate application:
+
+1. **XML based**: We can define the Hibernate configuration in an XML file like ibernate.cfg.xml file
+2. **Programming based**: We can also use code logic to configure Hibernate in our application.
+
+#### 738. What is Query Cache in Hibernate?
+
+Hibernate provides Query Cache to improve the performance of queries that run multiple times with same parameters.
+
+At times Query Caching can reduce the performance of Transactional processing. By default Query Cache is disabled in Hibernate.
+
+It has to be used based on the benefits gained by it in performance of the queries in an application.
+
+#### 739. What are the different types of Association mappings supported by Hibernate?
+
+Hibernate supports following four types of Association mappings:
+
+1. **Unidirectional association**: This kind of association works in only one direction. Unidirectional association with join tables 
+3. **Bidirectional association**: This kind of association works in both directions.
+4. Bidirectional association with join tables
+
+#### 740. What are the different types of Unidirectional Association mappings in Hibernate?
+
+In Hibernate there can be following three types of Unidirectional Association mappings:
+1. Many to one
+2. One to one
+3. One to many
+
+#### 741. What is Unit of Work design pattern?
+
+Unit of Work is a design pattern to define business transactions. A Unit of Work is a list of ordered operations that we want to run on a database together. Either all of these go together or none of these goes.
+
+Most of the time, we use term business transaction in place of Unit of Work.
+
+Example. In case of money transfer from account A to B, the unit of work can be two operation Debit account A and Credit account B in a sequence. Both these operations should happen together and in right sequence.
+
+#### 742. In Hibernate, how can an object go in Detached state?
+
+Once the session attached to an Object is closed, the object goes
+into Detached state. An Object in Detached state can be attached to
+another session at a later point of time.
+
+This state is quite useful in concurrent applications that have long
+unit of work.
+
+![](http://3.bp.blogspot.com/-katvFbmjewU/Tqv4Ble7_QI/AAAAAAAAAJE/odH15Qm9-hs/s1600/object-states.JPG)
 
 #### 743. How will you order the results returned by a Criteria in Hibernate?
 
@@ -246,6 +907,32 @@ and extended as per the use case of application.
 
 #### 762. What is ‘the inverse side of association’ in a mapping?
 
+
+#### 763. What is ORM metadata?
+
+
+#### 764. What is the difference between load() and get() method in Hibernate?
+
+
+#### 765. When should we use get() method or load() method in Hibernate?
+
+
+#### 766. What is a derived property in Hibernate?
+
+
+#### 767. How can we use Named Query in Hibernate?
+
+
+#### 768. What are the two locking strategies in Hibernate?
+
+
+#### 769. What is the use of version number in Hibernate?
+
+
+#### 770. What is the use of session.lock() method in Hibernate?
+
+
+#### 771. What inheritance mapping strategies are supported by Hibernate?
 
 #### 763. What is ORM metadata?
 
