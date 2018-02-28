@@ -1,9 +1,5 @@
-#
-# Hibernate
+## Hibernate
 *************
-
-
-
 
 #### 712. What is Hibernate framework?
 
