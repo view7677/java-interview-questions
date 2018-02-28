@@ -462,8 +462,23 @@ n Hibernate, by default an entity or collection is mutable. We can add, delete o
 #### 750. What is the first level of cache in Hibernate?
 
 
-#### 751. What are the different second level caches available in Hibernate?752.Which is the default transaction factory in Hibernate?
+#### 751. What are the different second level caches available in Hibernate?
 
+In Hibernate, we can use different cache providers for implementing
+second level cache at JVM/SessionFactory level.
+Some of these are:
+1. Hashtable
+2. EHCache
+3. OSCache
+4. SwarmCache
+5. JBoss Cache 1.x
+6. JBoss Cache 2
+
+#### 752.Which is the default transaction factory in Hibernate?
+
+In Hibernate, default transaction factory is
+JDBCTransactionFactory. But we can change it by setting the
+property hibernate.transaction.factory_class.
 
 #### 753. What are the options to disable second level cache in Hibernate?
 
@@ -538,13 +553,13 @@ ORM maps classes to tables and stores this information in Metadata. It maps fiel
 
 Application developers can also access Hibernate Metadata by using ClassMetadata and CollectionMetadata interfaces and Type hierarchy.
 
-#### 764. What is the difference between load() and get() method in Hibernate?
+#### 764. What is the difference between `load()` and `get()` method in Hibernate?
 
-In Hibernate, load() and get() methods are quite similar in functionality.
+In Hibernate, `load()` and `get()` methods are quite similar in functionality.
 
-The main difference is that load() method will throw an ObjectNotFoundException if row corresponding to an object is not found in the database.
+The main difference is that `load()` method will throw an `ObjectNotFoundException` if row corresponding to an object is not found in the database.
 
-On the other hand, get() method returns null value when an object is not found in the database.
+On the other hand, `get()` method returns null value when an object is not found in the database.
 
 It is recommended that we should use load() method only when we are sure that object exists in database.
 
@@ -557,18 +572,86 @@ As a thumb rule we can follow these guidelines:
 
 #### 766. What is a derived property in Hibernate?
 
+In Hibernate, a derived property is not mapped to any column of a
+database table.
+
+A derived property is computed at runtime by evaluation of an
+expression.
+
+These are read only properties.
+Example. In this example profitMargin is derived from salePrice and
+buyPrice.
+
+```xml
+<property name="profitMargin" formula="( SELECT (i.salePrice –
+i.buyPrice) FROM item i WHERE i.Id = Id)"/>
+```
 
 #### 767. How can we use Named Query in Hibernate?
 
+A Named SQL query is the HQL query that is associated with a
+string name and can be referenced in the application by name.
+It can be used in following ways:
+
+**XML Mapping File**: We can define it in XML mapping file.
+Egg. 
+```xml
+<query name="findBookByAuthor”>
+<![CDATA[from Book s where s.author = :author]]>
+</query>
+```
+**Annotation**: We can also mark Named SQL with annotation.
+```java
+@NamedQueries({
+@NamedQuery(
+name = "findBookByAuthor”,
+query = "from Book s where s.author = :author”
+)
+})
+```
 
 #### 768. What are the two locking strategies in Hibernate?
 
+There are two popular locking strategies that can be used in Hibernate:
+
+Optimistic: In Optimistic locking we assume that multiple transactions can complete without affecting each other. So we let the transactions do their work without locking the resources initially.
+
+Just before the commit, we check if any of the resource has changed by another transaction, then we throw exception and rollback the transaction.
+
+Pessimistic: In Pessimistic locking we assume that concurrent transactions will conflict while working with same resources. So a transaction has to first obtain lock on the resources it wants to update.
+
+The other transaction can proceed with same resource only after the lock has been released by previous transaction.
 
 #### 769. What is the use of version number in Hibernate?
 
+Version number is used in optimistic locking in Hibernate. When a transaction modifies an object, it increments its version. Based on version number, second transaction can determine if the object it has read earlier has changed or not.
+
+If the version number at the time of write is different than the version number at the time of read, then we should not commit the transaction.
 
 #### 770. What is the use of session.lock() method in Hibernate?
 
+Session.lock() is a deprecated method in Hibernate. We should not use it.
+
+Instead we should call buildLockRequest(LockMode).lock(entityName, object) method in Hibernate.
 
 #### 771. What inheritance mapping strategies are supported by Hibernate?
+
+Hibernate supports following inheritance mapping strategies
+between classes and tables:
+
+**Table per class hierarchy**: In case of multiple types of books, we
+can have one book class and one book table. We can store all child
+classes of book like- HardCoverBook, PaperBackBook etc in same
+table book. But we can identify the subclasses by a BookType
+column in Book table.
+
+**Table per subclass**: In this case we can have separate table for each
+kind of book. HardCoverBook table for HardCoverBook book
+class. PaperBackBook table for PaperBackBook book class. And
+there will be a parent table, Book for Book class.
+
+**Table per concrete class**: In this case also we have separate table
+for each kind of book. But in this case we have even inherited
+properties defined inside each table. There is no parent table Book
+for Book class, since it is not a concrete class.
 
