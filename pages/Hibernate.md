@@ -432,14 +432,14 @@ In Hibernate we use Session interface to get a new transaction. Once we get the 
 Session s = null;
 Transaction trans = null;
 try {
-    s = sessionFactory.openSession();
-    trans = s.beginTransaction();
-    doTheAction(s);
-    trans.commit();
+s = sessionFactory.openSession();
+trans = s.beginTransaction();
+doTheAction(s);
+trans.commit();
 } catch (RuntimeException exc) {
-    trans.rollback();
+trans.rollback();
 } finally {
-    s.close();
+s.close();
 }
 ```
 
@@ -482,27 +482,78 @@ n Hibernate, by default an entity or collection is mutable. We can add, delete o
 
 #### 758. What are the different strategies for cache mapping in Hibernate?
 
+Hibernate provides following strategies for cache mapping:
+
+**Read only:** If an application requires caching only for read but not for write operations, then we can use this strategy. It is very simple to use and give very good performance benefit. It is also safe to use in a cluster environment.
+
+**Read/Write**: If an application also needs caching for write operations, then we use Read/Write strategy. Read/write cache strategy should not be used if there is requirement for serializable transaction isolation level. If we want to use it in a cluster environment, we need to implement locking mechanism.
+
+**Nonstrict Read/Write**: If an application only occasionally updates the data, then we can use this strategy. It cannot be used in systems with serializable transaction isolation level requirement. Transactional: This strategy supports full transactional cache providers like JBoss TreeCache.
 
 #### 759. What is the difference between a Set and a Bag in Hibernate?
 
+A Bag in Hibernate is an unordered collection. It can have duplicate
+elements. When we persist an object in a bag, there is no guarantee
+that bag will maintain any order.
+
+A Set in Hibernate can only store unique objects. If we add the same
+element to set second time, it just replaces the old one. By default a
+Set is unordered collection in Hibernate.
 
 #### 760. How can we monitor the performance of Hibernate in an application?
 
+We can use following ways to monitor Hibernate performance: 
+
+Monitoring SessionFactory: Since there is one SessionFactory in an application, we can collect the statistics of a SessionFactory to monitor the performance. Hibernate provides sessionFactory.getStatistics() method to get the statistics of SessionFactory.
+
+Hibernate can also use JMX to publish metrics.
+
+Metrics: In Hibernate we can also collect other metrics likenumber of open sessions, retrieved JDBC connections, cache hit, miss etc.
+
+These metrics give great insight into the performance of Hibernate. We can tune Hibernate settings and strategies based on these metrics.
 
 #### 761. How can we check if an Object is in Persistent, Detached or Transient state in Hibernate?
 
+We can use following methods to check the state of an object in Hibernate:
+
+Persistent State: If call to EntityManager.contains(object) returns true, the object is in Persistent state.
+
+Detached State: If the call to PersistenceUnitUtil.getIdentifier(object) returns identifier property then the object is in detached state.
+
+Transient State: If call to PersistenceUnitUtil.getIdentifier(object) returns null then object is in Transient state. We can get access to PersistenceUnitUtil from the EntityManagerFactory in Hibernate.
 
 #### 762. What is ‘the inverse side of association’ in a mapping?
 
+Let us consider an example in which a customer can have multiple orders and for every order there has to be a customer. In OO world, customer is the owner of order. In SQL world, an Order has reference to customer id.
+
+It is a bi-directional one to many mapping from customer to order. The inverse side in this mapping is the owner of object. In this case customer is the owner or order. Since an order cannot exist without a customer. But a customer can exist without an order.
+
+Also customer has no column to save order data. But an Order table can store customer id, which is used for mapping.
 
 #### 763. What is ORM metadata?
 
+ORM uses metadata for its internal work. ORM maintains metadata to generate code used for accessing columns and tables.
+
+ORM maps classes to tables and stores this information in Metadata. It maps fields in classes to columns in tables. These kinds of mappings are also part of Metadata.
+
+Application developers can also access Hibernate Metadata by using ClassMetadata and CollectionMetadata interfaces and Type hierarchy.
 
 #### 764. What is the difference between load() and get() method in Hibernate?
 
+In Hibernate, load() and get() methods are quite similar in functionality.
+
+The main difference is that load() method will throw an ObjectNotFoundException if row corresponding to an object is not found in the database.
+
+On the other hand, get() method returns null value when an object is not found in the database.
+
+It is recommended that we should use load() method only when we are sure that object exists in database.
 
 #### 765. When should we use get() method or load() method in Hibernate?
 
+As a thumb rule we can follow these guidelines:
+
+1. We should use get() method when we want to load an object.
+2. We should use load() method when we need a reference to an object without running extra SQL queries.
 
 #### 766. What is a derived property in Hibernate?
 
