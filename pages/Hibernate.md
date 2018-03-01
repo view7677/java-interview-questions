@@ -452,15 +452,51 @@ n Hibernate, by default an entity or collection is mutable. We can add, delete o
 
 #### 747. What are the different options to retrieve an object from database in Hibernate?
 
+In Hibernate, we can use one of the following options to retrieve
+objects from database:
+
+**Identifier**: We can use `load()` or `get()` method and pass the identifier
+like primary key to fetch an object from database.
+
+**HQL**: We can create a HQL query and get the object after executing
+the query.
+
+**Criteria API**: We can use Criteria API to create the search
+conditions for getting the objects from database.
+
+**Native SQL**: We can write native SQL query for a database and just
+execute it to get the data we want and convert it into desired object.
 
 #### 748. How can we auto-generate primary key in Hibernate?
 
+We can use the primary key generation strategy of type
+GenerationType.AUTO to auto-generate primary key while
+persisting an object in Hibernate.
+Example.
+
+```java
+@Id
+@GeneratedValue(strategy=GenerationType.AUTO)
+private int id;
+```
+We can leave it null/0 while persisting and Hibernate automatically
+generates a primary key for us.
+
+Sometimes, AUTO strategy refers to a SEQUENCE instead of an
+IDENTITY .
 
 #### 749. How will you re-attach an object in Detached state in Hibernate?
 
+We can call one of the methods Session.update(),
+Session.saveOrUpdate(), or Session.merge() to re-attach an object
+in detached state with another session in Hibernate.
 
 #### 750. What is the first level of cache in Hibernate?
 
+A Hibernate Session is the first level of cache for persistent data in
+a transaction.
+
+The second level of cache is at JVM or SessionFactory level.
 
 #### 751. What are the different second level caches available in Hibernate?
 
@@ -476,24 +512,66 @@ Some of these are:
 
 #### 752.Which is the default transaction factory in Hibernate?
 
-In Hibernate, default transaction factory is
-JDBCTransactionFactory. But we can change it by setting the
-property hibernate.transaction.factory_class.
+In Hibernate, default transaction factory is `JDBCTransactionFactory`. But we can change it by setting the property `hibernate.transaction.factory_class`.
 
 #### 753. What are the options to disable second level cache in Hibernate?
 
+This is a trick question. By default Second level cache is already disabled in Hibernate.
+
+In case, your project is using a second level cache you can use one of the following options to disable second level cache in Hibernate. We can set `hibernate.cache.use_second_level_cache` to `false`.
+
+We can use `CacheMode.IGNORE` to stop interaction between the session and second-level cache. Session will interact with cache only to invalidate cache items when updates occur.
 
 #### 754. What are the different fetching strategies in Hibernate?
 
+Hibernate 3 onwards there are following fetching strategies to
+retrieve associated objects:
+
+**Join fetching**: In Join strategy Hibernate uses OUTER join to
+retrieve the associated instance or collection in the same SELECT.
+Select fetching: In Select strategy, Hibernate uses a second SELECT
+to retrieve the associated entity or collection. We can explicitly
+disable lazy fetching by specifying lazy="false". By default lazy
+fetching is true.
+
+**Subselect fetching**: In Subselect strategy, Hibernate uses a second
+SELECT to retrieve the associated collections for all entities
+retrieved in a previous query or fetch.
+
+**Batch fetching**: In Batch strategy, Hibernate uses a single SELECT
+to retrieve a batch of entity instances or collections by specifying a
+list of primary or foreign keys. This is a very good performance
+optimization strategy for select fetching.
 
 #### 755. What is the difference between Immediate fetching and Lazy collection fetching?
 
+In Immediate fetching an association, collection or attribute is
+retrieved at the same time when the owner is loaded.
+
+But in Lazy collection fetching, a collection is fetched only when an
+operation is invoked on that collection by client application.
+
+This is the default fetching strategy for collections in Hibernate.
+Lazy fetching is better from performance perspective.
 
 #### 756. What is ‘Extra lazy fetching’ in Hibernate?
 
+In Extra lazy fetching, only individual elements of a collection are
+fetched from the database when they are required.
+
+In this strategy, Hibernate does not fetch the whole collection into
+memory unless it is essential.
+
+It is a good fetching strategy for large collections of objects.
 
 #### 757. How can we check is a collection is initialized or not under Lazy Initialization strategy?
 
+Hibernate provides two convenient methods, `Hibernate.initialize()`
+and `Hibernate.isInitialized()` to check whether a collection is
+initialized or not.
+
+By using `Hibernate.initialize()` we can force the initialization of a
+collection in Hibernate.
 
 #### 758. What are the different strategies for cache mapping in Hibernate?
 
