@@ -164,15 +164,15 @@ So we can solve race condition by using either synchronized block or synchronize
 
 Few sub questions>
 
-#### What if two threads try to read same resource without synchronization?
+###### What if two threads try to read same resource without synchronization?
 
-#### When two threads try to read on same resource without synchronization, it’s never going to create any problem.
+###### When two threads try to read on same resource without synchronization, it’s never going to create any problem.
 
-#### What if two threads try to write to same resource without synchronization?
+###### What if two threads try to write to same resource without synchronization?
 
-#### When two threads try to write to same resource without synchronization, it’s going to create synchronization problems.
+###### When two threads try to write to same resource without synchronization, it’s going to create synchronization problems.
 
-####  14. How threads communicate between each other?
+######  14. How threads communicate between each other?
 
 Threads can communicate with each other by using `wait()`, `notify()` and `notifyAll()` methods.
 
@@ -208,13 +208,11 @@ Every thread having their monitor will create few problems -
 
 ####  16. Is it important to acquire object lock before calling wait(), notify() and notifyAll()?
 
-Answer.Yes, it’s mandatory to acquire object lock before calling these methods on object. As discussed above wait(), notify()  and notifyAll() methods are always called from Synchronized block only, and as soon as thread enters synchronized block it acquires object lock (by holding object monitor). If we call these methods without acquiring object lock i.e. from outside synchronize block then java.lang. IllegalMonitorStateException is thrown at runtime.
+Yes, it’s mandatory to acquire object lock before calling these methods on object. As discussed above `wait()`, `notify()`  and `notifyAll()` methods are always called from Synchronized block only, and as soon as thread enters synchronized block it acquires object lock (by holding object monitor). If we call these methods without acquiring object lock i.e. from outside synchronize block then java.lang. IllegalMonitorStateException is thrown at runtime.
 
-Wait() method needs to enclosed in try-catch block, because it throws compile time exception i.e. InterruptedException.
+`Wait()` method needs to enclosed in try-catch block, because it throws compile time exception i.e. InterruptedException.
 
 ####  17. How can you solve consumer producer problem by using wait() and notify() method? (Important)
-
-Answer.  Here come the time to answer very very important ####  from interview perspective. Interviewers tends to check how sound you are in threads inter communication. Because for solving this problem we got to use synchronization blocks, wait() and notify() method very cautiously. If you misplace synchronization block or any of the method, that may cause your program to go horribly wrong. So, before going into this ####  first i’ll recommend you to understand how to use synchronized blocks, wait() and notify() methods.
 
 Key points we need to ensure before programming :
 
@@ -233,65 +231,54 @@ We will create sharedQueue that will be shared amongst Producer and Consumer. We
 Note: it does not matter order in which threads are started (because rest of code has taken care of synchronization and key points mentioned above)
 
 First we will start consumerThread >
-
+```java
 consumerThread.start();
+```
 consumerThread will enter run method and call consume() method. There it will check for sharedQueue’s size.
 
 -if size is equal to 0 that means producer hasn’t produced any product, wait for producer to produce by using below piece of code-
 
+```java
 synchronized (sharedQueue) {
-
  while (sharedQueue.size() == 0) { 
-
    sharedQueue.wait();
-
  }
-
  }
+```
 -if size is greater than 0, consumer will start consuming by using below piece of code.
-
+```java
  synchronized (sharedQueue) {
-
- Thread.sleep((long)(Math.random() * 2000));
-
- System.out.println("consumed : "+ sharedQueue.remove(0));
-
- sharedQueue.notify();
-
+    Thread.sleep((long)(Math.random() * 2000));
+    System.out.println("consumed : "+ sharedQueue.remove(0));
+    sharedQueue.notify();
  }
+```
 Than we will start producerThread > 
 producerThread.start();
 
 producerThread will enter run method and call produce() method. There it will check for sharedQueue’s size.
 
 -if size is equal to 2 (i.e. maximum number of products which sharedQueue can hold at a time), wait for consumer to consume by using below piece of code-
-
+```java
  synchronized (sharedQueue) {
-
- while (sharedQueue.size() == maxSize) { //maxsize is 2
-
- sharedQueue.wait();
-
+    while (sharedQueue.size() == maxSize) { //maxsize is 2
+        sharedQueue.wait();
+    }
  }
-
- }
+ ```
 -if size is less than 2, producer will start producing by using below piece of code.
-
+```java
 synchronized (sharedQueue) {
-
  System.out.println("Produced : " + i);
-
  sharedQueue.add(i);
-
  Thread.sleep((long)(Math.random() * 1000));
-
  sharedQueue.notify();
-
  }
-DETAILED DESCRIPTION with program : Solve Consumer Producer problem by using wait() and notify() methods in multithreading.
+```
+
 ####  18. How to solve Consumer Producer problem without using wait() and notify() methods, where consumer can consume only when production is over.?
 
-Answer. In this problem, producer will allow consumer to consume only when 10 products have been produced (i.e. when production is over).
+In this problem, producer will allow consumer to consume only when 10 products have been produced (i.e. when production is over).
 
 We will approach by keeping one boolean variable productionInProcess and initially setting it to true, and later when production will be over we will set it to false.
 
@@ -323,83 +310,55 @@ Conclusion:
 Now, Thread-1 is waiting for Thread-2 to release lock on Object.class and Thread-2 is waiting for Thread-1 to release lock on String.class and deadlock is formed.
 
 
-
+```java
 //Code called by Thread-1 
-
 public void run() {
-
  synchronized (String.class) {
-
  Thread.sleep(100);
-
  synchronized (Object.class) { 
-
  }
-
  }
-
 }
 
 
 //Code called by Thread-2
 
- 
-
  publicvoid run() {
-
  synchronized (Object.class) {
-
  Thread.sleep(100);
-
  synchronized (String.class) {
-
  }
-
  }
-
 }
+```
 Here comes the important part, how above formed deadlock could be solved :
 
 Thread-1 acquires lock on String.class and then calls sleep() method which gives Thread-2 the chance to execute immediately after Thread-1 has acquired lock on String.class and Thread-2 tries to acquire lock on String.class but lock is holded by Thread-1. Meanwhile, Thread-1 completes successfully. As Thread-1 has completed successfully it releases lock on String.class, Thread-2 can now acquire lock on String.class and complete successfully without any deadlock formation.
 
 Conclusion: No deadlock is formed.
 
+```java
 //Code called by Thread-1
 
  
-
 publicvoid run() {
-
  synchronized (String.class) {
-
  Thread.sleep(100);
-
  synchronized (Object.class) { 
-
  }
-
  }
-
 }
 
 
 //Code called by Thread-2
-
- 
-
  publicvoid run() {
-
  synchronized (String.class) {
-
  Thread.sleep(100);
-
  synchronized (Object.class) {
-
  }
-
  }
-
 }
+```
 Few important measures to avoid Deadlock >
 
 Lock specific member variables of class rather than locking whole class: We must try to lock specific member variables of class rather than locking whole class.
@@ -640,7 +599,7 @@ If possible, try to use volatile variables. If a field is declared volatile all 
 Final variables are thread safe because once assigned some reference of object they cannot point to reference of other object.
 
 s is pointing to String object.
-
+```java
  public class MyClass {
 
 final String s=new String("a");
@@ -665,8 +624,9 @@ final inti=0;
  }
 
  }
+ ```
 Usage of local variables : If possible try to use local variables, local variables are thread safe, because every thread has its own stack, i.e. every thread has its own local variables and its pushes all the local variables on stack.
-
+```java
  public class MyClass {
 
  void method(){
@@ -676,10 +636,12 @@ Usage of local variables : If possible try to use local variables, local variabl
  }
 
  }
+ ```
 Using thread safe collections : Rather than using ArrayList we must Vector and in place of using HashMap we must use ConcurrentHashMap or HashTable.
 We must use VisualVM  or jstack  to detect problems such as deadlocks and time taken by threads to complete in multi threading programs.
 Using ThreadLocal:ThreadLocal is a class which provides thread-local variables. Every thread has its own ThreadLocal value that makes ThreadLocal value threadsafe as well.
 Rather than StringBuffer try using immutable classes such as String. Any change to String produces new String.
+
 ####  33. How thread can enter waiting, sleeping and blocked state and how can they go to runnable state ?
 
 Answer.  This is very prominently asked ####  in interview which will test your knowledge about thread states. And it’s very important for developers to have in depth knowledge of this thread state transition. I will try to explain this thread state transition by framing few sub #### s. I hope reading sub #### s will be quite interesting.
@@ -739,36 +701,25 @@ Answer. When wait() method is called Thread leaves the object lock and goes from
 Answer.  This ####  will test your basic knowledge how start and run methods work internally in Thread Api.
 
 When we call start() method on thread, it internally calls run() method with newly created thread. So, if we don’t override run() method newly created thread won’t be called and nothing will happen.
-
+```java
 class MyThread extends Thread {
-
  //don't override run() method
-
 }
 
 publicclass DontOverrideRun {
-
  publicstaticvoid main(String[] args) {
-
  System.out.println("main has started.");
-
  MyThread thread1=new MyThread();
-
  thread1.start();
-
  System.out.println("main has ended.");
-
  }
-
 }
 
 /*OUTPUT
-
 main has started.
-
 main has ended.
-
 */
+```
 As we saw in output, we didn’t override run() method that’s why on calling start() method nothing happened.
 
 ####  38. What will happen if we override start method?
@@ -777,59 +728,40 @@ Answer. This ####  will again test your basic core java knowledge how overriding
 
 When we call start() method on thread, it internally calls run() method with newly created thread. So, if we override start() method, run() method will not be called until we write code for calling run() method.
 
+```java
 class MyThread extends Thread {
-
  @Override
-
  publicvoid run() {
-
  System.out.println("in run() method");
-
  }
 
  
 
  @Override
-
  publicvoid start(){
-
  System.out.println("In start() method");
-
  }
-
- 
 
 }
 
 publicclass OverrideStartMethod {
-
  publicstaticvoid main(String[] args) {
-
  System.out.println("main has started.");
-
  
 
  MyThread thread1=new MyThread();
-
  thread1.start();
-
  
-
  System.out.println("main has ended.");
-
  }
-
 }
 
 /*OUTPUT
-
 main has started.
-
 In start() method
-
 main has ended.
-
 */
+```
 If we note output. we have overridden start method and didn’t called run() method from it, so, run() method wasn’t call.
 
 ####  39. Can we acquire lock on class? What are ways in which you can acquire lock on class?
@@ -841,7 +773,7 @@ Thread can acquire lock on class’s class object by-
 Entering synchronized block or
 
  Let’s say there is one class MyClass. Now we can create synchronization block, and parameter passed with synchronization tells which class has to be synchronized. In below code, we have synchronized MyClass
-
+```java
  synchronized (MyClass.class) {
 
    //thread has acquired lock on MyClass’s class object.
@@ -855,7 +787,7 @@ by entering static synchronized methods.
    //thread has acquired lock on MyRunnable’s class object.
 
  }
-
+```
 As soon as thread entered Synchronization method, thread acquired lock on class’s class object.
 
 Thread will leave lock when it exits static synchronized method.
@@ -895,13 +827,13 @@ First let’s acquire object lock by entering synchronized block.
 
 
 Example- Let’s say there is one class MyClassand we have created it’s object and reference to that object is myClass. Now we can create synchronization block, and parameter passed with synchronization tells which object has to be synchronized. In below code, we have synchronized object reference by myClass.
-
+```java
 MyClass myClass=newMyclass();
 
  synchronized (myClass) {
 
  }
-
+```
 As soon thread entered Synchronization block, thread acquired object lock on object referenced by myClass (by acquiring object’s monitor.)
 
 Thread will leave lock when it exits synchronized block.
@@ -910,18 +842,18 @@ First let’s acquire lock on class’s class object by entering synchronized bl
 
 
 Example- Let’s say there is one class MyClass. Now we can create synchronization block, and parameter passed with synchronization tells which class has to be synchronized. In below code, we have synchronized MyClass
-
+```java
  synchronized (MyClass.class) {
 
  }
-
+```
 
 As soon as thread entered Synchronization block, thread acquired MyClass’s class object. Thread will leave lock when it exits synchronized block.
-
-publicsynchronizedvoid method1() {
+```java
+public synchronizedvoid method1() {
 
 }
-
+```
 
 As soon as thread entered Synchronization method, thread acquired object lock.
 
@@ -995,7 +927,6 @@ Likewise, Thread-2 even cannot enter static synchronized method1() which is bein
 
 ####  50. Difference between wait() and wait(long timeout), What are thread states when these method are called?
 
-Answer.
 
 wait()
 
@@ -1043,33 +974,25 @@ Then, threads will enter run() method of ThreadPoolsThread class and will call t
 
 If tasks are available thread will execute task by entering run() method of task (As tasks executed always implements Runnable).
 
+```java
 publicvoid run() {
-
 . . .
-
  while (true) {  
-
  . . .  
-
  Runnable runnable = taskQueue.take();
-
  runnable.run();
-
  . . .
-
  }
-
 . . .
-
 }  
-
+```
 Else waits for tasks to become available.
 
 When tasks are added?
 
 When execute() method of ThreadPool is called, it internally calls put() method on taskQueue to add tasks.
 
-taskQueue.put(task);
+`taskQueue.put(task);`
 
 Once tasks are available all waiting threads are notified that task is available.
 
@@ -1104,32 +1027,28 @@ In multi threaded application, different thread is assigned for every request ma
 When threads have started at different time they might like to store time at which they have started. So, thread’s start time can be stored in ThreadLocal.
 
 Creating ThreadLocal >
-
+```java
 private ThreadLocal<String> threadLocal =  new ThreadLocal<String>();
-
+```
 We will create instance of ThreadLocal. ThreadLocal is a generic class, i will be using String to demonstrate threadLocal.
 
 All threads will see same instance of ThreadLocal, but a thread will be able to see value which was set by it only.
 
 How thread set value of ThreadLocal >
 
-threadLocal.set( new Date().toString());
+`threadLocal.set( new Date().toString());`
 
 Thread set value of ThreadLocal by calling set(“”) method on threadLocal.
 
 How thread get value of ThreadLocal >
 
-threadLocal.get()
+`threadLocal.get()`
 
 Thread get value of ThreadLocal by calling get() method on threadLocal.
 
 See here for detailed explanation of threadLocal.
 
 ####  53. What is busy spin?
-
-Answer.
-
-What is busy spin?
 
 When one thread loops continuously waiting for another thread to signal.
 
@@ -1147,11 +1066,13 @@ Program - Consumer Producer problem with busy spin >
 
 Consumer thread continuously execute (busy spin) in while loop tillproductionInProcess is true. Once producer thread has ended it will make boolean variable productionInProcess false and busy spin will be over.
 
+```java
 while(productionInProcess){
 
  System.out.println("BUSY SPIN - Consumer waiting for production to get over");
 
 }
+```
 ####  54. Can a constructor be synchronized?
 
 Answer.  No, constructor cannot be synchronized. Because constructor is used for instantiating object, when we are in constructor object is under creation. So, until object is not instantiated it does not need any synchronization.
@@ -1222,8 +1143,10 @@ setDefaultUncaughtExceptionHandler is a static method method, so we can directly
 
 It avoids abrupt termination of thread caused by uncaught runtime exceptions.
 
+
 Defining setDefaultUncaughtExceptionHandler method >
 
+```java
 Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler(){
 
  publicvoid uncaughtException(Thread thread, Throwable throwable) {
@@ -1233,6 +1156,8 @@ Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler(){
  }
 
  });
+```
+
 ####  59. What is ThreadGroup in java, What is default priority of newly created threadGroup, mention some important ThreadGroup methods ?
 
 Answer.  When program starts JVM creates  a ThreadGroup named main. Unless specified, all  newly created threads become members of the main thread group.
@@ -1267,28 +1192,22 @@ Sets the maximum priority of ThreadGroup.
 
 ####  60. What are thread priorities?
 
-Answer.  
-
 Thread Priority range is from 1 to 10.
 
 Where 1 is minimum priority and 10 is maximum priority.
 
 Thread class provides variables of final static int type for setting thread priority.
 
-
+```
  /* The minimum priority that a thread can have. */
-
  publicfinalstaticintMIN_PRIORITY= 1;
 
- 
-
  /* The default priority that is assigned to a thread. */
-
  publicfinalstaticintNORM_PRIORITY= 5;
 
  /* The maximum priority that a thread can have. */
-
  publicfinalstaticintMAX_PRIORITY= 10;
+```
 Thread with MAX_PRIORITY is likely to get more CPU as compared to low priority threads. But occasionally low priority thread might get more CPU. Because thread scheduler schedules thread on discretion of implementation and thread behaviour is totally unpredictable.
 
 Thread with MIN_PRIORITY is likely to get less CPU as compared to high priority threads. But occasionally high priority thread might less CPU. Because thread scheduler schedules thread on discretion of implementation and thread behaviour is totally unpredictable.
@@ -1296,4 +1215,3 @@ Thread with MIN_PRIORITY is likely to get less CPU as compared to high priority 
 setPriority()method is used for Changing the priority of thread.
 
 getPriority()method returns the thread’s priority.
-
