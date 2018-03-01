@@ -20,7 +20,7 @@
 * [Inner Classes](pages/Inner_Classes.md)
 * [String](pages/String.md)
 * [Exception Handling](pages/Exception_Handling.md)
-* [Threads](pages/Thread.md)
+* [Threads](pages/Threads.md)
 * [Multi-threading](pages/Multi-threading.md)
 * [Collections](pages/Collections.md)
 * [Mixed Questions](pages/Mixed_Questions.md)
