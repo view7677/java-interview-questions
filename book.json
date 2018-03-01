@@ -9,7 +9,7 @@
     "extension": null,
     "plugins": [
         "mathjax",
-        "uml"
+        "uml","katex", "include", "mermaid"
     ],
     "pluginsConfig": {
         "fontSettings": {
