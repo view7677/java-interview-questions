@@ -1109,7 +1109,7 @@ Thread might be waiting indefinitely for lock on object’s monitor (by calling 
 
 ####  57. What is addShutdownHook method in java?
 
-Answer.  addShutdownHook method in java >
+addShutdownHook method in java >
 
 addShutdownHook method registers a new virtual-machine shutdown hook.
 
@@ -1160,41 +1160,22 @@ Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler(){
 
 ####  59. What is ThreadGroup in java, What is default priority of newly created threadGroup, mention some important ThreadGroup methods ?
 
-Answer.  When program starts JVM creates  a ThreadGroup named main. Unless specified, all  newly created threads become members of the main thread group.
+When program starts JVM creates  a ThreadGroup named main. Unless specified, all  newly created threads become members of the main thread group.
 
 ThreadGroup is initialized with default priority of 10.
 
 ThreadGroup important methods >
 
-getName()
-
-name of ThreadGroup.
-
-activeGroupCount()
-
-count of active groups in ThreadGroup.
-
-activeCount()
-
-count of active threads in ThreadGroup.
-
-list()
-
-list() method has prints ThreadGroups information
-
-getMaxPriority()
-
-Method returns the maximum priority of ThreadGroup.
-
-setMaxPriority(int pri)
-
-Sets the maximum priority of ThreadGroup.
+* `getName()` :name of ThreadGroup.
+* `activeGroupCount()`:count of active groups in ThreadGroup.
+* `activeCount()`:count of active threads in ThreadGroup.
+* `list()` list() method has prints ThreadGroups information
+* `getMaxPriority()`: Method returns the maximum priority of ThreadGroup.
+* `setMaxPriority(int pri)`Sets the maximum priority of ThreadGroup.
 
 ####  60. What are thread priorities?
 
-Thread Priority range is from 1 to 10.
-
-Where 1 is minimum priority and 10 is maximum priority.
+Thread Priority range is from 1 to 10.Where 1 is minimum priority and 10 is maximum priority.
 
 Thread class provides variables of final static int type for setting thread priority.
 
@@ -1212,6 +1193,6 @@ Thread with MAX_PRIORITY is likely to get more CPU as compared to low priority t
 
 Thread with MIN_PRIORITY is likely to get less CPU as compared to high priority threads. But occasionally high priority thread might less CPU. Because thread scheduler schedules thread on discretion of implementation and thread behaviour is totally unpredictable.
 
-setPriority()method is used for Changing the priority of thread.
+`setPriority()` method is used for Changing the priority of thread.
 
-getPriority()method returns the thread’s priority.
+`getPriority()` method returns the thread’s priority.
