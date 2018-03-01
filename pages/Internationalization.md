@@ -9,6 +9,5 @@ A Locale object represents a specific geographical, political, or cultural regio
 
 #### 86. How will you use a specific Locale in Java?
 
-To use a specific Locale, we need to load that Locale. We can use
-ResourceBundle.getBundle("Locale.UK") method to load a Locale.
+To use a specific Locale, we need to load that Locale. We can use `ResourceBundle.getBundle("Locale.UK")` method to load a Locale.
 
