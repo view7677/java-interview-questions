@@ -27,7 +27,7 @@
 * [Java Collection](pages/Java_Collection.md)
 * [Advanced Multi-threading](pages/Advanced_Multi-threading.md)
 * [Java 8](pages/Java_8.md)
-* [Functional interface in Java 8?](pages/Functional_interface_in_Java_8.md)
+* [Functional interface in Java 8](pages/Functional_interface_in_Java_8.md)
 * [Java Tricky Questions](pages/Java_Tricky_Questions.md)
 * [JSP](pages/JSP.md)
 * [Java Design Patterns](pages/Java_Design_Patterns.md)
