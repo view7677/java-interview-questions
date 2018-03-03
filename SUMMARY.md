@@ -3,6 +3,8 @@
 ###### Questions With Answers
 
 * [Contents](pages/contents.md)
+* [Preface](pages/Preface.md)
+    * [About author](pages/about_author.md)
 * [Questions Index](pages/Questions.md)
 * [Java Basics](pages/Java_Basics.md)
 * [OOPS](pages/OOPS.md)
