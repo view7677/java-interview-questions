@@ -1,9 +1,5 @@
-#
-# Hibernate
+## Hibernate
 *************
-
-
-
 
 #### 712. What is Hibernate framework?
 
@@ -436,14 +432,14 @@ In Hibernate we use Session interface to get a new transaction. Once we get the 
 Session s = null;
 Transaction trans = null;
 try {
-    s = sessionFactory.openSession();
-    trans = s.beginTransaction();
-    doTheAction(s);
-    trans.commit();
+s = sessionFactory.openSession();
+trans = s.beginTransaction();
+doTheAction(s);
+trans.commit();
 } catch (RuntimeException exc) {
-    trans.rollback();
+trans.rollback();
 } finally {
-    s.close();
+s.close();
 }
 ```
 
@@ -456,72 +452,284 @@ n Hibernate, by default an entity or collection is mutable. We can add, delete o
 
 #### 747. What are the different options to retrieve an object from database in Hibernate?
 
+In Hibernate, we can use one of the following options to retrieve
+objects from database:
+
+**Identifier**: We can use `load()` or `get()` method and pass the identifier
+like primary key to fetch an object from database.
+
+**HQL**: We can create a HQL query and get the object after executing
+the query.
+
+**Criteria API**: We can use Criteria API to create the search
+conditions for getting the objects from database.
+
+**Native SQL**: We can write native SQL query for a database and just
+execute it to get the data we want and convert it into desired object.
 
 #### 748. How can we auto-generate primary key in Hibernate?
 
+We can use the primary key generation strategy of type
+GenerationType.AUTO to auto-generate primary key while
+persisting an object in Hibernate.
+Example.
+
+```java
+@Id
+@GeneratedValue(strategy=GenerationType.AUTO)
+private int id;
+```
+We can leave it null/0 while persisting and Hibernate automatically
+generates a primary key for us.
+
+Sometimes, AUTO strategy refers to a SEQUENCE instead of an
+IDENTITY .
 
 #### 749. How will you re-attach an object in Detached state in Hibernate?
 
+We can call one of the methods Session.update(),
+Session.saveOrUpdate(), or Session.merge() to re-attach an object
+in detached state with another session in Hibernate.
 
 #### 750. What is the first level of cache in Hibernate?
 
+A Hibernate Session is the first level of cache for persistent data in
+a transaction.
 
-#### 751. What are the different second level caches available in Hibernate?752.Which is the default transaction factory in Hibernate?
+The second level of cache is at JVM or SessionFactory level.
 
+#### 751. What are the different second level caches available in Hibernate?
+
+In Hibernate, we can use different cache providers for implementing
+second level cache at JVM/SessionFactory level.
+Some of these are:
+1. Hashtable
+2. EHCache
+3. OSCache
+4. SwarmCache
+5. JBoss Cache 1.x
+6. JBoss Cache 2
+
+#### 752.Which is the default transaction factory in Hibernate?
+
+In Hibernate, default transaction factory is `JDBCTransactionFactory`. But we can change it by setting the property `hibernate.transaction.factory_class`.
 
 #### 753. What are the options to disable second level cache in Hibernate?
 
+This is a trick question. By default Second level cache is already disabled in Hibernate.
+
+In case, your project is using a second level cache you can use one of the following options to disable second level cache in Hibernate. We can set `hibernate.cache.use_second_level_cache` to `false`.
+
+We can use `CacheMode.IGNORE` to stop interaction between the session and second-level cache. Session will interact with cache only to invalidate cache items when updates occur.
 
 #### 754. What are the different fetching strategies in Hibernate?
 
+Hibernate 3 onwards there are following fetching strategies to
+retrieve associated objects:
+
+**Join fetching**: In Join strategy Hibernate uses OUTER join to
+retrieve the associated instance or collection in the same SELECT.
+Select fetching: In Select strategy, Hibernate uses a second SELECT
+to retrieve the associated entity or collection. We can explicitly
+disable lazy fetching by specifying lazy="false". By default lazy
+fetching is true.
+
+**Subselect fetching**: In Subselect strategy, Hibernate uses a second
+SELECT to retrieve the associated collections for all entities
+retrieved in a previous query or fetch.
+
+**Batch fetching**: In Batch strategy, Hibernate uses a single SELECT
+to retrieve a batch of entity instances or collections by specifying a
+list of primary or foreign keys. This is a very good performance
+optimization strategy for select fetching.
 
 #### 755. What is the difference between Immediate fetching and Lazy collection fetching?
 
+In Immediate fetching an association, collection or attribute is
+retrieved at the same time when the owner is loaded.
+
+But in Lazy collection fetching, a collection is fetched only when an
+operation is invoked on that collection by client application.
+
+This is the default fetching strategy for collections in Hibernate.
+Lazy fetching is better from performance perspective.
 
 #### 756. What is ‘Extra lazy fetching’ in Hibernate?
 
+In Extra lazy fetching, only individual elements of a collection are
+fetched from the database when they are required.
+
+In this strategy, Hibernate does not fetch the whole collection into
+memory unless it is essential.
+
+It is a good fetching strategy for large collections of objects.
 
 #### 757. How can we check is a collection is initialized or not under Lazy Initialization strategy?
 
+Hibernate provides two convenient methods, `Hibernate.initialize()`
+and `Hibernate.isInitialized()` to check whether a collection is
+initialized or not.
+
+By using `Hibernate.initialize()` we can force the initialization of a
+collection in Hibernate.
 
 #### 758. What are the different strategies for cache mapping in Hibernate?
 
+Hibernate provides following strategies for cache mapping:
+
+**Read only:** If an application requires caching only for read but not for write operations, then we can use this strategy. It is very simple to use and give very good performance benefit. It is also safe to use in a cluster environment.
+
+**Read/Write**: If an application also needs caching for write operations, then we use Read/Write strategy. Read/write cache strategy should not be used if there is requirement for serializable transaction isolation level. If we want to use it in a cluster environment, we need to implement locking mechanism.
+
+**Nonstrict Read/Write**: If an application only occasionally updates the data, then we can use this strategy. It cannot be used in systems with serializable transaction isolation level requirement. Transactional: This strategy supports full transactional cache providers like JBoss TreeCache.
 
 #### 759. What is the difference between a Set and a Bag in Hibernate?
 
+A Bag in Hibernate is an unordered collection. It can have duplicate
+elements. When we persist an object in a bag, there is no guarantee
+that bag will maintain any order.
+
+A Set in Hibernate can only store unique objects. If we add the same
+element to set second time, it just replaces the old one. By default a
+Set is unordered collection in Hibernate.
 
 #### 760. How can we monitor the performance of Hibernate in an application?
 
+We can use following ways to monitor Hibernate performance: 
+
+Monitoring SessionFactory: Since there is one SessionFactory in an application, we can collect the statistics of a SessionFactory to monitor the performance. Hibernate provides sessionFactory.getStatistics() method to get the statistics of SessionFactory.
+
+Hibernate can also use JMX to publish metrics.
+
+Metrics: In Hibernate we can also collect other metrics likenumber of open sessions, retrieved JDBC connections, cache hit, miss etc.
+
+These metrics give great insight into the performance of Hibernate. We can tune Hibernate settings and strategies based on these metrics.
 
 #### 761. How can we check if an Object is in Persistent, Detached or Transient state in Hibernate?
 
+We can use following methods to check the state of an object in Hibernate:
+
+Persistent State: If call to EntityManager.contains(object) returns true, the object is in Persistent state.
+
+Detached State: If the call to PersistenceUnitUtil.getIdentifier(object) returns identifier property then the object is in detached state.
+
+Transient State: If call to PersistenceUnitUtil.getIdentifier(object) returns null then object is in Transient state. We can get access to PersistenceUnitUtil from the EntityManagerFactory in Hibernate.
 
 #### 762. What is ‘the inverse side of association’ in a mapping?
 
+Let us consider an example in which a customer can have multiple orders and for every order there has to be a customer. In OO world, customer is the owner of order. In SQL world, an Order has reference to customer id.
+
+It is a bi-directional one to many mapping from customer to order. The inverse side in this mapping is the owner of object. In this case customer is the owner or order. Since an order cannot exist without a customer. But a customer can exist without an order.
+
+Also customer has no column to save order data. But an Order table can store customer id, which is used for mapping.
 
 #### 763. What is ORM metadata?
 
+ORM uses metadata for its internal work. ORM maintains metadata to generate code used for accessing columns and tables.
 
-#### 764. What is the difference between load() and get() method in Hibernate?
+ORM maps classes to tables and stores this information in Metadata. It maps fields in classes to columns in tables. These kinds of mappings are also part of Metadata.
 
+Application developers can also access Hibernate Metadata by using ClassMetadata and CollectionMetadata interfaces and Type hierarchy.
+
+#### 764. What is the difference between `load()` and `get()` method in Hibernate?
+
+In Hibernate, `load()` and `get()` methods are quite similar in functionality.
+
+The main difference is that `load()` method will throw an `ObjectNotFoundException` if row corresponding to an object is not found in the database.
+
+On the other hand, `get()` method returns null value when an object is not found in the database.
+
+It is recommended that we should use load() method only when we are sure that object exists in database.
 
 #### 765. When should we use get() method or load() method in Hibernate?
 
+As a thumb rule we can follow these guidelines:
+
+1. We should use get() method when we want to load an object.
+2. We should use load() method when we need a reference to an object without running extra SQL queries.
 
 #### 766. What is a derived property in Hibernate?
 
+In Hibernate, a derived property is not mapped to any column of a
+database table.
+
+A derived property is computed at runtime by evaluation of an
+expression.
+
+These are read only properties.
+Example. In this example profitMargin is derived from salePrice and
+buyPrice.
+
+```xml
+<property name="profitMargin" formula="( SELECT (i.salePrice –
+i.buyPrice) FROM item i WHERE i.Id = Id)"/>
+```
 
 #### 767. How can we use Named Query in Hibernate?
 
+A Named SQL query is the HQL query that is associated with a
+string name and can be referenced in the application by name.
+It can be used in following ways:
+
+**XML Mapping File**: We can define it in XML mapping file.
+Egg. 
+```xml
+<query name="findBookByAuthor”>
+<![CDATA[from Book s where s.author = :author]]>
+</query>
+```
+**Annotation**: We can also mark Named SQL with annotation.
+```java
+@NamedQueries({
+@NamedQuery(
+name = "findBookByAuthor”,
+query = "from Book s where s.author = :author”
+)
+})
+```
 
 #### 768. What are the two locking strategies in Hibernate?
 
+There are two popular locking strategies that can be used in Hibernate:
+
+Optimistic: In Optimistic locking we assume that multiple transactions can complete without affecting each other. So we let the transactions do their work without locking the resources initially.
+
+Just before the commit, we check if any of the resource has changed by another transaction, then we throw exception and rollback the transaction.
+
+Pessimistic: In Pessimistic locking we assume that concurrent transactions will conflict while working with same resources. So a transaction has to first obtain lock on the resources it wants to update.
+
+The other transaction can proceed with same resource only after the lock has been released by previous transaction.
 
 #### 769. What is the use of version number in Hibernate?
 
+Version number is used in optimistic locking in Hibernate. When a transaction modifies an object, it increments its version. Based on version number, second transaction can determine if the object it has read earlier has changed or not.
+
+If the version number at the time of write is different than the version number at the time of read, then we should not commit the transaction.
 
 #### 770. What is the use of session.lock() method in Hibernate?
 
+Session.lock() is a deprecated method in Hibernate. We should not use it.
+
+Instead we should call buildLockRequest(LockMode).lock(entityName, object) method in Hibernate.
 
 #### 771. What inheritance mapping strategies are supported by Hibernate?
+
+Hibernate supports following inheritance mapping strategies
+between classes and tables:
+
+**Table per class hierarchy**: In case of multiple types of books, we
+can have one book class and one book table. We can store all child
+classes of book like- HardCoverBook, PaperBackBook etc in same
+table book. But we can identify the subclasses by a BookType
+column in Book table.
+
+**Table per subclass**: In this case we can have separate table for each
+kind of book. HardCoverBook table for HardCoverBook book
+class. PaperBackBook table for PaperBackBook book class. And
+there will be a parent table, Book for Book class.
+
+**Table per concrete class**: In this case also we have separate table
+for each kind of book. But in this case we have even inherited
+properties defined inside each table. There is no parent table Book
+for Book class, since it is not a concrete class.
 

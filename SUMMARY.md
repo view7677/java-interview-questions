@@ -1,4 +1,6 @@
-# Java interview questions
+# Cracking the Java interview
+
+###### Questions With Answers
 
 * [Contents](pages/contents.md)
 * [Questions Index](pages/Questions.md)
@@ -18,6 +20,7 @@
 * [Inner Classes](pages/Inner_Classes.md)
 * [String](pages/String.md)
 * [Exception Handling](pages/Exception_Handling.md)
+* [Threads](pages/Threads.md)
 * [Multi-threading](pages/Multi-threading.md)
 * [Collections](pages/Collections.md)
 * [Mixed Questions](pages/Mixed_Questions.md)
@@ -25,7 +28,7 @@
 * [Threads](pages/Thread.md)
 * [Advanced Multi-threading](pages/Advanced_Multi-threading.md)
 * [Java 8](pages/Java_8.md)
-* [Functional interface in Java 8?](pages/Functional_interface_in_Java_8.md)
+* [Functional interface in Java 8](pages/Functional_interface_in_Java_8.md)
 * [Java Tricky Questions](pages/Java_Tricky_Questions.md)
 * [JSP](pages/JSP.md)
 * [Java Design Patterns](pages/Java_Design_Patterns.md)
