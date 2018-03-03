@@ -1,11 +1,15 @@
 ## Method Overloading and Overriding
+
 ******
 #### 40. What is the other name of Method Overloading?
+
 Method Overloading is also known as Static Polymorphism.
 
 #### 41. How will you implement method overloading in Java?
+
 In Java, a class can have multiple methods with same name but different arguments. It is called Method Overloading. To implement method overloading we have to create two methods with same name
 in a class and do one/more of the following:
+
  1. Different number of parameters
  2. Different data type of parameters
  3. Different sequence of data type of parameters

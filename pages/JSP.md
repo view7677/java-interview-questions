@@ -40,7 +40,7 @@ does not do same action twice for same request.
 
 We can use SingleThreadModel Interface to implement a thread safe
 JSP page.
-We can also add <%@page isThreadSafe=”false” %> directive in
+We can also add `<%@page isThreadSafe=”false” %>` directive in
 JSP page to make it thread safe.
 
 
@@ -50,19 +50,19 @@ We can use include directive of JSP to include a Static page in JSP.
 In this approach, we use translation phase to include a static page.
 We have to specify the URL of the resource to be included as file
 attribute in this directive.
-E.g. <%@ include file="footer.html" %>
+E.g. `<%@ include file="footer.html" %>`
 
 
 #### 15. What are the lifecycle methods of a JSP?
 
 A JSP has following lifecycle methods:
 
-1. jspInit(): This method is invoked when the JSP is called
+1. `jspInit()`: This method is invoked when the JSP is called
 for the first time. We can do initial setup for servicing a
 request in this method.
 2. `_jspService()`: This method is used to serve every request
 of the JSP.
-3. jspDestroy(): Once we remove a JSP from the container,
+3. `jspDestroy()`: Once we remove a JSP from the container,
 we call this method. It is used for cleanup of resources like
 Database connections etc.
 
@@ -70,10 +70,10 @@ Database connections etc.
 
 We get following advantages by using JSP in web architecture:
 
-1. Performance: JSP provides very good performance due to their design of using same code to service multiple requests.
-2. Fast: Since JSP is pre-compiled, server can serve the pages very fast.
-3. Extendable: JSP is based on Java Servlets. This helps in extending JSP architecture with other Java technologies like JDBC, JMS, JNDI etc.
-4. Design: It is easier to design user interface with JSP, since it is very close to HTML. UI designers can create a JSP with mock data and developers can later provide implementation of dynamic data.
+1. **Performance**: JSP provides very good performance due to their design of using same code to service multiple requests.
+2. **Fast**: Since JSP is pre-compiled, server can serve the pages very fast.
+3. **Extendable**: JSP is based on Java Servlets. This helps in extending JSP architecture with other Java technologies like JDBC, JMS, JNDI etc.
+4. **Design**: It is easier to design user interface with JSP, since it is very close to HTML. UI designers can create a JSP with mock data and developers can later provide implementation of dynamic data.
 
 
 
@@ -83,7 +83,10 @@ In JSP we can write Java code seamlessly. It allows for writing
 code that can interact with the rest of the application.
 Javascript code is mostly executed at client side. This limits the
 tasks that can be done in Javascript code. We cannot connect to
-database server from Javascript at the client side.18. What is the Lifecycle of JSP?
+database server from Javascript at the client side.
+
+#### 18. What is the Lifecycle of JSP?
+
 JSP has following lifecycle stages:
 1. **Compilation**: When a request is made for a JSP, the
 corresponding JSP is converted into Servlet and compiled.
@@ -117,11 +120,11 @@ E.g.
 2. **Taglib**: We can create custom tags in JSP and use these by
 taglib directive in a JSP page.
 E.g.
-<%@ taglib uri=“abc.html” prefix=“tag_prefix” >
+`<%@ taglib uri=“abc.html” prefix=“tag_prefix” >`
 3. **Include**: We use include directive to read a file and merge
 its content with the JSP page. This is done during
 compilation stage.
-<%@ include file="relative url" >
+`<%@ include file="relative url" >`
 
 
 #### 21. What is session attribute in JSP?
@@ -176,11 +179,8 @@ Some of the main differences between include Directive and
 include Action are as follows:
 
 1. Include directive is called at translation phase to include content in JSP. Include Action is executed during runtime of JSP.
-2. It is not possible to pass parameters to include directive.
-Include action can accept parameters by jsp:param tag.
-3. Include directive is just copying of content from another file to JSP code and then it goes through compilation.
-Include action will dynamically process the resource being
-called and then include it in the JSP page.
+2. It is not possible to pass parameters to include directive. Include action can accept parameters by jsp:param tag.
+3. Include directive is just copying of content from another file to JSP code and then it goes through compilation. Include action will dynamically process the resource being called and then include it in the JSP page.
 
 
 
@@ -283,17 +283,10 @@ Some of the important directives in JSP are: `page`, `include` and
 We can use different mechanisms to implement Session tracking
 JSP. Some these mechanisms are as follows:
 
-1. **Cookies**: We can use cookie to set session information and
-pass it to web client. In subsequent requests we can use the
-information in cookie to track session.
-2. **Hidden Form Field**: We can send session id in a hidden
-field in HTML form. By using this we can track session.
-3. **Session object**: We can use the built in session object to
-track session in JSP.
-4. **URL Rewriting**: We can also add session id at the end of a URL.
-Like- www.abcserver.com?sessionid=1234
-
-
+1. **Cookies**: We can use cookie to set session information and pass it to web client. In subsequent requests we can use the information in cookie to track session.
+2. **Hidden Form Field**: We can send session id in a hidden field in HTML form. By using this we can track session.
+3. **Session object**: We can use the built in session object to track session in JSP.
+4. **URL Rewriting**: We can also add session id at the end of a URL. Like- www.abcserver.com?sessionid=1234
 
 #### 36. How do you debug code in JSP?
 
@@ -320,17 +313,16 @@ handle error. In case of an error or exception, these JSP will direct
 it to errorPage.
 `<% page errorPage=”ErrorPage.jsp” %>`
 
-
-
 #### 38. How will you send XML data from a JSP?
 In general, JSP is used to pass HTML data to web browser. If we
 want to send data in XML format, we can easily do it by setting
-contentType=”text/xml” in page directive.
-E.g. <%@page contentType=”text/xml” %>
+`contentType=”text/xml”` in page directive.
+E.g. `<%@page contentType=”text/xml” %>`
 
 
 
 #### 39. What happens when we request for a JSP page from web browser?
+
 When a user calls JSP page from web browser, the request first
 comes to web server. Web server checks for .jsp extension of page
 and passes the request to JSP container like Tomcat.
@@ -338,43 +330,41 @@ The JSP container checks whether it has precompiled JSP class or
 not. If this is the first time this JSP is called, then JSP container will
 translate JSP into a servlet and compiles it.
 After compiling, JSP code if loaded in memory and JSP container
-will call jspInit() method and _jspService() methods.
-The _jspService() method will create the output that will be sent by
+will call jspInit() method and `_jspService()` methods.
+The `_jspService()` method will create the output that will be sent by
 JSP container to client browser.
 
 
 #### 40. How will you implement Auto Refresh of page in JSP?
+
 We can use setIntHeader() method to set the refresh frequency with
 which we want to auto-refresh a JSP page.
 We can send key “Refresh” with the time in seconds for auto refresh
 of the JSP page.
-E.g. response.setIntHeader(“Refresh”,10)
+E.g. `response.setIntHeader(“Refresh”,10)`
 
 
 #### 41. What are the important status codes in HTTP?
+
 Every HTTP request comes back with a status code from the server.
 The important status codes in HTTP are as follows:
-1.
-2.
-3.
-4.
-5.
-200: It means the request is successful.
-400: It means the request was bad.
-401: It means request was not authorized.
-404: It means the resource requested was not found.
-503: It means the service is not available.
+
+1. 200: It means the request is successful.
+2. 400: It means the request was bad.
+3. 401: It means request was not authorized.
+4. 404: It means the resource requested was not found.
+5. 503: It means the service is not available.
 
 
 #### 42. What is the meaning of Accept attribute in HTTP header?
+
 In HTTP header, Accept attribute is used to specify the MIME types
 that a HTTP client or browser can handle. MIME type is the
 identifier for specifying the type of file/data that we are planning to
 pass over the internet.
 
-
-
 #### 43. What is the difference between Expression and Scriptlet in JSP?
+
 We use Expression in a JSP to return a value and display it at a
 specific location. It is generally used for dynamically print
 information like- time, counter etc in a HTML code.
@@ -384,15 +374,15 @@ complex code and can be also reused.
 
 
 #### 44. How will you delete a Cookie in JSP?
+
 We can use following options to delete a Cookie in JSP:
 1. `setMaxAge()`: we can set the maximum age of a cookie.
 After this time period, Cookie will expire and will be
 deleted.
 2. `Header`: We can also set the expiry time in header of response. `Respone.setHeader()`. This will also expire the cookie after specified time period.
 
-
-
 #### 45. How will you use a Cookie in JSP?
+
 We can use a Cookie in JSP by performing following steps:
 First we create a Cookie object. We set the name and value of the
 cookie to be created.
@@ -411,6 +401,7 @@ and retrieve its value.
 
 
 #### 46. What is the main difference between a Session and Cookie in JSP?
+
 A Session is always stored at the Server side. In JSP, session is a
 built-in object in JSP container.
 A Cookie is always stored at the client side.
@@ -420,6 +411,7 @@ location.
 
 
 #### 47. How will you prevent creation of session in JSP?
+
 We can simply set the session attribute as false in page directive to
 prevent creation of session object.
 E.g.` <% @page session=”false” %>`
@@ -439,6 +431,7 @@ If we output comment in above format, it will be visible to client.
 We can use set the header in response object for Cache-Control to
 specify no caching.
 Sample code is as follows:
+
 ```java
 response.setHeader(“Cache-Control”, “no-store”);
 response.setDateHeader(“Expires”,”0”);
@@ -446,6 +439,7 @@ response.setDateHeader(“Expires”,”0”);
 
 
 #### 50. How will you redirect request to another page in browser in JSP code?
+
 We can use sendRedirect() method in JSP to redirect the request to another location or page.
 In this case the request will not come back to server. It will redirect in the browser itself.
 Sample code is as follows:
@@ -464,23 +458,19 @@ within same server. In case of sendRedirect the request can be transferred to re
 3. In forward only one request call is consumed. In case of sendRedirect two request response calls are created and
 consumed.
 4. The forward is declared in RequestDispatcher interface.
-Where
-as
-sendRedirect
-is
-declared
-in
-HttpServletResponse object.
+Where as sendRedirect is declared in HttpServletResponse object.
 
 
 
 #### 52. What is the use of config implicit object in JSP?
+
 In JSP, config object is of type ServletConfig. This object is created
 by Servlet Container for each JSP page. It is used for setting
 initialization parameters for a specific JSP page.
 
 
 #### 53. What is the difference between init-param and context-param?
+
 We can specify both init-param and context-param in web.xml file.
 We use init-param to specify the parameters that are specific to a
 servlet or jsp. This information is confined to the scope of that JSP.
@@ -506,26 +496,19 @@ the parameters in the Form.
 2. `getParameter()`: We call this method to get the value of
 parameter set in the Form. It returns null if the parameter is
 not found.
-3. `getParameterValues()`: If a Parameter is mentioned
-multiple
-times
-in
-a
-Form,
-we
-use
-request.getParameterValues() method to get all the values.
-This method returns an array of String values.
-4. getParameterMap(): This method returns the map of all
+3. `getParameterValues()`: If a Parameter is mentioned multiple times in a Form, we use `request.getParameterValues()` method to get all the values. This method returns an array of String values.
+4. `getParameterMap()`: This method returns the map of all
 the Parameters in Form.
 
 
 
 #### 56. What is a filter in JSP?
+
 We can define filters in JSP to intercept requests from a client or to
 change response from a server.
 Filter is a Java class that is defined in the deployment descriptor of
 web.xml of an application. The JSP container reads filter from
 web.xml and applies a filter as per the URL pattern associated with
 the filter.
+
 JSP Engine loads all the filters in when we start the server.

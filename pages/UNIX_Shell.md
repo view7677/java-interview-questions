@@ -142,7 +142,7 @@ We use &gt;, &lt;, &gt;&gt; characters for this purpose.
 
 #### 483. What is a Shell variable?
 
-A Unix Shell variable is an internal variable that a shell maintains.It is local to that Shell. It is not made available to the parent shell or child shell.
+A Unix Shell variable is an internal variable that a shell maintains. It is local to that Shell. It is not made available to the parent shell or child shell.
 
 We generally use lower case names for shell variables in C shell. We can set the value of a shell variable by set command.
 

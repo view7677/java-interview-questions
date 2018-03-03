@@ -431,20 +431,20 @@ In following example, we are creating two interfaces Person and Employee. A teac
 
 ```java
 interface Person {
-public default void printType() {
-System.out.println("I am a Person.");
-}
+    public default void printType() {
+        System.out.println("I am a Person.");
+    }
 }
 interface Employee {
-public default void printType() {
-System.out.println("I am a Employee.");
-}
+    public default void printType() {
+        System.out.println("I am a Employee.");
+    }
 }
 public class Teacher implements Person, Employee {
-public static void main(String args[]) {
-Teacher t = new Teacher();
-t.printType(); //Error
-}
+    public static void main(String args[]) {
+        Teacher t = new Teacher();
+        t.printType(); //Error
+    }
 }
 ```
 
@@ -458,31 +458,34 @@ To resolve this we have to explicitly override the printType method in Teacher c
 package com.java8.util;
 
 interface Person {
-public default void printType() {
-System.out.println("I am a Person.");
-}
+    public default void printType() {
+        System.out.println("I am a Person.");
+    }
 }
 
 interface Employee {
-public default void printType() {
-System.out.println("I am a Employee.");
+    public default void printType() {
+        System.out.println("I am a Employee.");
+    }
 }
-}
+
 public class Teacher implements Person,Employee {
-@Override
-public void printType() {
-System.out.println("I am a Teacher.");
+
+    @Override
+        public void printType() {
+        System.out.println("I am a Teacher.");
+    }
+    public static void main(String args[]) {
+        Teacher t = new Teacher();
+        t.printType();
+    }
 }
-public static void main(String args[]) {
-Teacher t = new Teacher();
-t.printType();
-}
-}
+
 ```
+
 Output :
 
 `I am a Teacher.`
-
 
 
 #### 40. Can we access a static method of an interface by using reference of the interface?
@@ -508,10 +511,10 @@ Optional, which tells us it’s not guaranteed to find a value. Given this optio
 
 ```java
 public Book findBookByTitle(List<Book> books, String title) {
-Optional<Book> foundBook = books.stream()
-.filter(book -> book.getTitle().equals(title))
-.findFirst();
-return foundBook.orElseThrow(() -> new BookNotFoundException("Did not find book with title " + title));
+    Optional<Book> foundBook = books.stream()
+        .filter(book -> book.getTitle().equals(title))
+        .findFirst();
+    return foundBook.orElseThrow(() -> new BookNotFoundException("Did not find book with title " + title));
 }
 ```
 
