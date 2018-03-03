@@ -22,6 +22,7 @@
 * [Collections](pages/Collections.md)
 * [Mixed Questions](pages/Mixed_Questions.md)
 * [Java Collection](pages/Java_Collection.md)
+* [Threads](pages/Thread.md)
 * [Advanced Multi-threading](pages/Advanced_Multi-threading.md)
 * [Java 8](pages/Java_8.md)
 * [Functional interface in Java 8?](pages/Functional_interface_in_Java_8.md)
