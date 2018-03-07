@@ -85,15 +85,15 @@ To achieve we are going to create 2 threads on same Runnable Object, create for 
 
 ####  7 . When threads are not lightweight process in java?
 
-Answer. Threads are lightweight process only if threads of same process are executing concurrently. But if threads of different processes are executing concurrently then threads are heavy weight process.
+Threads are lightweight process only if threads of same process are executing concurrently. But if threads of different processes are executing concurrently then threads are heavy weight process.
 
 ####  8. How can you ensure all threads that started from main must end in order in which they started and also main should end in last? (Important)
 
-Answer.  Interviewers tend to know interviewees knowledge about Thread methods. So this is time to prove your point by answering correctly. We can use join() methodto ensure all threads that started from main must end in order in which they started and also main should end in last.In other words waits for this thread to die. Calling join() method internally calls join(0);
+Interviewers tend to know interviewees knowledge about Thread methods. So this is time to prove your point by answering correctly. We can use join() methodto ensure all threads that started from main must end in order in which they started and also main should end in last.In other words waits for this thread to die. Calling join() method internally calls join(0);
 
 ####  9.What is difference between starting thread with `run()` and `start()` method? (Important)
 
-Answer. This is quite interesting #### , it might confuse you a bit and at time may make you think is there really any difference between starting thread with `run()` and `start()` method.
+This is quite interesting #### , it might confuse you a bit and at time may make you think is there really any difference between starting thread with `run()` and `start()` method.
 
 When you call `start()` method, main thread internally calls `run()` method to start newly created Thread, so `run()` method is ultimately called by newly created thread.
 
@@ -115,7 +115,7 @@ No, synchronized can be used only with methods, i.e. in method declaration.
 
 ####  11. Differences between synchronized and volatile keyword in Java? (Important)
 
-Answer.Its very important ####  from interview perspective.
+Its very important ####  from interview perspective.
 
 Volatile can be used as a keyword against the variable, we cannot use volatile against method declaration.
 
@@ -288,7 +288,7 @@ We will approach by keeping one boolean variable productionInProcess and initial
 
 ####  19. How can you solve consumer producer pattern by using BlockingQueue? (Important)
 
-Answer. Now it’s time to gear up to face ####  which is most probably going to be followed up by previous ####  i.e. after how to solve consumer producer problem using wait() and notify() method. Generally you might wonder why interviewer's are so much interested in asking about solving consumer producer problem using BlockingQueue, answer is they want to know how strong knowledge you have about java concurrent Api’s, this Api use consumer producer pattern in very optimized manner, BlockingQueue is designed is such a manner that it offer us the best performance.
+Now it’s time to gear up to face ####  which is most probably going to be followed up by previous ####  i.e. after how to solve consumer producer problem using wait() and notify() method. Generally you might wonder why interviewer's are so much interested in asking about solving consumer producer problem using BlockingQueue, answer is they want to know how strong knowledge you have about java concurrent Api’s, this Api use consumer producer pattern in very optimized manner, BlockingQueue is designed is such a manner that it offer us the best performance.
 
 BlockingQueue is a interface and we will use its implementation class LinkedBlockingQueue.
 
@@ -380,7 +380,7 @@ jstack is very easy way to generate Thread dump and is widely used by developers
 
 ####  22. What is life cycle of Thread, explain thread states? (Important)
 
-Answer.  Thread states/ Thread life cycle is very basic #### , before going deep into concepts we must understand Thread life cycle.
+Thread states/ Thread life cycle is very basic #### , before going deep into concepts we must understand Thread life cycle.
 
 Thread have following states >
 
@@ -424,45 +424,43 @@ Running : Thread scheduler selects thread to go fromrunnable to running state. I
 
 ####  23. Are you aware of preemptive scheduling and time slicing?
 
-Answer. In preemptive scheduling, the highest priority thread executes until it enters into the waiting or dead state.
+In preemptive scheduling, the highest priority thread executes until it enters into the waiting or dead state.
 
 In time slicing, a thread executes for a certain predefined time and then enters runnable pool. Than thread can enter running state when selected by thread scheduler.
 
 ####  24. What are daemon threads?
 
-Answer.Daemon threads are low priority threads which runs intermittently in background for doing garbage collection.
+Daemon threads are low priority threads which runs intermittently in background for doing garbage collection.
 
- 12 Few salient features of daemon() threads>
+>12 Few salient features of daemon() threads>
 
-Thread scheduler schedules these threads only when CPU is idle.
+1. Thread scheduler schedules these threads only when CPU is idle.
 
-Daemon threads are service oriented threads, they serves all other threads.
+2. Daemon threads are service oriented threads, they serves all other threads.
 
-These threads are created before user threads are created and die after all other user threads dies.
+3. These threads are created before user threads are created and die after all other user threads dies.
 
-Priority of daemon threads is always 1 (i.e. MIN_PRIORITY).
+4. Priority of daemon threads is always 1 (i.e. MIN_PRIORITY).
 
-User created threads are non daemon threads.
+5. User created threads are non daemon threads.
 
-JVM can exit when only daemon threads exist in system.
+6. JVM can exit when only daemon threads exist in system.
 
-we can use isDaemon() method to check whether thread is daemon thread or not.
+7. we can use isDaemon() method to check whether thread is daemon thread or not.
 
-we can use setDaemon(boolean on) method to make any user method a daemon thread.
+8. we can use setDaemon(boolean on) method to make any user method a daemon thread.
 
-If setDaemon(boolean on) is called on thread after calling start() method than IllegalThreadStateException is thrown.
+9. If setDaemon(boolean on) is called on thread after calling start() method than IllegalThreadStateException is thrown.
 
-You may like to see how daemon threads work, for that you can use VisualVM or jStack. I have provided Thread dumps over there which shows daemon threads which were intermittently running in background.
+10. You may like to see how daemon threads work, for that you can use VisualVM or jStack. I have provided Thread dumps over there which shows daemon threads which were intermittently running in background.
 
-Some of the daemon threads which intermittently run in background are >
+11. Some of the daemon threads which intermittently run in background are 
+    1. "RMI TCP Connection(3)-10.175.2.71" daemon"RMI TCP Connection(idle)" daemon"RMI Scheduler(0)" daemon"C2 CompilerThread1" daemon
+    2. "GC task thread#0 (ParallelGC)"
 
-"RMI TCP Connection(3)-10.175.2.71" daemon"RMI TCP Connection(idle)" daemon"RMI Scheduler(0)" daemon"C2 CompilerThread1" daemon
+####  25. Why `suspend()` and `resume()` methods are deprecated?
 
-"GC task thread#0 (ParallelGC)"
-
-####  25. Why suspend() and resume() methods are deprecated?
-
-Answer.Suspend() method is deadlock prone. If the target thread holds a lock on object when it is suspended, no thread can lock this object until the target thread is resumed. If the thread that would resume the target thread attempts to lock this monitor prior to calling resume, it results in deadlock formation.
+Suspend() method is deadlock prone. If the target thread holds a lock on object when it is suspended, no thread can lock this object until the target thread is resumed. If the thread that would resume the target thread attempts to lock this monitor prior to calling resume, it results in deadlock formation.
 
 These deadlocksare generally called Frozen processes.
 
@@ -472,13 +470,13 @@ These deadlocksare generally called Frozen processes.
 
 ####  26. Why `destroy()` methods is deprecated?
 
-Answer. This ####  is again going to check your in depth knowledge of thread methods i.e. destroy() method is deadlock prone. If the target thread holds a lock on object when it is destroyed, no thread can lock this object (Deadlock formed are similar to deadlock formed when suspend() and resume() methods are used improperly). It results in deadlock formation. These deadlocksare generally called Frozen processes.
+`destroy()` method is deadlock prone. If the target thread holds a lock on object when it is destroyed, no thread can lock this object (Deadlock formed are similar to deadlock formed when suspend() and resume() methods are used improperly). It results in deadlock formation. These deadlocksare generally called Frozen processes.
 
-Additionally you must know calling destroy() method on Threads throw runtimeException i.e. NoSuchMethodError. Destroy() method puts thread from running to dead state.
+Additionally you must know calling `destroy()` method on Threads throw runtimeException i.e. NoSuchMethodError. `Destroy()` method puts thread from running to dead state.
 
 ####  27. As stop() method is deprecated,  How can we terminate or stop infinitely running thread in java? (Important)
 
-Answer. This is very interesting ####  where interviewees thread basics basic will be tested. Interviewers tend to know user’s knowledge about main thread’s and thread invoked by main thread.
+This is very interesting ####  where interviewees thread basics basic will be tested. Interviewers tend to know user’s knowledge about main thread’s and thread invoked by main thread.
 
 We will try to address the problem by creating new thread which will run infinitely until certain condition is satisfied and will be called by main Thread.
 
@@ -492,7 +490,7 @@ Stopping a thread with Thread.stop() causes it to release all of the monitors th
 
 ####  28. what is significance of yield() method, what state does it put thread in?
 
-yield() is a native method it’s implementation in java 6 has been changed as compared to its implementation java 5. As method is native it’s implementation is provided by JVM.
+`yield()` is a native method it’s implementation in java 6 has been changed as compared to its implementation java 5. As method is native it’s implementation is provided by JVM.
 
 In java 5, yield() method internally used to call sleep() method giving all the other threads of same or higher priority to execute before yielded thread by leaving allocated CPU for time gap of 15 millisec.
 
@@ -545,37 +543,37 @@ Belongs to which class :sleep() method belongs to java.lang.Thread class.
 
 synchronized block : thread need not to to acquire object lock before calling sleep()method i.e. sleep() method can be called from outside synchronized block.
 
-####  30. Difference between wait() and sleep() ? (Important)
+####  30. Difference between `wait()` and `sleep()` ? (Important)
 
-Answer.
 
-Should be called from synchronized block :wait() method is always called from synchronized block i.e. wait() method needs to lock object monitor before object on which it is called.  But sleep() method can be called from outside synchronized block i.e. sleep() method doesn’t need any object monitor.
 
-IllegalMonitorStateException : if wait() method is called without acquiring object lock than IllegalMonitorStateException is thrown at runtime, but sleep() methodnever throws such exception.
+Should be called from synchronized block :`wait()` method is always called from synchronized block i.e. wait() method needs to lock object monitor before object on which it is called.  But sleep() method can be called from outside synchronized block i.e. sleep() method doesn’t need any object monitor.
 
-Belongs to which class : wait() method belongs to java.lang.Object class but sleep() method belongs to java.lang.Thread class.
+`IllegalMonitorStateException` : if `wait()` method is called without acquiring object lock than `IllegalMonitorStateException` is thrown at runtime, but `sleep()` methodnever throws such exception.
 
-Called on object or thread : wait() method is called on objects but sleep() method is called on Threads not objects.
+Belongs to which class : `wait()` method belongs to java.lang.Object class but sleep() method belongs to java.lang.Thread class.
 
-Thread state : when wait() method is called on object, thread that holded object’s monitor goes from running to waiting state and can return to runnable state only when notify() or notifyAll()method is called on that object. And later thread scheduler schedules that thread to go from from runnable to running state.
+Called on object or thread : `wait()` method is called on objects but `sleep()` method is called on Threads not objects.
 
-when sleep() is called on thread it goes from running to waiting state and can return to runnable state when sleep time is up.
+Thread state : when `wait()` method is called on object, thread that holded object’s monitor goes from running to waiting state and can return to runnable state only when `notify()` or `notifyAll()` method is called on that object. And later thread scheduler schedules that thread to go from from runnable to running state.
 
-When called from synchronized block :when wait() method is called thread leaves the object lock.  But sleep()method when called from synchronized block or method thread doesn’t leaves object lock.
+when `sleep()` is called on thread it goes from running to waiting state and can return to runnable state when sleep time is up.
 
-####  31. Differences and similarities between yield() and sleep()?
+When called from synchronized block :when `wait()` method is called thread leaves the object lock.  But `sleep()` method when called from synchronized block or method thread doesn’t leaves object lock.
 
-Answer.
+####  31. Differences and similarities between `yield()` and `sleep()`?
 
-Differences yield() and sleep() :
 
-Definition : yield() method when called on thread gives a hint to the thread scheduler that the current thread is willing to yield its current use of a processor.The thread scheduler is free to ignore this hint. sleep() methods causes current thread to sleep for specified number of milliseconds (i.e. time passed in sleep method as parameter). Ex- Thread.sleep(10) causes currently executing thread to sleep for 10 millisec.
 
-Thread state : when sleep() is called on thread it goes from running to waiting state and can return to runnable state when sleep time is up. when yield() method is called on thread it goes from running to runnable state, not in waiting state. Thread is eligible to run but not running and could be picked by scheduler at anytime.
+Differences `yield()` and `sleep()` :
 
-Exception : yield() method need not to catch or throw any exception. But sleep() method must catch or throw compile time exception i.e. InterruptedException.
+Definition : `yield()` method when called on thread gives a hint to the thread scheduler that the current thread is willing to yield its current use of a processor.The thread scheduler is free to ignore this hint. `sleep()` methods causes current thread to sleep for specified number of milliseconds (i.e. time passed in sleep method as parameter). Ex- Thread.`sleep(10)` causes currently executing thread to sleep for 10 millisec.
 
-Waiting time : yield() method stops thread for unpredictable time, that depends on thread scheduler. But sleep() method have got few options.
+Thread state : when `sleep()` is called on thread it goes from running to waiting state and can return to runnable state when sleep time is up. when `yield()` method is called on thread it goes from running to runnable state, not in waiting state. Thread is eligible to run but not running and could be picked by scheduler at anytime.
+
+Exception : `yield()` method need not to catch or throw any exception. But `sleep()` method must catch or throw compile time exception i.e. InterruptedException.
+
+Waiting time : `yield()` method stops thread for unpredictable time, that depends on thread scheduler. But `sleep()` method have got few options.
 
 sleep(long millis) - Causes the currently executing thread to sleep for the specified number of milliseconds
 
@@ -583,7 +581,7 @@ sleep(long millis, int nanos) - Causes the currently executing thread to sleep f
 
 similarity between yield() and sleep():
 
-> yield() and sleep() method belongs to java.lang.Thread class.
+> yield() and sleep() method belongs to `java.lang.Thread` class.
 
 > yield() and sleep() method can be called from outside synchronized block.
 
@@ -591,7 +589,7 @@ similarity between yield() and sleep():
 
 ####  32. Mention some guidelines to write thread safe code, most important point we must take care of in multithreading programs?
 
-Answer.  In multithreading environment it’s important very important to write thread safe code, thread unsafe code can cause a major threat to your application. I have posted many articles regarding thread safety. So overall this will be revision of what we have learned so far i.e. writing thread safe healthy code and avoiding any kind of deadlocks.
+In multithreading environment it’s important very important to write thread safe code, thread unsafe code can cause a major threat to your application. I have posted many articles regarding thread safety. So overall this will be revision of what we have learned so far i.e. writing thread safe healthy code and avoiding any kind of deadlocks.
 
 If method is exposed in multithreading environment and it’s not synchronized (thread unsafe) than it might lead us to race condition, we must try to use synchronized block and synchronized methods. Multiple threads may exist on same object but only one thread of that object can enter synchronized method at a time, though  threads on different object can enter same method at same time.
 
@@ -602,31 +600,25 @@ If possible, try to use volatile variables. If a field is declared volatile all 
 Final variables are thread safe because once assigned some reference of object they cannot point to reference of other object.
 
 s is pointing to String object.
+
 ```java
- public class MyClass {
+public class MyClass {
+  final String s=new String("a");
+  void method(){
+    s="b"; //compilation error, s cannot point to new reference.
+  }
+}
+```
 
-final String s=new String("a");
-
- void method(){
-
- s="b"; //compilation error, s cannot point to new reference.
-
- }
-
- }
 If final is holding some primitive value it cannot point to other value.
 
- public class MyClass {
-
-final inti=0;
-
- void method(){
-
- i=0;  //compilation error, i cannot point to new value.
-
- }
-
- }
+```java
+public class MyClass {
+  final inti=0;
+  void method(){
+    i=0;  //compilation error, i cannot point to new value.
+  }
+}
  ```
 Usage of local variables : If possible try to use local variables, local variables are thread safe, because every thread has its own stack, i.e. every thread has its own local variables and its pushes all the local variables on stack.
 ```java
@@ -640,22 +632,20 @@ Usage of local variables : If possible try to use local variables, local variabl
 
  }
  ```
-Using thread safe collections : Rather than using ArrayList we must Vector and in place of using HashMap we must use ConcurrentHashMap or HashTable.
+**Using thread safe collections** : Rather than using ArrayList we must Vector and in place of using HashMap we must use ConcurrentHashMap or HashTable.
 We must use VisualVM  or jstack  to detect problems such as deadlocks and time taken by threads to complete in multi threading programs.
 Using ThreadLocal:ThreadLocal is a class which provides thread-local variables. Every thread has its own ThreadLocal value that makes ThreadLocal value threadsafe as well.
 Rather than StringBuffer try using immutable classes such as String. Any change to String produces new String.
 
 ####  33. How thread can enter waiting, sleeping and blocked state and how can they go to runnable state ?
 
-Answer.  This is very prominently asked ####  in interview which will test your knowledge about thread states. And it’s very important for developers to have in depth knowledge of this thread state transition. I will try to explain this thread state transition by framing few sub #### s. I hope reading sub #### s will be quite interesting.
-
 > How can Thread go from running to waiting state ?
 
- By calling wait()method thread go from running to waiting state. In waiting state it will wait for other threads to release object monitor/lock.
+ By calling `wait()` method thread go from running to waiting state. In waiting state it will wait for other threads to release object monitor/lock.
 
 > How can Thread return from waiting to runnable state ?
 
- Once notify() or notifyAll()method is called object monitor/lock becomes available and thread can again return to runnable state.
+ Once `notify()` or `notifyAll()` method is called object monitor/lock becomes available and thread can again return to runnable state.
 
 > How can Thread go from running to sleeping state ?
 
@@ -665,24 +655,24 @@ Answer.  This is very prominently asked ####  in interview which will test your 
 
  Once specified sleep time is up thread can again return to runnable state.
 
-Suspend() method can be used to put thread in waiting state and resume() method is the only way which could put thread in runnable state.
+`Suspend()` method can be used to put thread in waiting state and `resume()` method is the only way which could put thread in runnable state.
 
 Thread also may go from running to waiting state if it is waiting for some I/O operation to take place. Once input is available thread may return to running state.
 
->When threads are in running state, yield()method can make thread to go in Runnable state.
+>When threads are in running state, `yield()` method can make thread to go in Runnable state.
 
-####  34. Difference between notify() and notifyAll() methods, can you write a code to prove your point?
+####  34. Difference between `notify()` and `notifyAll()` methods, can you write a code to prove your point?
 
-Answer. Goodness. Theoretically you must have heard or you must be aware of differences between notify() and notifyAll().But have you created program to achieve it? If not let’s do it.
+Goodness. Theoretically you must have heard or you must be aware of differences between `notify()` and `notifyAll()`.But have you created program to achieve it? If not let’s do it.
 
-First, I will like give you a brief description of what notify() and notifyAll() methods do.
+First, I will like give you a brief description of what `notify()` and `notifyAll()` methods do.
 
-notify()- Wakes up a single thread that is waiting on this object's monitor. If any threads are waiting on this object, one of them is chosen to be awakened. The choice is random and occurs at the discretion of the implementation. A thread waits on an object's monitor by calling one of the wait methods.
+`notify()`- Wakes up a single thread that is waiting on this object's monitor. If any threads are waiting on this object, one of them is chosen to be awakened. The choice is random and occurs at the discretion of the implementation. A thread waits on an object's monitor by calling one of the wait methods.
 
 The awakened threads will not be able to proceed until the current thread relinquishes the lock on this object.
-
+```java
 public final native void notify();
-
+```
 notifyAll()- Wakes up all threads that are waiting on this object's monitor. A thread waits on an object's monitor by calling one of the wait methods.
 
 The awakened threads will not be able to proceed until the current thread relinquishes the lock on this object.
@@ -693,29 +683,29 @@ Now it’s time to write down a program to prove the point.
 
 ####  35. Does thread leaves object lock when sleep() method is called?
 
-Answer. When sleep() method is called Thread does not leaves object lock and goes from running to waiting state. Thread waits for sleep time to over and once sleep time is up it goes from waiting to runnable state.
+When sleep() method is called Thread does not leaves object lock and goes from running to waiting state. Thread waits for sleep time to over and once sleep time is up it goes from waiting to runnable state.
 
-####  36. Does thread leaves object lock when wait() method is called?
+####  36. Does thread leaves object lock when `wait()` method is called?
 
-Answer. When wait() method is called Thread leaves the object lock and goes from running to waiting state. Thread waits for other threads on same object to call notify() or notifyAll() and once any of notify() or notifyAll() is called it goes from waiting to runnable state and again acquires object lock.
+When `wait()` method is called Thread leaves the object lock and goes from running to waiting state. Thread waits for other threads on same object to call `notify()` or `notifyAll()` and once any of `notify()` or `notifyAll()` is called it goes from waiting to runnable state and again acquires object lock.
 
 ####  37. What will happen if we don’t override run method?
 
-Answer.  This ####  will test your basic knowledge how start and run methods work internally in Thread Api.
 
 When we call start() method on thread, it internally calls run() method with newly created thread. So, if we don’t override run() method newly created thread won’t be called and nothing will happen.
+
 ```java
 class MyThread extends Thread {
  //don't override run() method
 }
 
 publicclass DontOverrideRun {
- publicstaticvoid main(String[] args) {
- System.out.println("main has started.");
- MyThread thread1=new MyThread();
- thread1.start();
- System.out.println("main has ended.");
- }
+  publicstaticvoid main(String[] args) {
+    System.out.println("main has started.");
+    MyThread thread1 = new MyThread();
+    thread1.start();
+    System.out.println("main has ended.");
+  }
 }
 
 /*OUTPUT
@@ -723,34 +713,33 @@ main has started.
 main has ended.
 */
 ```
-As we saw in output, we didn’t override run() method that’s why on calling start() method nothing happened.
+As we saw in output, we didn’t override `run()` method that’s why on calling `start()` method nothing happened.
 
-####  38. What will happen if we override start method?
+####  38. What will happen if we override `start()` method?
 
-Answer. This ####  will again test your basic core java knowledge how overriding works at runtime, what what will be called at runtime and how start and run methods work internally in Thread Api.
+This question  will again test your basic core java knowledge how overriding works at runtime, what what will be called at runtime and how start and run methods work internally in Thread Api.
 
-When we call start() method on thread, it internally calls run() method with newly created thread. So, if we override start() method, run() method will not be called until we write code for calling run() method.
+When we call `start()` method on thread, it internally calls `run()` method with newly created thread. So, if we override `start()` method, `run()` method will not be called until we write code for calling `run()` method.
 
 ```java
 class MyThread extends Thread {
  @Override
  publicvoid run() {
- System.out.println("in run() method");
+  System.out.println("in run() method");
  }
 
  
 
  @Override
- publicvoid start(){
- System.out.println("In start() method");
+ public void start(){
+  System.out.println("In start() method");
  }
 
 }
 
-publicclass OverrideStartMethod {
+public class OverrideStartMethod {
  publicstaticvoid main(String[] args) {
  System.out.println("main has started.");
- 
 
  MyThread thread1=new MyThread();
  thread1.start();
@@ -758,18 +747,20 @@ publicclass OverrideStartMethod {
  System.out.println("main has ended.");
  }
 }
-
+```
+```
 /*OUTPUT
-main has started.
+main has started. 
 In start() method
 main has ended.
 */
 ```
-If we note output. we have overridden start method and didn’t called run() method from it, so, run() method wasn’t call.
+
+If we note output. we have overridden start method and didn’t called `run()` method from it, so, `run()` method wasn’t call.
 
 ####  39. Can we acquire lock on class? What are ways in which you can acquire lock on class?
 
-Answer.  Yes, we can acquire lock on class’s class object in 2 ways to acquire lock on class.
+Yes, we can acquire lock on class’s class object in 2 ways to acquire lock on class.
 
 Thread can acquire lock on class’s class object by-
 
@@ -797,106 +788,44 @@ Thread will leave lock when it exits static synchronized method.
 
 ####  40. Difference between object lock and class lock?
 
-Answer.  It is very important ####  from multithreading point of view. We must understand difference between object lock and class lock to answer interview, ocjp answers correctly.
 
-Object lock
+| Process                                                                                                                                      | Thread                                                                                                                                                                                        |
+| -------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Processes have their own copy of the data segment of the parent process while Threads have direct access to the data segment of its process. | Thread are subdivision of Process. One or more Threads runs in the context of process. Threads can execute any part of process. And same part of process can be executed by multiple Threads. |
+| Processes have their own address                                                                                                             | while Threads share the address space of the process that created it.                                                                                                                         |
+| "Process creation needs whole lot of stuff to be done, we might need to copy whole parent process, "                                         | but Thread can be easily created.                                                                                                                                                             |
+| Processes can easily communicate with child processes but interprocess communication is difficult.                                           | "While, Threads can easily communicate with other threads of the same process using wait() and notify() methods."                                                                             |
+| In process all threads share system resource like heap Memory etc.                                                                           | while Thread has its own stack.                                                                                                                                                               |
+| "Any change made to process does not affect child processes,"                                                                                | but any change made to thread can affect the behavior of the other threads of the process.                                                                                                    |
 
-Class lock
-
-Thread can acquire object lock by-
-
-Entering synchronized block or
-
-by entering synchronized methods.
-
-Thread can acquire lock on class’s class object by-
-
-Entering synchronized block or
-
-by entering static synchronized methods.
-
-Multiple threads may exist on same object but only one thread of that object can enter synchronized method at a time.
-
-
-Threads on different object can enter same method at same time.
-
-Multiple threads may exist on same or different objects of class but only one thread can enter static synchronized method at a time.
-
-Multiple objects of class may exist and every object has it’s own lock.
-
-Multiple objects of class may exist but there is always one class’s class object lock available.
-
-First let’s acquire object lock by entering synchronized block.
-
-
-Example- Let’s say there is one class MyClassand we have created it’s object and reference to that object is myClass. Now we can create synchronization block, and parameter passed with synchronization tells which object has to be synchronized. In below code, we have synchronized object reference by myClass.
-```java
-MyClass myClass=newMyclass();
-
- synchronized (myClass) {
-
- }
-```
-As soon thread entered Synchronization block, thread acquired object lock on object referenced by myClass (by acquiring object’s monitor.)
-
-Thread will leave lock when it exits synchronized block.
-
-First let’s acquire lock on class’s class object by entering synchronized block.
-
-
-Example- Let’s say there is one class MyClass. Now we can create synchronization block, and parameter passed with synchronization tells which class has to be synchronized. In below code, we have synchronized MyClass
-```java
- synchronized (MyClass.class) {
-
- }
-```
-
-As soon as thread entered Synchronization block, thread acquired MyClass’s class object. Thread will leave lock when it exits synchronized block.
-```java
-public synchronizedvoid method1() {
-
-}
-```
-
-As soon as thread entered Synchronization method, thread acquired object lock.
-
-Thread will leave lock when it exits synchronized method.
-
-public staticsynchronizedvoid method1() {}
-
-As soon as thread entered static Synchronization method, thread acquired lock on class’s class object.
-
-Thread will leave lock when it exits synchronized method.
-
-Let’s me give you some tricky situation based #### ,
 
 ####  41. Suppose you have 2 threads (Thread-1 and Thread-2) on same object. Thread-1 is in synchronized method1(), can Thread-2 enter synchronized method2() at same time?
 
-Answer.No, here when Thread-1 is in synchronized method1() it must be holding lock on object’s monitor and will release lock on object’s monitor only when it exits synchronized method1(). So, Thread-2 will have to waitfor Thread-1 to release lock on object’s monitor so that it could enter synchronized method2().
+No, here when Thread-1 is in synchronized method1() it must be holding lock on object’s monitor and will release lock on object’s monitor only when it exits synchronized method1(). So, Thread-2 will have to waitfor Thread-1 to release lock on object’s monitor so that it could enter synchronized method2().
 
 Likewise, Thread-2 even cannot enter synchronized method1() which is being executed by Thread-1. Thread-2 will have to wait for Thread-1 to release lock on object’s monitor so that it could enter synchronized method1(). Now, let’s see a program to prove our point.
 
 ####  42. Suppose you have 2 threads (Thread-1 and Thread-2) on same object. Thread-1 is in static synchronized method1(), can Thread-2 enter static synchronized method2() at same time?
 
-Answer.No, here when Thread-1 is in static synchronized method1() it must be holding lock on class class’s object and will release lock on class’s classobject only when it exits static synchronized method1(). So, Thread-2 will have to wait for Thread-1 to release lock on class’s classobject so that it could enter static synchronized method2().
+No, here when Thread-1 is in static synchronized method1() it must be holding lock on class class’s object and will release lock on class’s classobject only when it exits static synchronized method1(). So, Thread-2 will have to wait for Thread-1 to release lock on class’s classobject so that it could enter static synchronized method2().
 
 Likewise, Thread-2 even cannot enter static synchronized method1() which is being executed by Thread-1. Thread-2 will have to wait for Thread-1 to release lock on  class’s classobject so that it could enter static synchronized method1(). Now, let’s see a program to prove our point.
 
 ####  43. Suppose you have 2 threads (Thread-1 and Thread-2) on same object. Thread-1 is in synchronized method1(), can Thread-2 enter static synchronized method2() at same time?
 
-Answer.Yes, here when Thread-1 is in synchronized method1() it must be holding lock on object’s monitor and Thread-2 can enter static synchronized method2() by acquiring lock on class’s class object. Now, let’s see a program to prove our point.
+Yes, here when Thread-1 is in synchronized method1() it must be holding lock on object’s monitor and Thread-2 can enter static synchronized method2() by acquiring lock on class’s class object. Now, let’s see a program to prove our point.
 
 ####  44. Suppose you have thread and it is in synchronized method and now can thread enter other synchronized method from that method?
 
-Answer.Yes, here when thread is in synchronized method it must be holding lock on object’s monitor and using that lock thread can enter other synchronized method. Now, let’s see a program to prove our point.
+Yes, here when thread is in synchronized method it must be holding lock on object’s monitor and using that lock thread can enter other synchronized method. Now, let’s see a program to prove our point.
 
 ####  45. Suppose you have thread and it is in static synchronized method and now can thread enter other static synchronized method from that method?
 
-Answer.  Yes, here when thread is in static synchronized method it must be holding lock on class’s class object and using that lock thread can enter other static synchronized method. Now, let’s see a program to prove our point.
+Yes, here when thread is in static synchronized method it must be holding lock on class’s class object and using that lock thread can enter other static synchronized method. Now, let’s see a program to prove our point.
 
 ####  46. Suppose you have thread and it is in static synchronized method and now can thread enter other non static synchronized method from that method?
 
-Answer.Yes, here when thread is in static synchronized method it must be holding lock on class’s class object and when it enters synchronized method it will hold lock on object’s monitor as well.
+Yes, here when thread is in static synchronized method it must be holding lock on class’s class object and when it enters synchronized method it will hold lock on object’s monitor as well.
 
 So, now thread holds 2 locks (it’s also called nested synchronization)-
 
@@ -906,7 +835,7 @@ So, now thread holds 2 locks (it’s also called nested synchronization)-
 
 ####  47. Suppose you have thread and it is in synchronized method and now can thread enter other static synchronized method from that method?
 
-Answer.Yes, here when thread is in synchronized method it must be holding lock on object’s monitor and when it enters static synchronized method it will hold lock on class’s class object as well.
+Yes, here when thread is in synchronized method it must be holding lock on object’s monitor and when it enters static synchronized method it will hold lock on class’s class object as well.
 
 So, now thread holds 2 locks (it’s also called nested synchronization)-
 
@@ -916,13 +845,13 @@ So, now thread holds 2 locks (it’s also called nested synchronization)-
 
 ####  48. Suppose you have 2 threads (Thread-1 on object1 and Thread-2 on object2). Thread-1 is in synchronized method1(), can Thread-2 enter synchronized method2() at same time?
 
-Answer.Yes, here when Thread-1 is in synchronized method1() it must be holding lock on object1’s monitor. Thread-2 will acquire lock on object2’s monitor and enter synchronized method2().
+Yes, here when Thread-1 is in synchronized method1() it must be holding lock on object1’s monitor. Thread-2 will acquire lock on object2’s monitor and enter synchronized method2().
 
 Likewise, Thread-2 even enter synchronized method1() as well which is being executed by Thread-1 (because threads are created on different objects). Now, let’s see a program to prove our point.
 
 ####  49. Suppose you have 2 threads (Thread-1 on object1 and Thread-2 on object2). Thread-1 is in static synchronized method1(), can Thread-2 enter static synchronized method2() at same time?
 
-Answer.No, it might confuse you a bit that threads are created on different objects. But, not to forgot that multiple objects may exist but there is always one class’s class object lock available.
+No, it might confuse you a bit that threads are created on different objects. But, not to forgot that multiple objects may exist but there is always one class’s class object lock available.
 
 Here, when Thread-1 is in static synchronized method1() it must be holding lock on class class’s object and will release lock on class’s classobject only when it exits static synchronized method1(). So, Thread-2 will have to wait for Thread-1 to release lock on class’s classobject so that it could enter static synchronized method2().
 
@@ -947,7 +876,7 @@ When wait(1000) is called on object - Thread enters from running to waiting stat
 
 ####  51.  How can you implement your own Thread Pool in java?
 
-Answer.
+
 
 What is ThreadPool?
 
@@ -1001,7 +930,7 @@ Once tasks are available all waiting threads are notified that task is available
 
 ####  52.  What is significance of using ThreadLocal?
 
-Answer.  This ####  will test your command in multi threading, can you really create some perfect multithreading application or not. ThreadLocal is a class which provides thread-local variables.
+This ####  will test your command in multi threading, can you really create some perfect multithreading application or not. ThreadLocal is a class which provides thread-local variables.
 
 What is ThreadLocal ?
 
@@ -1078,7 +1007,7 @@ while(productionInProcess){
 ```
 ####  54. Can a constructor be synchronized?
 
-Answer.  No, constructor cannot be synchronized. Because constructor is used for instantiating object, when we are in constructor object is under creation. So, until object is not instantiated it does not need any synchronization.
+No, constructor cannot be synchronized. Because constructor is used for instantiating object, when we are in constructor object is under creation. So, until object is not instantiated it does not need any synchronization.
 
 Enclosing constructor in synchronized block will generate compilation error.
 
@@ -1092,13 +1021,13 @@ Read More about : Constructor in java cannot be synchronized
 
 ####  55. Can you find whether thread holds lock on object or not?
 
-Answer.  holdsLock(object) method can be used to find out whether current thread holds the lock on monitor of specified object.
+holdsLock(object) method can be used to find out whether current thread holds the lock on monitor of specified object.
 
 holdsLock(object) method returns true if the current thread holds the lock on monitor of specified object.
 
 ####  56. What do you mean by thread starvation?
 
-Answer.  When thread does not enough CPU for its execution Thread starvation happens.
+When thread does not enough CPU for its execution Thread starvation happens.
 
 Thread starvation may happen in following scenarios >
 
@@ -1132,7 +1061,7 @@ For more detail with program read : Threads addShutdownHook method in java
 
 ####  58. How you can handle uncaught runtime exception generated in run method?
 
-Answer.  We can use setDefaultUncaughtExceptionHandler method which can handle uncaught unchecked(runtime) exception generated in run() method.
+We can use setDefaultUncaughtExceptionHandler method which can handle uncaught unchecked(runtime) exception generated in run() method.
 
 What is setDefaultUncaughtExceptionHandler method?
 
