@@ -24,13 +24,12 @@ Exceptions. NullPointerException, ArithmeticException etc. are
 examples of Unchecked Exceptions.
 
 
-#### 134. What is the base class for
+#### 134. What is the base class for Error and Exception classes in Java?
 
-Error and Exception classes in Java?
 Error as well as Exception class is derived from Throwable class
 in Java.
 
-
+![](https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fmath.hws.edu%2Feck%2Fcs124%2Fnotes98%2Fc8%2Ffig1.gif&f=1)
 #### 135. What is a finally block in Java?
 
 Java provides a finally block with a try block. This is an optional
@@ -53,14 +52,14 @@ can defined a finally block just after a try block.138. Do we have to always put
 block after a try block?
 Java does not enforce the rule to put a catch block after try block.
 We can write catch block or finally block after a try block.
-Any exception that we want to catch is mentioned in catch block.139. In what scenarios, a finally block
-will not be executed?
-There are two main scenarios in which finally block is not
-executed:
-1.
-2.
-Program exits by calling system.exit() call.
-A fatal error causes JVM to crash.
+Any exception that we want to catch is mentioned in catch block.
+
+#### 139. In what scenarios, a finally block will not be executed?
+
+There are two main scenarios in which finally block is not executed:
+
+1. Program exits by calling system.exit() call.
+2. A fatal error causes JVM to crash.
 
 
 #### 140. Can we re-throw an Exception in Java?
@@ -86,9 +85,11 @@ many exceptions in throws clause.
 
 
 #### 142. What is the concept of Exception Propagation?
+
 In Exception Propagation, uncaught exceptions are propagated in the
 call stack until stack becomes empty. This propagation is called
 Exception Propagation.
+
 Let say an exception propagates from one method to another method.
 A() calls B(), which calls C(), which calls D(). And if D() throws
 an exception, the exception will propagate from D to C to B to A,
@@ -96,6 +97,31 @@ unless one of the methods catches the exception.
 
 
 #### 143. When we override a method in a Child class, can we throw an additional Exception that is not thrown by the Parent class method?
+
 Yes, Java allows us to throw additional Exception in a child class,
 but the additional exception should be an unchecked exception
 (RuntimeException).
+
+### What is a user defined exception?
+
+User defined exceptions may be implemented by defining a new exception class by extending the Exception class.
+
+```java
+public class MyException extends Exception {
+    /* class definition of constructors goes here */
+    public MyException() {
+        super();
+    }
+    public MyException (String errorMessage) {
+        super (errorMessage);
+    }
+}
+```
+
+Throw and/or throws statement is used to signal the occurrence of an exception. To throw an exception:
+
+```java
+throw new MyException("I threw my own exception.")
+```
+
+To declare an exception: public myMethod() throws MyException {...}

@@ -35,12 +35,14 @@ There are certain downsides to Multithreading. Thes are:
 
 
 #### 147. What is a Thread in Java?
-In Java, A thread is a lightweight parallel process in execution  that runs within another
-process or thread.
+
+In Java, A thread is a lightweight parallel process in execution that runs within another process or thread.
+
 It is an independent path of execution in an application. Each thread runs in a separate stack frame. By default Java starts one thread when the main method of a class is called.
 
 
 #### 148. What is a Thread’s priority and how it is used in scheduling?
+
 In Java, every Thread has a priority. This priority is specified as an
 integer value. The priority value is used in scheduling to pick up the
 thread with higher priority for execution. The threads with higher
@@ -52,6 +54,7 @@ followed by the lower priority threads.
 
 
 #### 149. What are the differences between Pre-emptive Scheduling Scheduler and Time Slicing Scheduler?
+
 In Pre-emptive scheduling, the highest priority task will keep getting
 time to execute until it goes to waiting state or dead state or a task
 with higher priority comes into queue for scheduling.
@@ -63,6 +66,7 @@ on priority and various other factors.
 
 
 #### 150. Is it possible to call run() method instead of start() on a thread in Java?
+
 Yes. We can call run() method of a thread. But it does not work as a
 separate thread. It will just work as a normal object in main thread
 and there will not be context-switching between the threads.

@@ -22,35 +22,36 @@ Threads have their own stack.
 
 One process can have multiple Threads,
 
-Thread are subdivision of Process. One or more Threads runs in the context of process. Threads can execute any part of process. And same part of process can be executed by multiple Threads.
 
-Processes have their own copy of the data segment of the parent process while Threads have direct access to the data segment of its process.
 
-Processes have their own address while Threads share the address space of the process that created it.
+|                                                                                                                                              |                                                                                                                                                                                               |
+| -------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Process                                                                                                                                      | Thread                                                                                                                                                                                        |
+| Processes have their own copy of the data segment of the parent process while Threads have direct access to the data segment of its process. | Thread are subdivision of Process. One or more Threads runs in the context of process. Threads can execute any part of process. And same part of process can be executed by multiple Threads. |
+| Processes have their own address                                                                                                             | while Threads share the address space of the process that created it.                                                                                                                         |
+| "Process creation needs whole lot of stuff to be done, we might need to copy whole parent process, "                                         | but Thread can be easily created.                                                                                                                                                             |
+| Processes can easily communicate with child processes but interprocess communication is difficult.                                           | "While, Threads can easily communicate with other threads of the same process using wait() and notify() methods."                                                                             |
+| In process all threads share system resource like heap Memory etc.                                                                           | while Thread has its own stack.                                                                                                                                                               |
+| "Any change made to process does not affect child processes,"                                                                                | but any change made to thread can affect the behavior of the other threads of the process.                                                                                                    |
 
-Process creation needs whole lot of stuff to be done, we might need to copy whole parent process, but Thread can be easily created.
-
-Processes can easily communicate with child processes but interprocess communication is difficult. While, Threads can easily communicate with other threads of the same process using wait() and notify() methods.
-
-In process all threads share system resource like heap Memory etc. while Thread has its own stack.
-
-Any change made to process does not affect child processes, but any change made to thread can affect the behavior of the other threads of the process.
 
 ####  3. How to implement Threads in java?
 
-Answer.  This is very basic threading #### . Threads can be created in two ways i.e. by implementing `java.lang.Runnable` interface or extending `java.lang.Thread` class and then extending run method.
+Threads can be created in two ways i.e. by implementing `java.lang.Runnable` interface or extending `java.lang.Thread` class and then extending run method.
 
 Thread has its own variables and methods, it lives and dies on the heap. But a thread of execution is an individual process that has its own call stack. Thread are lightweight process in java.
 
 1. Thread creation by  implementing `java.lang.Runnableinterface`.
 
 We will create object of class which implements Runnable interface :
+
 ```java
 MyRunnable runnable=new MyRunnable();
 Thread thread=new Thread(runnable);
 ```
 
 2. And then create Thread object by calling constructor and passing reference of Runnable interface i.e.  runnable object :
+
 ```java
 Thread thread=new Thread(runnable);
 ```
@@ -69,13 +70,12 @@ _Differences between implementing Runnable interface and extending Thread class 
 
 
 1. **Multiple inheritance in not allowed in java** : When we implement Runnable interface we can extend another class as well, but if we extend Thread class we cannot extend any other class because java does not allow multiple inheritance. So, same work is done by implementing Runnable and extending Thread but in case of implementing Runnable we are still left with option of extending some other class. So, it’s better to implement Runnable.
-Thread safety : When we implement Runnable interface, same object is shared amongst multiple threads, but when we extend Thread class each and every thread gets associated with new object. 
-
-2. **Inheritance (Implementing Runnable is lightweight operation)** : When we extend Thread unnecessary all Thread class features are inherited, but when we implement Runnable interface no extra feature are inherited, as Runnable only consists only of one abstract method i.e. run() method. So, implementing Runnable is lightweight operation.
-3. **Coding to interface** : Even java recommends coding to interface. So, we must implement Runnable rather than extending thread. Also, Thread class implements Runnable interface.
-4. **Don’t extend unless you wanna modify fundamental behaviour of class, Runnable interface has only one abstract method i.e. run()**  : We must extend Thread only when you are looking to modify run() and other methods as well. If you are simply looking to modify only the run() method implementing Runnable is the best option (Runnable interface has only one abstract method i.e. run() ). We must not extend Thread class unless we're looking to modify fundamental behaviour of Thread class.
-5. **Flexibility in code when we implement Runnable** : When we extend Thread first a fall all thread features are inherited and our class becomes direct subclass of Thread , so whatever action we are doing is in Thread class. But, when we implement Runnable we create a new thread and pass runnable object as parameter,we could pass runnable object to executorService & much more. So, we have more options when we implement Runnable and our code becomes more flexible.
-6. **ExecutorService** : If we implement Runnable, we can start multiple thread created on runnable object  with ExecutorService (because we can start Runnable object with new threads), but not in the case when we extend Thread (because thread can be started only once).
+2. **Thread safety** : When we implement Runnable interface, same object is shared amongst multiple threads, but when we extend Thread class each and every thread gets associated with new object.
+3. **Inheritance (Implementing Runnable is lightweight operation)** : When we extend Thread unnecessary all Thread class features are inherited, but when we implement Runnable interface no extra feature are inherited, as Runnable only consists only of one abstract method i.e. run() method. So, implementing Runnable is lightweight operation.
+4. **Coding to interface** : Even java recommends coding to interface. So, we must implement Runnable rather than extending thread. Also, Thread class implements Runnable interface.
+5. **Don’t extend unless you wanna modify fundamental behaviour of class, Runnable interface has only one abstract method i.e. run()**  : We must extend Thread only when you are looking to modify run() and other methods as well. If you are simply looking to modify only the run() method implementing Runnable is the best option (Runnable interface has only one abstract method i.e. run() ). We must not extend Thread class unless we're looking to modify fundamental behaviour of Thread class.
+6. **Flexibility in code when we implement Runnable** : When we extend Thread first a fall all thread features are inherited and our class becomes direct subclass of Thread , so whatever action we are doing is in Thread class. But, when we implement Runnable we create a new thread and pass runnable object as parameter,we could pass runnable object to executorService & much more. So, we have more options when we implement Runnable and our code becomes more flexible.
+7. **ExecutorService** : If we implement Runnable, we can start multiple thread created on runnable object  with ExecutorService (because we can start Runnable object with new threads), but not in the case when we extend Thread (because thread can be started only once).
 
 ####  6. How can you say Thread behaviour is unpredictable? (Important)
 
@@ -91,17 +91,17 @@ Answer. Threads are lightweight process only if threads of same process are exec
 
 Answer.  Interviewers tend to know interviewees knowledge about Thread methods. So this is time to prove your point by answering correctly. We can use join() methodto ensure all threads that started from main must end in order in which they started and also main should end in last.In other words waits for this thread to die. Calling join() method internally calls join(0);
 
-####  9.What is difference between starting thread with run() and start() method? (Important)
+####  9.What is difference between starting thread with `run()` and `start()` method? (Important)
 
-Answer. This is quite interesting #### , it might confuse you a bit and at time may make you think is there really any difference between starting thread with run() and start() method.
+Answer. This is quite interesting #### , it might confuse you a bit and at time may make you think is there really any difference between starting thread with `run()` and `start()` method.
 
-When you call start() method, main thread internally calls run() method to start newly created Thread, so run() method is ultimately called by newly created thread.
+When you call `start()` method, main thread internally calls `run()` method to start newly created Thread, so `run()` method is ultimately called by newly created thread.
 
-When you call run() method main thread rather than starting run() method with newly thread it start run() method by itself.
+When you call `run()` method main thread rather than starting `run()` method with newly thread it start `run()` method by itself.
 
 ####  10. What is significance of using Volatile keyword? (Important)
 
-Answer. Java allows threads to access shared variables. As a rule, to ensure that shared variables are consistently updated, a thread should ensure that it has exclusive use of such variables by obtaining a lock that enforces mutual exclusion for those shared variables.
+Java allows threads to access shared variables. As a rule, to ensure that shared variables are consistently updated, a thread should ensure that it has exclusive use of such variables by obtaining a lock that enforces mutual exclusion for those shared variables.
 
 If a field is declared volatile, in that case the Java memory model ensures that all threads see a consistent value for the variable.
 
@@ -118,6 +118,7 @@ No, synchronized can be used only with methods, i.e. in method declaration.
 Answer.Its very important ####  from interview perspective.
 
 Volatile can be used as a keyword against the variable, we cannot use volatile against method declaration.
+
 ```java
 volatile void method1(){} //it’s illegal, compilation error.
 ```
@@ -125,10 +126,13 @@ volatile void method1(){} //it’s illegal, compilation error.
 While synchronization can be used in method declaration or we can create synchronization blocks (In both cases thread acquires lock on object’s monitor). Variables cannot be synchronized.
 
 Synchronized method:
+
 ```java
 synchronized void method2(){} //legal
 ```
+
 Synchronized block:
+
 ```java
  void method2(){
  synchronized (this) {
@@ -176,27 +180,27 @@ Few sub questions>
 
 Threads can communicate with each other by using `wait()`, `notify()` and `notifyAll()` methods.
 
-####  15. Why wait(), notify()  and notifyAll() are in Object class and not in Thread class? (Important)
+####  15. Why `wait()`, `notify()`  and `notifyAll()` are in Object class and not in Thread class? (Important)
 
 
 Every Object has a monitor, acquiring that monitors allow thread to hold lock on object. But Thread class does not have any monitors.
 
-wait(), notify() and notifyAll()are called on objects only >When wait() method is called on object by thread it waits for another thread on that object to release object monitor by calling notify() or notifyAll() method on that object.
+`wait()`, `notify()` and `notifyAll()`are called on objects only >When `wait()` method is called on object by thread it waits for another thread on that object to release object monitor by calling `notify()` or `notifyAll()` method on that object.
 
-When notify() method is called on object by thread it notifies all the threads
+When `notify()` method is called on object by thread it notifies all the threads
 
 which are waiting for that object monitor that object monitor is available now.
 
-So, this shows that wait(), notify() and notifyAll() are called on objects only.
+So, this shows that `wait()`, `notify()` and n`otifyAll()` are called on objects only.
 
-Now, Straight forward ####  that comes to mind is how thread acquires object lock by
+Now, Straight forward question that comes to mind is how thread acquires object lock by
 
 acquiring object monitor? Let’s try to understand this basic concept in detail?
 
-Wait(), notify() and notifyAll() method being in Object class allows all the threads created on that object to communicate with other.  .
+`Wait()`, `notify()` and `notifyAll()` method being in Object class allows all the threads created on that object to communicate with other.  .
 As multiple threads exists on same object. Only one thread can hold object monitor at a time. As a result thread can notify other threads of same object that lock is available now. But, thread having these methods does not make any sense because multiple threads exists on object its not other way around (i.e. multiple objects exists on thread).
-Now let’s discuss one hypothetical scenario, what will happen if Thread class contains wait(), notify() and notifyAll() methods?
-Having wait(), notify() and notifyAll() methods means Thread class also must have their monitor.
+Now let’s discuss one hypothetical scenario, what will happen if Thread class contains `wait()`, `notify()` and `notifyAll()` methods?
+Having `wait()`, `notify()` and `notifyAll()` methods means Thread class also must have their monitor.
 
 Every thread having their monitor will create few problems -
 
@@ -206,13 +210,13 @@ Every thread having their monitor will create few problems -
 
 >Inconsistency in state of object (because synchronization won't be possible).
 
-####  16. Is it important to acquire object lock before calling wait(), notify() and notifyAll()?
+####  16. Is it important to acquire object lock before calling `wait()`, `notify()` and `notifyAll()`?
 
 Yes, it’s mandatory to acquire object lock before calling these methods on object. As discussed above `wait()`, `notify()`  and `notifyAll()` methods are always called from Synchronized block only, and as soon as thread enters synchronized block it acquires object lock (by holding object monitor). If we call these methods without acquiring object lock i.e. from outside synchronize block then java.lang. IllegalMonitorStateException is thrown at runtime.
 
 `Wait()` method needs to enclosed in try-catch block, because it throws compile time exception i.e. InterruptedException.
 
-####  17. How can you solve consumer producer problem by using wait() and notify() method? (Important)
+####  17. How can you solve consumer producer problem by using `wait()` and `notify()` method? (Important)
 
 Key points we need to ensure before programming :
 
@@ -293,44 +297,42 @@ Key methods for solving consumer producer pattern are >
 put(i);  //used by producer to put/produce in sharedQueue.
 
 take();//used by consumer to take/consume from sharedQueue.
+
 ####  20. What is deadlock in multithreading? Write a program to form DeadLock in multi threading and also how to solve DeadLock situation. What measures you should take to avoid deadlock? (Important)
-
-Answer.  This is very important ####  from interview perspective. But, what makes this ####  important is it checks interviewees capability of creating and detecting deadlock. If you can write a code to form deadlock, than I am sure you must be well capable in solving that deadlock as well. If not, later on this post we will learn how to solve deadlock as well.
-
-First ####  comes to mind is, what is deadlock in multi threading program?
 
 Deadlock is a situation where two threads are waiting for each other to release lock holded by them on resources.
 
 But how deadlock could be formed :
 
-Thread-1 acquires lock on String.class and then calls sleep() method which gives Thread-2 the chance to execute immediately after Thread-1 has acquired lock on String.class and Thread-2 acquires lock on Object.class then calls sleep() method and now it waits for Thread-1 to release lock on String.class.
+**Thread-1** acquires lock on `String.class` and then calls `sleep()` method which gives **Thread-2** the chance to execute immediately after **Thread-1** has acquired lock on `String.class` and **Thread-2** acquires lock on `Object.class` then calls `sleep()` method and now it waits for **Thread-1** to release lock on `String.class`.
 
 Conclusion:
 
-Now, Thread-1 is waiting for Thread-2 to release lock on Object.class and Thread-2 is waiting for Thread-1 to release lock on String.class and deadlock is formed.
+Now, **Thread-1** is waiting for **Thread-2** to release lock on Object.class and Thread-2 is waiting for Thread-1 to release lock on String.class and deadlock is formed.
 
 
 ```java
 //Code called by Thread-1 
 public void run() {
- synchronized (String.class) {
- Thread.sleep(100);
- synchronized (Object.class) { 
- }
- }
-}
+  synchronized (String.class) {
+    Thread.sleep(100);
+    synchronized (Object.class) { 
+    }
+  }
+  }
 
 
 //Code called by Thread-2
 
- publicvoid run() {
- synchronized (Object.class) {
- Thread.sleep(100);
- synchronized (String.class) {
- }
- }
+publicvoid run() {
+  synchronized (Object.class) {
+    Thread.sleep(100);
+    synchronized (String.class) {
+    }
+  }
 }
 ```
+
 Here comes the important part, how above formed deadlock could be solved :
 
 Thread-1 acquires lock on String.class and then calls sleep() method which gives Thread-2 the chance to execute immediately after Thread-1 has acquired lock on String.class and Thread-2 tries to acquire lock on String.class but lock is holded by Thread-1. Meanwhile, Thread-1 completes successfully. As Thread-1 has completed successfully it releases lock on String.class, Thread-2 can now acquire lock on String.class and complete successfully without any deadlock formation.
@@ -359,6 +361,7 @@ publicvoid run() {
  }
 }
 ```
+
 Few important measures to avoid Deadlock >
 
 Lock specific member variables of class rather than locking whole class: We must try to lock specific member variables of class rather than locking whole class.
@@ -368,8 +371,6 @@ Use join() method: If possible try touse join() method, although it may refrain 
 If possible try avoid using nested synchronization blocks.
 
 ####  21. Have you ever generated thread dumps or analyzed Thread Dumps? (Important)
-
-Answer. Answering this #### s will show your in depth knowledge of Threads. Every experienced must know how to generate Thread Dumps.
 
 VisualVM  is most popular way to generate Thread Dump and is most widely used by developers. It’s important to understand usage of VisualVM for in depth knowledge of VisualVM. I’ll recommend every developer must understand this topic to become master in multi threading.
 
@@ -382,6 +383,8 @@ jstack is very easy way to generate Thread dump and is widely used by developers
 Answer.  Thread states/ Thread life cycle is very basic #### , before going deep into concepts we must understand Thread life cycle.
 
 Thread have following states >
+
+![](https://beginnersbook.com/wp-content/uploads/2013/03/thread-life-cycle-in-java-flowchart.gif)
 
 New
 
@@ -399,13 +402,13 @@ Thread states/ Thread life cycle in diagram >
 
 Thread states in detail >
 
-New : When instance of thread is created using new operator it is in new state, but the start() method has not been invoked on the thread yet, thread is not eligible to run yet.
+**New** : When instance of thread is created using new operator it is in new state, but the start() method has not been invoked on the thread yet, thread is not eligible to run yet.
 
-Runnable : When start() method is called on thread it enters runnable state.
+**Runnable** : When start() method is called on thread it enters runnable state.
 
 Running : Thread scheduler selects thread to go fromrunnable to running state. In running state Thread starts executing by entering run() method.
 
-Waiting/blocked/sleeping : In this state a thread is not eligible to run.
+**Waiting/blocked/sleeping **: In this state a thread is not eligible to run.
 
 >Thread is still alive, but currently it’s not eligible to run. In other words.
 
@@ -417,7 +420,7 @@ Waiting/blocked/sleeping : In this state a thread is not eligible to run.
 
  By calling sleep() methodthread go from running to sleeping state. In sleeping state it will wait for sleep time to get over.
 
-Terminated (Dead) : A thread is considered dead when its run() method completes.
+**Terminated (Dead)** : A thread is considered dead when its run() method completes.
 
 ####  23. Are you aware of preemptive scheduling and time slicing?
 
@@ -463,11 +466,11 @@ Answer.Suspend() method is deadlock prone. If the target thread holds a lock on 
 
 These deadlocksare generally called Frozen processes.
 
-Suspend() method puts thread from running to waiting state. And thread can go from waiting to runnable state only when resume() method is called on thread. It is deprecated method.
+`Suspend()` method puts thread from running to waiting state. And thread can go from waiting to runnable state only when `resume()` method is called on thread. It is deprecated method.
 
-Resume() method is only used with suspend() method that’s why it’s also deprecated method.
+`Resume()` method is only used with `suspend()` method that’s why it’s also deprecated method.
 
-####  26. Why destroy() methods is deprecated?
+####  26. Why `destroy()` methods is deprecated?
 
 Answer. This ####  is again going to check your in depth knowledge of thread methods i.e. destroy() method is deadlock prone. If the target thread holds a lock on object when it is destroyed, no thread can lock this object (Deadlock formed are similar to deadlock formed when suspend() and resume() methods are used improperly). It results in deadlock formation. These deadlocksare generally called Frozen processes.
 
