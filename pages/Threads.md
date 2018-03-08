@@ -24,7 +24,7 @@ One process can have multiple Threads,
 
 
 
-| **Process**                                                                                                                                      | **Thread**                                                                                                                                                                                        |
+| **Process**                                                                                                                                  | **Thread**                                                                                                                                                                                    |
 | -------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Processes have their own copy of the data segment of the parent process while Threads have direct access to the data segment of its process. | Thread are subdivision of Process. One or more Threads runs in the context of process. Threads can execute any part of process. And same part of process can be executed by multiple Threads. |
 | Processes have their own address                                                                                                             | while Threads share the address space of the process that created it.                                                                                                                         |
@@ -431,31 +431,95 @@ In time slicing, a thread executes for a certain predefined time and then enters
 
 Daemon threads are low priority threads which runs intermittently in background for doing garbage collection.
 
->12 Few salient features of daemon() threads>
+#####12 Few salient features of daemon() threads>
 
 1. Thread scheduler schedules these threads only when CPU is idle.
 
-2. Daemon threads are service oriented threads, they serves all other threads.
+2. Daemon threads are **service oriented threads**, they serves all other threads.
 
 3. These threads are created before user threads are created and die after all other user threads dies.
 
-4. Priority of daemon threads is always 1 (i.e. MIN_PRIORITY).
+4. **Priority of daemon threads is always 1** (i.e. MIN_PRIORITY).
 
 5. User created threads are non daemon threads.
 
-6. JVM can exit when only daemon threads exist in system.
+6. **JVM can exit** when only daemon threads exist in system.
 
-7. we can use isDaemon() method to check whether thread is daemon thread or not.
+7. we can use **`isDaemon()`** method to check whether thread is daemon thread or not.
 
-8. we can use setDaemon(boolean on) method to make any user method a daemon thread.
+8. we can use **`setDaemon(boolean on)`** method to make any user method a daemon thread.
 
-9. If setDaemon(boolean on) is called on thread after calling start() method than IllegalThreadStateException is thrown.
+9. If `setDaemon(boolean on)` is called on thread after calling `start()` method than `IllegalThreadStateException` is thrown.
 
 10. You may like to see how daemon threads work, for that you can use VisualVM or jStack. I have provided Thread dumps over there which shows daemon threads which were intermittently running in background.
 
-11. Some of the daemon threads which intermittently run in background are 
-    1. "RMI TCP Connection(3)-10.175.2.71" daemon"RMI TCP Connection(idle)" daemon"RMI Scheduler(0)" daemon"C2 CompilerThread1" daemon
-    2. "GC task thread#0 (ParallelGC)"
+Some of the daemon threads which intermittently run in background are 
+    1. "RMI TCP Connection(3)-10.175.2.71" `daemon`
+    2. "RMI TCP Connection(idle)" `daemon`
+    3. "RMI Scheduler(0)" `daemon`
+    4. "C2 CompilerThread1" `daemon`
+    5. "GC task thread#0 (ParallelGC)"
+12. Program to create daemon thread by using setDaemon() method and also use isDaemon() method to check whether thread is daemon or not.
+
+```java
+public class DaemonTest {
+    public static void main(String[] args) throws InterruptedException {
+    
+           final Thread thread1=new Thread("Thread-1"){
+                  public void run() {
+                        System.out.println(Thread.currentThread().getName()+" has started");
+                        System.out.println(Thread.currentThread().getName()+" has ended");
+                  }
+    
+           };
+           thread1.setDaemon(true);   //setting thread to daemon.
+           System.out.println("is thread1 daemon thread : "
+                                      +thread1.isDaemon());   //checking thread isDeamon ?
+           thread1.start();  //start daemon thread
+           
+           
+    }   
+}
+ 
+/*
+ 
+is thread1 daemon thread : true
+Thread-1 has started
+Thread-1 has ended
+ 
+ 
+*/
+```
+
+Program to show  > if `setDaemon(boolean on)` is called on thread after calling `start()` method than `IllegalThreadStateException` is thrown.
+
+```java
+public class DaemonTestException {
+  public static void main(String[] args) throws InterruptedException {
+  
+    final Thread thread1=new Thread("Thread-1"){
+      public void run() {
+        System.out.println(Thread.currentThread().getName()+" has started");
+        System.out.println(Thread.currentThread().getName()+" has ended");
+      }
+
+    };
+    thread1.start();  //start daemon thread
+    thread1.setDaemon(true);   //setting thread to daemon after start(), will throw IllegalThreadStateException.
+          
+  }   
+}
+ 
+/*
+ 
+Thread-1 has started
+Thread-1 has ended
+Exception in thread "main" java.lang.IllegalThreadStateException
+    at java.lang.Thread.setDaemon(Unknown Source)
+    at DaemonTestException.main(DaemonTestException.java:13)
+ 
+*/
+```
 
 ####  25. Why `suspend()` and `resume()` methods are deprecated?
 
@@ -518,29 +582,131 @@ synchronized block : thread need not to to acquire object lock before calling yi
 
 sleep() is a native method, it’s implementation is provided by JVM.
 
-10 salient features of sleep() method >
+##### 10 salient features of sleep() method >
 
-Definition : sleep() methods causes current thread to sleep for specified number of milliseconds (i.e. time passed in sleep method as parameter). Ex- Thread.sleep(10) causes currently executing thread to sleep for 10 millisec.
+1. **Definition** : `sleep()` methods causes current thread to sleep for specified number of milliseconds (i.e. time passed in sleep method as parameter). Ex- Thread.sleep(10) causes currently executing thread to sleep for 10 millisec.
 
-Thread state : when sleep() is called on thread it goes from running to waiting state and can return to runnable state when sleep time is up.
+2. **Thread state** : when `sleep()` is called on thread it goes from running to waiting state and can return to runnable state when sleep time is up.
 
-Exception : sleep() method must catch or throw compile time exception i.e. InterruptedException.
+3. **Exception** : `sleep()` method must catch or throw compile time exception i.e. InterruptedException.
 
-Waiting time : sleep() method have got few options.
+4. **Waiting time** : `sleep()` method have got few options.
 
-sleep(long millis) - Causes the currently executing thread to sleep for the specified number of milliseconds
+    1. **`sleep(long millis)`** - Causes the currently executing thread to sleep for the specified number of milliseconds.<br>
+`  public static native void sleep(long millis) throws InterruptedException;`
+    2. **`sleep(long millis, int nanos)`**- Causes the currently executing thread to sleep for the specified number of milliseconds plus the specified number of nanoseconds. <br>
+`public static native void sleep(long millis,int nanos) throws InterruptedException;`
 
+**static method** : sleep()is a static method, causes the currently executing thread to sleep for the specified number of milliseconds.
+
+**Native method** : implementation of sleep() method is provided by JVM.
+Let’s see definition of yield() method as given in java.lang.Thread -
+```java
 public static native void sleep(long millis) throws InterruptedException;
+```
+**Belongs to which class** :sleep() method belongs to java.lang.Thread class.
 
-sleep(long millis, int nanos) - Causes the currently executing thread to sleep for the specified number of milliseconds plus the specified number of nanoseconds.
+**synchronized block** : thread need not to to acquire object lock before calling sleep() method i.e. **sleep() method can be called from outside synchronized block**.
 
-public static native void sleep(long millis,int nanos) throws InterruptedException;
+```java
+public class SleepMain {
+  public static void main(String...args) throws InterruptedException{
+    System.out.println(Thread.currentThread().getName() + " has started");
+    Thread.sleep(2000);
+    System.out.println(Thread.currentThread().getName() + " has ended");
+  }
+}
+ 
+/*OUTPUT
+ 
+main has started
+main has ended
+ 
+*/
+```
 
-static method : sleep()is a static method, causes the currently executing thread to sleep for the specified number of milliseconds.
+Using `sleep()` method in thread invoked by main thread >
+```java
+class MyRunnable implements Runnable {
+  public void run() {
 
-Belongs to which class :sleep() method belongs to java.lang.Thread class.
+    System.out.println(Thread.currentThread().getName() + " has started");
 
-synchronized block : thread need not to to acquire object lock before calling sleep()method i.e. sleep() method can be called from outside synchronized block.
+    try {
+          Thread.sleep(2000);
+    } catch (InterruptedException e) {
+          e.printStackTrace();
+    }
+    System.out.println(Thread.currentThread().getName() + " has ended");
+
+  }
+}
+ 
+public class SleepRunnable {
+  public static void main(String... args) {
+
+    System.out.println(Thread.currentThread().getName() + " has started");
+
+    Thread thread1 = new Thread(new MyRunnable(), "Thread-1");
+    thread1.start();
+
+    System.out.println(Thread.currentThread().getName() + " has ended");
+
+  }
+}
+ 
+/*OUTPUT
+ 
+main has started
+main has ended
+Thread-1 has started
+Thread-1 has ended
+
+*/
+
+```
+
+```java
+
+class MyRunnable implements Runnable {
+  public void run() {
+
+    System.out.println(Thread.currentThread().getName() + " has started");
+    try {
+          Thread.sleep(100); //ensure that main thread don’t complete before Thread-1
+    } catch (InterruptedException e) {
+          e.printStackTrace();
+    }
+    System.out.println(Thread.currentThread().getName() + " has ended");
+
+  }
+}
+ 
+public class SleepStatic {
+  public static void main(String... args) throws InterruptedException {
+
+    System.out.println(Thread.currentThread().getName() + " has started");
+
+    Thread thread1 = new Thread(new MyRunnable(), "Thread-1");
+    thread1.start();
+    thread1.sleep(10000); //we will face warning - The static method 
+              //sleep(long) from the type Thread should be accessed in a static way
+
+    System.out.println(Thread.currentThread().getName() + " has ended");
+
+  }
+}
+ 
+/*OUTPUT
+ 
+main has started
+Thread-1 has started
+Thread-1 has ended
+main has ended
+ 
+*/
+
+```
 
 ####  30. Difference between `wait()` and `sleep()` ? (Important)
 
@@ -564,27 +730,28 @@ When called from synchronized block :when `wait()` method is called thread leave
 
 
 
-Differences `yield()` and `sleep()` :
 
-Definition : `yield()` method when called on thread gives a hint to the thread scheduler that the current thread is willing to yield its current use of a processor.The thread scheduler is free to ignore this hint. `sleep()` methods causes current thread to sleep for specified number of milliseconds (i.e. time passed in sleep method as parameter). Ex- Thread.`sleep(10)` causes currently executing thread to sleep for 10 millisec.
+**Definition** : `yield()` method when called on thread gives **a hint to the thread scheduler that the current thread is willing to yield its current use of a processor.** The thread scheduler is free to ignore this hint. 
 
-Thread state : when `sleep()` is called on thread it goes from running to waiting state and can return to runnable state when sleep time is up. when `yield()` method is called on thread it goes from running to runnable state, not in waiting state. Thread is eligible to run but not running and could be picked by scheduler at anytime.
+`sleep()` methods causes current thread to sleep for specified number of milliseconds (i.e. time passed in sleep method as parameter). Ex- Thread.`sleep(10)` causes currently executing thread to sleep for 10 millisec.
 
-Exception : `yield()` method need not to catch or throw any exception. But `sleep()` method must catch or throw compile time exception i.e. InterruptedException.
+**Thread state** : when `sleep()` is called on thread it goes from running to waiting state, and can return to runnable state when sleep time is up. when `yield()` method is called on thread it goes from running to runnable state, not in waiting state. Thread is eligible to run but not running and could be picked by scheduler at anytime.
 
-Waiting time : `yield()` method stops thread for unpredictable time, that depends on thread scheduler. But `sleep()` method have got few options.
+**Exception** : `yield()` method need not to catch or throw any exception. But `sleep()` method must catch or throw compile time exception i.e. `InterruptedException`.
 
-sleep(long millis) - Causes the currently executing thread to sleep for the specified number of milliseconds
+**Waiting time** : `yield()` method doesn’t throws any exception. But `sleep()` method throws compile time exception i.e. `InterruptedException`.
 
-sleep(long millis, int nanos) - Causes the currently executing thread to sleep for the specified number of milliseconds plus the specified number of nanoseconds.
+1. `sleep(long millis)` - Causes the currently executing thread to sleep for the specified number of milliseconds
 
-similarity between yield() and sleep():
+2. `sleep(long millis, int nanos)` - Causes the currently executing thread to sleep for the specified number of milliseconds plus the specified number of nanoseconds.
 
-> yield() and sleep() method belongs to `java.lang.Thread` class.
+### similarity between `yield()` and `sleep()`:
 
-> yield() and sleep() method can be called from outside synchronized block.
+> `yield()` and `sleep()` method **belongs to `java.lang.Thread`** class.
 
-> yield() and sleep() method are called on Threads not objects.
+> `yield()` and `sleep()` method can be **called from outside synchronized block**.
+
+> `yield()` and `sleep()` method are **called on Threads not objects**.
 
 ####  32. Mention some guidelines to write thread safe code, most important point we must take care of in multithreading programs?
 
@@ -662,23 +829,138 @@ Thread also may go from running to waiting state if it is waiting for some I/O o
 
 ####  34. Difference between `notify()` and `notifyAll()` methods, can you write a code to prove your point?
 
-Goodness. Theoretically you must have heard or you must be aware of differences between `notify()` and `notifyAll()`.But have you created program to achieve it? If not let’s do it.
 
-First, I will like give you a brief description of what `notify()` and `notifyAll()` methods do.
-
-`notify()`- Wakes up a single thread that is waiting on this object's monitor. If any threads are waiting on this object, one of them is chosen to be awakened. The choice is random and occurs at the discretion of the implementation. A thread waits on an object's monitor by calling one of the wait methods.
+**`notify()`**- Wakes up a single thread that is waiting on this object's monitor. If any threads are waiting on this object, one of them is chosen to be awakened. The choice is random and occurs at the discretion of the implementation. A thread waits on an object's monitor by calling one of the wait methods.
 
 The awakened threads will not be able to proceed until the current thread relinquishes the lock on this object.
 ```java
 public final native void notify();
 ```
-notifyAll()- Wakes up all threads that are waiting on this object's monitor. A thread waits on an object's monitor by calling one of the wait methods.
+
+**`notifyAll()`**- Wakes up all threads that are waiting on this object's monitor. A thread waits on an object's monitor by calling one of the wait methods.
 
 The awakened threads will not be able to proceed until the current thread relinquishes the lock on this object.
 
+```java
 public final native void notifyAll();
-
+```
 Now it’s time to write down a program to prove the point.
+
+```java
+class MyRunnable1 extends Thread{
+    
+  public void run(){
+          
+    synchronized (this) {
+      System.out.println(Thread.currentThread().getName()+" started");
+      
+      try {
+        this.wait();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      
+      System.out.println(Thread.currentThread().getName()+" has been notified");
+    }
+  }
+}
+ 
+ 
+class MyRunnable2 extends Thread{
+    
+  MyRunnable1 myRunnable1;
+  
+  MyRunnable2(MyRunnable1 MyRunnable1){
+    this.myRunnable1=MyRunnable1;
+  }
+  
+  public void run(){
+          
+    synchronized (this.myRunnable1) {
+      System.out.println(Thread.currentThread().getName()+ " started");
+      
+      try {
+        this.myRunnable1.wait();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      System.out.println(Thread.currentThread().getName()+" has been notified");
+    }
+  }
+}
+ 
+ 
+class MyRunnable3 extends Thread{
+    
+ 
+    MyRunnable1 myRunnable1;
+    
+    MyRunnable3(MyRunnable1 MyRunnable1){
+           this.myRunnable1=MyRunnable1;
+    }
+    
+    public void run(){
+ 
+           synchronized (this.myRunnable1) {
+                  System.out.println(Thread.currentThread().getName()+ " started");
+                  
+                  this.myRunnable1.notify(); // Wakes up a single thread that is 
+                                 //waiting on this object's monitor.
+                                //If any threads are waiting on this object, 
+                                 //one of them is chosen to be awakened.
+                                //The choice is random and occurs at the 
+                                //discretion of the implementation.
+                  
+                  //this.myRunnable1.notifyAll(); // Will wake up all threads 
+                                                   //waiting on object's monitor.
+                  System.out.println(Thread.currentThread().getName()+
+                                  " has notified waiting threads");
+           }
+    }
+}
+ 
+
+public class CallNotify {
+ 
+  public static void main(String[] args) throws InterruptedException {
+    
+    MyRunnable1 myRunnable1=new MyRunnable1();
+    MyRunnable2 myRunnable2=new MyRunnable2(myRunnable1);
+    MyRunnable3 myRunnable3=new MyRunnable3(myRunnable1);
+
+    Thread t1=new Thread(myRunnable1,"Thread-1");
+    Thread t2=new Thread(myRunnable2,"Thread-2");
+    Thread t3=new Thread(myRunnable3,"Thread-3");
+    
+    t1.start();
+    t2.start();
+    Thread.sleep(100);  //Used to ensure that thread1 and thread2 starts before thread-3
+    //because thread-1 and 2 calls wait(), while thread-3 calls notify or notifyAll() 
+    t3.start();
+  }
+}
+ 
+/* OUTPUT with notify()
+ 
+Thread-1 started
+Thread-2 started
+Thread-3 started
+Thread-3 has notified waiting threads
+Thread-1 has been notified
+ 
+*/
+ 
+/* OUTPUT with notifyAll()
+ 
+Thread-1 started
+Thread-2 started
+Thread-3 started
+Thread-3 has notified waiting threads
+Thread-1 has been notified
+Thread-2 has been notified
+ 
+*/
+```
 
 ####  35. Does thread leaves object lock when sleep() method is called?
 
@@ -787,24 +1069,67 @@ Thread will leave lock when it exits static synchronized method.
 
 ####  40. Difference between object lock and class lock?
 
-|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |                                                                                                                                                                                                                 |                                                                      | 
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------| 
-| Object lock                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Class lock                                                                                                                                                                                                      |                                                                      | 
-| "Thread can acquire object lock by-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                 |                                                                      | 
-| Entering synchronized block or                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                                                                                                                                                                                                                 |                                                                      | 
-| by entering synchronized methods."                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | "Thread can acquire lock on class’s class object by-                                                                                                                                                            |                                                                      | 
-| Entering synchronized block or                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                                                                                                                                                                                                                 |                                                                      | 
-| by entering static synchronized methods."                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                 |                                                                      | 
-| "Multiple threads may exist on same object but only one thread of that object can enter synchronized methodat a time.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                                                                 |                                                                      | 
-| Threads on different object can enter same method at same time."                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Multiple threads may exist on same or different objects of class but only one thread can enter static synchronized method at a time.                                                                            |                                                                      | 
-| Multiple objects of class may exist and every object has it’s own lock.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Multiple objects of class may exist but there is always one class’s class object lock available.                                                                                                                |                                                                      | 
-| "First let’s acquire object lock by entering synchronized block.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                 |                                                                      | 
-| Example- Let’s say there is one class MyClass and we have created it’s object and reference to that object is myClass. Now we can create synchronization block, and parameter passed with synchronization tells which object has to be synchronized. In below code, we have synchronized object reference by myClass.MyClass myClass=new Myclass();       synchronized (myClass) {      }As soon thread entered Synchronization block, thread acquired object lock on object referenced by myClass (by acquiring object’s monitor.)Thread will leave lock when it exits synchronized block." | "First let’s acquire lock on class’s class object by entering synchronized block.                                                                                                                               |                                                                      | 
-| Example- Let’s say there is one class MyClass. Now we can create synchronization block                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |  and parameter passed with synchronization tells which class has to be synchronized. In below code                                                                                                              |  we have synchronized MyClass    synchronized (MyClass.class) {    } | 
-| As soon as thread entered Synchronization block, thread acquired MyClass’s class object. Thread will leave lock when it exits synchronized block. "                                                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                 |                                                                      | 
-| "public synchronized void method1() { }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                 |                                                                      | 
-| As soon as thread entered Synchronization method, thread acquired object lock.Thread will leave lock when it exits synchronized method. "                                                                                                                                                                                                                                                                                                                                                                                                                                                    | "public static synchronized void method1() {} As soon as thread entered static Synchronization method, thread acquired lock on class’s class object.Thread will leave lock when it exits synchronized method. " |                                                                      | 
 
+<table>
+<tr>
+<th>Object lock</th><th>Class lock</th>
+</tr>
+<tr>
+<td>Thread can acquire object lock by-<ol><li>Entering <b>synchronized block</b> or</li><li>by entering <b>synchronized methods</b>.</li></td><td>Thread can acquire lock on class’s class object by-<ol><li>Entering <b>static synchronized block</b> or</li><li>by entering </b>static synchronized methods</b></li></ol></td>
+</tr>
+<tr>
+
+<td>Multiple threads may exist on same object but only one thread of that object can enter synchronized method at a time.</br>Threads on different object can enter same method at same time.|Multiple threads may exist on same or different objects of class but only one thread can enter static synchronized method at a time.</td><td>Multiple objects of class may exist and every object has it’s own lock.|Multiple objects of class may exist but there is always one class’s class object lock available.</td>
+</tr>
+
+<tr>
+<td>
+First let’s acquire object lock by entering synchronized block.
+
+Example- Let’s say there is one class MyClass and we have created it’s object and reference to that object is myClass. Now we can create synchronization block, and parameter passed with synchronization tells which object has to be synchronized. In below code, we have synchronized object reference by myClass.
+
+```java
+MyClass myClass=new Myclass();
+synchronized (myClass) {}
+```
+
+As soon thread entered Synchronization block, thread acquired object lock on object referenced by myClass (by acquiring object’s monitor.)
+Thread will leave lock when it exits synchronized block.
+</td>
+<td>
+First let’s acquire lock on class’s class object by entering synchronized block.
+
+Example- Let’s say there is one class MyClass. Now we can create synchronization block, and parameter passed with synchronization tells which class has to be synchronized. In below code, we have synchronized MyClass
+```java
+synchronized (MyClass.class) {
+}
+```
+
+As soon as thread entered Synchronization block, thread acquired MyClass’s class object. Thread will leave lock when it exits synchronized block. 
+</td>
+
+</tr>
+
+<tr>
+<td>
+
+```java
+public synchronized void method1() {
+ }
+```
+As soon as thread entered Synchronization method, thread acquired object lock.
+Thread will leave lock when it exits synchronized method. </td>
+<td>
+
+```java
+public static synchronized void method1() {} 
+```
+
+As soon as thread entered static Synchronization method, thread acquired lock on class’s class object.
+Thread will leave lock when it exits synchronized method. 
+</td>
+</tr>
+</table>
 
 ####  41. Suppose you have 2 threads (Thread-1 and Thread-2) on same object. Thread-1 is in synchronized method1(), can Thread-2 enter synchronized method2() at same time?
 
@@ -818,7 +1143,7 @@ No, here when Thread-1 is in static synchronized method1() it must be holding lo
 
 Likewise, Thread-2 even cannot enter static synchronized method1() which is being executed by Thread-1. Thread-2 will have to wait for Thread-1 to release lock on  class’s classobject so that it could enter static synchronized method1(). Now, let’s see a program to prove our point.
 
-####  43. Suppose you have 2 threads (Thread-1 and Thread-2) on same object. Thread-1 is in synchronized method1(), can Thread-2 enter static synchronized method2() at same time?
+####  43. Suppose you have 2 threads (Thread-1 and Thread-2) on same object. Thread-1 is in synchronized method1(), Can Thread-2 enter static synchronized method2() at same time?
 
 Yes, here when Thread-1 is in synchronized method1() it must be holding lock on object’s monitor and Thread-2 can enter static synchronized method2() by acquiring lock on class’s class object. Now, let’s see a program to prove our point.
 
@@ -850,6 +1175,44 @@ So, now thread holds 2 locks (it’s also called nested synchronization)-
 
 >second one on class’s class object.(This lock will be released when thread exits static method).Now, let’s see a program to prove our point.
 
+```java
+class MyRunnable1 implements Runnable{
+ 
+  @Override
+  public void run(){
+      method1();
+  }
+  
+  static synchronized void method1(){
+      System.out.println("static synchronized void method1() started");
+      method2();
+      System.out.println("static synchronized void method1() ended");
+  }
+  
+  static synchronized void method2(){
+      System.out.println("in static synchronized method2()");
+  }
+    
+    
+}
+ 
+public class MyClass {
+  public static void main(String args[]) throws InterruptedException{
+    MyRunnable1 myRunnable1=new MyRunnable1();
+    Thread thread1=new Thread(myRunnable1,"Thread-1");
+    thread1.start();
+  }
+ 
+}
+/*OUTPUT
+ 
+static synchronized void method1() started
+in static synchronized method2()
+static synchronized void method1() ended
+ 
+*/
+```
+
 ####  48. Suppose you have 2 threads (Thread-1 on object1 and Thread-2 on object2). Thread-1 is in synchronized method1(), can Thread-2 enter synchronized method2() at same time?
 
 Yes, here when Thread-1 is in synchronized method1() it must be holding lock on object1’s monitor. Thread-2 will acquire lock on object2’s monitor and enter synchronized method2().
@@ -867,51 +1230,40 @@ Likewise, Thread-2 even cannot enter static synchronized method1() which is bein
 ####  50. Difference between wait() and wait(long timeout), What are thread states when these method are called?
 
 
-wait()
-
-wait(long timeout)
-
-When wait() method is called on object, it causes causes the current thread to wait until another thread invokes the notify() or notifyAll() method for this object.
-
-wait(long timeout) - Causes the current thread to wait until either another thread invokes the notify() or notifyAll() methods for this object, or a specified timeout time has elapsed.
-
-When wait() is called on object - Thread enters from running to waiting state.
-
-It waits for some other thread to call notify so that it could enter runnable state.
-
-When wait(1000) is called on object - Thread enters from running to waiting state. Than even if notify() or notifyAll() is not called after  timeout time has elapsed thread will go from waiting to runnable state.
+|wait()|wait(long timeout)|
+|--|--|
+|When wait() method is called on object, it causes causes the current thread to wait until another thread invokes the notify() or notifyAll() method for this object. |Causes the current thread to wait until either another thread invokes the notify() or notifyAll() methods for this object, or a specified timeout time has elapsed. |
+|When wait() is called on object - Thread enters from running to waiting state. </br>It waits for some other thread to call notify so that it could enter runnable state.|When wait(1000) is called on object - Thread enters from running to waiting state. Than even if notify() or notifyAll() is not called after  timeout time has elapsed thread will go from waiting to runnable state.|
 
 ####  51.  How can you implement your own Thread Pool in java?
 
 
 
-What is ThreadPool?
+_What is `ThreadPool`?_
 
-ThreadPool is a pool of threads which reuses a fixed number of threads  to execute tasks.
+`ThreadPool` is a pool of threads which reuses a fixed number of threads  to execute tasks.
 
-At any point, at most nThreads threads will be active processing tasks. If additional tasks are submitted when all threads are active, they will wait in the queue until a thread is available.
+At any point, _at most nThreads threads will be active processing tasks. If additional tasks are submitted when all threads are active, they will wait in the queue until a thread is available_ .
 
-ThreadPool implementation internally uses LinkedBlockingQueue for adding and removing tasks.
+`ThreadPool` implementation internally uses `LinkedBlockingQueue` for adding and removing tasks.
 
-In this post i will be using LinkedBlockingQueue provide by java Api, you can refer this post for implementing ThreadPool using custom LinkedBlockingQueue.
 
-Need/Advantage of ThreadPool?
+_Need/Advantage of `ThreadPool`?_
 
-Instead of creating new thread every time for executing tasks, we can create ThreadPool which reuses a fixed number of threads for executing tasks.
+Instead of creating new thread every time for executing tasks, we can create `ThreadPool` which reuses a fixed number of threads for executing tasks.
 
 As threads are reused, performance of our application improves drastically.
 
-How ThreadPool works?
+_How `ThreadPool` works?_
 
 We will instantiate ThreadPool, in ThreadPool’s constructor nThreads number of threads are created and started.
+```java
+ThreadPool threadPool = new ThreadPool(2);
+```
+Here 2 threads will be created and started in `ThreadPool`.
 
-ThreadPool threadPool=new ThreadPool(2);
-
-Here 2 threads will be created and started in ThreadPool.
-
-Then, threads will enter run() method of ThreadPoolsThread class and will call take() method on taskQueue.
-
-If tasks are available thread will execute task by entering run() method of task (As tasks executed always implements Runnable).
+Then, threads will enter `run()` method of `ThreadPoolsThread` class and will call `take()` method on `taskQueue`.
+  1. If tasks are available thread will execute task by entering `run()` method of task (As tasks executed always implements Runnable).
 
 ```java
 publicvoid run() {
@@ -925,11 +1277,11 @@ publicvoid run() {
 . . .
 }  
 ```
-Else waits for tasks to become available.
+ 2. Else waits for tasks to become available.
 
-When tasks are added?
+_When tasks are added?_
 
-When execute() method of ThreadPool is called, it internally calls put() method on taskQueue to add tasks.
+When `execute()` method of `ThreadPool` is called, it internally calls `put()` method on `taskQueue` to add tasks.
 
 `taskQueue.put(task);`
 
@@ -937,35 +1289,30 @@ Once tasks are available all waiting threads are notified that task is available
 
 ####  52.  What is significance of using ThreadLocal?
 
-This ####  will test your command in multi threading, can you really create some perfect multithreading application or not. ThreadLocal is a class which provides thread-local variables.
+`ThreadLocal` is a class which provides thread-local variables. Every thread has its own `ThreadLocal` value that makes `ThreadLocal` value threadsafe as well.
 
-What is ThreadLocal ?
+_For how long Thread holds `ThreadLocal` value?_
 
-ThreadLocal is a class which provides thread-local variables. Every thread has its own ThreadLocal value that makes ThreadLocal value threadsafe as well.
+Thread holds `ThreadLocal` value till it hasn’t entered dead state.
 
-For how long Thread holds ThreadLocal value?
+_Can one thread see other thread’s `ThreadLocal` value?_
 
-Thread holds ThreadLocal value till it hasn’t entered dead state.
+No, thread can see only it’s `ThreadLocal` value.
 
-Can one thread see other thread’s ThreadLocal value?
+_Are `ThreadLocal` variables thread safe, Why?_
 
-No, thread can see only it’s ThreadLocal value.
+Yes, `ThreadLocal` variables are thread safe. As every thread has its own ThreadLocal value and one thread can’t see other threads ThreadLocal value.
 
-Are ThreadLocal variables thread safe. Why?
+_Application of `ThreadLocal`?_
 
-Yes, ThreadLocal variables are thread safe. As every thread has its own ThreadLocal value and one thread can’t see other threads ThreadLocal value.
+1. `ThreadLocal` are used by many web frameworks for maintaining some context (may be session or request) related value
 
-Application of ThreadLocal?
+    1. In any single threaded application, same thread is assigned for every request made to same action, so `ThreadLocal` values will be available in next request as well.
+    2. In multi threaded application, different thread is assigned for every request made to same action, so ThreadLocal values will be different for every request.
 
-ThreadLocal are used by many web frameworks for maintaining some context (may be session or request) related value.
+2. When threads have started at different time they might like to store time at which they have started. So, thread’s start time can be stored in ThreadLocal.
 
-In any single threaded application, same thread is assigned for every request made to same action, so ThreadLocal values will be available in next request as well.
-
-In multi threaded application, different thread is assigned for every request made to same action, so ThreadLocal values will be different for every request.
-
-When threads have started at different time they might like to store time at which they have started. So, thread’s start time can be stored in ThreadLocal.
-
-Creating ThreadLocal >
+_Creating ThreadLocal >_
 ```java
 private ThreadLocal<String> threadLocal =  new ThreadLocal<String>();
 ```
@@ -973,96 +1320,93 @@ We will create instance of ThreadLocal. ThreadLocal is a generic class, i will b
 
 All threads will see same instance of ThreadLocal, but a thread will be able to see value which was set by it only.
 
-How thread set value of ThreadLocal >
+_How thread set value of `ThreadLocal` ?_
 
 `threadLocal.set( new Date().toString());`
 
-Thread set value of ThreadLocal by calling set(“”) method on threadLocal.
+Thread set value of `ThreadLocal` by calling `set(“”)` method on threadLocal.
 
-How thread get value of ThreadLocal >
+_How thread get value of ThreadLocal ?_
 
 `threadLocal.get()`
 
-Thread get value of ThreadLocal by calling get() method on threadLocal.
+Thread get value of `ThreadLocal` by calling get() method on threadLocal.
 
-See here for detailed explanation of threadLocal.
+
 
 ####  53. What is busy spin?
 
 When one thread loops continuously waiting for another thread to signal.
 
-Performance point of view - Busy spin is very bad from performance point of view, because one thread keeps on looping continuously ( and consumes CPU) waiting for another thread to signal.
+**Performance point of view** - Busy spin is very bad from performance point of view, because one thread keeps on looping continuously ( and consumes CPU) waiting for another thread to signal.
 
-Solution to busy spin -
+**Solution to busy spin** -
 
-We must use sleep() or wait() and notify() method. Using wait() is better option.
+We must use `sleep()` or `wait()` and `notify()` method. Using `wait()` is better option.
 
-Why using wait() and notify() is much better option to solve busy spin?
+##### Why using `wait()` and `notify()` is much better option to solve busy spin?
 
-Because in case when we use sleep() method, thread will wake up again and again after specified sleep time until boolean variable is true. But, in case of wait() thread will wake up only when when notified by calling notify() or notifyAll(), hence end up consuming CPU in best possible manner.
+Because in case when we use `sleep()` method, thread will wake up again and again after specified sleep time until boolean variable is true. But, in case of `wait()` thread will wake up only when when notified by calling `notify()` or `notifyAll()`, hence end up consuming CPU in best possible manner.
 
-Program - Consumer Producer problem with busy spin >
+**Program - Consumer Producer problem with busy spin >**
 
-Consumer thread continuously execute (busy spin) in while loop tillproductionInProcess is true. Once producer thread has ended it will make boolean variable productionInProcess false and busy spin will be over.
+Consumer thread continuously execute (busy spin) in while loop **tillproductionInProcess** is true. Once producer thread has ended it will make boolean variable **productionInProcess** false and busy spin will be over.
 
 ```java
 while(productionInProcess){
-
  System.out.println("BUSY SPIN - Consumer waiting for production to get over");
-
 }
 ```
 ####  54. Can a constructor be synchronized?
 
 No, constructor cannot be synchronized. Because constructor is used for instantiating object, when we are in constructor object is under creation. So, until object is not instantiated it does not need any synchronization.
 
-Enclosing constructor in synchronized block will generate compilation error.
+1. _Enclosing constructor in synchronized block will generate compilation error._
 
-Using synchronized in constructor definition will also show compilation error.
+2. _Using synchronized in constructor definition will also show compilation error._
 
 COMPILATION ERROR = Illegal modifier for the constructor in type ConstructorSynchronizeTest; only public, protected & private are permitted
 
 Though we can use synchronized block inside constructor.
 
-Read More about : Constructor in java cannot be synchronized
+
 
 ####  55. Can you find whether thread holds lock on object or not?
 
-holdsLock(object) method can be used to find out whether current thread holds the lock on monitor of specified object.
+`holdsLock(object)` method can be used to find out whether current thread holds the lock on monitor of specified object.
 
-holdsLock(object) method returns true if the current thread holds the lock on monitor of specified object.
+`holdsLock(object)` method returns true if the current thread holds the lock on monitor of specified object.
 
 ####  56. What do you mean by thread starvation?
 
 When thread does not enough CPU for its execution Thread starvation happens.
 
-Thread starvation may happen in following scenarios >
+**Thread starvation** may happen in following scenarios >
 
-Low priority threads gets less CPU (time for execution) as compared to high priority threads. Lower priority thread may starve away waiting to get enough CPU to perform calculations.
+1. Low priority threads gets less CPU (time for execution) as compared to high priority threads. Lower priority thread may starve away waiting to get enough CPU to perform calculations.
 
-In deadlock two threads waits for each other to release lock holded by them on resources. There both Threads starves away to get CPU.
+2. In deadlock two threads waits for each other to release lock holded by them on resources. There both Threads starves away to get CPU.
 
-Thread might be waiting indefinitely for lock on object’s monitor (by calling wait() method), because no other thread is calling notify()/notifAll() method on object. In that case, Thread starves away to get CPU.
+3. Thread might be waiting indefinitely for lock on object’s monitor (by calling wait() method), because no other thread is calling notify()/notifAll() method on object. In that case, Thread starves away to get CPU.
 
-Thread might be waiting indefinitely for lock on object’s monitor (by calling wait() method), but notify() may be repeatedly awakening some other threads. In that case also Thread starves away to get CPU.
+4. Thread might be waiting indefinitely for lock on object’s monitor (by calling wait() method), but notify() may be repeatedly awakening some other threads. In that case also Thread starves away to get CPU.
 
 ####  57. What is addShutdownHook method in java?
 
-addShutdownHook method in java >
 
-addShutdownHook method registers a new virtual-machine shutdown hook.
+1. `addShutdownHook` method _registers a new virtual-machine shutdown hook_.
 
-A shutdown hook is a initialized but unstarted thread.
+2. A shutdown hook is a _initialized but unstarted thread_.
 
-When JVM starts its shutdown it will start all registered shutdown hooks in some unspecified order and let them run concurrently.
+3. When _JVM starts its shutdown_ it will _start all registered shutdown hooks_ in some unspecified order and let them run concurrently.
 
 When JVM (Java virtual machine)  shuts down >
 
-When the last non-daemon thread finishes, or
+  1. When the last non-daemon thread finishes, or
 
-when the System.exit is called.
+  2. when the System.exit is called.
 
-Once JVM’s shutdown has begunnew shutdown hook cannot be registered neither  previously-registered hook can be de-registered. Any attempt made to do any of these operations causes an IllegalStateException.
+Once JVM’s shutdown has begun new shutdown hook cannot be registered neither  previously-registered hook can be de-registered. Any attempt made to do any of these operations causes an `IllegalStateException`.
 
 For more detail with program read : Threads addShutdownHook method in java
 
@@ -1070,20 +1414,20 @@ For more detail with program read : Threads addShutdownHook method in java
 
 We can use setDefaultUncaughtExceptionHandler method which can handle uncaught unchecked(runtime) exception generated in run() method.
 
-What is setDefaultUncaughtExceptionHandler method?
+##### What is `setDefaultUncaughtExceptionHandler` method?
 
-setDefaultUncaughtExceptionHandler method sets the default handler which is called when a thread terminates due to an uncaught unchecked(runtime) exception.
+`setDefaultUncaughtExceptionHandler` method sets the default handler which is called when a thread terminates due to an uncaught unchecked(runtime) exception.
 
-setDefaultUncaughtExceptionHandler method features >
+**setDefaultUncaughtExceptionHandler method features >**
 
-setDefaultUncaughtExceptionHandler method sets the default handler which is called when a thread terminates due to an uncaught unchecked(runtime) exception.
+`setDefaultUncaughtExceptionHandler` method sets the default handler which is called when a thread terminates due to an uncaught unchecked(runtime) exception.
 
-setDefaultUncaughtExceptionHandler is a static method method, so we can directly call  Thread.setDefaultUncaughtExceptionHandler to set the default handler to handle uncaught unchecked(runtime) exception.
+`setDefaultUncaughtExceptionHandler` is a static method method, so we can directly call  Thread.setDefaultUncaughtExceptionHandler to set the default handler to handle uncaught unchecked(runtime) exception.
 
 It avoids abrupt termination of thread caused by uncaught runtime exceptions.
 
 
-Defining setDefaultUncaughtExceptionHandler method >
+Defining `setDefaultUncaughtExceptionHandler` method >
 
 ```java
 Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler(){
@@ -1101,7 +1445,7 @@ Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler(){
 
 When program starts JVM creates  a ThreadGroup named main. Unless specified, all  newly created threads become members of the main thread group.
 
-ThreadGroup is initialized with default priority of 10.
+_ThreadGroup is initialized with default priority of 10._
 
 ThreadGroup important methods >
 
