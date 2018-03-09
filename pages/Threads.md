@@ -1192,8 +1192,6 @@ class MyRunnable1 implements Runnable{
   static synchronized void method2(){
       System.out.println("in static synchronized method2()");
   }
-    
-    
 }
  
 public class MyClass {
@@ -1202,8 +1200,8 @@ public class MyClass {
     Thread thread1=new Thread(myRunnable1,"Thread-1");
     thread1.start();
   }
- 
 }
+
 /*OUTPUT
  
 static synchronized void method1() started
@@ -1432,11 +1430,9 @@ Defining `setDefaultUncaughtExceptionHandler` method >
 ```java
 Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler(){
 
- publicvoid uncaughtException(Thread thread, Throwable throwable) {
-
- System.out.println(thread.getName() + " has thrown " + throwable);
-
- }
+	 publicvoid uncaughtException(Thread thread, Throwable throwable) {
+		System.out.println(thread.getName() + " has thrown " + throwable);
+	 }
 
  });
 ```

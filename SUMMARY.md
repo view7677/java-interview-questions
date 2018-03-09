@@ -2,10 +2,9 @@
 
 ###### Questions With Answers
 
-* [Contents](pages/contents.md)
+* [Contents](pages/Contents.md)
 * [Preface](pages/Preface.md)
-    * [About author](pages/about_author.md)
-* [Questions Index](pages/Questions.md)
+    * [About author](pages/About_author.md)
 * [Java Basics](pages/Java_Basics.md)
 * [OOPS](pages/OOPS.md)
 * [Inheritance](pages/Inheritance.md)
@@ -30,7 +29,6 @@
 * [Threads](pages/Threads.md)
 * [Advanced Multi-threading](pages/Advanced_Multi-threading.md)
 * [Java 8](pages/Java_8.md)
-* [Functional interface in Java 8](pages/Functional_interface_in_Java_8.md)
 * [JUnit](pages/Junit.md)
 * [Java Tricky Questions](pages/Java_Tricky_Questions.md)
 * [JSP](pages/JSP.md)

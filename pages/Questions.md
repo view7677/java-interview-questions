@@ -869,7 +869,7 @@ with out deadlock?
 808. What are Excluded dependencies in Maven?
 809. What are Optional dependencies in Maven?
 810. Where will you find the class files after compiling a Maven project successfully?
-811.  What are the default locations for source, test and build directories in Maven?
+811. What are the default locations for source, test and build directories in Maven?
 812. What is the result of jar:jar goal in Maven?
 813. How can we get the debug or error messages from the execution of Maven?
 814. What is the difference between a Release version and SNAPSHOT version in Maven?
@@ -900,8 +900,8 @@ with out deadlock?
 837. How will you create a repository in GIT?
 838. What are the different ways to start work in GIT?
 839. GIT is written in which language?
-840. What does ‘git pull’ command in GIT do internally?
-841. What does ‘git push’ command in GIT do internally?
+840. What does `git pull` command in GIT do internally?
+841. What does `git push` command in GIT do internally?
 842. What is git stash?
 843. What is the meaning of ‘stage’ in GIT?
 844. What is the purpose of git config command?
@@ -967,7 +967,7 @@ with out deadlock?
 907. Is origin a special branch in GIT?
 908. How can we configure GIT to not ask for password every time?
 909. What are the four major protocols used by GIT for data transfer?910.What is GIT protocol?
-911.  How can we work on a project where we do not have push access?
+911. How can we work on a project where we do not have push access?
 912. What is git grep?
 913. How can your reorder commits in GIT?
 914. How will you split a commit into multiple commits?
