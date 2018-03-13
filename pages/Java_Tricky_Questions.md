@@ -280,72 +280,206 @@ The answer is `false` because floating point numbers can not be
 represented exactly in Java, so 5*0.1 is not same as 0.5.
 
 
-#### 437. Out of an int and Integer, which one takes more memory?
+#### 437. Out of an `int` and `Integer`, which one takes more memory?
 
-An Integer object takes more memory than an int in Java. An Integer
+An `Integer` object takes more memory than an int in Java. An `Integer`
 is an object and it stores meta-data overhead about the object. An
-int is a primitive type so its takes less memory and there is no metadata
+`int` is a primitive type so its takes less memory and there is no metadata
 overhead.
 
-#### 438. Can we use String in the switch case statement in Java?
+#### 438. Can we use `String` in the switch case statement in Java?
 
-
+Yes. From Java 7 onwards, String can be used in switch case
+statement. This gives convenience to programmer. But internally
+hash code of String is used for the switch statement.
 
 #### 439. Can we use multiple main methods in same class?
 
-
+Yes. You can have multiple methods with name main in the same
+class. But there should be only one main method with the signature
+public static void main(String[] args). JVM looks for main with this
+signature only. Other methods with name main in same class are just
+ignored.
 
 #### 440. When creating an abstract class, is it a good idea to call abstract methods inside its constructor?
 
+No, we should avoid calling abstract methods in the constructor of
+an abstract class. Because, it can restrict how these abstract
+methods can be implemented by child classes.
 
+Many IDE give “Overridable method call in constructor” warning
+for such implementation.
+
+This is a problem of object initialization order. The superclass
+constructor will run before the child class constructor. It means
+child class is not yet initialized. But due to presence of overridden
+method in superclass, the overridden method of subclass is called
+when the subclass is not fully initialized.
 
 #### 441. How can you do constructor chaining in Java?
 
-
+When we call one constructor from another constructor of the same
+class, then it is known as constructor chaining in Java. When you
+have multiple overloaded constructors in a class, you can do
+constructor chaining.
 
 #### 442. How can we find the memory usage of JVM from Java code?
 
+We can use memory management related methods provided in
+java.lang.Runtime class to get the free memory, total memory and
+maximum heap memory in Java.
 
+By using these methods, you can find out how much of the heap is
+used and how much heap space still remains.
 
-#### 443. What is the difference between x == y and x.equals(y) expressions in Java?
+Runtime.freeMemory() returns amount of free memory in bytes.
+Runtime.totalMemory() returns total memory in bytes.
+Runtime.maxMemory() returns maximum memory in bytes.
 
+#### 443. What is the difference between `x == y` and `x.equals(y)` expressions in Java?
 
+The `x == y` expression does object reference matching if both a and
+b are an object and only returns true if both are pointing to the same
+object in the heap space.
+
+The `x.equals(y)` expression is used for logical mapping and it is
+expected from an object to override this method to provide logical
+equality.
+
+Eg. A Book object may be logically equal to another copy of same
+Book, but it is a different object which will be false while doing x
+== y.
 
 #### 444. How can you guarantee that the garbage collection takes place?
 
+No. We cannot guarantee the garbage collection in Java. Java
+documentation explicitly says that GarbageCollection is not
+guaranteed.
 
+You can call `System.gc()` to request garbage collection, however,
+that's what it is - a request. It is upto GC's discretion to run.
 
 #### 445. What is the relation between x.hashCode() method and x.equals(y) method of Object class?
 
+x.hashCode() method returns an int hash value corresponding to an
+object instance.
+
+It is used in hashCode based collection classes like Hashtable,
+HashMap, LinkedHashMap etc.
+
+hashCode() method is also related to equals() method.
+As per Java specification, two objects which are equal to each
+other using equals() method must have same hash code.
+Therefore, two objects with same hashCode may or may not be
+equal to each other. But two equal objects should have same hash
+code.
 
 
 #### 446. What is a compile time constant in Java?
 
+A compile time constant is public static final variable. The public
+modifier is optional here. At compile time, they are replaced with
+actual values because compiler knows their value up-front and it
+also knows that it cannot be changed during run-time. So they are
+constants.
+
+#### 447. Explain the difference between fail-fast and fail-safe iterators? 
+
+The main difference between fail-fast and fail-safe iterators is whether or not the collection can be modified while it is being iterated.
+
+|**Fail-safe iterators**| **Fail-fast iterators**|
+|------|----|
+Fail-safe iterators allow modification of collection in an iteration task.|fail-fast iterators do not allow any modification to collection during iteration.
+Fail-safe iterators operate on a copy of the collection. Therefore they do not throw an exception if the collection is modified during iteration. Eg. ConcurrentHashMap, CopyOnWriteArrayList are fail-safe.|During iteration, fail-fast iterators fail as soon as they realize that the collection has been modified. Modification can be addition, removal or update of a member. And it will throw a `ConcurrentModificationException`. Eg. ArrayList, HashSet, and HashMap are fail-fast|
 
 
-#### 447. Explain the difference between fail-fast and fail-safe iterators? You have a character array and a String. Which one is more secure to store sensitive data (like password, date of birth, etc.)?
 
+#### 448. You have a character array and a String. Which one is more secure to store sensitive data (like password, date of birth, etc.)?
 
+Short answer is, it is safe to store sensitive information in character
+array.
+
+In Java, String is immutable and it is stored in the String pool. Once
+a String is created, it stays in the pool in memory until it is garbage
+collected. You have no control on garbage collection. Therefore,
+anyone having access to a memory dump can potentially extract the
+sensitive data and use it.
+
+Whereas, if you use a mutable object like a character array, to store
+the value, you can set it to blank once you are done with it. Once it
+is made blank it cannot be used by anyone else.
 
 #### 449. Why do you use volatile keyword in Java?
 
+The volatile keyword guarantees global ordering on reads and
+writes to a variable. This implies that every thread accessing a
+volatile field will read the variable’s current value instead of using
+a cached value.
 
-
+By marking the variable volatile, the value of a variable is never
+cached thread-locally. All reads and writes will go straight to main
+memory of Java.
 #### 450. What is the difference between `poll()` and `remove()` methods of Queue in Java?
 
 
+
+It is a basic question to know the understanding of Queue data
+structure. Both poll() and remove() methods remove and return the
+head of the Queue.
+
+When Queue is empty, poll() method fails and it returns null, but
+remove() method fails and throws Exception.
 
 #### 451. Can you catch an exception thrown by another thread in Java?
 
 
 
+Yes, it can be done by using `Thread.UncaughtExceptionHandler`. Java Documentation says “When a thread is about to terminate due to an uncaught exception the Java Virtual Machine will query the thread for its UncaughtExceptionHandler using `Thread.getUncaughtExceptionHandler()` will invoke the handler's uncaughtException method, passing the thread and the exception as arguments.”
+
 #### 452. How do you decide which type of Inner Class – Static or Non-Static to use in Java?
 
 
 
-#### 453. What are the different types of Classloaders in Java?454.What are the situations in which you choose HashSet or TreeSet?
+
+An inner class has full access to the fields and methods of the
+enclosing class. This is convenient for event handlers, but comes at
+a cost. Every instance of an inner class retains and requires a
+reference to its enclosing class.
+
+Due to this cost, there are many situations where static nested
+classes are preferred over inner classes. When instances of the
+nested class outlive instances of the enclosing class, the nested
+class should be static to prevent memory leaks.
+At times, due to their “hidden” reference to enclosing class, Inner
+classes are harder to construct via reflection.
+
+#### 453. What are the different types of Classloaders in Java?
 
 
+
+
+Java Classloader is the part of the Java Runtime Environment (JRE)
+that loads classes on demand into Java Virtual Machine (JVM).
+When the JVM is started, three types of class loaders are used:
+1. **Bootstrap Classloader**: It loads core java API file `rt.jar` classes
+from folder.
+2. **Extension Classloader**: It loads jar files from `lib/ext` folder.
+3. **System/Application Classloader**: It loads jar files from path
+specified in the CLASSPATH environment variable.
+Classes may be loaded from the local file system, a remote file
+system, or even the web.
+
+#### 454. What are the situations in which you choose HashSet or TreeSet?
+
+`HashSet` is better than `TressSet` in almost every way. It gives _**O(1)**_
+for `add()`, `remove()` and `contains()` operations. Whereas, `TressSet`
+gives _**O(log(N))**_ for these operations.
+
+Still, `TreeSet` is useful when you wish to maintain order over the
+inserted elements or query for a range of elements within the set.
+We should use TreeSet when we want to maintain order. Or when
+there are enough read operations to offset the increased cost of
+write operations.
 
 #### 455. What is the use of method references in Java?
 
@@ -353,7 +487,16 @@ overhead.
 
 #### 456. Do you think Java Enums are more powerful than integer constants?
 
+Yes. Java Enums provide many features that integer constants
+cannot. Enums can be considered as final classes with a fixed
+number of instances. Enums can implement interfaces but cannot
+extend another class.
 
+While implementing the strategy pattern, we can use this feature of
+Enums. Especially, when the number of strategies is fixed.
+You can also attach meta-data to enum values in Java. Also enum
+values are typesafe, where as integer constants are not.
+You can also define custom behavior in enum values.
 
 #### 457. Why do we use static initializers in Java?
 
