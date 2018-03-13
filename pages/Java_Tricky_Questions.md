@@ -17,7 +17,7 @@ The += operator implicitly casts the result of addition into the type of variabl
 
 #### 414. What does the expression `1.0 / 0.0` return? Will there be any compilation error?
 
-Double class is the source of many tricky interview questions. You may know about the double primitive type and Double class. But while doing floating point arithmetic some people don't pay enough attention to Double.INFINITY, NaN, and -0.0. There are rules that govern the floating point arithmetic calculations involving Double.
+Double class is the source of many tricky interview questions. You may know about the double primitive type and Double class. But while doing floating point arithmetic some people don't pay enough attention to `Double.INFINITY`, NaN, and -0.0. There are rules that govern the floating point arithmetic calculations involving Double.
 
 The answer to this question is that `1.0 / 0.0` will compile successfully. And it **will not throw `ArithmeticException`**. It will just return `Double.INFINITY`.
 
@@ -27,15 +27,15 @@ Yes. When we start an application in Java, we just mention the class name to be 
 
 #### 416. Does Java allow you to override a private or static method?
 
-The question is tricky but the answer is very simple. You cannot override a private or static method in Java. If we create a similar method with same return type and same method arguments in child class, then it will hide the superclass method. This is known as method hiding.
+You cannot override a private or static method in Java. If we create a similar method with same return type and same method arguments in child class, then it will hide the superclass method. This is known as method hiding.
 
 Also, you cannot override a private method in sub class because Private method is not visible even in a subclass. Therefore, what you can do is to create another private method with the same name in the child class.
 
 So in both the cases, it is not method overriding. It is either method hiding or a new method.
 
-#### 417. What happens when you put a key object in a HashMap that is already present?
+#### 417. What happens when you put a key object in a `HashMap` that is already present?
 
-It will replace the old mapping because HashMap doesn't allow duplicate keys. The same key will have same HashCode as previous key object. Due to same HashCode, it will be stored at the same position in the bucket.
+It will replace the old mapping because `HashMap` doesn't allow duplicate keys. The same key will have same `HashCode` as previous key object. Due to same `HashCode`, it will be stored at the same position in the bucket.
 
 #### 418. How can you make sure that N threads can access N resources without deadlock?
 
@@ -55,6 +55,7 @@ Sun has a Java System property to determine the bit size of the
 JVM: 32 or 64:
 sun.arch.data.model=32 // 32 bit JVM
 sun.arch.data.model=64 // 64 bit JVM
+
 We can use `System.getProperty("sun.arch.data.model")` to determine
 if it is 32/64 bit from Java program.
 
@@ -105,7 +106,7 @@ We can mark an array volatile in Java. But it makes only the reference to array 
 
 If one thread changes the reference variable to point to another array, then it will provide a volatile guarantee. But if multiple threads are changing individual array elements, they won't be having same reference due to the reference itself being volatile.
 
-#### 426. What is a thread local variable in Java?
+#### 426. What is a `ThreadLocal` variable in Java?
 
 Thread-local variable is a variable restricted to a specific thread. It
 is like thread's own copy of variable that is not shared among
@@ -389,8 +390,8 @@ The main difference between fail-fast and fail-safe iterators is whether or not 
 
 |**Fail-safe iterators**| **Fail-fast iterators**|
 |------|----|
-Fail-safe iterators allow modification of collection in an iteration task.|fail-fast iterators do not allow any modification to collection during iteration.
-Fail-safe iterators operate on a copy of the collection. Therefore they do not throw an exception if the collection is modified during iteration. Eg. ConcurrentHashMap, CopyOnWriteArrayList are fail-safe.|During iteration, fail-fast iterators fail as soon as they realize that the collection has been modified. Modification can be addition, removal or update of a member. And it will throw a `ConcurrentModificationException`. Eg. ArrayList, HashSet, and HashMap are fail-fast|
+|Fail-safe iterators allow modification of collection in an iteration task.|fail-fast iterators do not allow any modification to collection during iteration.|
+|Fail-safe iterators operate on a copy of the collection. Therefore they do not throw an exception if the collection is modified during iteration. Eg. ConcurrentHashMap, CopyOnWriteArrayList are fail-safe.|During iteration, fail-fast iterators fail as soon as they realize that the collection has been modified. Modification can be addition, removal or update of a member. And it will throw a `ConcurrentModificationException`. Eg. ArrayList, HashSet, and HashMap are fail-fast|
 
 
 
