@@ -9,9 +9,9 @@ When we add two integral variables e.g. variables of type byte, short, or int in
 
 The += operator implicitly casts the result of addition into the type of variable used to hold the result. 
 
-#### What happens when you put return statement or System.exit () on try or catch block? Will finally block execute?
+#### What happens when you put return statement or `System.exit()` on `try` or `catch` block? Will `finally` block execute?
 
-Finally block executes even if we put a return statement in the try block or catch block. But finally block does not execute if you call System.exit() from try or catch block.
+`Finally` block executes even if we put a `return` statement in the `try` block or `catch` block. But finally block does not execute if you call `System.exit()` from `try` or `catch` block.
 
 
 
@@ -151,30 +151,141 @@ We can reuse `CyclicBarrier` even if it is broken, but we cannot reuse `CountDow
 #### 431. What is the difference between StringBuffer and StringBuilder?
 
 
+`StringBuffer`|`StringBuilder`
+-------|----
+`StringBuffer` methods e.g. `length()`, `capacity()`, `append()` are synchronized.|methods in `StringBuilder` are not synchronized.
+`StringBuffer` concatenation is slow as compare to `StringBuilder`|Concatenation of String using `StringBuilder` is faster than StringBuffer.
+
+
 
 #### 432. Which class contains clone method? Cloneable or Object class?
 
-
+clone() method is defined in Object class. Cloneable is a marker interface that doesn't contain any method.
 
 #### 433. How will you take thread dump in Java?
 
+ 8 different options to capture thread dumps.
+
+1. **jstack**:
+ `jstack` is an effective command line tool to capture thread dumps. jstack tool is shipped in JDK_HOMEbin folder. Here is the command that you need to issue to capture thread dump:
+```shell
+jstack -l  <pid> > <file-path>
+```
+where
+
+**pid**: is the Process Id of the application, whose thread dump should be captured
+
+**file-path**: is the file path where thread dump will be written in to
+
+Example:
+```shell
+jstack -l 37320 > /opt/tmp/threadDump.txt
+```
+2. **Kill -3**
+ In major enterprises for security reasons only JREs are installed on production machines. Since jstack and other tools are only part of JDK, you wouldn’t be able to use jstack tool. In such circumstances ‘kill -3’ option can be used.
+```shell
+kill -3 <pid>
+```
+where
+
+**pid**: is the Process Id of the application, whose thread dump should be captured
+
+Example:
+```shell
+Kill -3 37320
+```
+3. **JVisualVM**
+
+go to the “Threads” tab. Click on the “Thread Dump” button as shown in the below image. Now Thread dumps would be generated.
+
+![](https://dzone.com/storage/temp/2234096-jvisualvm-2.png)
+
+4. **Java Mission Control (JMC)**
 
 
-#### 434. Can you cast an int variable into a byte variable? What happens if the value of int is larger than byte?
+![](https://dzone.com/storage/temp/2234108-jmc-2.png)
 
+5.  **Windows (Ctrl + Break)**
 
+This option will work only in Windows Operating system.
 
-#### 435. In Java, can we store a double value in a long variable without explicitcasting?
+1. Select command line console window in which you have launched application.
+2. Now on the console window issue the “Ctrl + Break” command.
+This will generate thread dump. A thread dump will be printed on the console window itself.
 
+```shell
+java -classpath . SampleThreadProgram > C:\workspacethreadDump.txt 2>&1
+```
+when you issue “Ctrl + Break” thread dump will be sent to `C:\workspacethreadDump.txt` file.
 
+6. **ThreadMXBean**
+
+generate thread dumps programmatically. 
+
+```java
+public void  dumpThreadDump() {
+    ThreadMXBean threadMxBean = ManagementFactory.getThreadMXBean();
+    for (ThreadInfo ti : threadMxBean.dumpAllThreads(true, true)) {
+        System.out.print(ti.toString());
+    }
+}
+```
+
+7. **APM Tool – App Dynamics**
+
+    1. Create an action, selecting Diagnostics->Take a thread dump in the Create Action window.
+    2. Enter a name for the action, the number of samples to take, and the interval between the thread dumps in milliseconds.
+    3. If you want to require approval before the thread dump action can be started, check the Require approval before this Action checkbox and enter the email address of the individual or group that is authorized to approve the action. See Actions Requiring Approval for more information.
+    4. Click OK.
+![](https://dzone.com/storage/temp/2234120-appdynamics-threaddumps.png)
+
+8. **JCMD**
+
+The jcmd tool was introduced with Oracle’s Java 7. It’s useful in troubleshooting issues with JVM applications. It has various capabilities such as identifying java process Ids, acquiring heap dumps, acquiring thread dumps, acquiring garbage collection statistics, ….
+
+JCMD command you can generate thread dump:
+
+```shell
+jcmd <pid> Thread.print > <file-path>
+```
+where
+
+**pid**: is the Process Id of the application, whose thread dump should be captured
+
+**file-path**: is the file path where thread dump will be written in to.
+
+Example
+```shell
+jcmd 37320 Thread.print > /opt/tmp/threadDump.txt
+```
+
+#### 434. Can you cast an `int` variable into a `byte` variable? What happens if the value of `int` is larger than `byte`?
+
+An `int` is 32 `bit` in Java. But a `byte` is just 8 `bit` in Java. We can cast
+an `int` to `byte`. But we will lose higher 24 `bits` of int while casting.
+Because a `byte` can hold only first 8 `bits` of `int`. Remaining 24 `bits`
+(32-8 = 24) will be lost.
+
+#### 435. In Java, can we store a `double` value in a `long` variable without explicitcasting?
+
+No, we cannot store a double value into a long variable without
+casting it to long. The range of `double` is more than that of `long`. So
+we need to type cast.
+
+To answer this question, just remember which one is bigger between `double` and `long` in Java.
 
 #### 436. What will this return `5*0.1 == 0.5` ? `true` or `false`?
 
+The answer is `false` because floating point numbers can not be
+represented exactly in Java, so 5*0.1 is not same as 0.5.
 
 
 #### 437. Out of an int and Integer, which one takes more memory?
 
-
+An Integer object takes more memory than an int in Java. An Integer
+is an object and it stores meta-data overhead about the object. An
+int is a primitive type so its takes less memory and there is no metadata
+overhead.
 
 #### 438. Can we use String in the switch case statement in Java?
 
