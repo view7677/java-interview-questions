@@ -23,7 +23,6 @@
 * [Exception Handling](pages/Exception_Handling.md)
 * [Threads](pages/Threads.md)
 * [Multi-threading](pages/Multi-threading.md)
-* [Collections](pages/Collections.md)
 * [Mixed Questions](pages/Mixed_Questions.md)
 * [Java Collection](pages/Java_Collection.md)
 * [Threads](pages/Threads.md)
